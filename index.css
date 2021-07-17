@@ -30,8 +30,8 @@ html, body {
 }
 
 .container .playernumpic {
-  width: 90%;
-  min-width: 360px;
+  width: 80%;
+  min-width: 300px;
 }
 
 .container .flexbox {
