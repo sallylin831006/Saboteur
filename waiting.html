@@ -30,12 +30,10 @@
     <!-- Modal -->
     <div class="modal fade" id="sharelinkModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content" id="popup">
+            <div class="modal-content">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <img src="svg/welcome.svg" alt="" class="welcome">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLabel">邀請你的朋友進來房間</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+                <h4 class="modal-title" id="exampleModalLabel">邀請你的朋友進來房間</h4>
                 <input type="text" id="url" value="http://sallylin831006.github.io/">
                 <h5 class="linkcue">請將下方連結分享給他們</h5>
                 <input type="button" class="copybtn" value="複製連結" onClick="url.select();document.execCommand('Copy')">
@@ -89,14 +87,12 @@
             <div class="modal-content" >
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">你的角色是：</h5>
-                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                 </div>
                 <div class="modal-body">
                     <img src="svg/role_good_font.svg" alt="" class="role">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary">OK</button>
-                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
                 </div>
             </div>
         </div>

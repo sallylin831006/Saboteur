@@ -30,36 +30,37 @@ html,body
     padding: 10px !important
     border-radius: 5px !important
 
-#sharelinkModal
+.fade
     background-color: rgba($color_white,0.8)
-#popup
-    padding: 10px
-    border-radius: 10px
-    background-color: $color_white
-    box-shadow: 1px 2px 5px $color_brown
-    color: $color_brown
-    img.welcome
-        margin-top: 20px
-        width: 60%
-    .btn-close
-        position: absolute
-        top: 15px
-        right: 15px
-    #url
+    .modal-content
+        padding: 10px
+        border-radius: 10px
         background-color: $color_white
-        margin: 10px 0px 10px 0px
-        width: 80%
-        padding: 5px
-        border-radius: 5px
-        border: 0.5px solid  rgba($color_brown,0.5)
-        &:hover
-            box-shadow: 1px 1.5px 3px rgba($color_brown,0.5)
-    .copybtn
-        margin: 10px 0px 10px 0px
-        background-color: $color_deep_blue
-        color: $color_white
-        padding: 8px
-        border-radius: 5px
+        box-shadow: 1px 2px 5px $color_brown
+        color: $color_brown
+        .btn-close
+            position: absolute
+            right: 15px
+            top: 15px
+        img.welcome
+            margin-top: 20px
+            width: 60%
+            min-width: 100px
+        #url
+            background-color: $color_white
+            margin: 10px 0px 10px 0px
+            width: 80%
+            padding: 5px
+            border-radius: 5px
+            border: 0.5px solid  rgba($color_brown,0.5)
+            &:hover
+                box-shadow: 1px 1.5px 3px rgba($color_brown,0.5)
+        .copybtn
+            margin: 10px 0px 10px 0px
+            background-color: $color_deep_blue
+            color: $color_white
+            padding: 8px
+            border-radius: 5px
 
 .container
     background-color: $color_white
@@ -72,8 +73,6 @@ html,body
     margin: 0 auto
     padding: 3px
 
-
-  
     .playerarea
         width: 90%
         display: flex

@@ -22,11 +22,11 @@ html, body {
   border-radius: 5px !important;
 }
 
-#sharelinkModal {
+.fade {
   background-color: rgba(255, 252, 239, 0.8);
 }
 
-#popup {
+.fade .modal-content {
   padding: 10px;
   border-radius: 10px;
   background-color: #FFFCEF;
@@ -34,18 +34,19 @@ html, body {
   color: #483B3B;
 }
 
-#popup img.welcome {
+.fade .modal-content .btn-close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+
+.fade .modal-content img.welcome {
   margin-top: 20px;
   width: 60%;
+  min-width: 100px;
 }
 
-#popup .btn-close {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-}
-
-#popup #url {
+.fade .modal-content #url {
   background-color: #FFFCEF;
   margin: 10px 0px 10px 0px;
   width: 80%;
@@ -54,11 +55,11 @@ html, body {
   border: 0.5px solid rgba(72, 59, 59, 0.5);
 }
 
-#popup #url:hover {
+.fade .modal-content #url:hover {
   box-shadow: 1px 1.5px 3px rgba(72, 59, 59, 0.5);
 }
 
-#popup .copybtn {
+.fade .modal-content .copybtn {
   margin: 10px 0px 10px 0px;
   background-color: #1A517B;
   color: #FFFCEF;
