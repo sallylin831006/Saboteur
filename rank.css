@@ -1,0 +1,29 @@
+* {
+  user-select: none;
+  font-size: 15px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+html, body {
+  background-color: #FFFCEF !important;
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+.container {
+  background-color: #FFFCEF;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container img.rankpic {
+  width: 35%;
+}

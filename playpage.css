@@ -1,0 +1,305 @@
+@charset "UTF-8";
+* {
+  user-select: none;
+  font-size: 12px;
+  text-align: center;
+  color: #2D2D3A;
+}
+
+html, body {
+  background-color: #FFFCEF !important;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  text-size-adjust: none;
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.container .flexbox {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container .flexbox.playerarea {
+  width: 98%;
+  justify-content: space-around;
+}
+
+.container .flexbox.playerarea .score {
+  color: #C54C4D;
+  margin-bottom: -5px;
+  font-weight: 900;
+}
+
+.container .flexbox.playerarea .userpic {
+  width: 20%;
+  min-width: 70px;
+}
+
+.container .flexbox.playerarea .username {
+  margin-bottom: 12px;
+  margin-top: -30px;
+  color: #2D2D3A;
+  font-weight: 900;
+}
+
+.container .flexbox.playerarea .statusbox {
+  border: 1px solid transparent;
+}
+
+.container .flexbox.playerarea .statusbox .status {
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
+  margin: 1px;
+  border-radius: 50%;
+}
+
+.container .flexbox.playerarea .statusbox .statushover {
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+}
+
+.container .flexbox.playerarea .statusbox .statushover::before {
+  content: "✖";
+  font-size: 15px;
+  font-weight: bolder;
+  text-align: center;
+  color: rgba(250, 81, 123, 0.6);
+}
+
+.container .flexbox.playerarea .statusbox .statusdelete {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.container .flexbox.playerarea .statusbox .statusdelete::before {
+  content: "✕";
+  font-size: 15px;
+  text-align: center;
+  line-height: 20px;
+  transform: rotate(30deg);
+  color: rgba(255, 0, 0, 0.8);
+  font-weight: bolder;
+}
+
+.container .showarea {
+  width: 95%;
+  flex-direction: column;
+}
+
+.container .showarea .line {
+  display: inline-flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.container .showarea .line .block {
+  cursor: pointer;
+  background-color: rgba(200, 218, 235, 0.7);
+  border: 0.5px solid rgba(26, 81, 123, 0.2);
+  width: 63px;
+  height: 36px;
+  margin: 1.5px;
+}
+
+.container .showarea .line .block:hover {
+  background-color: rgba(63, 156, 205, 0.5);
+}
+
+.container .trash {
+  cursor: pointer;
+  background-color: orange;
+  border-radius: 5px;
+  width: 120px;
+  padding: 5px;
+  margin: 5px;
+  font-size: 10px;
+}
+
+.container .round-time-bar {
+  margin: 1rem;
+  overflow: hidden;
+  background-color: #FFFCEF;
+  border-radius: 5px;
+}
+
+.container .round-time-bar div {
+  height: 5px;
+  border-radius: 5px;
+  animation: roundtime calc(var(--duration) * 1s) steps(var(--duration)) forwards;
+  transform-origin: left center;
+  background: linear-gradient(to bottom, #163D59, #163D59);
+}
+
+.container .round-time-bar [data-style="smooth"] div {
+  animation: roundtime calc(var(--duration) * 1s) linear forwards;
+}
+
+@keyframes roundtime {
+  to {
+    transform: scaleX(0);
+  }
+}
+
+.container .cuetxt {
+  padding: 10px;
+}
+
+.container .handcardarea {
+  width: 100%;
+  padding: 20px 0px 30px 0px;
+  margin-bottom: 100px;
+}
+
+.container .card {
+  width: 63px;
+  height: 36px;
+  border: 0.5px solid transparent;
+  border-radius: 5px;
+  background-color: transparent;
+  stroke: #FFFCEF;
+  stroke-width: 10px;
+  cursor: pointer;
+}
+
+.container i.fa-undo-alt {
+  margin-top: 7px;
+  display: block;
+  cursor: pointer;
+  color: #1A517B;
+  font-size: 15px;
+}
+
+.container .redborder {
+  border: 2px solid red;
+}
+
+.showstatus p {
+  margin: 5px;
+  margin: 0 auto;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.showstatus p .popupok {
+  font-size: 20px;
+  width: 50px;
+}
+
+#staticBackdrop {
+  background-color: rgba(197, 76, 77, 0.9);
+  margin: 0 auto;
+}
+
+#staticBackdrop .modal-title {
+  margin: 0 auto;
+}
+
+#staticBackdrop .modal-content {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #FFFCEF;
+  box-shadow: 1px 2px 5px #483B3B;
+  color: #483B3B;
+}
+
+#staticBackdrop .winpic {
+  width: 50%;
+  margin: 0 auto;
+}
+
+#staticBackdrop .btn-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+@media screen and (min-width: 768px) {
+  * {
+    font-size: 18px;
+  }
+  .container {
+    max-width: 760px;
+  }
+  .container .flexbox.playerarea .box .userpic {
+    width: 20%;
+    min-width: 120px;
+  }
+  .container .flexbox.playerarea .box .username {
+    margin-bottom: 23px;
+    margin-top: -52px;
+  }
+  .container .flexbox.playerarea .box .statusbox {
+    border-radius: 10px;
+  }
+  .container .flexbox.playerarea .box .statusbox .status {
+    cursor: pointer;
+    width: 38px;
+    height: 38px;
+    margin: 3px;
+    border-radius: 50%;
+  }
+  .container .flexbox.playerarea .statusbox .statushover {
+    cursor: pointer;
+    width: 38px;
+    height: 38px;
+  }
+  .container .flexbox.playerarea .statusbox .statushover::before {
+    content: "✖";
+    font-size: 30px;
+    font-weight: bolder;
+    text-align: center;
+    color: rgba(250, 81, 123, 0.6);
+  }
+  .container .flexbox.playerarea .statusbox .statusdelete {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+  }
+  .container .flexbox.playerarea .statusbox .statusdelete::before {
+    content: "✕";
+    font-size: 30px;
+    text-align: center;
+    transform: rotate(30deg);
+    color: rgba(255, 0, 0, 0.8);
+    font-weight: bolder;
+  }
+  .container .showarea {
+    margin-top: 50px;
+    transform: rotate(90deg);
+    width: 500px;
+  }
+  .container .showarea .line .block {
+    width: 94.5px;
+    height: 54px;
+    margin: 1.5px;
+  }
+  .container .handcardarea {
+    transform: rotate(90deg);
+    position: fixed;
+    top: 400px;
+    right: -350px;
+  }
+  .container .card {
+    width: 94.5px;
+    height: 54px;
+  }
+}

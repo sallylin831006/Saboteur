@@ -1,0 +1,277 @@
+$color_white: #FFFCEF
+$color_deep_blue: #1A517B
+$color_light_blue: #3F9CCD
+$color_yellow: #FBC439
+$color_very_white: #fff
+$color_black: #2D2D3A
+$color_green: #8CC554
+$color_blue: #58B8E1
+$color_red: #C54C4D
+$color_brown: #483B3B
+
+
+*
+    //border: 1px solid black
+    user-select: none
+    font-size: 12px
+    text-align: center
+    color: $color_black
+
+@mixin size ($w,$h)
+    width: $w
+    height: $h
+
+html, body
+    background-color: $color_white !important
+    -webkit-text-size-adjust: none
+    -moz-text-size-adjust: none
+    -ms-text-size-adjust: none
+    text-size-adjust: none
+    // background-color: $color_black
+    width: 100%
+    height: 100%
+    padding: 0px
+    margin: 0px
+// body
+//     background-image: url(svg/iphonexbgc.svg)
+//     background-repeat: no-repeat
+//     background-attachment: fixed
+//     background-position: center
+//     background-size: cover
+
+.container
+    // border: 2px solid red
+    // position: absolute
+    // left: 50%
+    // top: 50%
+    // transform: translateX(-50%) translateY(-50%)
+    max-width: 400px
+    margin: 0 auto
+    // padding: 3px
+
+    .flexbox
+        margin: 0 auto
+        display: flex
+        align-items: center
+        justify-content: center
+
+    .flexbox.playerarea
+        width: 98%
+        justify-content: space-around
+        .score
+            color: $color_red
+            margin-bottom: -5px
+            font-weight: 900
+        .userpic
+            width: 20% //*400*20%=80px*//
+            min-width: 70px
+
+        .username
+            margin-bottom: 12px
+            margin-top: -30px
+            color: $color_black
+            font-weight: 900
+
+        .statusbox
+            border: 1px solid transparent
+
+            .status
+                cursor: pointer
+                +size(22px,22px)
+                margin: 1px
+                border-radius: 50%
+
+            .statushover
+                cursor: pointer
+                +size(22px,22px)
+                border-radius: 50%
+                &::before
+                    content: "✖"
+                    font-size: 15px
+                    // line-height: 15px
+                    font-weight: bolder
+                    text-align: center
+                    color: rgba(#fa517b,0.6)
+
+            .statusdelete
+                width: 20px
+                height: 20px
+                border-radius: 50%
+                &::before
+                    content: "✕"
+                    font-size: 15px
+                    text-align: center
+                    line-height: 20px
+                    transform: rotate(30deg)
+                    color: rgba(red,0.8)
+                    font-weight: bolder
+
+    .showarea
+        // border: 2px solid green
+        width: 95%
+        flex-direction: column
+        .line
+            display: inline-flex
+            justify-content: center
+            width: 100%
+
+            .block
+                cursor: pointer
+                background-color: rgba(#c8daeb,0.7)
+                border: 0.5px solid rgba($color_deep_blue,0.2)
+                width: 63px
+                height: 36px
+                margin: 1.5px
+                &:hover
+                    background-color: rgba($color_light_blue,0.5)
+
+    .trash
+        cursor: pointer
+        background-color: orange
+        border-radius: 5px
+        width: 120px
+        padding: 5px
+        margin: 5px
+        font-size: 10px
+
+    .round-time-bar
+        margin: 1rem
+        overflow: hidden
+        background-color: $color_white
+        border-radius: 5px
+    .round-time-bar div
+        height: 5px
+        border-radius: 5px
+        animation: roundtime calc(var(--duration) * 1s) steps(var(--duration)) forwards
+        transform-origin: left center
+        background: linear-gradient(to bottom, #163D59, #163D59)
+    .round-time-bar [data-style="smooth"] div
+        animation: roundtime calc(var(--duration) * 1s) linear forwards
+
+    @keyframes roundtime
+        to
+            transform: scaleX(0)
+
+    .cuetxt
+        padding: 10px
+    .handcardarea
+        width: 100%
+        padding: 20px 0px 30px 0px
+        margin-bottom: 100px
+
+    .card
+        width: 63px
+        height: 36px
+        border: 0.5px solid transparent
+        border-radius: 5px
+        background-color: transparent
+        stroke: $color_white
+        stroke-width: 10px
+        cursor: pointer
+    i.fa-undo-alt
+        margin-top: 7px
+        display: block
+        cursor: pointer
+        color: $color_deep_blue
+        font-size: 15px
+    .redborder
+        border: 2px solid red
+
+.showstatus p
+    margin: 5px
+    // .popup
+    margin: 0 auto
+    width: 95%
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    padding: 5px
+    .popupok
+        font-size: 20px
+        width: 50px
+#staticBackdrop
+    background-color: rgba($color_red,0.9)
+    margin: 0 auto
+    .modal-title
+        margin: 0 auto
+    .modal-content
+        width: 100%
+        padding: 10px
+        border-radius: 10px
+        background-color: $color_white
+        box-shadow: 1px 2px 5px $color_brown
+        color: $color_brown
+    .winpic
+        width: 50%
+        margin: 0 auto
+    .btn-close
+        position: absolute
+        top: 15px
+        right: 15px
+
+
+
+
+@media screen and (min-width:768px) //*iPAD=768px*//
+    *
+        font-size: 18px
+        // border: 1px solid red
+    .container
+        max-width: 760px
+        // background-color: rgba(pink,0.5)
+    .container .flexbox.playerarea .box .userpic
+        width: 20%
+        min-width: 120px
+    .container .flexbox.playerarea .box .username
+        margin-bottom: 23px
+        margin-top: -52px
+
+    .container .flexbox.playerarea .box .statusbox
+        // border: 1px solid $color_light_blue
+        border-radius: 10px
+
+    .container .flexbox.playerarea .box .statusbox .status
+        cursor: pointer
+        +size (38px,38px)
+        margin: 3px
+        border-radius: 50%
+    .container .flexbox.playerarea .statusbox .statushover
+        cursor: pointer
+        +size(38px,38px)
+        &::before
+            content: "✖"
+            font-size: 30px
+            font-weight: bolder
+            text-align: center
+            color: rgba(#fa517b,0.6)
+
+    .container .flexbox.playerarea .statusbox .statusdelete
+        width: 38px
+        height: 38px
+        border-radius: 50%
+        &::before
+            content: "✕"
+            font-size: 30px
+            text-align: center
+            transform: rotate(30deg)
+            color: rgba(red,0.8)
+            font-weight: bolder
+
+    .container .showarea
+        margin-top: 50px
+        transform: rotate(90deg)
+        width: 500px
+
+    .container .showarea .line .block
+        width: 94.5px
+        height: 54px
+        margin: 1.5px
+    .container .handcardarea
+        transform: rotate(90deg)
+        position: fixed
+        top: 400px
+        right: -350px
+
+    .container .card
+        width: 94.5px
+        height: 54px

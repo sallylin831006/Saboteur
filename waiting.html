@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>矮人礦坑</title>
+    <!-- <link rel="shortcut icon" href="https://i.ibb.co/vJ42VtN/ia2b-001.png" type="image/x-icon" /> -->
+    <meta name="1A2B" content="矮人礦坑">
+    <meta property="og:title" content="矮人礦坑" />
+    <!-- <meta property="og:image" content="https://i.ibb.co/3RxtDV9/001.png" /> -->
+    <meta property="og:description" content="矮人礦坑！" />
+    <script src="https://kit.fontawesome.com/5223ebc999.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+    </script>
+
+
+</head>
+<link rel="stylesheet" href="waiting.css">
+
+<body>
+    <i class="fas fa-home" id="homeicon">回首頁</i>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        SHARELINK <span></span><i class="fas fa-share-alt" id="sharelink"></i>
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="sharelinkModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" id="popup">
+                <img src="svg/welcome.svg" alt="" class="welcome">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel">邀請你的朋友進來房間</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <input type="text" id="url" value="http://sallylin831006.github.io/">
+                <h5 class="linkcue">請將下方連結分享給他們</h5>
+                <input type="button" class="copybtn" value="複製連結" onClick="url.select();document.execCommand('Copy')">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+
+        <h5>等待中...等待其他玩家加入</h5>
+        <div class="playerarea">
+            <div class="user" style="
+                background-image: url(svg/user.svg);
+                background-size: cover;
+              ">sally</div>
+            <div class="user" style="
+            background-image: url(svg/user.svg);
+            background-size: cover;
+          ">alan</div>
+            <div class="user" style="
+            background-image: url(svg/user.svg);
+            background-size: cover;
+          ">sharon</div>
+            <div class="user" style="
+            background-image: url(svg/user.svg);
+            background-size: cover;
+          ">pajamas</div>
+            <div class="user" style="
+            background-image: url(svg/user.svg);
+            background-size: cover;
+          ">等待中</div>
+
+
+
+        </div>
+
+   
+    </div>
+
+    </div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        房主功能：直接開始遊戲
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" >
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">你的角色是：</h5>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                </div>
+                <div class="modal-body">
+                    <img src="svg/role_good_font.svg" alt="" class="role">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary">OK</button>
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script src="./script/setting.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#sharelinkModal').modal('show');
+    });
+    $(".btn-primary").click(function () {
+        $('#sharelinkModal').modal('show');
+    })
+    //一鍵複製連結
+    function copyUrl() {
+        var url = document.getElementById("url").value;
+        window.clipboardData.setData("Text", url);
+    }
+
+    const copybtn = document.querySelector(".copybtn")
+    copybtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        document.querySelector(".linkcue").textContent = "已成功複製連結！";
+        $(".linkcue").css("color", "orange");
+    })
+
+    $('#homeicon').click(function () {
+        window.location.href = "./index.html";
+    })
+
+    $('.btn-secondary').click(function () {
+        window.location.href = "./playpage.html";
+    })
+</script>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-lpyLfhYuitXl2zRZ5Bn2fqnhNAKOAaM/0Kr9laMspuaMiZfGmfwRNFh8HlMy49eQ" crossorigin="anonymous">
+</script>
+
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>矮人礦坑</title>
+    <!-- <link rel="shortcut icon" href="https://i.ibb.co/vJ42VtN/ia2b-001.png" type="image/x-icon" /> -->
+    <meta name="1A2B" content="矮人礦坑">
+    <meta property="og:title" content="矮人礦坑" />
+    <!-- <meta property="og:image" content="https://i.ibb.co/3RxtDV9/001.png" /> -->
+    <meta property="og:description" content="矮人礦坑！" />
+    <script src="https://kit.fontawesome.com/5223ebc999.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+    </script>
+</head>
+<link rel="stylesheet" href="index.css">
+
+<body>
+    <div class="container">
+        <img src="svg/logo.svg" alt="logo pic" class="logo">
+        <img src="svg/playernum/playernum3.svg" alt="" class="playernumpic">
+
+        <div class="flexbox">
+            <div class="txt">玩家人數上限：</div>
+
+            <div class="count">
+                <div class="minus">-</div>
+                <div class="num">3</div>
+                <div class="add">+</div>
+            </div>
+        </div>
+        <div class="text"></div>
+
+        <input id="nickname" placeholder="請輸入玩家暱稱..." />
+
+        <input type="button" class="start" value="開新房間">
+        <div class="footer">
+            <div class="rank">總排行榜</div>
+            <div class="rule">遊戲規則</div>
+            <div class="contact">聯絡我們</div>
+        </div>
+        
+
+    </div>
+
+</body>
+
+<script>
+    $('.rank').click(function () {
+        window.location.href = "./rank.html";
+    })
+    //nickName
+    $(document).ready(function () {
+        const nickname = getNickName();
+        $('#nickname').val(nickname);
+    });
+
+    $('.start').click(function () {
+        const nickname = $('#nickname').val();
+        if (nickname.trim() === '') {
+            alert('請輸入暱稱');
+            return;
+        }
+        saveNickName(nickname);
+        window.location.href = "./waiting.html";
+
+    });
+    const getNickName = () => {
+        const nickname = window.localStorage.getItem('nickname');
+        return nickname ? nickname : '';
+    }
+
+    const saveNickName = (nickname) => {
+        window.localStorage.setItem("nickname", nickname)
+    }
+
+    const getApi = () => {
+        return 'https://game.dev.newideas.com.tw/';
+    }
+
+    // 回合增減數量
+    var num = 3;
+
+    function click(num_var) {
+        if (num + num_var < 3 || num + num_var > 10) {
+            return
+        };
+        num = num + num_var;
+        $(".num").text(num);
+    }
+    $(".minus").click(
+        function () {
+            click(-1);
+            check();
+        }
+    )
+    $(".add").click(
+        function () {
+            click(1);
+            check();
+        }
+    )
+
+    //震動
+    $(".minus").click(function () {
+        if (num == 3 || num == 10) {
+            wiggletime = 0;
+        }
+console.log(wiggletime)
+    });
+    var wiggletime = 21;
+    setInterval(function () {
+        if (wiggletime <= 20) {
+            wiggletime += 1;
+            if (wiggletime % 2 == 0) {
+                $(".count").css("left", "-10px");
+            } else {
+                $(".count").css("left", "10px");
+            }
+
+            if (wiggletime == 21) {
+                $(".count").css("left", "");
+            }
+
+        }
+    }, 60);
+
+    //依回合數量顯示不同警示訊息
+    function check() {
+        if (num < 4) {
+            $(".playernumpic").attr("src", "svg/playernum/playernum3.svg");
+            $(".text").text("這遊戲至少要三個人玩喔！再交點朋友吧^^");
+            $(".text").css("color", "orange");
+            return;
+        }
+
+        if (num == 4) {
+            $(".playernumpic").attr("src", "svg/playernum/playernum4.svg");
+            return;
+        }
+        if (num == 5) {
+            $(".playernumpic").attr("src", "svg/playernum/playernum5.svg");
+            return;
+        }
+        if (num == 6) {
+            $(".playernumpic").attr("src", "svg/playernum/playernum6.svg");
+            $(".text").text("哎油～不錯喔朋友很多嘛^^");
+            $(".text").css("color", "green");
+            return;
+        }
+
+        if (num == 7) {
+            $(".playernumpic").attr("src", "svg/playernum/playernum7.svg");
+            return;
+        }
+        if (num == 8) {
+            $(".playernumpic").attr("src", "svg/playernum/playernum8.svg");
+            return;
+        }
+        if (num == 9) {
+            $(".playernumpic").attr("src", "svg/playernum/playernum9.svg");
+            return;
+        }
+        if (num > 9) {
+            $(".playernumpic").attr("src", "svg/playernum/playernum10.svg");
+            $(".text").text("一次最多只能10位玩家喔！");
+            $(".text").css("color", "red");
+            return;
+        }
+    }
+
+</script>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" //
+    integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
+</script>
+
+
+</html>
