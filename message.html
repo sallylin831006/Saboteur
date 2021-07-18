@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="{CHARSET}">
+    <title>矮人礦坑留言板</title>
+    <link rel="stylesheet" href="message.css">
+</head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+</script>
+<body>
+    <!-- Button trigger modal -->
+    <button type="button" class="openbtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        留言板
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header" id="messageTop">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="staticBackdropLabel">矮人礦坑-留言板</h5>
+                        <div class="mscontainer">
+                            <div class="flexbox">
+                                <input class="nickName" type="text" placeholder="暱稱">
+                                <select class="category">
+                                    <option class="option" value="純屬好玩">純屬好玩</option>
+                                    <option class="option" value="網站建議">網站建議</option>
+                                </select>
+                            </div>
+                        <textarea class="content" type="text" placeholder="請輸入留言..."></textarea>
+                        <div class="txt"></div>
+                        <input type="button" class="savebtn" value="送出">
+                        </div>
+                </div>
+
+                <div class="modal-body" id="messangeArea">
+                    <div class="mscontainer">
+                        <div class="filter">
+                            <input class="filterbtn" type="button" value="全部">
+                            <input class="filterbtn" type="button" value="純屬好玩">
+                            <input class="filterbtn" type="button" value="網站建議">
+                        </div>
+                        <ul class="list"></ul>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+    </div>
+    
+
+
+</body>
+<script>
+
+
+    let data = [{
+        Charge: "純屬好玩",
+        name: "阿婷",
+        content: "這遊戲好好玩"
+    }, {
+        Charge: "網站建議",
+        name: "小花",
+        content: "想再看更多壞矮人圖片！"
+    }, {
+        Charge: "純屬好玩",
+        name: "小明",
+        content: "我怎麼玩怎麼輸誒"
+    }, {
+        Charge: "網站建議",
+        name: "小天",
+        content: "希望可以新增兩人遊戲！"
+
+    }, {
+        Charge: "純屬好玩",
+        name: "小王",
+        content: "啊啊啊啊啊啊"
+
+    }
+    , {
+        Charge: "純屬好玩",
+        name: "小豬",
+        content: "我完全是壞矮人的料"
+
+    }, {
+        Charge: "純屬好玩",
+        name: "rick",
+        content: "我是科學怪人"
+
+    }
+    
+];
+
+
+    const list = document.querySelector('.list');
+    // 預設載入函式
+    function init() {
+        let str = "";
+        data.forEach(function (item, index) {
+            let content = `<li><b>${item.name}</b>：${item.content}</li>`;
+            str += content;
+        })
+        list.innerHTML = str;
+    }
+    init();
+    // 篩選器邏輯
+    const stationFilter = document.querySelector(".filter");
+    stationFilter.addEventListener("click", function (e) {
+        if (e.target.value == undefined) {
+            return;
+        }
+        let str = "";
+        data.forEach(function (item, index) {
+            if (e.target.value == "全部") {
+                str += `<li><b>${item.name}</b>：${item.content}</li>`
+            } else if (e.target.value == item.Charge) {
+                str += `<li><b>${item.name}</b>：${item.content}</li>`
+            }
+        })
+        list.innerHTML = str;
+    })
+    // 新增邏輯
+
+    const nickName = document.querySelector(".nickName");
+    const content = document.querySelector(".content");
+    const category = document.querySelector(".category");
+    const savebtn = document.querySelector(".savebtn");
+
+    savebtn.addEventListener("click", function (e) {
+        if (nickName.value === '' || content.value === '') {
+            alert('暱稱及留言內容都要輸入哦！');
+            return;
+        }
+        $(".txt").text("已成功送出留言！");
+        $(".txt").css("color","orange");
+        let obj = {};
+        obj.Charge = category.value;
+        obj.name = nickName.value;
+        obj.content = content.value;
+        data.push(obj);
+        init();
+        category.value = "純屬好玩";
+        nickName.value = "";
+        content.value = "";
+
+    })
+</script>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" //
+    integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
+</script>
+
+
+</html>

@@ -1,0 +1,140 @@
+$color_white: #FFFCEF
+$color_deep_blue: #1A517B
+$color_light_blue: #3F9CCD
+$color_yellow: #FBC439
+$color_very_white: #fff
+$color_black: #2D2D3A
+$color_green: #8CC554
+$color_blue: #58B8E1
+$color_red: #C54C4D
+$color_brown: #483B3B
+*
+    //border: 1px solid pink
+    user-select: none
+    text-align: center
+    margin: 0 auto
+
+html,body
+    background-color: $color_white !important
+    width: 100%
+    height: 100%
+    padding: 0px
+    
+.openbtn
+    cursor: pointer
+    background-color: transparent !important
+    color: $color_brown !important
+    border: 1px solid  transparent !important
+    border-radius: 0px !important
+    border-bottom: 2px solid $color_brown !important
+    padding: 3px !important
+    box-shadow: none !important
+    
+.modal-content
+    background-color: $color_white !important
+    border-radius: 10px !important
+    .btn-close
+        position: absolute
+        top: 20px
+        right: 20px
+
+#messageTop
+    display: block
+    margin: 0 auto
+    margin: 10px !important
+    padding: 5px !important
+    border-bottom: 2px solid $color_brown
+    // box-shadow: 0px 2px 5px rgba($color_brown,0.5) 
+#messangeArea
+    // margin: 0px !important
+    padding: 5px
+    
+
+
+.mscontainer
+    background-color: $color_white
+    //border: 1px solid pink
+    width: 100%
+    margin: 0 auto
+    padding: 3px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+.flexbox
+    display: flex 
+    // border: 1px solid pink
+    .category
+        width: 100px
+        background-color: $color_white
+        border-radius: 5px
+        border: 1px solid $color_brown
+        padding: 5px
+        margin: 10px
+    
+
+    .nickName
+        margin: 10px
+        border-radius: 5px
+        border: 1px solid $color_brown
+        background-color: #fffdf3
+        padding: 5px
+        color: $color_green
+        width: 200px
+        &:hover
+            box-shadow: 0px 2px 3px $color_brown
+    
+textarea.content
+    color: $color_brown
+    width: 95%
+    margin: 5px 0px 5px 0px
+    border-radius: 5px
+    border: 1px solid $color_brown
+    background-color: #fffdf3
+    padding: 5px
+    &:hover
+        box-shadow: 0px 2px 3px $color_brown
+
+.savebtn
+    margin: 5px 0px 10px 0px
+    background-color: $color_deep_blue
+    color: $color_white
+    padding: 8px
+    border-radius: 5px
+    
+.filter
+    margin: 10px 0px 10px 0px
+    width: 100%
+.filterbtn
+    border: none
+    background-color: $color_white
+    color: $color_brown
+    padding: 5px 10px 5px 10px
+    margin: 5px
+    &:hover
+        border-bottom: 2px solid $color_brown
+.list
+    padding-left: 5px
+ul
+    width: 95%
+    display: flex
+    flex-direction: column-reverse
+
+li
+    width: 95%   
+    list-style: none
+    text-align: left
+    font-size: 15px
+    padding: 10px
+    color: $color_brown
+    &:hover
+        background-color: rgba($color_yellow,0.2)
+        border-bottom: 1px solid rgba($color_brown,0.7)
+    &::before
+        content: ''
+        display: inline-block
+        height: 30px
+        width: 24px
+        margin: 0px 10px 0px 10px
+        background-image: url("svg/icon.svg")
+        background-size: cover

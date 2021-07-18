@@ -86,7 +86,7 @@
 <script>
     var currentRoomId = getUrlParameter('room_id');
 
-    let ws = new WebSocket('ws://139.162.70.115:8000/');
+    let ws = new WebSocket('wss://139.162.70.115:8000/');
 
     ws.onopen = () => {
         console.log('open connection')

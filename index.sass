@@ -11,7 +11,6 @@ $color_brown: #483B3B
 *
     //border: 1px solid pink
     user-select: none
-    font-size: 20px
     text-align: center
     margin: 0 auto
 
@@ -39,10 +38,10 @@ html,body
 
     .logo
         width: 25%
-        margin: 30px 0px 20px 0px
+        margin: 40px 0px 40px 0px
 
     .playernumpic
-        width: 80%
+        width: 60%
         min-width: 300px
 
     .flexbox
@@ -59,6 +58,7 @@ html,body
             transition: 0.5s
             position: relative
             left: 0px
+            font-size: 20px
             .num
                 color: $color_white
             .minus,.add
@@ -90,7 +90,7 @@ html,body
         padding: 8px
         border-radius: 5px
     .footer
-        margin: 7px 0px 100px 0px
+        margin: 7px 0px 30px 0px
         display: flex
         .rank ,.rule,.contact
             cursor: pointer
@@ -98,4 +98,46 @@ html,body
             color: $color_brown
             border-bottom: 2px solid $color_brown
             margin: 5px
+// 遊戲規則
+.rulepupup
+    cursor: pointer
+    background-color: transparent !important
+    color: $color_brown !important
+    border: 1px solid  transparent !important
+    border-radius: 0px !important
+    border-bottom: 2px solid $color_brown !important
+    padding: 3px !important
+    box-shadow: none !important
+
+.modal-content
+    background-color: $color_white !important
+    border-radius: 10px !important
+    padding: 10px
+    .btn-close
+        position: absolute
+        top: 20px
+        right: 20px
+    .collapsed
+        background-color: $color_white !important
+    .accordion-button
+        box-shadow: none !important
+    .accordion-button:not(.collapsed)
+        color: $color_white
+        background-color: $color_deep_blue
+    .accordion-body
+        background-color: $color_white !important
+    ul ,li 
+            text-align: left !important
+    li.none
+        list-style-type: none
+
+    .title
+        font-size: 20px
+        font-weight: 500
+        padding: 5px
+        text-align: center
+// 遊戲規則
+
+
+// 留言板
 
