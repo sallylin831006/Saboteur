@@ -33,8 +33,11 @@
             <div class="modal-content">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <img src="svg/welcome.svg" alt="" class="welcome">
-                <h4 class="modal-title" id="exampleModalLabel">邀請你的朋友進來房間</h4>
-                <input type="text" id="url" value="http://sallylin831006.github.io/">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel">邀請你的朋友進來房間</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <input type="text" id="url">
                 <h5 class="linkcue">請將下方連結分享給他們</h5>
                 <input type="button" class="copybtn" value="複製連結" onClick="url.select();document.execCommand('Copy')">
             </div>
@@ -46,28 +49,6 @@
 
         <h5>等待中...等待其他玩家加入</h5>
         <div class="playerarea">
-            <div class="user" style="
-                background-image: url(svg/user.svg);
-                background-size: cover;
-              ">sally</div>
-            <div class="user" style="
-            background-image: url(svg/user.svg);
-            background-size: cover;
-          ">alan</div>
-            <div class="user" style="
-            background-image: url(svg/user.svg);
-            background-size: cover;
-          ">sharon</div>
-            <div class="user" style="
-            background-image: url(svg/user.svg);
-            background-size: cover;
-          ">pajamas</div>
-            <div class="user" style="
-            background-image: url(svg/user.svg);
-            background-size: cover;
-          ">等待中</div>
-
-
 
         </div>
 
@@ -100,9 +81,60 @@
 
 
 </body>
-<script src="./script/setting.js"></script>
+<script src="./script/api.js"></script>
+<script src="./script/common.js"></script>
 <script>
+    var currentRoomId = getUrlParameter('room_id');
+
+    let ws = new WebSocket('ws://139.162.70.115:8000/');
+
+    ws.onopen = () => {
+        console.log('open connection')
+    }
+
+    ws.onclose = () => {
+        console.log('close connection')
+    }
+
+    //接收 Server 發送的訊息
+    ws.onmessage = event => {
+        const roomInfo = JSON.parse(event.data);
+        players = Object.keys(roomInfo.players);
+        renderPlayer(players);
+    }
+
+    const renderPlayer = (players) => {
+        let displayUsers = '';
+        players.forEach((player) => {
+            displayUsers += `
+                <div class="user" style="
+                    background-image: url(svg/user.svg);
+                    background-size: cover;
+                ">${player}</div>            
+            `;
+        });
+        $('.playerarea').html(displayUsers);
+    }
+
+    window.setInterval("getRoomInfo()", 10000);
+
+    const getRoomInfo = () => {
+        ws.send(currentRoomId);
+    }
+
     $(document).ready(function () {
+        if (! window.localStorage.getItem('nickname')) {
+            const nickname = prompt('請輸入你的暱稱')
+            window.localStorage.setItem("nickname", nickname);
+            
+            callApi(`/rooms/${currentRoomId}/players`, 'POST', { name: nickname });
+        }
+        callApi(`/rooms/${currentRoomId}`).then((response) => {
+            const data = response.data;
+            const players = Object.keys(data.players);
+            renderPlayer(players);
+        });
+        $("#url").val(window.location.href);
         $('#sharelinkModal').modal('show');
     });
     $(".btn-primary").click(function () {
