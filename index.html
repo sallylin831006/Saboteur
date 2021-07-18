@@ -48,6 +48,8 @@
 
 </body>
 
+<script src="./script/api.js"></script>
+
 <script>
     $('.rank').click(function () {
         window.location.href = "./rank.html";
@@ -65,7 +67,10 @@
             return;
         }
         saveNickName(nickname);
-        window.location.href = "./waiting.html";
+        callApi('/rooms', 'POST', {name: nickname}).then((response) => {
+            const roomId = response.data.room_id;
+            window.location.href = `./waiting.html?room_id=${roomId}`;
+        });
 
     });
     const getNickName = () => {
