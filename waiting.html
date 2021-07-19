@@ -86,10 +86,11 @@
 <script>
     var currentRoomId = getUrlParameter('room_id');
 
-    let ws = new WebSocket('wss://139.162.70.115:8000/');
+    let ws = new WebSocket('wss://game.dev.newideas.com.tw/ws');
 
     ws.onopen = () => {
         console.log('open connection')
+        getRoomInfo();
     }
 
     ws.onclose = () => {
@@ -116,26 +117,23 @@
         $('.playerarea').html(displayUsers);
     }
 
-    window.setInterval("getRoomInfo()", 10000);
+    window.setInterval("getRoomInfo()", 20000);
 
     const getRoomInfo = () => {
         ws.send(currentRoomId);
     }
 
     $(document).ready(function () {
-        if (! window.localStorage.getItem('nickname')) {
-            const nickname = prompt('請輸入你的暱稱')
-            window.localStorage.setItem("nickname", nickname);
-            
-            callApi(`/rooms/${currentRoomId}/players`, 'POST', { name: nickname });
-        }
         callApi(`/rooms/${currentRoomId}`).then((response) => {
             const data = response.data;
             const players = Object.keys(data.players);
             renderPlayer(players);
         });
-        $("#url").val(window.location.href);
-        $('#sharelinkModal').modal('show');
+        $("#url").val(`https://game.dev.newideas.com.tw/invite.html?room_id=${currentRoomId}`);
+        if (!getUrlParameter('invite')) {
+            $('#sharelinkModal').modal('show');
+        }
+        
     });
     $(".btn-primary").click(function () {
         $('#sharelinkModal').modal('show');

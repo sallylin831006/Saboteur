@@ -36,177 +36,213 @@
         <input id="nickname" placeholder="請輸入玩家暱稱..." />
 
         <input type="button" class="start" value="開新房間">
-        <div class="footer">
-            <div class="rank">總排行榜</div>
-           
-            
-        </div>
-
+        
     </div>
 
-    <hr>
-    <!-- Button trigger modal 遊戲規則按鈕-->
-    <button type="button" class="rulepupup" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        遊戲規則
-    </button>
+    <div class="footer">
+        <div class="rank">總排行榜</div>
+        <!-- 留言板 -->
+        <!-- Button trigger modal -->
+        <button type="button" class="openbtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            留言板
+        </button>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <h5 class="modal-title" id="exampleModalLabel">怎麼玩？</h5>
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header" id="messageTop">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title" id="staticBackdropLabel">矮人礦坑-留言板</h5>
+                            <div class="mscontainer">
+                                <div class="flexbox">
+                                    <input class="nickName" type="text" placeholder="暱稱">
+                                    <select class="category">
+                                        <option class="option" value="純屬好玩">純屬好玩</option>
+                                        <option class="option" value="網站建議">網站建議</option>
+                                    </select>
+                                </div>
+                            <textarea class="content" type="text" placeholder="請輸入留言..."></textarea>
+                            <div class="txt"></div>
+                            <input type="button" class="savebtn" value="送出">
+                            </div>
+                    </div>
+
+                    <div class="modal-body" id="messangeArea">
+                        <div class="mscontainer">
+                            <div class="filter">
+                                <input class="filterbtn" type="button" value="全部">
+                                <input class="filterbtn" type="button" value="純屬好玩">
+                                <input class="filterbtn" type="button" value="網站建議">
+                            </div>
+                            <ul class="list"></ul>
+                        </div>
+                    </div>
+                    
                 </div>
-                <div class="modal-body">
-                    <ul>
-                        <li>玩家會被分為好矮人、壞矮人</li>
-                        <li>好矮人目標是將道路接到有金礦的卡牌上，壞矮人則是阻止好矮人達到目的。</li>
-                        <li>玩家每次必須出一張手牌，可用來連接道路、陷害或幫助別人、也可以棄牌，再補一張手牌。</li>
-                    </ul>
 
-                    <hr>
-                    <div class="accordion accordion-flush" id="accordionFlushExample">
-                        <div class="title">遊戲流程</div>
-                        <p>每個人的回合都可以選擇下列三個行動<b>其中一種</b>執行。</p>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="flush-headingOne">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                    aria-controls="flush-collapseOne">
-                                    #1 出『道路卡』
-                                </button>
-                            </h2>
-                            <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
-                                    <ul>
-                                        <li>道路卡需要從<b>起點卡</b>開始，向外延伸出去。</li>
-                                        <li>道路卡必須與已經放置的道路卡上的路相連通(斜角碰觸不算)。</li>
-                                        <li>道路卡必須與起點卡<b>方向一致</b>的排列。不能有的橫的有的直的。</ol>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="flush-headingTwo">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#flush-collapseTwo" aria-expanded="false"
-                                    aria-controls="flush-collapseTwo">
-                                    #2 出『行動卡』
-                                </button>
-                            </h2>
-                            <div id="flush-collapseTwo" class="accordion-collapse collapse"
-                                aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
-                                    <ul>
-                                        <li>行動卡包含：<code>油燈/礦車/斧頭卡</code>及其<code>摧毀卡</code>、<code>崩路卡</code>、<code>地圖卡</code>。</li>
-                                        <li><code>摧毀卡</code>：可使其他玩家不能出『道路卡』(但仍可以出其他功能卡)。</li>
-                                        <li><code>油燈/礦車/斧頭卡</code>：可使玩家用來恢復其對應的障礙。</li>
-                                        <li><code>崩路卡</code>：可將道路摧毀（起點和終點卡除外）。
-                                        <li class="none">壞矮人可以用它來破壞道路，好矮人可以用它來清除死路。</li>
-                                        </li>
-                                        <li><code>地圖卡</code>：可選擇看一張終點卡是金礦還是石頭，只有自己知道。</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="flush-headingThree">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#flush-collapseThree" aria-expanded="false"
-                                    aria-controls="flush-collapseThree">
-                                    #3 『棄掉一張卡』
-                                </button>
-                            </h2>
-                            <div id="flush-collapseThree" class="accordion-collapse collapse"
-                                aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
-                                    <ul>
-                                        <li>如果玩家不想出牌或不能出牌，可以將卡牌丟到棄牌堆中。</li>
-                                        <li>棄牌後，如果牌庫還有卡牌，會自動再補一張手牌，並輪到下一位玩家行動。</li>                                       </li>
-                                    </ul>
-                                
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="flush-headingFour">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#flush-collapseFour" aria-expanded="false"
-                                    aria-controls="flush-collapseFour">
-                                    遊戲結束 Ending the Game
-                                </button>
-                            </h2>
-                            <div id="flush-collapseFour" class="accordion-collapse collapse"
-                                aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
-                                    <ul>
-                                        <li>當玩家能將一張道路卡連接到<b>終點卡</b>，並製造一條與起點卡間無阻礙的通道時，可以將連結的終點卡掀開。</li>
-                                        <li>若翻出的終點卡上出現的是石塊，繼續進行遊戲。</li>
-                                        <li>若翻出的終點卡上出現的是金塊，則好矮人獲勝。</li>
-                                        <li>若所有玩家手牌用盡或是無牌可出，則壞矮人獲勝。</li>
-                                    </ul>
+            </div>
+        </div>
 
-                                </div>
-                            </div>
-                        </div>
-                        <hr>輪播
-                        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                            <div class="carousel-indicators">
-                                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0"
-                                    class="active" aria-current="true" aria-label="Slide 1"></button>
-                                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
-                                    aria-label="Slide 2"></button>
-                                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
-                                    aria-label="Slide 3"></button>
-                            </div>
-                            <div class="carousel-inner">
-                                <div class="carousel-item active" data-bs-interval="10000">
-                                    <img src="svg/card_end1.svg" class="d-block w-100" alt="...">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>First slide label</h5>
-                                        <p>Some representative placeholder content for the first slide.</p>
+        <hr>
+        <!-- Button trigger modal 遊戲規則按鈕-->
+        <button type="button" class="rulepupup" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            遊戲規則
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title" id="exampleModalLabel">怎麼玩？</h5>
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            <li>玩家會被分為好矮人、壞矮人</li>
+                            <li>好矮人目標是將道路接到有金礦的卡牌上，壞矮人則是阻止好矮人達到目的。</li>
+                            <li>玩家每次必須出一張手牌，可用來連接道路、陷害或幫助別人、也可以棄牌，再補一張手牌。</li>
+                        </ul>
+
+                        <hr>
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                            <div class="title">遊戲流程</div>
+                            <p>每個人的回合都可以選擇下列三個行動<b>其中一種</b>執行。</p>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                        aria-controls="flush-collapseOne">
+                                        #1 出『道路卡』
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li>道路卡需要從<b>起點卡</b>開始，向外延伸出去。</li>
+                                            <li>道路卡必須與已經放置的道路卡上的路相連通(斜角碰觸不算)。</li>
+                                            <li>道路卡必須與起點卡<b>方向一致</b>的排列。不能有的橫的有的直的。</ol>
+                                        </ul>
                                     </div>
                                 </div>
-                                <div class="carousel-item" data-bs-interval="2000">
-                                    <img src="svg/card_end2.svg" class="d-block w-100" alt="...">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Second slide label</h5>
-                                        <p>Some representative placeholder content for the second slide.</p>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="svg/card_end3.svg" class="d-block w-100" alt="...">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Third slide label</h5>
-                                        <p>Some representative placeholder content for the third slide.</p>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                        aria-controls="flush-collapseTwo">
+                                        #2 出『行動卡』
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li>行動卡包含：<code>油燈/礦車/斧頭卡</code>及其<code>摧毀卡</code>、<code>崩路卡</code>、<code>地圖卡</code>。
+                                            </li>
+                                            <li><code>摧毀卡</code>：可使其他玩家不能出『道路卡』(但仍可以出其他功能卡)。</li>
+                                            <li><code>油燈/礦車/斧頭卡</code>：可使玩家用來恢復其對應的障礙。</li>
+                                            <li><code>崩路卡</code>：可將道路摧毀（起點和終點卡除外）。
+                                            <li class="none">壞矮人可以用它來破壞道路，好矮人可以用它來清除死路。</li>
+                                            </li>
+                                            <li><code>地圖卡</code>：可選擇看一張終點卡是金礦還是石頭，只有自己知道。</li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
-                                data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
-                                data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                        aria-controls="flush-collapseThree">
+                                        #3 『棄掉一張卡』
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li>如果玩家不想出牌或不能出牌，可以將卡牌丟到棄牌堆中。</li>
+                                            <li>棄牌後，如果牌庫還有卡牌，會自動再補一張手牌，並輪到下一位玩家行動。</li>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingFour">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseFour" aria-expanded="false"
+                                        aria-controls="flush-collapseFour">
+                                        遊戲結束 Ending the Game
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseFour" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li>當玩家能將一張道路卡連接到<b>終點卡</b>，並製造一條與起點卡間無阻礙的通道時，可以將連結的終點卡掀開。</li>
+                                            <li>若翻出的終點卡上出現的是石塊，繼續進行遊戲。</li>
+                                            <li>若翻出的終點卡上出現的是金塊，則好矮人獲勝。</li>
+                                            <li>若所有玩家手牌用盡或是無牌可出，則壞矮人獲勝。</li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>輪播
+                            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0"
+                                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+                                        aria-label="Slide 2"></button>
+                                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+                                        aria-label="Slide 3"></button>
+                                </div>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active" data-bs-interval="10000">
+                                        <img src="svg/card_end1.svg" class="d-block w-100" alt="...">
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h5>First slide label</h5>
+                                            <p>Some representative placeholder content for the first slide.</p>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <img src="svg/card_end2.svg" class="d-block w-100" alt="...">
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h5>Second slide label</h5>
+                                            <p>Some representative placeholder content for the second slide.</p>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="svg/card_end3.svg" class="d-block w-100" alt="...">
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h5>Third slide label</h5>
+                                            <p>Some representative placeholder content for the third slide.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                                    data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                                    data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-
-
-
-
-
-
-
+    </div>       
 </body>
 
 <script src="./script/api.js"></script>
@@ -228,7 +264,9 @@
             return;
         }
         saveNickName(nickname);
-        callApi('/rooms', 'POST', {name: nickname}).then((response) => {
+        callApi('/rooms', 'POST', {
+            name: nickname
+        }).then((response) => {
             const roomId = response.data.room_id;
             window.location.href = `./waiting.html?room_id=${roomId}`;
         });
@@ -337,6 +375,96 @@
             return;
         }
     }
+
+//留言板功能
+let data = [{
+        Charge: "純屬好玩",
+        name: "阿婷",
+        content: "這遊戲好好玩"
+    }, {
+        Charge: "網站建議",
+        name: "小花",
+        content: "想再看更多壞矮人圖片！"
+    }, {
+        Charge: "純屬好玩",
+        name: "小明",
+        content: "我怎麼玩怎麼輸誒"
+    }, {
+        Charge: "網站建議",
+        name: "小天",
+        content: "希望可以新增兩人遊戲！"
+
+    }, {
+        Charge: "純屬好玩",
+        name: "小王",
+        content: "◎玩家在寶藏挖到後或結束時才可以表明身份◎由出牌過程中猜測誰是好人誰是壞人是最大樂趣,相當心機◎有封鎖牌,可以對別的玩家使用,以禁止其穢魊G道牌,亦有解救牌◎有炸彈牌,可以炸毀死路或活路,也有地圖牌,可以先檢查寶藏位置◎角色牌共十一張,4壞7好,讓最多10個人抽,因此無法確定壞人確實人數◎好人挖到寶藏後,可以分享金礦牌,其金額由運氣決定◎壞人獲勝後,可以獲得固定高金額的報◎遊戲進行以金礦牌張數決定,10人遊戲大約進行3回合,即結束◎遊戲結束時,計算手中金礦金額以決定誰是大贏家"
+    }
+    , {
+        Charge: "純屬好玩",
+        name: "小豬",
+        content: "我完全是壞矮人的料"
+
+    }, {
+        Charge: "純屬好玩",
+        name: "rick",
+        content: "我是科學怪人"
+
+    }
+    
+];
+
+    const list = document.querySelector('.list');
+    // 預設載入函式
+    function init() {
+        let str = "";
+        data.forEach(function (item, index) {
+            let content = `<li><b>${item.name}</b>：${item.content}</li>`;
+            str += content;
+        })
+        list.innerHTML = str;
+    }
+    init();
+    // 篩選器邏輯
+    const stationFilter = document.querySelector(".filter");
+    stationFilter.addEventListener("click", function (e) {
+        if (e.target.value == undefined) {
+            return;
+        }
+        let str = "";
+        data.forEach(function (item, index) {
+            if (e.target.value == "全部") {
+                str += `<li><b>${item.name}</b>：${item.content}</li>`
+            } else if (e.target.value == item.Charge) {
+                str += `<li><b>${item.name}</b>：${item.content}</li>`
+            }
+        })
+        list.innerHTML = str;
+    })
+    // 新增邏輯
+
+    const nickName = document.querySelector(".nickName");
+    const content = document.querySelector(".content");
+    const category = document.querySelector(".category");
+    const savebtn = document.querySelector(".savebtn");
+
+    savebtn.addEventListener("click", function (e) {
+        if (nickName.value === '' || content.value === '') {
+            alert('暱稱及留言內容都要輸入哦！');
+            return;
+        }
+        $(".txt").text("已成功送出留言！");
+        $(".txt").css("color","orange");
+        let obj = {};
+        obj.Charge = category.value;
+        obj.name = nickName.value;
+        obj.content = content.value;
+        data.push(obj);
+        init();
+        category.value = "純屬好玩";
+        nickName.value = "";
+        content.value = "";
+
+    })
 </script>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" //

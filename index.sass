@@ -23,7 +23,7 @@ html,body
 
 .container
     background-color: $color_white
-    //border: 2px solid red
+    // border: 2px solid red
     // position: absolute
     // left: 50%
     // top: 50%
@@ -77,37 +77,39 @@ html,body
     #nickname
         margin: 10px 0px 10px 0px
         border-radius: 5px
-        border: 1px solid $color_yellow
+        border: 1px solid $color_brown
         background-color: #fffdf3
         padding: 5px
+        color: $color_green
         &:hover
-            box-shadow: 0px 2px 3px $color_yellow
+            box-shadow: 2px 2px 5px $color_brown
 
     .start
-        margin: 10px 0px 10px 0px
+        margin: 10px 0px 5px 0px
         background-color: $color_deep_blue
         color: $color_white
         padding: 8px
         border-radius: 5px
-    .footer
-        margin: 7px 0px 30px 0px
-        display: flex
-        .rank ,.rule,.contact
-            cursor: pointer
-            font-size: 15px
-            color: $color_brown
-            border-bottom: 2px solid $color_brown
-            margin: 5px
+
+.footer
+    max-width: 400px
+    margin: 0 auto
+    display: flex
+    justify-content: center
+
+
 // 遊戲規則
-.rulepupup
+.rulepupup, .openbtn ,.rank
     cursor: pointer
     background-color: transparent !important
     color: $color_brown !important
-    border: 1px solid  transparent !important
+    border: none !important
     border-radius: 0px !important
     border-bottom: 2px solid $color_brown !important
     padding: 3px !important
     box-shadow: none !important
+    margin: 0px 10px 0px 10px !important
+
 
 .modal-content
     background-color: $color_white !important
@@ -126,8 +128,8 @@ html,body
         background-color: $color_deep_blue
     .accordion-body
         background-color: $color_white !important
-    ul ,li 
-            text-align: left !important
+    ul ,li
+        text-align: left !important
     li.none
         list-style-type: none
 
@@ -138,6 +140,99 @@ html,body
         text-align: center
 // 遊戲規則
 
-
 // 留言板
+#messageTop
+    display: block
+    margin: 0 auto
+    margin: 10px !important
+    padding: 5px !important
+    border-bottom: 2px solid $color_brown
+    // box-shadow: 0px 2px 5px rgba($color_brown,0.5) 
+#messangeArea
+    padding: 5px !important
+    margin: 0px !important
 
+.mscontainer
+    background-color: $color_white
+    //border: 1px solid pink
+    width: 100%
+    margin: 0 auto
+    padding: 3px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+.flexbox
+    display: flex
+    .category
+        width: 110px
+        background-color: $color_white
+        border-radius: 5px
+        border: 1px solid $color_brown
+        padding: 5px
+        margin: 10px
+    .nickName
+        margin: 10px
+        border-radius: 5px
+        border: 1px solid $color_brown
+        background-color: #fffdf3
+        padding: 5px
+        color: $color_green
+        width: 200px
+        &:hover
+            box-shadow: 0px 2px 3px $color_brown
+textarea.content
+    color: $color_brown
+    width: 95%
+    margin: 5px 0px 5px 0px
+    border-radius: 5px
+    border: 1px solid $color_brown
+    background-color: #fffdf3
+    padding: 5px
+    &:hover
+        box-shadow: 0px 2px 3px $color_brown
+
+.savebtn
+    margin: 5px 0px 10px 0px
+    background-color: $color_deep_blue
+    color: $color_white
+    padding: 8px
+    border-radius: 5px
+
+.filter
+    margin: 10px 0px 10px 0px
+    width: 100%
+.filterbtn
+    border: none !important
+    background-color: $color_white !important
+    color: $color_brown !important
+    padding: 5px 10px 5px 10px !important
+    margin: 5px !important
+    border-radius: 0px !important
+    &:hover
+        border-bottom: 2px solid $color_brown !important
+.list
+    width: 100%
+    margin: 0px
+    padding-left: 5px !important
+    display: flex
+    flex-direction: column-reverse
+    li
+        width: 100%
+        list-style: none
+        text-align: left
+        font-size: 15px
+        padding: 10px
+        color: $color_brown
+        word-wrap: break-word
+        &:hover
+            background-color: rgba($color_yellow,0.2)
+            border-bottom: 1px solid rgba($color_brown,0.7)
+        &::before
+            content: ''
+            display: inline-block
+            height: 30px
+            width: 24px
+            margin: 0px 10px 0px 10px
+            background-image: url("svg/icon.svg")
+            background-size: cover
