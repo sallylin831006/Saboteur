@@ -57,43 +57,44 @@ html, body
 
     .flexbox.playerarea
         width: 98%
+        display: flex
         justify-content: space-around
-        .score
-            color: $color_red
-            margin-bottom: -5px
-            font-weight: 900
-        .userpic
-            width: 20% //*400*20%=80px*//
-            min-width: 70px
-
-        .username
-            margin-bottom: 12px
-            margin-top: -30px
-            color: $color_black
-            font-weight: 900
-
-        .statusbox
-            border: 1px solid transparent
-
-            .status
+        .userbox
+            // border: 2px solid blue
+            .score
+                color: $color_red
+                margin-bottom: -5px
+                font-weight: 900
+            .username
+                // border: 1px solid pink
                 cursor: pointer
-                +size(22px,22px)
-                margin: 1px
-                border-radius: 50%
+                margin-bottom: 12px
+                color: $color_black
+                font-weight: 900
+                text-align: center
+                line-height: 67px
+                text-shadow: 1px 1px $color_white
+                +size(75px,55px)
 
-            .statushover
-                cursor: pointer
-                +size(22px,22px)
-                border-radius: 50%
-                &::before
-                    content: "✖"
-                    font-size: 15px
-                    // line-height: 15px
-                    font-weight: bolder
-                    text-align: center
-                    color: rgba(#fa517b,0.6)
+            .statusbox
+                border: 1px solid transparent
+                .status
+                    +size(22px,22px)
+                    margin: 1px
+                    border-radius: 50%
 
-            .statusdelete
+            // .statushover
+            //     cursor: pointer
+            //     +size(22px,22px)
+            //     border-radius: 50%
+            //     &::before
+            //         content: "✖"
+            //         font-size: 15px
+            //         // line-height: 15px
+            //         font-weight: bolder
+            //         text-align: center
+            //         color: rgba(#fa517b,0.6)
+            .statusBan
                 width: 20px
                 height: 20px
                 border-radius: 50%
@@ -110,6 +111,7 @@ html, body
         // border: 2px solid green
         width: 95%
         flex-direction: column
+        margin-bottom: 10px
         .line
             display: inline-flex
             justify-content: center
@@ -135,11 +137,13 @@ html, body
         font-size: 10px
 
     .round-time-bar
-        margin: 1rem
+        width: 80%
+        margin: 0 auto
         overflow: hidden
-        background-color: $color_white
+        background-color: $color_very_white
         border-radius: 5px
     .round-time-bar div
+        margin: 0 auto
         height: 5px
         border-radius: 5px
         animation: roundtime calc(var(--duration) * 1s) steps(var(--duration)) forwards
@@ -156,8 +160,8 @@ html, body
         padding: 10px
     .handcardarea
         width: 100%
-        padding: 20px 0px 30px 0px
-        margin-bottom: 100px
+        padding: 20px 0px 10px 0px
+        // margin-bottom: 10px
 
     .card
         width: 63px
@@ -177,18 +181,63 @@ html, body
     .redborder
         border: 2px solid red
 
-.showstatus p
-    margin: 5px
-    // .popup
+.chatinputbox
+    width: 100%
+    border: 1px solid
+    position: fixed
+    bottom: 0px
+    right: 0px
+    left: 0px
     margin: 0 auto
-    width: 95%
     display: flex
-    flex-direction: column
-    justify-content: space-between
-    padding: 5px
-    .popupok
-        font-size: 20px
-        width: 50px
+    justify-content: center
+    align-items: center
+    .inputChat, .chatbtn,.chatclose
+        margin: 3px
+
+
+
+ul.scrollbox
+    margin: 0 auto
+    overflow: auto
+    width: 98%
+    height: 100px
+    border: 1px solid red
+    display: flex
+    flex-direction: column-reverse
+    padding: 1px
+    
+    li
+        width: 100%
+        list-style: none
+        text-align: left
+        font-size: 12px
+        &:hover
+            background-color: rgba($color_yellow,0.2)
+            border-bottom: 1px solid rgba($color_brown,0.7)
+        &::before
+            content: ''
+            display: inline-block
+            height: 18px
+            width: 15px
+            margin: 5px 10px 0px 10px
+            background-image: url("svg/icon.svg")
+            background-size: cover
+
+
+// .showstatus p
+//     margin: 5px
+//     // .popup
+//     margin: 0 auto
+//     width: 95%
+//     display: flex
+//     flex-direction: column
+//     justify-content: space-between
+//     padding: 5px
+//     .popupok
+//         font-size: 20px
+//         width: 50px
+
 #staticBackdrop
     background-color: rgba($color_red,0.9)
     margin: 0 auto
@@ -219,22 +268,25 @@ html, body
     .container
         max-width: 760px
         // background-color: rgba(pink,0.5)
-    .container .flexbox.playerarea .box .userpic
+    .container .flexbox.playerarea .userbox .userpic
         width: 20%
         min-width: 120px
-    .container .flexbox.playerarea .box .username
+    .container .flexbox.playerarea .userbox .username
         margin-bottom: 23px
-        margin-top: -52px
+        margin: 0 auto
+        line-height: 110px
+        +size(112.5px,82.5px)
 
-    .container .flexbox.playerarea .box .statusbox
+    .container .flexbox.playerarea .userbox .statusbox
         // border: 1px solid $color_light_blue
         border-radius: 10px
 
-    .container .flexbox.playerarea .box .statusbox .status
+    .container .flexbox.playerarea .userbox .statusbox .status
         cursor: pointer
         +size (38px,38px)
         margin: 3px
         border-radius: 50%
+        padding-top: 10px
     .container .flexbox.playerarea .statusbox .statushover
         cursor: pointer
         +size(38px,38px)
@@ -245,7 +297,7 @@ html, body
             text-align: center
             color: rgba(#fa517b,0.6)
 
-    .container .flexbox.playerarea .statusbox .statusdelete
+    .container .flexbox.playerarea .statusbox .statusBan
         width: 38px
         height: 38px
         border-radius: 50%
@@ -258,19 +310,27 @@ html, body
             font-weight: bolder
 
     .container .showarea
-        margin-top: 50px
-        transform: rotate(90deg)
+        margin: 0 auto
         width: 500px
+        margin-bottom: 20px
 
     .container .showarea .line .block
         width: 94.5px
         height: 54px
-        margin: 1.5px
+    .container .round-time-bar
+        margin: 0 auto
+        max-width: 500px
     .container .handcardarea
-        transform: rotate(90deg)
-        position: fixed
-        top: 400px
-        right: -350px
+        position: absolute
+        top: 170px 
+        right: 0px
+        max-width: 200px
+        display: flex
+        flex-wrap: wrap
+        padding: 3px
+        margin: 3px
+    .handcardbox1,.handcardbox2,.handcardbox3,.handcardbox4,.handcardbox5,.handcardbox6
+        margin: 10px
 
     .container .card
         width: 94.5px

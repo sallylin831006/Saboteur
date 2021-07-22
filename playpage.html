@@ -25,78 +25,66 @@
       輪到你出牌了！ 你是壞矮人！ 排堆剩餘提醒:
     </div>
     <div class="flexbox playerarea">
-      <div class="box">
+
+
+      <div class="userbox">
         <div class="score">5</div>
-        <img class="userpic" src="svg/user.svg" alt="" />
-        <div class="username name1">阿婷</div>
+        <div id="user1" class="username" data-num="1"
+          style="background-image: url(svg/user.svg);background-size: cover;">阿婷
+        </div>
         <div class="flexbox statusbox">
-          <div class="status" style="
+          <div data-num="1" class="status ax1" style="
                 background-image: url(svg/status/status_ax.svg);
                 background-size: cover;
               "></div>
-          <div class="status" style="
+          <div data-num="1" class="status car1" style="
                 background-image: url(svg/status/status_car.svg);
                 background-size: cover;
               "></div>
-          <div class="status" style="
-                background-image: url(svg/status/status_lamb.svg);
+          <div data-num="1" class="status lamp1" style="
+                background-image: url(svg/status/status_lamp.svg);
                 background-size: cover;
               "></div>
         </div>
       </div>
 
-      <div class="box">
-        <div class="score">5</div>
-        <img class="userpic" src="svg/user.svg" alt="" />
-        <div class="username name1">阿婷</div>
+      <div class="userbox">
+        <div class="score">2</div>
+        <div id="user2" class="username" data-num="2"
+          style="background-image: url(svg/user.svg);background-size: cover;">阿文
+        </div>
         <div class="flexbox statusbox">
-          <div class="status" style="
+          <div data-num="2" class="status ax2" style="
                 background-image: url(svg/status/status_ax.svg);
                 background-size: cover;
               "></div>
-          <div class="status" style="
+          <div data-num="2" class="status car2" style="
                 background-image: url(svg/status/status_car.svg);
                 background-size: cover;
               "></div>
-          <div class="status" style="
-                background-image: url(svg/status/status_lamb.svg);
+          <div data-num="2" class="status lamp2" style="
+                background-image: url(svg/status/status_lamp.svg);
                 background-size: cover;
               "></div>
         </div>
       </div>
 
-      <div class="box">
-        <div class="score">5</div>
-        <img class="userpic" src="svg/user.svg" alt="" />
-        <div class="username name1">阿婷</div>
-        <div class="flexbox statusbox">
-          <div class="status" style="
-                background-image: url(svg/status/status_ax.svg);
-                background-size: cover;
-              "></div>
-          <div class="status" style="
-                background-image: url(svg/status/status_car.svg);
-                background-size: cover;
-              "></div>
-          <div class="status" style="
-                background-image: url(svg/status/status_lamb.svg);
-                background-size: cover;
-              "></div>
-        </div>
-      </div>
+
+
+
     </div>
-<!-- 棋盤格子區 -->
+    <!-- 棋盤格子區 -->
     <div class="flexbox showarea">
       <div class="line line1">
-        <div id="block1-1" class="block block1-1">
+        <div id="block1-1 end1" class="block block1-1 end1">
           <img data-num="0" src="svg/cards_blank.svg" alt="" id="end1" />
         </div>
         <div id="block1-2" class="block block1-2"></div>
-        <div id="block1-3" class="block block1-3">
+        <div id="block1-3 end2" class="block block1-3 end2">
           <img data-num="1" src="svg/cards_blank.svg" alt="" id="end2" />
         </div>
         <div id="block1-4" class="block block1-4"></div>
-        <div id="block1-5" class="block block1-5">
+        <div id="block1-5 end3" class="block block1-5 end3">
           <img data-num="2" src="svg/cards_blank.svg" alt="" id="end3" />
         </div>
       </div>
@@ -112,7 +100,7 @@
         <div id="block3-2" class="block block3-1"></div>
         <div id="block3-3" class="block block3-1"></div>
         <div id="block3-4" class="block block3-1"></div>
-        <div id="block3-" class="block block3-1"></div>
+        <div id="block3-5" class="block block3-1"></div>
       </div>
       <div class="line line4">
         <div id="block4-1" class="block block4-1"></div>
@@ -164,66 +152,86 @@
     <div class="round-time-bar" data-style="smooth" style="--duration: 60">
       <div></div>
     </div>
-    <div>時間剩下<span id="time">01:00</span>秒！你給我趕快出牌喔＾＾</div>
+    <div>時間剩下<span id="time">01:00</span>秒！你快出牌喔＾＾</div>
     <!-- 提示區 -->
     <div class="cuetxt">
       請放置卡牌開闢新的路，或是
-      <span class="trash"><i class="fas fa-trash fa-lg">棄牌並跳過</i></span>
+      <span class="trash"><i id="trash" class="fas fa-trash fa-lg">棄牌並跳過</i></span>
     </div>
 
     <!-- 手牌區 -->
     <div class="flexbox handcardarea">
       <div class="handcardbox1" data-num="1">
-        <div id="box1">
-          <img class="card cardnum1" data-num="1" src="svg/cards/card_car_ban.svg" />
-        </div>
+        <img id="handCard1" class="card cardnum1" data-num="1" src="svg/cards_blank.svg" />
         <i data-num="1" class="fas fa-undo-alt cycle-1"></i>
       </div>
 
       <div class="handcardbox2" data-num="2">
-        <div id="box2">
-          <img class="card cardnum2" data-num="2" src="svg/cards/card_car.svg" />
-        </div>
+        <img id="handCard2" class="card cardnum2" data-num="2" src="svg/cards_blank.svg" />
         <i data-num="2" class="fas fa-undo-alt cycle-2"></i>
       </div>
 
       <div class="handcardbox3" data-num="3">
-        <div id="box3">
-          <img class="card cardnum3" data-num="3" src="svg/cards/card_road2.svg" />
-        </div>
+        <img id="handCard3" class="card cardnum3" data-num="3" src="svg/cards_blank.svg" />
         <i data-num="3" class="fas fa-undo-alt cycle-3"></i>
       </div>
 
       <div class="handcardbox4" data-num="4">
-        <div id="box4">
-          <img class="card cardnum4" data-num="4" src="svg/cards/card_hole1.svg" />
-        </div>
+        <img id="handCard4" class="card cardnum4" data-num="4" src="svg/cards_blank.svg" />
         <i data-num="4" class="fas fa-undo-alt cycle-4"></i>
       </div>
 
       <div class="handcardbox5" data-num="5">
-        <div id="box5">
-          <img class="card cardnum5" data-num="5" src="svg/cards/card_map.svg" />
-        </div>
+        <img id="handCard5" class="card cardnum5" data-num="5" src="svg/cards_blank.svg" />
         <i data-num="5" class="fas fa-undo-alt cycle-5"></i>
       </div>
 
       <div class="handcardbox6" data-num="6">
-        <div id="box6">
-          <img class="card cardnum6" data-num="6" src="svg/cards/card_bomb.svg" />
-        </div>
+        <img id="handCard6" class="card cardnum6" data-num="6" src="svg/cards_blank.svg" />
         <i data-num="6" class="fas fa-undo-alt cycle-6"></i>
       </div>
     </div>
+    <!-- 聊天區 -->
+    <hr>
+    <ul class="scrollbox">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
+    <hr>
+
+
+    <div class="chaticon"><i class="far fa-comment"></i></div>
+
+    <div class="chatinputbox">
+      <div class="chatUser" value="阿婷"></div>
+      <input class="inputChat" type="text" placeholder="盡情聊天ㄅ">
+      <input class="chatbtn" type="button" value="送出">
+      <div class="chatclose"><i class="fas fa-times"></i></div>
+    </div>
+
+
+
   </div>
-  <!-- //放在container外的，遊戲角色顯示 -->
+  <!-- //這是container的div勿刪*/// -->
+
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
     遊戲回合勝負結果
-  </button>
+  </button> -->
 
   <!-- Modal -->
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  <!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -238,7 +246,6 @@
           <div class="username name2">阿文 <span>5分</span></div>
         </div>
         <div class="modal-footer">
-          <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
           <button type="button" class="homebtn">回首頁</button>
           <button type="button" class="palyagain">再玩一局</button>
           <button type="button" class="rankbtn">看總排行</button>
@@ -246,59 +253,114 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
+
 </body>
 
 <script>
-  // 倒數計時器
-  function startTimer(duration, display) {
-    var timer = duration,
-      minutes, seconds;
-    setInterval(function () {
-      minutes = parseInt(timer / 60, 10);
-      seconds = parseInt(timer % 60, 10);
-      minutes = minutes < 10 ? "0" + minutes : minutes;
-      seconds = seconds < 10 ? "0" + seconds : seconds;
-      display.textContent = minutes + ":" + seconds;
-      if (--timer < 0) {
-        timer = duration;
-      }
-    }, 1000);
+  var MAP_CARDS = new RegExp('41|42|43|44|45|46', "g");
+  var LAMP_CARDS = new RegExp('47|48', "g");
+  var AX_CARDS = new RegExp('49|50', "g");
+  var CAR_CARDS = new RegExp('51|52', "g");
+  var LAMP_BAN_CARDS = new RegExp('56|57|58', "g");
+  var AX_BAN_CARDS = new RegExp('59|60|61', "g");
+  var CAR_BAN_CARDS = new RegExp('62|63|64', "g");
+  var BOMB_CARDS = new RegExp('65|66|67', "g");
+
+  const hasRedBorder = () => {
+    return $('.redborder').length ? true : false;
   }
 
-  window.onload = function () {
-    var fiveMinutes = 60 * 1,
-      display = document.querySelector('#time');
-    startTimer(fiveMinutes, display);
+
+
+  $(".container").click(function (e) {
+    console.log(e.target)
+
+    console.log($('.redborder').attr('class'));
+  })
+
+  //遊戲開始時，隨機產生六張手牌給玩家
+  var pools = [];
+
+  let poolsGenerator = function (arr) {
+    if (arr.length >= 67) return;
+    let newNumber = Math.floor(Math.random() * 67 + 1);
+    if (arr.indexOf(newNumber) < 0) {
+      arr.push(newNumber);
+    }
+    poolsGenerator(arr);
   };
+  poolsGenerator(pools);
 
-  //倒數計時器顯示圖
-  const bars = document.querySelectorAll(".round-time-bar");
+  let handCards = [];
+  handCards = pools.splice(0, 6)
 
-  bars.forEach((bar) => {
-    bar.classList.remove("round-time-bar");
-    bar.offsetWidth;
-    bar.classList.add("round-time-bar");
+  function Cardput() {
+    //如果點選牌面上已放好的卡（沒有id），且圈選到的是“崩路卡”，警示，『刪掉一張卡』，初新手牌
+    if (event.target.id == "" && $('.redborder').attr("src").search(/65|66|67/) == 14) {
+      alert("確定要崩掉這張卡ㄇ！？");
+      giveNewCard();
+      $(".topcue").text("你剛剛炸掉了一張卡牌～")
+      return;
+      //問題 :還沒做出把圖卡清除的功能??????
+
+    }
+    //圈選手牌後，可再點擊的位置：block|end|trash，其他處不可放卡牌，如：起始牌、已放卡牌的位置
+    if (event.target.id.search(/block|end|trash/) == -1) {
+      alert("此處不能放置卡牌");
+      return;
+    }
+    //如果圈選的手牌是“地圖卡”，不可放在牌區，只可以丟棄，或去點終點卡
+    if ($('.redborder').attr("src").search(/41|42|43|44|45|46/) == 14) {
+      alert("不能把地圖卡放在這邊喔！");
+      return;
+    }
+    //如果圈選的手牌是“崩路卡”，不可放在牌區，只可以丟棄，或去點已放的卡牌炸掉
+    if ($('.redborder').attr("src").search(/65|66|67/) == 14) {
+      alert("不能把崩路卡放在這邊喔！");
+      return;
+    }
+
+    //如果圈選的手牌是“道路卡”，可以放在牌區，並且會印出出牌的卡，並在補上手牌
+    if (event.target.id.search("block") == 0) {
+      printNewCard()
+      giveNewCard();
+    }
+  }
+
+  function printNewCard() {
+    const element = document.getElementById(event.target.id);
+    const boxnum = $(".redborder").attr("data-num")
+    const svg = $(".handcardbox" + boxnum + " img").attr('src');
+    const style = $(".handcardbox" + boxnum + " img").css('transform');
+    element.innerHTML += `<img src='${svg}' style='transform:${style}'>`;
+  }
+
+  function giveNewCard() {
+    const boxnum = $(".redborder").attr("data-num")
+    const index = boxnum - 1
+    handCards.splice(index, 1, pools.pop());
+    $(`#handCard${boxnum}`).attr("src", `svg/cards/card${handCards[index]}.svg`)
+    $(".redborder").removeClass("redborder");
+  }
+
+  $(document).ready(function () {
+    $("#handCard1").attr("src", `svg/cards/card${handCards[0]}.svg`);
+    $("#handCard2").attr("src", `svg/cards/card${handCards[1]}.svg`);
+    $("#handCard3").attr("src", `svg/cards/card${handCards[2]}.svg`);
+    $("#handCard4").attr("src", `svg/cards/card${handCards[3]}.svg`);
+    $("#handCard5").attr("src", `svg/cards/card${handCards[4]}.svg`);
+    $("#handCard6").attr("src", `svg/cards/card${handCards[5]}.svg`);
   });
 
-
-
-  // 封鎖時顯示上方提示//
-  $(".status").mouseenter(function () {
-    $(this).addClass("statushover");
-    $(".topcue").text("來啊！炸壞阿婷的油燈！");
-  });
-  $(".status").mouseleave(function () {
-    $(this).removeClass("statushover");
-    $(".topcue").text("輪到你出牌了！你是壞矮人～")
-  });
-
-  $(".status").click(function () {
-    $(this).addClass("statusdelete");
-    $(".topcue").text("阿婷的油燈被你炸～壞了！");
-  });
-
-
+  $(".block").click(function (e) {
+    if (!hasRedBorder()) {
+      return;
+    }
+    if (hasRedBorder()) {
+      Cardput();
+    }
+  })
 
   // 圖卡旋轉
   var degrees = 0;
@@ -322,68 +384,30 @@
   });
 
 
-
-
   //功能:點擊卡牌產生紅色提醒
   $(".card").click(function (e) {
+    // console.log($(this).attr('class').search("redborder")); 找不到會回傳-1
     if ($(this).attr('class').search("redborder") == -1) {
       $(".redborder").removeClass("redborder");
       $(this).addClass("redborder");
+
     }
-  });
-  //功能:點擊區塊可放置卡牌、出牌後隨機再產生一張新卡牌到手排中
-  $(".block").click(function (event) {
-    if ($('.redborder').length == 0) {
-      return;
-    }
-    const element = document.getElementById(event.target.id);
-    const boxnum = $(".redborder").attr("data-num")
-    const svg = $("#box" + boxnum).html();
-    // const num = $(".fa-undo-alt").attr("data-num")
-    element.innerHTML += `${svg}`;
-    $(".redborder").removeClass("redborder");
-    $("#box" + boxnum).hide();
-    $(".cycle-" + boxnum).hide();
-
-//功能隨機產生新手牌
-    const randomcards = ['<img class="card cardnum${boxnum}" data-num="${boxnum}" src="svg/cards/card_car.svg"/>',
-      '<img  style="width:63px;" src="svg/cards/card_road2.svg">',
-      '<img  style="width:63px;" src="svg/cards/card_road3.svg">'
-    ];
-
-
-    const random = Math.floor(Math.random() * randomcards.length);
-    let show = randomcards[random];
-    $(".handcardbox" + boxnum).append(show);
-    $(".handcardbox" + boxnum).append(`<i data-num=${boxnum} class="fas fa-undo-alt cycle-${boxnum}"></i>`);
   });
 
 
   // 功能：棄牌並跳過
   $(".trash").click(function (event) {
-    if ($('.redborder').length == 0) {
+    if (!hasRedBorder()) {
       return;
-    };
-    const element = document.getElementById(event.target.id);
-    const boxnum = $(".redborder").attr("data-num")
-    $(".redborder").removeClass("redborder");
-    $("#box" + boxnum).hide();
-    $(".cycle-" + boxnum).hide();
-    const randomcards = ['<img style="width:50px;" src="https://i.ibb.co/Tgy37Jd/icon1-3-3x.png">',
-      '<img  style="width:50px;" src="https://i.ibb.co/nnK9ty3/icon1-4-3x.png">',
-      '<img  style="width:50px;" src="https://i.ibb.co/rd8NqRF/icon1-2-3x.png">'
-    ];
-    const random = Math.floor(Math.random() * randomcards.length);
-    let show = randomcards[random];
-    $(".handcardbox" + boxnum).append(show);
-    const newcue = document.querySelector(".cuetxt");
-    newcue.innerHTML = `<div class="cuetxt">剛剛你吃掉了一張手牌，好胖</div>`;
-    // <div class="cuetxt">請放置卡牌開闢新的路，或是 <span class="trash"><i class="fas fa-trash fa-lg">棄牌並跳過</i></span></div>
-
+    }
+    alert("確定要丟掉這張牌ㄇ！？好像按了也只能丟了＾＾");
+    giveNewCard();
+    $(".topcue").text("你剛剛棄掉了一張卡牌～")
   })
+  //山崩卡
 
 
-  //隨機產生三張終點卡//
+  //隨機產生三張終點卡、終點卡只供有地圖卡的人查看//
   let endCards = [];
 
   let endCardsGenerator = function (arr) {
@@ -396,35 +420,226 @@
   };
   endCardsGenerator(endCards);
 
-  // console.log(endCards[0]);
-  // console.log(endCards[1]);
-  // console.log(endCards[2]);
-
   $("#end1").click(function () {
-    $(this).attr("src", `svg/card_end${endCards[0]}.svg`);
-    rotatecard($(this));
+    if (!hasRedBorder()) {
+      rotatecard($(this));
+      return;
+    }
+    if ($('.redborder').attr("src").search(MAP_CARDS) == -1) {
+      alert("你這張不是地圖卡，要有地圖卡才能看！");
+      return;
+    }
+    if ($('.redborder').attr("src").search(/41|42|43|44|45|46/) !== -1) {
+      giveNewCard();
+      $(".topcue").text("你查看了一張終點卡")
+      $(this).attr("src", `svg/card_end${endCards[0]}.svg`);
+
+      return;
+      alert("一張地圖卡只能看一次喔！"); //這個還沒做出來
+
+    }
   });
 
-  $("#end2").click(function () {
-    $(this).attr("src", `svg/card_end${endCards[1]}.svg`);
-    rotatecard($(this));
+
+  //提示TopCue
+  $(".handcardarea").click(function () {
+    $(".topcue").text("可從手牌區選擇一張卡出牌！");
+    if ($('.redborder').attr("src").search(/41|42|43|44|45|46/) !== -1) {
+      $(".topcue").text("使用地圖卡可以查看一張終點卡！");
+    }
+    if ($('.redborder').attr("src").search(/65|66|67/) !== -1) {
+      $(".topcue").text("使用山崩卡可以炸毀一條路！");
+    }
   });
-  $("#end3").click(function () {
-    $(this).attr("src", `svg/card_end${endCards[2]}.svg`);
-    rotatecard($(this));
+
+  // 封鎖時顯示上方提示//
+  $(".username").mouseenter(function (e) {
+    $(".topcue").text(`來啊！來破壞${$(e.target).text()}的工具！`);
   });
+  $(".username").mouseleave(function (e) {
+    $(".topcue").text("輪到你出牌囉")
+  });
+
+  //封鎖
+  $(".username").click(function (e) {
+    const LAMP_BAN = $('.redborder').attr("src").search(LAMP_BAN_CARDS)
+    const AX_BAN = $('.redborder').attr("src").search(AX_BAN_CARDS)
+    const CAR_BAN = $('.redborder').attr("src").search(CAR_BAN_CARDS)
+
+    const LAMP_SAVE = $('.redborder').attr("src").search(LAMP_CARDS)
+    const AX_SAVE = $('.redborder').attr("src").search(AX_CARDS)
+    const CAR_SAVE = $('.redborder').attr("src").search(CAR_CARDS)
+
+    let hasBanTool = false;
+    let toolName = '';
+    let toolChineseName = '';
+    if (LAMP_BAN !== -1) {
+      hasBanTool = true;
+      toolName = "lamp"
+      toolChineseName = "燈"
+    }
+    if (AX_BAN !== -1) {
+      hasBanTool = true;
+      toolName = "ax"
+      toolChineseName = "斧頭"
+    }
+    if (CAR_BAN !== -1) {
+      hasBanTool = true;
+      toolName = "car"
+      toolChineseName = "礦車"
+    }
+
+    let hasSaveTool = false;
+    let savetoolName = '';
+    let savetoolChineseName = '';
+    if (LAMP_SAVE !== -1) {
+      hasSaveTool = true;
+      savetoolName = "lamp"
+      savetoolChineseName = "燈"
+    }
+    if (AX_SAVE !== -1) {
+      hasSaveTool = true;
+      savetoolName = "ax"
+      savetoolChineseName = "斧頭"
+    }
+    if (CAR_SAVE !== -1) {
+      hasSaveTool = true;
+      savetoolName = "car"
+      savetoolChineseName = "礦車"
+    }
+
+    if (!hasRedBorder()) {
+      return;
+    }
+    if (!hasBanTool && !hasSaveTool) {
+      alert("你這張不是破壞卡或修理卡，不能用在這邊！");
+      return;
+    }
+
+    if (LAMP_BAN !== -1 || AX_BAN !== -1 || CAR_BAN !== -1) {
+      const usernum = $(`#${e.target.id}`).attr("data-num");
+      $(`.${toolName}${usernum}`).addClass("statusBan");
+      $(".topcue").text(`${$(e.target).text()}的${toolChineseName}被你破壞了！`);
+      giveNewCard();
+    }
+    // if (LAMP_SAVE !== -1 || AX_SAVE !== -1 || CAR_SAVE !== -1 && $(`.${toolName}${usernum}`).attr("class").search(
+    //     "statusBan") == -1) {
+    //   return;
+    //   alert("這位玩家沒有工具被破壞，所以你不能用修理卡在他身上")
+    //   // const checkToolBan = $(`.${toolName}${usernum}`).attr("class").search("statusBan")
+    // }
+    if (LAMP_SAVE !== -1 || AX_SAVE !== -1 || CAR_SAVE !== -1) {
+      const usernum = $(`#${e.target.id}`).attr("data-num");
+      $(`.${savetoolName}${usernum}`).removeClass("statusBan");
+      $(".topcue").text(`${$(e.target).text()}的${savetoolChineseName}被你修理好了～`);
+      giveNewCard();
+    }
+
+  })
+
+  //聊天室
+  let chatdata = [{
+    UserName: "阿婷",
+    UserChatTxt: "我知道金礦在哪裡＾＾"
+  }, {
+    UserName: "阿文",
+    UserChatTxt: "我只是個普通人"
+  }, {
+    UserName: "阿貞",
+    UserChatTxt: "你是壞矮人"
+  }, {
+    UserName: "阿悅",
+    UserChatTxt: "我有解救卡誒"
+  }, ];
+  const scrollbox = document.querySelector('.scrollbox');
+  // 聊天室預設載入函式
+  function init() {
+    let str = "";
+    chatdata.forEach(function (item, index) {
+      let content = `<li>${item.UserName}：${item.UserChatTxt}</li>`;
+      str += content;
+    })
+    scrollbox.innerHTML = str;
+  }
+  init();
+  // 聊天室新增邏輯
+  const inputChat = document.querySelector(".inputChat");
+  const chatUser = document.querySelector(".chatUser");
+  const chatbtn = document.querySelector(".chatbtn");
+
+  // $(".chatbtn").on('keyup', function (e) {
+  //   if (e.key === 'Enter' || e.keyCode === 13) {
+  //     let obj = {};
+  //     obj.UserName = chatUser.value;
+  //     obj.UserChatTxt = inputChat.value;
+  //     chatdata.push(obj);
+  //     init();
+  //     chatUser.value = "阿婷";
+  //     inputChat.value = "";
+  //   }
+  // })
+
+  $(".chatbtn").click(function(e) {
+    if (e.key === 'Enter' || e.keyCode === 13) {
+      let obj = {};
+      obj.UserName = chatUser.value;
+      obj.UserChatTxt = inputChat.value;
+      chatdata.push(obj);
+      init();
+      chatUser.value = "阿婷";
+      inputChat.value = "";
+    }
+  })
+
+  // chatbtn.addEventListener("click", function (e) {
+  //   let obj = {};
+  //   obj.UserName = chatUser.value;
+  //   obj.UserChatTxt = inputChat.value;
+  //   chatdata.push(obj);
+  //   init();
+  //   chatUser.value = "阿婷";
+  //   inputChat.value = "";
+  // })
+
 
   //點選連結到別的畫面
-
   $('.homebtn').click(function () {
     window.location.href = "./index.html";
-  })
+  });
   $('.palyagain').click(function () {
     window.location.href = "./waiting.html";
-  })
+  });
   $('.rankbtn').click(function () {
     window.location.href = "./rank.html";
   })
+
+  // 倒數計時器
+  function startTimer(duration, display) {
+    var timer = duration,
+      minutes, seconds;
+    setInterval(function () {
+      minutes = parseInt(timer / 60, 10);
+      seconds = parseInt(timer % 60, 10);
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+      display.textContent = minutes + ":" + seconds;
+      if (--timer < 0) {
+        timer = duration;
+      }
+    }, 1000);
+  }
+  window.onload = function () {
+    var fiveMinutes = 60 * 1,
+      display = document.querySelector('#time');
+    startTimer(fiveMinutes, display);
+  };
+  //倒數計時器顯示圖
+  const bars = document.querySelectorAll(".round-time-bar");
+  bars.forEach((bar) => {
+    bar.classList.remove("round-time-bar");
+    bar.offsetWidth;
+    bar.classList.add("round-time-bar");
+  });
 </script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" //
   integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
