@@ -76,17 +76,13 @@
     <!-- 棋盤格子區 -->
     <div class="flexbox showarea">
       <div class="line line1">
-        <div id="block1-1 end1" class="block block1-1 end1">
-          <img data-num="0" src="svg/cards_blank.svg" alt="" id="end1" />
-        </div>
+        <div id="block1-1" class="block block1-1"></div>
         <div id="block1-2" class="block block1-2"></div>
         <div id="block1-3 end2" class="block block1-3 end2">
-          <img data-num="1" src="svg/cards_blank.svg" alt="" id="end2" />
+          <img src="svg/card_start.svg" alt="" />
         </div>
         <div id="block1-4" class="block block1-4"></div>
-        <div id="block1-5 end3" class="block block1-5 end3">
-          <img data-num="2" src="svg/cards_blank.svg" alt="" id="end3" />
-        </div>
+        <div id="block1-5" class="block block1-5 end3"></div>
       </div>
       <div class="line line2">
         <div id="block2-1" class="block block2-1"></div>
@@ -138,13 +134,17 @@
         <div id="block8-5" class="block block8-1"></div>
       </div>
       <div class="line line9">
-        <div id="block9-1" class="block block9-1"></div>
-        <div id="block9-2" class="block block9-1"></div>
-        <div id="block9-3" class="block block9-1">
-          <img src="svg/card_start.svg" alt="" />
+        <div id="block9-1 end1" class="block block9-1 end1">
+          <img data-num="0" src="svg/cards_blank.svg" alt="" id="end1" />
         </div>
-        <div id="block9-4" class="block block9-1"></div>
-        <div id="block9-5" class="block block9-1"></div>
+        <div id="block9-2" class="block block9-2"></div>
+        <div id="block9-3 end2" class="block block9-3 end2">
+          <img data-num="1" src="svg/cards_blank.svg" alt="" id="end2" />
+        </div>
+        <div id="block9-4" class="block block9-4"></div>
+        <div id="block9-5  end3" class="block block9-5 end3">
+          <img data-num="2" src="svg/cards_blank.svg" alt="" id="end3" />
+        </div>
       </div>
     </div>
 
@@ -273,7 +273,7 @@
 
 
   $(".container").click(function (e) {
-    console.log(e.target)
+    console.log(e)
 
     console.log($('.redborder').attr('class'));
   })

@@ -1,0 +1,24 @@
+.container {
+  border: 2px solid pink;
+  padding: 15px;
+}
+
+.container .svgbox {
+  background-color: orange;
+  width: 310px;
+  height: 190px;
+}
+
+.container img.card {
+  z-index: 0;
+}
+
+.container svg {
+  width: 300px;
+  border: solid 2px;
+}
+
+.container .card {
+  stroke: black;
+  stroke-width: 3px;
+}
