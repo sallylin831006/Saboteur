@@ -193,7 +193,7 @@
     </div>
     <!-- 聊天區 -->
     <hr>
-    <ul class="scrollbox">
+    <ul id="messageBody" class="scrollbox">
       <li></li>
       <li></li>
       <li></li>
@@ -210,13 +210,12 @@
 
     <hr>
 
-
     <div class="chaticon"><i class="far fa-comment"></i></div>
 
     <div class="chatinputbox">
       <div class="chatUser" value="阿婷"></div>
-      <input class="inputChat" type="text" placeholder="盡情聊天ㄅ">
-      <input class="chatbtn" type="button" value="送出">
+      <input id="inputChat" class="inputChat" type="text" placeholder="來聊天ㄅ">
+      <div id="chatbtn" class="chatbtn"></div>
       <div class="chatclose"><i class="fas fa-times"></i></div>
     </div>
 
@@ -315,12 +314,16 @@
       alert("不能把地圖卡放在這邊喔！");
       return;
     }
+    //如果圈選的手牌是“破壞卡”，不可放在牌區
+    if ($('.redborder').attr("src").search(/56|57|58|59|60|61|62|63|64/) == 14) {
+      alert("不能把破壞卡放在這邊喔！");
+      return;
+    }
     //如果圈選的手牌是“崩路卡”，不可放在牌區，只可以丟棄，或去點已放的卡牌炸掉
     if ($('.redborder').attr("src").search(/65|66|67/) == 14) {
       alert("不能把崩路卡放在這邊喔！");
       return;
     }
-
     //如果圈選的手牌是“道路卡”，可以放在牌區，並且會印出出牌的卡，並在補上手牌
     if (event.target.id.search("block") == 0) {
       printNewCard()
@@ -545,13 +548,19 @@
     UserName: "阿文",
     UserChatTxt: "我只是個普通人"
   }, {
-    UserName: "阿貞",
+    UserName: "阿圈",
     UserChatTxt: "你是壞矮人"
   }, {
-    UserName: "阿悅",
-    UserChatTxt: "我有解救卡誒"
-  }, ];
+    UserName: "馬特",
+    UserChatTxt: "我要Ban掉你"
+  }, {
+    UserName: "阿貴",
+    UserChatTxt: "我才要Ban掉你"
+  }, 
+];
   const scrollbox = document.querySelector('.scrollbox');
+  var messageBody = document.querySelector('#messageBody');
+  messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
   // 聊天室預設載入函式
   function init() {
     let str = "";
@@ -562,44 +571,42 @@
     scrollbox.innerHTML = str;
   }
   init();
-  // 聊天室新增邏輯
+  // 聊天室新增 聊天內容
   const inputChat = document.querySelector(".inputChat");
-  const chatUser = document.querySelector(".chatUser");
   const chatbtn = document.querySelector(".chatbtn");
 
-  // $(".chatbtn").on('keyup', function (e) {
-  //   if (e.key === 'Enter' || e.keyCode === 13) {
-  //     let obj = {};
-  //     obj.UserName = chatUser.value;
-  //     obj.UserChatTxt = inputChat.value;
-  //     chatdata.push(obj);
-  //     init();
-  //     chatUser.value = "阿婷";
-  //     inputChat.value = "";
-  //   }
-  // })
+  $(".chatbtn").click(function (e) {
+    const chatUser = document.querySelector(".chatUser");
 
-  $(".chatbtn").click(function(e) {
-    if (e.key === 'Enter' || e.keyCode === 13) {
-      let obj = {};
-      obj.UserName = chatUser.value;
-      obj.UserChatTxt = inputChat.value;
-      chatdata.push(obj);
-      init();
-      chatUser.value = "阿婷";
-      inputChat.value = "";
-    }
+    const inputChatcontent = $('.inputChat').val();
+    if (inputChatcontent.trim() === '') {
+            return;
+        }
+    let obj = {};
+    obj.UserName = $('.chatUser').attr('value');
+    obj.UserChatTxt = inputChat.value;
+    console.log(123,chatUser);
+    chatdata.push(obj);
+    init();
+    chatUser.value = "阿婷";
+    inputChat.value = "";
+    messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
   })
 
-  // chatbtn.addEventListener("click", function (e) {
-  //   let obj = {};
-  //   obj.UserName = chatUser.value;
-  //   obj.UserChatTxt = inputChat.value;
-  //   chatdata.push(obj);
-  //   init();
-  //   chatUser.value = "阿婷";
-  //   inputChat.value = "";
-  // })
+
+  inputChat.addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      document.getElementById("chatbtn").click();
+    }
+  });
+
+  $(".chatclose").click(function () {
+    $(".chatinputbox").hide();
+  })
+  $(".chaticon").click(function () {
+    $(".chatinputbox").show();
+  })
 
 
   //點選連結到別的畫面
@@ -632,8 +639,7 @@
     var fiveMinutes = 60 * 1,
       display = document.querySelector('#time');
     startTimer(fiveMinutes, display);
-  };
-  //倒數計時器顯示圖
+  }; //倒數計時器顯示圖
   const bars = document.querySelectorAll(".round-time-bar");
   bars.forEach((bar) => {
     bar.classList.remove("round-time-bar");

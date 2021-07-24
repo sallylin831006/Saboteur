@@ -182,18 +182,65 @@ html, body
         border: 2px solid red
 
 .chatinputbox
+    background-color: $color_white
+    // border-top: 1px solid $color_brown
+    border-radius: 7px 7px 0px 0px
+    box-shadow: 0px 0px 5px $color_brown
     width: 100%
-    border: 1px solid
+    height: 50px
     position: fixed
     bottom: 0px
     right: 0px
     left: 0px
+    padding: 5px
     margin: 0 auto
     display: flex
     justify-content: center
     align-items: center
     .inputChat, .chatbtn,.chatclose
         margin: 3px
+    .inputChat
+        font-size: initial
+        width: 80%
+        height: 30px
+        min-width: 100px
+        border: 1px solid $color_deep_blue
+        border-radius: 3px
+        color: $color_deep_blue
+    .chatbtn
+        display: none
+        // +size(40px,30px)
+        // background-color: $color_deep_blue
+        // border-radius: 5px
+       
+        
+    .chatclose
+        // border: 1px solid $color_brown
+        +size(30px,30px)
+        cursor: pointer
+        position: absolute
+        right: 0px
+        padding-right: 5px
+        i.fa-times
+            font-size: 20px
+            line-height: 30px
+            color: $color_deep_blue
+            &:hover
+                text-shadow: 0px 0px 3px grey
+
+.chaticon
+    +size(50px,40px)
+    background-color: $color_deep_blue
+    border-radius: 5px
+    cursor: pointer
+    position: fixed
+    bottom: 5px
+    right: 15px
+    i.fa-comment
+        color: $color_white
+        font-size: 25px
+        text-align: center
+        line-height: 40px
 
 
 
@@ -202,19 +249,23 @@ ul.scrollbox
     overflow: auto
     width: 98%
     height: 100px
-    border: 1px solid red
     display: flex
-    flex-direction: column-reverse
-    padding: 1px
+    flex-direction: column
+    padding: 10px
+    margin-bottom: 60px
+    border-radius: 5px
+    background-color: $color_deep_blue
     
     li
         width: 100%
         list-style: none
         text-align: left
         font-size: 12px
+        // margin-bottom: 10px
+        color: $color_white
         &:hover
-            background-color: rgba($color_yellow,0.2)
-            border-bottom: 1px solid rgba($color_brown,0.7)
+            background-color: rgba($color_white,0.3)
+            border-bottom: 1px solid rgba($color_white,0.8)
         &::before
             content: ''
             display: inline-block
