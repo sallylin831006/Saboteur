@@ -23,6 +23,24 @@ html, body {
   margin: 0 auto;
 }
 
+.container .topcue {
+  margin: 10px 0px 20px 0px;
+}
+
+.container .trash {
+  cursor: pointer;
+  background-color: orange;
+  border-radius: 5px;
+  width: 120px;
+  padding: 3px;
+  margin: 2px;
+  font-size: 10px;
+}
+
+.container i.fa-trash {
+  color: #483B3B;
+}
+
 .container .flexbox {
   margin: 0 auto;
   display: flex;
@@ -31,27 +49,21 @@ html, body {
 }
 
 .container .flexbox.playerarea {
-  width: 98%;
+  width: 100%;
   display: flex;
   justify-content: space-around;
-}
-
-.container .flexbox.playerarea .userbox .score {
-  color: #C54C4D;
-  margin-bottom: -5px;
-  font-weight: 900;
+  flex-wrap: wrap;
 }
 
 .container .flexbox.playerarea .userbox .username {
   cursor: pointer;
-  margin-bottom: 12px;
   color: #2D2D3A;
   font-weight: 900;
   text-align: center;
   line-height: 67px;
   text-shadow: 1px 1px #FFFCEF;
-  width: 75px;
-  height: 55px;
+  width: 70px;
+  height: 50px;
 }
 
 .container .flexbox.playerarea .userbox .statusbox {
@@ -59,9 +71,9 @@ html, body {
 }
 
 .container .flexbox.playerarea .userbox .statusbox .status {
-  width: 22px;
-  height: 22px;
-  margin: 1px;
+  width: 20px;
+  height: 20px;
+  margin: 0px;
   border-radius: 50%;
 }
 
@@ -76,8 +88,103 @@ html, body {
   font-size: 15px;
   text-align: center;
   line-height: 20px;
-  transform: rotate(30deg);
   color: rgba(255, 0, 0, 0.8);
+  font-weight: bolder;
+}
+
+.container .flexbox.playerarea .userbox .statusBan2 {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.container .flexbox.playerarea .userbox .statusBan2::before {
+  content: "✕";
+  font-size: 15px;
+  text-align: center;
+  line-height: 20px;
+  color: rgba(255, 0, 0, 0.8);
+  font-weight: bolder;
+}
+
+.container .flexbox.playerarea .userbox .statusBan2::after {
+  content: "2";
+  font-size: 15px;
+  text-align: center;
+  line-height: 20px;
+  color: red;
+  font-weight: bolder;
+}
+
+.container .flexbox.playerarea .userbox .statusBan3 {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.container .flexbox.playerarea .userbox .statusBan3::before {
+  content: "✕";
+  font-size: 15px;
+  text-align: center;
+  line-height: 20px;
+  color: rgba(255, 0, 0, 0.8);
+  font-weight: bolder;
+}
+
+.container .flexbox.playerarea .userbox .statusBan3::after {
+  content: "3";
+  font-size: 15px;
+  text-align: center;
+  line-height: 20px;
+  color: red;
+  font-weight: bolder;
+}
+
+.container .flexbox.playerarea .userbox .statusBan4 {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.container .flexbox.playerarea .userbox .statusBan4::before {
+  content: "✕";
+  font-size: 15px;
+  text-align: center;
+  line-height: 20px;
+  color: rgba(255, 0, 0, 0.8);
+  font-weight: bolder;
+}
+
+.container .flexbox.playerarea .userbox .statusBan4::after {
+  content: "4";
+  font-size: 15px;
+  text-align: center;
+  line-height: 20px;
+  color: red;
+  font-weight: bolder;
+}
+
+.container .flexbox.playerarea .userbox .statusBan5 {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.container .flexbox.playerarea .userbox .statusBan5::before {
+  content: "✕";
+  font-size: 15px;
+  text-align: center;
+  line-height: 20px;
+  color: rgba(255, 0, 0, 0.8);
+  font-weight: bolder;
+}
+
+.container .flexbox.playerarea .userbox .statusBan5::after {
+  content: "5";
+  font-size: 15px;
+  text-align: center;
+  line-height: 20px;
+  color: red;
   font-weight: bolder;
 }
 
@@ -104,16 +211,6 @@ html, body {
 
 .container .showarea .line .block:hover {
   background-color: rgba(63, 156, 205, 0.5);
-}
-
-.container .trash {
-  cursor: pointer;
-  background-color: orange;
-  border-radius: 5px;
-  width: 120px;
-  padding: 5px;
-  margin: 5px;
-  font-size: 10px;
 }
 
 .container .round-time-bar {

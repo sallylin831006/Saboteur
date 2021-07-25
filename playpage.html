@@ -21,14 +21,15 @@
 
 <body>
   <div class="container">
-    <div class="cuetext topcue">
-      輪到你出牌了！ 你是壞矮人！ 排堆剩餘提醒:
+    <div class="topcue">
+      請放置卡牌開闢新的路，或使用功能卡，或是
+      <span class="trash"><i class="fas fa-trash fa-lg">棄牌並跳過</i></span>
     </div>
+    <!-- <div class="littecue"></div> -->
     <div class="flexbox playerarea">
 
-
       <div class="userbox">
-        <div class="score">5</div>
+        <!-- <div class="score">5</div> -->
         <div id="user1" class="username" data-num="1"
           style="background-image: url(svg/user.svg);background-size: cover;">阿婷
         </div>
@@ -48,27 +49,86 @@
         </div>
       </div>
 
+
       <div class="userbox">
-        <div class="score">2</div>
         <div id="user2" class="username" data-num="2"
           style="background-image: url(svg/user.svg);background-size: cover;">阿文
         </div>
         <div class="flexbox statusbox">
-          <div data-num="2" class="status ax2" style="
+          <div data-num="2" class="status statusBan2 ax2" style="
                 background-image: url(svg/status/status_ax.svg);
                 background-size: cover;
               "></div>
-          <div data-num="2" class="status car2" style="
+          <div data-num="2" class="status statusBan3 car2" style="
                 background-image: url(svg/status/status_car.svg);
                 background-size: cover;
               "></div>
-          <div data-num="2" class="status lamp2" style="
+          <div data-num="2" class="status statusBan4 lamp2" style="
                 background-image: url(svg/status/status_lamp.svg);
                 background-size: cover;
               "></div>
         </div>
       </div>
 
+      <div class="userbox">
+        <div id="user1" class="username" data-num="1"
+          style="background-image: url(svg/user.svg);background-size: cover;">阿貞
+        </div>
+        <div class="flexbox statusbox">
+          <div data-num="1" class="status ax1" style="
+                background-image: url(svg/status/status_ax.svg);
+                background-size: cover;
+              "></div>
+          <div data-num="1" class="status car1" style="
+                background-image: url(svg/status/status_car.svg);
+                background-size: cover;
+              "></div>
+          <div data-num="1" class="status lamp1" style="
+                background-image: url(svg/status/status_lamp.svg);
+                background-size: cover;
+              "></div>
+        </div>
+      </div>
+
+      <div class="userbox">
+        <div id="user1" class="username" data-num="1"
+          style="background-image: url(svg/user.svg);background-size: cover;">阿貞
+        </div>
+        <div class="flexbox statusbox">
+          <div data-num="1" class="status ax1" style="
+                background-image: url(svg/status/status_ax.svg);
+                background-size: cover;
+              "></div>
+          <div data-num="1" class="status car1" style="
+                background-image: url(svg/status/status_car.svg);
+                background-size: cover;
+              "></div>
+          <div data-num="1" class="status lamp1" style="
+                background-image: url(svg/status/status_lamp.svg);
+                background-size: cover;
+              "></div>
+        </div>
+      </div>
+
+      <div class="userbox">
+        <div id="user1" class="username" data-num="1"
+          style="background-image: url(svg/user.svg);background-size: cover;">阿貞
+        </div>
+        <div class="flexbox statusbox">
+          <div data-num="1" class="status ax1" style="
+                background-image: url(svg/status/status_ax.svg);
+                background-size: cover;
+              "></div>
+          <div data-num="1" class="status car1" style="
+                background-image: url(svg/status/status_car.svg);
+                background-size: cover;
+              "></div>
+          <div data-num="1" class="status lamp1" style="
+                background-image: url(svg/status/status_lamp.svg);
+                background-size: cover;
+              "></div>
+        </div>
+      </div>
 
 
 
@@ -154,10 +214,7 @@
     </div>
     <div>時間剩下<span id="time">01:00</span>秒！你快出牌喔＾＾</div>
     <!-- 提示區 -->
-    <div class="cuetxt">
-      請放置卡牌開闢新的路，或是
-      <span class="trash"><i id="trash" class="fas fa-trash fa-lg">棄牌並跳過</i></span>
-    </div>
+
 
     <!-- 手牌區 -->
     <div class="flexbox handcardarea">
@@ -255,9 +312,10 @@
 
 <script>
   var MAP_CARDS = new RegExp('41|42|43|44|45|46', "g");
-  var LAMP_CARDS = new RegExp('47|48', "g");
-  var AX_CARDS = new RegExp('49|50', "g");
-  var CAR_CARDS = new RegExp('51|52', "g");
+  var LAMP_SAVE_CARDS = new RegExp('47|48', "g");
+  var AX_SAVE_CARDS = new RegExp('49|50', "g");
+  var CAR_SAVE_CARDS = new RegExp('51|52', "g");
+
   var LAMP_BAN_CARDS = new RegExp('56|57|58', "g");
   var AX_BAN_CARDS = new RegExp('59|60|61', "g");
   var CAR_BAN_CARDS = new RegExp('62|63|64', "g");
@@ -271,9 +329,10 @@
 
 
   $(".container").click(function (e) {
-    console.log(e)
-
-    console.log($('.redborder').attr('class'));
+    console.log(e.target)
+    console.log(e.target.className)
+    console.log(e.target.id)
+    console.log(e.target.getAttribute("data-num"));
   })
 
   //遊戲開始時，隨機產生六張手牌給玩家
@@ -293,14 +352,21 @@
   handCards = pools.splice(0, 6)
 
   function Cardput() {
-    //如果點選牌面上已放好的卡（沒有id），且圈選到的是“崩路卡”，警示，『刪掉一張卡』，初新手牌
-    if (event.target.id == "" && $('.redborder').attr("src").search(/65|66|67/) == 14) {
-      alert("確定要崩掉這張卡ㄇ！？");
+    if (event.target.id.search(/block|end|trash/) == -1 && $('.redborder').attr("src").search(/65|66|67/) == 14) {
+      // console.log(event.target.getAttribute("data-num"));
+      // const boxnum = $(".redborder").attr("data-num")
+      // const svg = $(".handcardbox" + boxnum + " img").attr('src');
+      // const style = $(".handcardbox" + boxnum + " img").css('transform');
+      // // const targetcard = document.getElementById(event.target.getAttribute("data-num"));
+      // // const targetcard = `<img data-num="${event.target.id}" src='${svg}' style='transform:${style}'>`
+      // var targetcard = document.getElementById(event.targrt);
+      // targetcard.remove();
+      // const targetblock = `<div id="${event.target.getAttribute('data-num')}" class="block ${event.target.getAttribute('data-num')}" ></div>`
+      // targetblock.innerHTML = `<div id="${event.target.getAttribute('data-num')}" class="block ${event.target.getAttribute('data-num')}" ></div>`
+      // $(`#${event.target.getAttribute("data-num")}`).css("background-color", "blue");
+      alert("可以崩路ㄏ");
       giveNewCard();
-      $(".topcue").text("你剛剛炸掉了一張卡牌～")
       return;
-      //問題 :還沒做出把圖卡清除的功能??????
-
     }
     //圈選手牌後，可再點擊的位置：block|end|trash，其他處不可放卡牌，如：起始牌、已放卡牌的位置
     if (event.target.id.search(/block|end|trash/) == -1) {
@@ -317,6 +383,11 @@
       alert("不能把破壞卡放在這邊喔！");
       return;
     }
+    //如果圈選的手牌是“修理卡”，不可放在牌區
+    if ($('.redborder').attr("src").search(/47|48|49|50|51|52|53|54|55/) !== -1) {
+      alert("不能把修理卡放在這邊喔！");
+      return;
+    }
     //如果圈選的手牌是“崩路卡”，不可放在牌區，只可以丟棄，或去點已放的卡牌炸掉
     if ($('.redborder').attr("src").search(/65|66|67/) == 14) {
       alert("不能把崩路卡放在這邊喔！");
@@ -324,8 +395,11 @@
     }
     //如果圈選的手牌是“道路卡”，可以放在牌區，並且會印出出牌的卡，並在補上手牌
     if (event.target.id.search("block") == 0) {
-      printNewCard()
+      printNewCard();
       giveNewCard();
+      $(".topcue").text("你剛剛放了一張道路卡～")
+
+      return;
     }
   }
 
@@ -334,7 +408,7 @@
     const boxnum = $(".redborder").attr("data-num")
     const svg = $(".handcardbox" + boxnum + " img").attr('src');
     const style = $(".handcardbox" + boxnum + " img").css('transform');
-    element.innerHTML += `<img src='${svg}' style='transform:${style}'>`;
+    element.innerHTML += `<img data-num="${event.target.id}" src='${svg}' style='transform:${style}'>`;
   }
 
   function giveNewCard() {
@@ -365,7 +439,39 @@
     }
     if (hasRedBorder()) {
       Cardput();
+      return;
     }
+    if (event.target.id.search(/block|end|trash/) == -1 && $('.redborder').attr("src").search(/65|66|67/) == 14) {
+      console.log(event.target.getAttribute("data-num"));
+      const boxnum = $(".redborder").attr("data-num")
+      const svg = $(".handcardbox" + boxnum + " img").attr('src');
+      const style = $(".handcardbox" + boxnum + " img").css('transform');
+      // const targetcard = document.getElementById(event.target.getAttribute("data-num"));
+      const targetcard = document.getElementById(event.targrt);
+      targetcard.remove();
+      const targetblock = `<div id="${event.target.getAttribute('data-num')}" class="block ${event.target.getAttribute('data-num')}" ></div>`
+      targetblock.innerHTML = `<div id="${event.target.getAttribute('data-num')}" class="block ${event.target.getAttribute('data-num')}" ></div>`
+      $(`#${event.target.getAttribute("data-num")}`).css("background-color", "blue");
+      Cardput();
+      return;
+    }
+
+
+
+    //如果點選牌面上已放好的卡（沒有id），且圈選到的是“崩路卡”，警示，『刪掉一張卡』，初新手牌
+    // if (event.target.id.search(/block|end|trash/) == -1 && $('.redborder').attr("src").search(/65|66|67/) == 14) {
+    //   Cardput();
+    //   console.log(event.target);
+    //   return;
+    // }
+
+    // if (event.target.id == "" && $('.redborder').attr("src").search(/65|66|67/) == 14) {
+    //   Cardput();
+    //   console.log(event.target.id.class())
+    //   $(".topcue").text("你剛剛炸掉了一張卡牌～")
+    //   return;
+    // }
+
   })
 
   // 圖卡旋轉
@@ -382,7 +488,6 @@
       '-o-transform': 'rotate(' + degrees + 'deg)'
     });
   }
-
   var degrees = 0;
   $(".fa-undo-alt").on("click", function (e) {
     const number = $(this).attr("data-num")
@@ -396,7 +501,6 @@
     if ($(this).attr('class').search("redborder") == -1) {
       $(".redborder").removeClass("redborder");
       $(this).addClass("redborder");
-
     }
   });
 
@@ -406,9 +510,9 @@
     if (!hasRedBorder()) {
       return;
     }
-    alert("確定要丟掉這張牌ㄇ！？好像按了也只能丟了＾＾");
     giveNewCard();
-    $(".topcue").text("你剛剛棄掉了一張卡牌～")
+    $(".topcue").text("你剛剛棄掉一張卡牌～")
+    return;
   })
   //山崩卡
 
@@ -447,34 +551,27 @@
   });
 
 
-  //提示TopCue
-  $(".handcardarea").click(function () {
-    $(".topcue").text("可從手牌區選擇一張卡出牌！");
-    if ($('.redborder').attr("src").search(/41|42|43|44|45|46/) !== -1) {
-      $(".topcue").text("使用地圖卡可以查看一張終點卡！");
-    }
-    if ($('.redborder').attr("src").search(/65|66|67/) !== -1) {
-      $(".topcue").text("使用山崩卡可以炸毀一條路！");
-    }
-  });
+  // //提示littecue 可能不是很需要
+  // $(".handcardarea").click(function () {
+  //   $(".littecue").text("可從手牌區選擇一張卡出牌！");
+  //   if ($('.redborder').attr("src").search(/41|42|43|44|45|46/) !== -1) {
+  //     $(".littecue").text("使用地圖卡可以查看一張終點卡！");
+  //   }
+  //   if ($('.redborder').attr("src").search(/65|66|67/) !== -1) {
+  //     $(".littecue").text("使用山崩卡可以炸毀一條路！");
+  //   }
+  // });
 
-  // 封鎖時顯示上方提示//
-  $(".username").mouseenter(function (e) {
-    $(".topcue").text(`來啊！來破壞${$(e.target).text()}的工具！`);
-  });
-  $(".username").mouseleave(function (e) {
-    $(".topcue").text("輪到你出牌囉")
-  });
 
   //封鎖
   $(".username").click(function (e) {
     const LAMP_BAN = $('.redborder').attr("src").search(LAMP_BAN_CARDS)
     const AX_BAN = $('.redborder').attr("src").search(AX_BAN_CARDS)
     const CAR_BAN = $('.redborder').attr("src").search(CAR_BAN_CARDS)
+    const LAMP_SAVE = $('.redborder').attr("src").search(LAMP_SAVE_CARDS)
+    const AX_SAVE = $('.redborder').attr("src").search(AX_SAVE_CARDS)
+    const CAR_SAVE = $('.redborder').attr("src").search(CAR_SAVE_CARDS)
 
-    const LAMP_SAVE = $('.redborder').attr("src").search(LAMP_CARDS)
-    const AX_SAVE = $('.redborder').attr("src").search(AX_CARDS)
-    const CAR_SAVE = $('.redborder').attr("src").search(CAR_CARDS)
 
     let hasBanTool = false;
     let toolName = '';
@@ -514,6 +611,8 @@
       savetoolChineseName = "礦車"
     }
 
+
+
     if (!hasRedBorder()) {
       return;
     }
@@ -521,24 +620,51 @@
       alert("你這張不是破壞卡或修理卡，不能用在這邊！");
       return;
     }
-
-    if (LAMP_BAN !== -1 || AX_BAN !== -1 || CAR_BAN !== -1) {
-      const usernum = $(`#${e.target.id}`).attr("data-num");
+    const usernum = $(`#${e.target.id}`).attr("data-num");
+    if (hasBanTool && $(`.${toolName}${usernum}`).attr("class").search("statusBan") == -1) {
       $(`.${toolName}${usernum}`).addClass("statusBan");
       $(".topcue").text(`${$(e.target).text()}的${toolChineseName}被你破壞了！`);
       giveNewCard();
+      return;
     }
-    // if (LAMP_SAVE !== -1 || AX_SAVE !== -1 || CAR_SAVE !== -1 && $(`.${toolName}${usernum}`).attr("class").search(
-    //     "statusBan") == -1) {
-    //   return;
-    //   alert("這位玩家沒有工具被破壞，所以你不能用修理卡在他身上")
-    //   // const checkToolBan = $(`.${toolName}${usernum}`).attr("class").search("statusBan")
-    // }
-    if (LAMP_SAVE !== -1 || AX_SAVE !== -1 || CAR_SAVE !== -1) {
+    if (hasBanTool && $(`.${toolName}${usernum}`).attr("class").search("statusBan4") !== -1) {
+      $(`.${toolName}${usernum}`).addClass("statusBan5");
+      $(".topcue").text(`${$(e.target).text()}的${toolChineseName}被破壞5個了！`);
+      giveNewCard();
+      return;
+    }
+    if (hasBanTool && $(`.${toolName}${usernum}`).attr("class").search("statusBan3") !== -1) {
+      $(`.${toolName}${usernum}`).addClass("statusBan4");
+      $(".topcue").text(`${$(e.target).text()}的${toolChineseName}被破壞4個了！`);
+      giveNewCard();
+      return;
+    }
+    if (hasBanTool && $(`.${toolName}${usernum}`).attr("class").search("statusBan2") !== -1) {
+      $(`.${toolName}${usernum}`).addClass("statusBan3");
+      $(".topcue").text(`${$(e.target).text()}的${toolChineseName}被破壞3個了！`);
+      giveNewCard();
+      return;
+    }
+    if (hasBanTool && $(`.${toolName}${usernum}`).attr("class").search("statusBan") !== -1) {
+      $(`.${toolName}${usernum}`).addClass("statusBan2");
+      $(".topcue").text(`${$(e.target).text()}的${toolChineseName}被破壞2個了！`);
+      giveNewCard();
+      return;
+    }
+    if (hasSaveTool && $(`.${toolName}${usernum}`).attr("class").search("statusBan") !== -1) {
       const usernum = $(`#${e.target.id}`).attr("data-num");
       $(`.${savetoolName}${usernum}`).removeClass("statusBan");
       $(".topcue").text(`${$(e.target).text()}的${savetoolChineseName}被你修理好了～`);
       giveNewCard();
+      return;
+    }
+    if (hasSaveTool && $(`.${toolName}${usernum}`).attr("class").search("statusBan2") !== -1) {
+      const usernum = $(`#${e.target.id}`).attr("data-num");
+      $(`.${savetoolName}${usernum}`).removeClass("statusBan2");
+      $(`.${savetoolName}${usernum}`).addClass("statusBan");
+      $(".topcue").text(`${$(e.target).text()}的${savetoolChineseName}被你修理好1個了～`);
+      giveNewCard();
+      return;
     }
 
   })

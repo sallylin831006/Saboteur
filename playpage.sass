@@ -48,6 +48,18 @@ html, body
     max-width: 400px
     margin: 0 auto
     // padding: 3px
+    .topcue
+        margin: 10px 0px 20px 0px
+    .trash
+        cursor: pointer
+        background-color: orange
+        border-radius: 5px
+        width: 120px
+        padding: 3px
+        margin: 2px
+        font-size: 10px
+    i.fa-trash
+        color: $color_brown
 
     .flexbox
         margin: 0 auto
@@ -56,31 +68,28 @@ html, body
         justify-content: center
 
     .flexbox.playerarea
-        width: 98%
+        width: 100%
         display: flex
         justify-content: space-around
+        flex-wrap: wrap
         .userbox
             // border: 2px solid blue
-            .score
-                color: $color_red
-                margin-bottom: -5px
-                font-weight: 900
             .username
                 // border: 1px solid pink
                 cursor: pointer
-                margin-bottom: 12px
+                // margin-bottom: 3px
                 color: $color_black
                 font-weight: 900
                 text-align: center
                 line-height: 67px
                 text-shadow: 1px 1px $color_white
-                +size(75px,55px)
+                +size(70px,50px)
 
             .statusbox
                 border: 1px solid transparent
                 .status
-                    +size(22px,22px)
-                    margin: 1px
+                    +size(20px,20px)
+                    margin: 0px
                     border-radius: 50%
 
             // .statushover
@@ -103,10 +112,81 @@ html, body
                     font-size: 15px
                     text-align: center
                     line-height: 20px
-                    transform: rotate(30deg)
+                    // transform: rotate(30deg)
                     color: rgba(red,0.8)
                     font-weight: bolder
-
+            .statusBan2
+                width: 20px
+                height: 20px
+                border-radius: 50%
+                &::before
+                    content: "✕"
+                    font-size: 15px
+                    text-align: center
+                    line-height: 20px
+                    color: rgba(red,0.8)
+                    font-weight: bolder
+                &::after
+                    content: "2"
+                    font-size: 15px
+                    text-align: center
+                    line-height: 20px
+                    color: red
+                    font-weight: bolder
+            .statusBan3
+                width: 20px
+                height: 20px
+                border-radius: 50%
+                &::before
+                    content: "✕"
+                    font-size: 15px
+                    text-align: center
+                    line-height: 20px
+                    color: rgba(red,0.8)
+                    font-weight: bolder
+                &::after
+                    content: "3"
+                    font-size: 15px
+                    text-align: center
+                    line-height: 20px
+                    color: red
+                    font-weight: bolder
+            .statusBan4
+                width: 20px
+                height: 20px
+                border-radius: 50%
+                &::before
+                    content: "✕"
+                    font-size: 15px
+                    text-align: center
+                    line-height: 20px
+                    color: rgba(red,0.8)
+                    font-weight: bolder
+                &::after
+                    content: "4"
+                    font-size: 15px
+                    text-align: center
+                    line-height: 20px
+                    color: red
+                    font-weight: bolder
+            .statusBan5
+                width: 20px
+                height: 20px
+                border-radius: 50%
+                &::before
+                    content: "✕"
+                    font-size: 15px
+                    text-align: center
+                    line-height: 20px
+                    color: rgba(red,0.8)
+                    font-weight: bolder
+                &::after
+                    content: "5"
+                    font-size: 15px
+                    text-align: center
+                    line-height: 20px
+                    color: red
+                    font-weight: bolder
     .showarea
         // border: 2px solid green
         width: 95%
@@ -127,14 +207,7 @@ html, body
                 &:hover
                     background-color: rgba($color_light_blue,0.5)
 
-    .trash
-        cursor: pointer
-        background-color: orange
-        border-radius: 5px
-        width: 120px
-        padding: 5px
-        margin: 5px
-        font-size: 10px
+
 
     .round-time-bar
         width: 80%
