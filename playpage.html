@@ -194,18 +194,7 @@
     <!-- 聊天區 -->
     <hr>
     <ul id="messageBody" class="scrollbox">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
+
     </ul>
 
     <hr>
@@ -256,6 +245,14 @@
 
 </body>
 
+<script src="./script/api.js"></script>
+<script src="./script/common.js"></script>
+<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"
+  integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous">
+  </script>
+<script src="./script/socket.js"></script>
+<script src="./script/listener/room.js"></script>
+
 <script>
   var MAP_CARDS = new RegExp('41|42|43|44|45|46', "g");
   var LAMP_CARDS = new RegExp('47|48', "g");
@@ -265,6 +262,7 @@
   var AX_BAN_CARDS = new RegExp('59|60|61', "g");
   var CAR_BAN_CARDS = new RegExp('62|63|64', "g");
   var BOMB_CARDS = new RegExp('65|66|67', "g");
+  var CURRENT_ROOM_ID = getUrlParameter('room_id');
 
   const hasRedBorder = () => {
     return $('.redborder').length ? true : false;
@@ -354,6 +352,11 @@
     $("#handCard4").attr("src", `svg/cards/card${handCards[3]}.svg`);
     $("#handCard5").attr("src", `svg/cards/card${handCards[4]}.svg`);
     $("#handCard6").attr("src", `svg/cards/card${handCards[5]}.svg`);
+
+    sendEvent('join', {
+      roomId: CURRENT_ROOM_ID,
+      nickname: getNickName()
+    })
   });
 
   $(".block").click(function (e) {
@@ -540,59 +543,41 @@
 
   })
 
-  //聊天室
-  let chatdata = [{
-    UserName: "阿婷",
-    UserChatTxt: "我知道金礦在哪裡＾＾"
-  }, {
-    UserName: "阿文",
-    UserChatTxt: "我只是個普通人"
-  }, {
-    UserName: "阿圈",
-    UserChatTxt: "你是壞矮人"
-  }, {
-    UserName: "馬特",
-    UserChatTxt: "我要Ban掉你"
-  }, {
-    UserName: "阿貴",
-    UserChatTxt: "我才要Ban掉你"
-  }, 
-];
   const scrollbox = document.querySelector('.scrollbox');
   var messageBody = document.querySelector('#messageBody');
   messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
-  // 聊天室預設載入函式
-  function init() {
-    let str = "";
-    chatdata.forEach(function (item, index) {
-      let content = `<li>${item.UserName}：${item.UserChatTxt}</li>`;
-      str += content;
-    })
-    scrollbox.innerHTML = str;
-  }
-  init();
+
   // 聊天室新增 聊天內容
   const inputChat = document.querySelector(".inputChat");
   const chatbtn = document.querySelector(".chatbtn");
 
   $(".chatbtn").click(function (e) {
-    const chatUser = document.querySelector(".chatUser");
+    const chatUser = getNickName();
 
     const inputChatcontent = $('.inputChat').val();
     if (inputChatcontent.trim() === '') {
-            return;
-        }
-    let obj = {};
-    obj.UserName = $('.chatUser').attr('value');
-    obj.UserChatTxt = inputChat.value;
-    console.log(123,chatUser);
-    chatdata.push(obj);
-    init();
-    chatUser.value = "阿婷";
-    inputChat.value = "";
+      return;
+    }
+
+    sendEvent('sendMessage', {
+      roomId: CURRENT_ROOM_ID,
+      nickname: chatUser,
+      content: inputChatcontent,
+    });
+
+    $('.inputChat').val('');
+    
     messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
   })
 
+  function renderChatRecord(chatRecord) {
+    const chatUser = chatRecord.nickname;
+    const content = chatRecord.content;
+
+    $('#messageBody').append(`
+      <li>${chatUser}：${content}</li >
+    `);
+  }
 
   inputChat.addEventListener("keyup", function (event) {
     if (event.keyCode === 13) {

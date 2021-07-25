@@ -1,7 +1,9 @@
 function callApi(url, method = 'GET', data = {}, header = {}) {
+    const apiUrl = getApiUrl();
+    console.log(apiUrl + url);
     return $.ajax({
         type: method,
-        url: 'https://game.dev.newideas.com.tw/api' + url,
+        url: apiUrl + url,
         dataType: "json",
         contentType: 'application/json',
         data: JSON.stringify(data),
@@ -14,4 +16,18 @@ function callApi(url, method = 'GET', data = {}, header = {}) {
             return JSON.parse(res.responseText);
         }
     });
+}
+
+function getDomain() {
+    return 'http://localhost:8000/';
+    // return 'https://game.dev.newideas.com.tw/';
+}
+
+function getApiUrl() {
+    return getDomain() + 'api';
+}
+
+function getSocketUrl() {
+    return getDomain();
+    return getDomain + 'ws';
 }

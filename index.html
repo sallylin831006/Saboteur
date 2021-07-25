@@ -27,7 +27,7 @@
             <div class="txt">玩家人數上限：</div>
             <div class="count">
                 <div class="minus">-</div>
-                <div class="num">3</div>
+                <div id="max-players-number" class="num">3</div>
                 <div class="add">+</div>
             </div>
         </div>
@@ -59,8 +59,8 @@
                                 <div class="flexbox">
                                     <input class="nickName" type="text" placeholder="暱稱">
                                     <select class="category">
-                                        <option class="option" value="純屬好玩">純屬好玩</option>
-                                        <option class="option" value="網站建議">網站建議</option>
+                                        <option class="option" value="fun">純屬好玩</option>
+                                        <option class="option" value="suggestion">網站建議</option>
                                     </select>
                                 </div>
                             <textarea class="content" type="text" placeholder="請輸入留言..."></textarea>
@@ -72,9 +72,9 @@
                     <div class="modal-body" id="messangeArea">
                         <div class="mscontainer">
                             <div class="filter">
-                                <input class="filterbtn" type="button" value="全部">
-                                <input class="filterbtn" type="button" value="純屬好玩">
-                                <input class="filterbtn" type="button" value="網站建議">
+                                <input class="filterbtn" type="button" value="全部" onclick="bbsTypeFilter('all')">
+                                <input class="filterbtn" type="button" value="純屬好玩" onclick="bbsTypeFilter('fun')">
+                                <input class="filterbtn" type="button" value="網站建議" onclick="bbsTypeFilter('suggestion')">
                             </div>
                             <ul class="list"></ul>
                         </div>
@@ -265,7 +265,8 @@
         }
         saveNickName(nickname);
         callApi('/rooms', 'POST', {
-            name: nickname
+            name: nickname,
+            maxPlayersNumber: $('#max-players-number').text()
         }).then((response) => {
             const roomId = response.data.room_id;
             window.location.href = `./waiting.html?room_id=${roomId}`;
@@ -376,95 +377,50 @@
         }
     }
 
-//留言板功能
-let data = [{
-        Charge: "純屬好玩",
-        name: "阿婷",
-        content: "這遊戲好好玩"
-    }, {
-        Charge: "網站建議",
-        name: "小花",
-        content: "想再看更多壞矮人圖片！"
-    }, {
-        Charge: "純屬好玩",
-        name: "小明",
-        content: "我怎麼玩怎麼輸誒"
-    }, {
-        Charge: "網站建議",
-        name: "小天",
-        content: "希望可以新增兩人遊戲！"
+    document.querySelector(".savebtn").addEventListener("click", function (e) {
+        // 新增邏輯
+        const nickName = $(".nickName").val();
+        const content = $(".content").val();
+        const category = $(".category").val();
 
-    }, {
-        Charge: "純屬好玩",
-        name: "小王",
-        content: "◎玩家在寶藏挖到後或結束時才可以表明身份◎由出牌過程中猜測誰是好人誰是壞人是最大樂趣,相當心機◎有封鎖牌,可以對別的玩家使用,以禁止其穢魊G道牌,亦有解救牌◎有炸彈牌,可以炸毀死路或活路,也有地圖牌,可以先檢查寶藏位置◎角色牌共十一張,4壞7好,讓最多10個人抽,因此無法確定壞人確實人數◎好人挖到寶藏後,可以分享金礦牌,其金額由運氣決定◎壞人獲勝後,可以獲得固定高金額的報◎遊戲進行以金礦牌張數決定,10人遊戲大約進行3回合,即結束◎遊戲結束時,計算手中金礦金額以決定誰是大贏家"
-    }
-    , {
-        Charge: "純屬好玩",
-        name: "小豬",
-        content: "我完全是壞矮人的料"
-
-    }, {
-        Charge: "純屬好玩",
-        name: "rick",
-        content: "我是科學怪人"
-
-    }
-    
-];
-
-    const list = document.querySelector('.list');
-    // 預設載入函式
-    function init() {
-        let str = "";
-        data.forEach(function (item, index) {
-            let content = `<li><b>${item.name}</b>：${item.content}</li>`;
-            str += content;
-        })
-        list.innerHTML = str;
-    }
-    init();
-    // 篩選器邏輯
-    const stationFilter = document.querySelector(".filter");
-    stationFilter.addEventListener("click", function (e) {
-        if (e.target.value == undefined) {
-            return;
-        }
-        let str = "";
-        data.forEach(function (item, index) {
-            if (e.target.value == "全部") {
-                str += `<li><b>${item.name}</b>：${item.content}</li>`
-            } else if (e.target.value == item.Charge) {
-                str += `<li><b>${item.name}</b>：${item.content}</li>`
-            }
-        })
-        list.innerHTML = str;
-    })
-    // 新增邏輯
-
-    const nickName = document.querySelector(".nickName");
-    const content = document.querySelector(".content");
-    const category = document.querySelector(".category");
-    const savebtn = document.querySelector(".savebtn");
-
-    savebtn.addEventListener("click", function (e) {
-        if (nickName.value === '' || content.value === '') {
+        if (nickName === '' || content === '') {
             alert('暱稱及留言內容都要輸入哦！');
             return;
         }
         $(".txt").text("已成功送出留言！");
         $(".txt").css("color","orange");
-        let obj = {};
-        obj.Charge = category.value;
-        obj.name = nickName.value;
-        obj.content = content.value;
-        data.push(obj);
-        init();
-        category.value = "純屬好玩";
-        nickName.value = "";
-        content.value = "";
 
+        callApi('/bbs', 'POST', {
+            nickname: nickName,
+            type: category,
+            content: content
+        })
     })
+
+    document.querySelector(".openbtn").addEventListener('click', (e) => {
+        callApi('/bbs').then((response) => {
+            let renderString = "";
+
+            response.data.forEach(data => {
+                renderString += `<li><b>${data.nickname}</b>：${data.content}</li>`;                
+            });
+
+            $('.list').html(renderString);
+        })
+    });
+
+    const bbsTypeFilter = (type) => {
+        callApi(`/bbs?type=${type}`).then((response) => {
+            let renderString = "";
+
+            response.data.forEach(data => {
+                renderString += `<li><b>${data.nickname}</b>：${data.content}</li>`;
+            });
+
+            $('.list').html(renderString);
+        })
+    }
+
 </script>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" //

@@ -13,3 +13,8 @@ const getUrlParameter = (sParam) => {
     }
     return false;
 };
+
+function getNickName() {
+    const nickname = window.localStorage.getItem('nickname');
+    return nickname ? nickname : '';
+}

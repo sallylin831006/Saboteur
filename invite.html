@@ -41,7 +41,7 @@
 <script src="./script/common.js"></script>
 <script>
     var currentRoomId = getUrlParameter('room_id');
-    //nickName
+
     $(document).ready(function () {
         const nickname = getNickName();
         $('#nickname').val(nickname);
@@ -60,10 +60,6 @@
         });
 
     });
-    const getNickName = () => {
-        const nickname = window.localStorage.getItem('nickname');
-        return nickname ? nickname : '';
-    }
 
     const saveNickName = (nickname) => {
         window.localStorage.setItem("nickname", nickname)

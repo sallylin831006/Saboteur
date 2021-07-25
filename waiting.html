@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -56,7 +55,7 @@
 
     </div>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    <button type="button" id="show-role-btn" class="btn btn-primary" data-bs-toggle="modal">
         房主功能：直接開始遊戲
     </button>
 
@@ -72,7 +71,7 @@
                     <img src="svg/role_good_font.svg" alt="" class="role">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary">OK</button>
+                    <button type="button" id="start-game" class="btn btn-secondary">OK</button>
                 </div>
             </div>
         </div>
@@ -82,27 +81,18 @@
 </body>
 <script src="./script/api.js"></script>
 <script src="./script/common.js"></script>
+<script
+    src="https://cdn.socket.io/4.1.2/socket.io.min.js"
+    integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg"
+    crossorigin="anonymous">
+</script>
+<script src="./script/socket.js"></script>
+<script src="./script/listener/room.js"></script>
 <script>
-    var currentRoomId = getUrlParameter('room_id');
-
-    let ws = new WebSocket('wss://game.dev.newideas.com.tw/ws');
-
-    ws.onopen = () => {
-        console.log('open connection')
-        getRoomInfo();
-    }
-
-    ws.onclose = () => {
-        console.log('close connection')
-    }
-
-    //接收 Server 發送的訊息
-    ws.onmessage = event => {
-        const roomInfo = JSON.parse(event.data);
-        players = Object.keys(roomInfo.players);
-        renderPlayer(players);
-    }
-
+    var CURRENT_ROOM_ID = getUrlParameter('room_id');
+    var INVITE_URL = `${window.location.origin}/invite.html?room_id=${CURRENT_ROOM_ID}`;
+    var START_GAME_URL = `${window.location.origin}/index.html`;
+    
     const renderPlayer = (players) => {
         let displayUsers = '';
         players.forEach((player) => {
@@ -116,24 +106,55 @@
         $('.playerarea').html(displayUsers);
     }
 
-    window.setInterval("getRoomInfo()", 20000);
+    $('#show-role-btn').click(() => {
+        sendEvent('showRole', {
+            roomId: CURRENT_ROOM_ID,
+            show: true,
+        });
 
-    const getRoomInfo = () => {
-        ws.send(currentRoomId);
+        showRole();
+    })
+
+    function showRole() {
+        $('#staticBackdrop').modal('show');
     }
 
     $(document).ready(function () {
-        callApi(`/rooms/${currentRoomId}`).then((response) => {
+        if (! window.localStorage.getItem('nickname')) {
+            window.location.href = INVITE_URL;
+        }
+        if (! CURRENT_ROOM_ID) {
+            window.location.href = START_GAME_URL;            
+        }
+
+        sendEvent('join', {
+            roomId : CURRENT_ROOM_ID,
+            nickname : getNickName()
+        })
+
+        callApi(`/rooms/${CURRENT_ROOM_ID}`).then((response) => {
             const data = response.data;
             const players = Object.keys(data.players);
             renderPlayer(players);
+            const owner = data.owner;
+
+            if (owner !== getNickName()) {
+                hideNotOwnerSetting();
+            }
         });
-        $("#url").val(`https://game.dev.newideas.com.tw/invite.html?room_id=${currentRoomId}`);
+
+        $("#url").val(INVITE_URL);
         if (!getUrlParameter('invite')) {
             $('#sharelinkModal').modal('show');
         }
         
     });
+
+    const hideNotOwnerSetting = () => {
+        $('#start-game').hide();
+        $('#show-role-btn').hide();
+    }
+
     $(".btn-primary").click(function () {
         $('#sharelinkModal').modal('show');
     })
@@ -154,8 +175,11 @@
         window.location.href = "./index.html";
     })
 
-    $('.btn-secondary').click(function () {
-        window.location.href = "./playpage.html";
+    $('#start-game').click(function () {
+        sendEvent('startGame', {
+            roomId : CURRENT_ROOM_ID,
+        })
+        window.location.href = `./playpage.html?room_id=${CURRENT_ROOM_ID}`;
     })
 </script>
 
