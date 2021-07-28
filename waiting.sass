@@ -15,6 +15,8 @@ $color_brown: #483B3B
     text-align: center
     align-items: center
     justify-content: center
+    font-family: "HanaMinA",花園明朝體,"PingFang TC", 黑體-繁, "Heiti TC", 蘋果儷中黑, "Apple LiGothic Medium", 微軟正黑體, "Microsoft JhengHei", Roboto, sans-serif
+
 
 html,body
     background-color: $color_white !important
@@ -22,13 +24,46 @@ html,body
     height: 100%
     padding: 0px
     margin: 0px
+#homeicon
+    color: #2974AA
+    font-weight: 900
+    font-size: 20px
+    background-color: #F8EDDB
+    padding: 10px
+    border-radius: 8px 8px 0px 0px
+    margin: 15px
+    position: absolute
+    top: 0px
+    left: 0px
+    &:hover
+        border-bottom: 2px solid $color_brown
 
 .btn-primary
     font-size: 13px !important
     cursor: pointer
-    background-color: $color_deep_blue !important
+    background-color: $color_light_blue !important
     padding: 10px !important
     border-radius: 5px !important
+    border: none !important
+    margin: 5px
+.btn-share
+    width: 40px
+    height: 40px
+    border-radius: 50% !important
+    margin: 15px
+
+    i.fa-share-alt
+        font-size: 15px
+h4
+    margin: 15px
+    padding: 10px
+    font-weight: 900
+    color: #2974AA
+    font-weight: 900
+    font-size: 20px
+    background-color: #F8EDDB
+    font-family: "HanaMinA",花園明朝體
+
 
 .fade
     background-color: rgba($color_white,0.8)
@@ -52,7 +87,7 @@ html,body
             width: 80%
             padding: 5px
             border-radius: 5px
-            border: 0.5px solid  rgba($color_brown,0.5)
+            border: 0.5px solid rgba($color_brown,0.5)
             &:hover
                 box-shadow: 1px 1.5px 3px rgba($color_brown,0.5)
         .copybtn
@@ -64,7 +99,7 @@ html,body
 
 .container
     background-color: $color_white
-    border: 1px solid pink
+    border: 1px solid
     // position: absolute
     // left: 50%
     // top: 50%
@@ -87,9 +122,8 @@ html,body
             font-weight: 900
             color: $color_brown
             text-shadow: 1px 1px $color_white
-
-
-
+    img.iconrotate
+        width: 250px
 
 #staticBackdrop
     background-color: $color_deep_blue

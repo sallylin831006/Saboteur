@@ -9,35 +9,37 @@ $color_blue: #58B8E1
 $color_red: #C54C4D
 $color_brown: #483B3B
 
-
 *
     //border: 1px solid black
     user-select: none
     font-size: 12px
     text-align: center
     color: $color_black
+    font-family: "HanaMinA","Hanazono Mincho",花園明朝體,"PingFang TC", 黑體-繁,"Noto Sans", 思源黑體, "Heiti TC", 蘋果儷中黑, "Apple LiGothic Medium", 微軟正黑體, "Microsoft JhengHei", Roboto, sans-serif
 
 @mixin size ($w,$h)
     width: $w
     height: $h
 
 html, body
-    background-color: $color_white !important
-    -webkit-text-size-adjust: none
-    -moz-text-size-adjust: none
-    -ms-text-size-adjust: none
-    text-size-adjust: none
-    // background-color: $color_black
+    background-color: rgba(#98D2F2,0.5) !important
+    // -webkit-text-size-adjust: none
+    // -moz-text-size-adjust: none
+    // -ms-text-size-adjust: none
+    // text-size-adjust: none
+
+    overflow-y: scroll
+    touch-action: pan-y
+    -webkit-overflow-scrolling:touch
     width: 100%
     height: 100%
     padding: 0px
     margin: 0px
-// body
-//     background-image: url(svg/iphonexbgc.svg)
-//     background-repeat: no-repeat
-//     background-attachment: fixed
-//     background-position: center
-//     background-size: cover
+    background-image: url(svg/bgctransparent.svg)
+    background-repeat: no-repeat
+    background-attachment: fixed
+    background-position: center
+    background-size: cover
 
 .container
     // border: 2px solid red
@@ -49,17 +51,30 @@ html, body
     margin: 0 auto
     // padding: 3px
     .topcue
-        margin: 10px 0px 20px 0px
+        margin: 0 auto
+        padding: 10px 0px 10px 0px
+        font-weight: 900
+        color: $color_deep_blue
+        text-shadow: 0.5px 0.5px 2px $color_white
+        background-color: rgba($color_white,0.3)
+        width: 65%
+        min-width: 340px
+        display: flex
+        justify-content: center
+        align-items: center
+
     .trash
         cursor: pointer
         background-color: orange
         border-radius: 5px
-        width: 120px
+        max-width: 110px
         padding: 3px
         margin: 2px
         font-size: 10px
     i.fa-trash
         color: $color_brown
+        text-shadow: none
+        font-weight: 600
 
     .flexbox
         margin: 0 auto
@@ -69,11 +84,21 @@ html, body
 
     .flexbox.playerarea
         width: 100%
+        margin: 0 auto
+        margin-bottom: 5px
+        padding-top: 5px
         display: flex
         justify-content: space-around
+        // border: 1px solid red
         flex-wrap: wrap
+        // overflow: auto
+        // background-color: #27507A
         .userbox
-            // border: 2px solid blue
+            padding: 3px 0px 3px 0px
+            &:hover
+                padding: 3px 0px 3px 0px
+                border-radius: 5px
+
             .username
                 // border: 1px solid pink
                 cursor: pointer
@@ -84,114 +109,61 @@ html, body
                 line-height: 67px
                 text-shadow: 1px 1px $color_white
                 +size(70px,50px)
+                border: 1px solid transparent
+                &:hover
+                    border: 1px solid #27507A
+                    border-radius: 5px
 
             .statusbox
                 border: 1px solid transparent
+                padding: 1px
                 .status
                     +size(20px,20px)
                     margin: 0px
                     border-radius: 50%
 
-            // .statushover
-            //     cursor: pointer
-            //     +size(22px,22px)
-            //     border-radius: 50%
-            //     &::before
-            //         content: "✖"
-            //         font-size: 15px
-            //         // line-height: 15px
-            //         font-weight: bolder
-            //         text-align: center
-            //         color: rgba(#fa517b,0.6)
             .statusBan
                 width: 20px
                 height: 20px
                 border-radius: 50%
+                position: relative
                 &::before
-                    content: "✕"
-                    font-size: 15px
-                    text-align: center
-                    line-height: 20px
-                    // transform: rotate(30deg)
-                    color: rgba(red,0.8)
+                    content: "✗"
+                    font-size: 20px
+                    // text-align: center
+                    line-height: 17px
+                    color: #E93F33
                     font-weight: bolder
+                    text-shadow: 0.5px 0.5px 1px #fff
             .statusBan2
-                width: 20px
-                height: 20px
-                border-radius: 50%
-                &::before
-                    content: "✕"
-                    font-size: 15px
-                    text-align: center
-                    line-height: 20px
-                    color: rgba(red,0.8)
-                    font-weight: bolder
                 &::after
                     content: "2"
-                    font-size: 15px
+                    font-size: 10px
                     text-align: center
                     line-height: 20px
-                    color: red
+                    color: #E93F33
                     font-weight: bolder
+                    position: absolute
+                    top: -15px
+                    right: 6px
+                    text-shadow: 0.3px 0.8px 0.5px #fff
             .statusBan3
-                width: 20px
-                height: 20px
-                border-radius: 50%
-                &::before
-                    content: "✕"
-                    font-size: 15px
-                    text-align: center
-                    line-height: 20px
-                    color: rgba(red,0.8)
-                    font-weight: bolder
                 &::after
                     content: "3"
-                    font-size: 15px
-                    text-align: center
-                    line-height: 20px
-                    color: red
-                    font-weight: bolder
             .statusBan4
-                width: 20px
-                height: 20px
-                border-radius: 50%
-                &::before
-                    content: "✕"
-                    font-size: 15px
-                    text-align: center
-                    line-height: 20px
-                    color: rgba(red,0.8)
-                    font-weight: bolder
                 &::after
                     content: "4"
-                    font-size: 15px
-                    text-align: center
-                    line-height: 20px
-                    color: red
-                    font-weight: bolder
             .statusBan5
-                width: 20px
-                height: 20px
-                border-radius: 50%
-                &::before
-                    content: "✕"
-                    font-size: 15px
-                    text-align: center
-                    line-height: 20px
-                    color: rgba(red,0.8)
-                    font-weight: bolder
                 &::after
                     content: "5"
-                    font-size: 15px
-                    text-align: center
-                    line-height: 20px
-                    color: red
-                    font-weight: bolder
+
     .showarea
         // border: 2px solid green
         width: 95%
         flex-direction: column
         margin-bottom: 10px
+        font-size: 0px
+        box-sizing: border-box
         .line
             display: inline-flex
             justify-content: center
@@ -199,15 +171,15 @@ html, body
 
             .block
                 cursor: pointer
-                background-color: rgba(#c8daeb,0.7)
-                border: 0.5px solid rgba($color_deep_blue,0.2)
-                width: 63px
-                height: 36px
-                margin: 1.5px
+                // background-color: rgba(#c8daeb,0.7)
+                border: 0.1px solid rgba($color_light_blue,0.1)
+                width: 55px
+                height: 33px
+                margin: 0px
+                padding: 0px
                 &:hover
-                    background-color: rgba($color_light_blue,0.5)
-
-
+                    border: 0.1px solid rgba($color_light_blue,0.8)
+                    // background-color: rgba($color_light_blue,0.5)
 
     .round-time-bar
         width: 80%
@@ -229,12 +201,10 @@ html, body
         to
             transform: scaleX(0)
 
-    .cuetxt
-        padding: 10px
-    .handcardarea
-        width: 100%
-        padding: 20px 0px 10px 0px
-        // margin-bottom: 10px
+    .flexbox.handcardarea
+        width: 90%
+        min-width:
+        padding: 5px 0px 10px 0px
 
     .card
         width: 63px
@@ -252,12 +222,11 @@ html, body
         color: $color_deep_blue
         font-size: 15px
     .redborder
-        border: 2px solid red
+        border: 2px solid $color_red
 
 .chatinputbox
     background-color: $color_white
-    // border-top: 1px solid $color_brown
-    border-radius: 7px 7px 0px 0px
+    // border-radius: 7px 7px 0px 0px
     box-shadow: 0px 0px 5px $color_brown
     width: 100%
     height: 50px
@@ -277,16 +246,19 @@ html, body
         width: 80%
         height: 30px
         min-width: 100px
-        border: 1px solid $color_deep_blue
+        border: 3px solid $color_deep_blue
         border-radius: 3px
         color: $color_deep_blue
+        background-color: $color_white
+        &::placeholder
+            color: $color_deep_blue
+            font-weight: 900
     .chatbtn
         display: none
         // +size(40px,30px)
         // background-color: $color_deep_blue
         // border-radius: 5px
-       
-        
+
     .chatclose
         // border: 1px solid $color_brown
         +size(30px,30px)
@@ -315,20 +287,19 @@ html, body
         text-align: center
         line-height: 40px
 
-
-
-ul.scrollbox
+#messageBody,ul.scrollbox
     margin: 0 auto
     overflow: auto
-    width: 98%
+    width: 90%
+    max-width: 700px
     height: 100px
     display: flex
     flex-direction: column
     padding: 10px
     margin-bottom: 60px
     border-radius: 5px
-    background-color: $color_deep_blue
-    
+    background-color: rgba($color_white,0.6)
+
     li
         width: 100%
         list-style: none
@@ -347,7 +318,6 @@ ul.scrollbox
             margin: 5px 10px 0px 10px
             background-image: url("svg/icon.svg")
             background-size: cover
-
 
 // .showstatus p
 //     margin: 5px
@@ -382,15 +352,13 @@ ul.scrollbox
         top: 15px
         right: 15px
 
-
-
-
 @media screen and (min-width:768px) //*iPAD=768px*//
     *
         font-size: 18px
         // border: 1px solid red
     .container
-        max-width: 760px
+        width: 90%
+        max-width: 760px !important
         // background-color: rgba(pink,0.5)
     .container .flexbox.playerarea .userbox .userpic
         width: 20%
@@ -408,54 +376,83 @@ ul.scrollbox
     .container .flexbox.playerarea .userbox .statusbox .status
         cursor: pointer
         +size (38px,38px)
-        margin: 3px
         border-radius: 50%
-        padding-top: 10px
-    .container .flexbox.playerarea .statusbox .statushover
-        cursor: pointer
-        +size(38px,38px)
-        &::before
-            content: "✖"
-            font-size: 30px
-            font-weight: bolder
-            text-align: center
-            color: rgba(#fa517b,0.6)
+        line-height: 38px
 
+    
     .container .flexbox.playerarea .statusbox .statusBan
         width: 38px
         height: 38px
         border-radius: 50%
         &::before
-            content: "✕"
+            content: "✗"
             font-size: 30px
+            line-height: 35px
             text-align: center
-            transform: rotate(30deg)
-            color: rgba(red,0.8)
-            font-weight: bolder
+            color: #E93F33
+            font-weight: 900
+    .container .flexbox.playerarea .statusbox .statusBan2
+        &::after
+            content: "2"
+            font-size: 18px
+            top: -17px
+            right: 13px
+    .container .flexbox.playerarea .statusbox .statusBan3
+        &::after
+            content: "3"
+    .container .flexbox.playerarea .statusbox .statusBan4
+        &::after
+            content: "4"
+    .container .flexbox.playerarea .statusbox .statusBan5
+        &::after
+            content: "5"
+
 
     .container .showarea
         margin: 0 auto
         width: 500px
         margin-bottom: 20px
 
-    .container .showarea .line .block
-        width: 94.5px
-        height: 54px
+    .container .showarea .line .block //55*33
+        width: 82.5px
+        height: 49.5px
     .container .round-time-bar
         margin: 0 auto
         max-width: 500px
     .container .handcardarea
         position: absolute
-        top: 170px 
+        top: 130px
         right: 0px
         max-width: 200px
         display: flex
         flex-wrap: wrap
-        padding: 3px
-        margin: 3px
+        padding: 0px
+        margin: 0px
     .handcardbox1,.handcardbox2,.handcardbox3,.handcardbox4,.handcardbox5,.handcardbox6
         margin: 10px
 
     .container .card
         width: 94.5px
         height: 54px
+
+@media screen and (min-width:1000px)
+    // html
+    //     background-image: none
+
+    html,body
+        background-color: rgba(#98D2F2,0.5) !important
+        background-image: url(svg/bgctransparent1200.svg)
+        background-size: cover
+        background-repeat: no-repeat
+        background-attachment: fixed
+        background-position: center
+        
+    .container
+        max-width: 1100px
+        margin: 0 auto !important
+        padding: 10px !important
+    .container .flexbox.handcardarea
+        position: absolute
+        top: 130px
+        right: 100px
+

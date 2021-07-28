@@ -1,15 +1,18 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>矮人礦坑</title>
-    <!-- <link rel="shortcut icon" href="https://i.ibb.co/vJ42VtN/ia2b-001.png" type="image/x-icon" /> -->
-    <meta name="1A2B" content="矮人礦坑">
+    <meta name="viewport"
+        content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=0.25 user-scalable=0" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>加入矮人礦坑遊戲</title>
+    <link rel="shortcut icon" href="svg/icon.svg" type="image/x-icon" />
+    <meta name="Saboteur" content="矮人礦坑">
     <meta property="og:title" content="矮人礦坑" />
-    <!-- <meta property="og:image" content="https://i.ibb.co/3RxtDV9/001.png" /> -->
+    <meta property="og:image" content="svg/icon.svg" />
     <meta property="og:description" content="矮人礦坑！" />
+
     <script src="https://kit.fontawesome.com/5223ebc999.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
@@ -23,8 +26,8 @@
     <i class="fas fa-home" id="homeicon">回首頁</i>
 
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        SHARELINK <span></span><i class="fas fa-share-alt" id="sharelink"></i>
+    <button type="button" class="btn btn-primary btn-share" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <span></span><i class="fas fa-share-alt" id="sharelink"></i>
     </button>
     <!-- Modal -->
     <div class="modal fade" id="sharelinkModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -45,12 +48,13 @@
 
     <div class="container">
 
-        <h5>等待中...等待其他玩家加入</h5>
+        <h4>等待中• • •等待其他玩家加入</h4>
         <div class="playerarea">
-
         </div>
+        <hr>
+        <!-- <img class="iconrotate" src="svg/icon rotate.svg" alt=""> -->
 
-   
+
     </div>
 
     </div>
@@ -63,7 +67,7 @@
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content" >
+            <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">你的角色是：</h5>
                 </div>
@@ -81,10 +85,8 @@
 </body>
 <script src="./script/api.js"></script>
 <script src="./script/common.js"></script>
-<script
-    src="https://cdn.socket.io/4.1.2/socket.io.min.js"
-    integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg"
-    crossorigin="anonymous">
+<script src="https://cdn.socket.io/4.1.2/socket.io.min.js"
+    integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous">
 </script>
 <script src="./script/socket.js"></script>
 <script src="./script/listener/room.js"></script>
@@ -92,7 +94,7 @@
     var CURRENT_ROOM_ID = getUrlParameter('room_id');
     var INVITE_URL = `${window.location.origin}/invite.html?room_id=${CURRENT_ROOM_ID}`;
     var START_GAME_URL = `${window.location.origin}/index.html`;
-    
+
     const renderPlayer = (players) => {
         let displayUsers = '';
         players.forEach((player) => {
@@ -120,16 +122,16 @@
     }
 
     $(document).ready(function () {
-        if (! window.localStorage.getItem('nickname')) {
+        if (!window.localStorage.getItem('nickname')) {
             window.location.href = INVITE_URL;
         }
-        if (! CURRENT_ROOM_ID) {
-            window.location.href = START_GAME_URL;            
+        if (!CURRENT_ROOM_ID) {
+            window.location.href = START_GAME_URL;
         }
 
         sendEvent('join', {
-            roomId : CURRENT_ROOM_ID,
-            nickname : getNickName()
+            roomId: CURRENT_ROOM_ID,
+            nickname: getNickName()
         })
 
         callApi(`/rooms/${CURRENT_ROOM_ID}`).then((response) => {
@@ -147,7 +149,7 @@
         if (!getUrlParameter('invite')) {
             $('#sharelinkModal').modal('show');
         }
-        
+
     });
 
     const hideNotOwnerSetting = () => {
@@ -177,7 +179,7 @@
 
     $('#start-game').click(function () {
         sendEvent('startGame', {
-            roomId : CURRENT_ROOM_ID,
+            roomId: CURRENT_ROOM_ID,
         })
         window.location.href = `./playpage.html?room_id=${CURRENT_ROOM_ID}`;
     })

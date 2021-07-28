@@ -4,18 +4,22 @@
   font-size: 12px;
   text-align: center;
   color: #2D2D3A;
+  font-family: "HanaMinA","Hanazono Mincho",花園明朝體,"PingFang TC", 黑體-繁,"Noto Sans", 思源黑體, "Heiti TC", 蘋果儷中黑, "Apple LiGothic Medium", 微軟正黑體, "Microsoft JhengHei", Roboto, sans-serif;
 }
 
 html, body {
-  background-color: #FFFCEF !important;
-  -webkit-text-size-adjust: none;
-  -moz-text-size-adjust: none;
-  -ms-text-size-adjust: none;
-  text-size-adjust: none;
+  background-color: rgba(152, 210, 242, 0.5) !important;
+  overflow-y: scroll;
+  touch-action: pan-y;
   width: 100%;
   height: 100%;
   padding: 0px;
   margin: 0px;
+  background-image: url(svg/bgctransparent.svg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
 }
 
 .container {
@@ -24,14 +28,24 @@ html, body {
 }
 
 .container .topcue {
-  margin: 10px 0px 20px 0px;
+  margin: 0 auto;
+  padding: 10px 0px 10px 0px;
+  font-weight: 900;
+  color: #1A517B;
+  text-shadow: 0.5px 0.5px 2px #FFFCEF;
+  background-color: rgba(255, 252, 239, 0.3);
+  width: 65%;
+  min-width: 340px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container .trash {
   cursor: pointer;
   background-color: orange;
   border-radius: 5px;
-  width: 120px;
+  max-width: 110px;
   padding: 3px;
   margin: 2px;
   font-size: 10px;
@@ -39,6 +53,8 @@ html, body {
 
 .container i.fa-trash {
   color: #483B3B;
+  text-shadow: none;
+  font-weight: 600;
 }
 
 .container .flexbox {
@@ -50,9 +66,21 @@ html, body {
 
 .container .flexbox.playerarea {
   width: 100%;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  padding-top: 5px;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+}
+
+.container .flexbox.playerarea .userbox {
+  padding: 3px 0px 3px 0px;
+}
+
+.container .flexbox.playerarea .userbox:hover {
+  padding: 3px 0px 3px 0px;
+  border-radius: 5px;
 }
 
 .container .flexbox.playerarea .userbox .username {
@@ -64,10 +92,17 @@ html, body {
   text-shadow: 1px 1px #FFFCEF;
   width: 70px;
   height: 50px;
+  border: 1px solid transparent;
+}
+
+.container .flexbox.playerarea .userbox .username:hover {
+  border: 1px solid #27507A;
+  border-radius: 5px;
 }
 
 .container .flexbox.playerarea .userbox .statusbox {
   border: 1px solid transparent;
+  padding: 1px;
 }
 
 .container .flexbox.playerarea .userbox .statusbox .status {
@@ -81,117 +116,49 @@ html, body {
   width: 20px;
   height: 20px;
   border-radius: 50%;
+  position: relative;
 }
 
 .container .flexbox.playerarea .userbox .statusBan::before {
-  content: "✕";
-  font-size: 15px;
-  text-align: center;
-  line-height: 20px;
-  color: rgba(255, 0, 0, 0.8);
+  content: "✗";
+  font-size: 20px;
+  line-height: 17px;
+  color: #E93F33;
   font-weight: bolder;
-}
-
-.container .flexbox.playerarea .userbox .statusBan2 {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-}
-
-.container .flexbox.playerarea .userbox .statusBan2::before {
-  content: "✕";
-  font-size: 15px;
-  text-align: center;
-  line-height: 20px;
-  color: rgba(255, 0, 0, 0.8);
-  font-weight: bolder;
+  text-shadow: 0.5px 0.5px 1px #fff;
 }
 
 .container .flexbox.playerarea .userbox .statusBan2::after {
   content: "2";
-  font-size: 15px;
+  font-size: 10px;
   text-align: center;
   line-height: 20px;
-  color: red;
+  color: #E93F33;
   font-weight: bolder;
-}
-
-.container .flexbox.playerarea .userbox .statusBan3 {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-}
-
-.container .flexbox.playerarea .userbox .statusBan3::before {
-  content: "✕";
-  font-size: 15px;
-  text-align: center;
-  line-height: 20px;
-  color: rgba(255, 0, 0, 0.8);
-  font-weight: bolder;
+  position: absolute;
+  top: -15px;
+  right: 6px;
+  text-shadow: 0.3px 0.8px 0.5px #fff;
 }
 
 .container .flexbox.playerarea .userbox .statusBan3::after {
   content: "3";
-  font-size: 15px;
-  text-align: center;
-  line-height: 20px;
-  color: red;
-  font-weight: bolder;
-}
-
-.container .flexbox.playerarea .userbox .statusBan4 {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-}
-
-.container .flexbox.playerarea .userbox .statusBan4::before {
-  content: "✕";
-  font-size: 15px;
-  text-align: center;
-  line-height: 20px;
-  color: rgba(255, 0, 0, 0.8);
-  font-weight: bolder;
 }
 
 .container .flexbox.playerarea .userbox .statusBan4::after {
   content: "4";
-  font-size: 15px;
-  text-align: center;
-  line-height: 20px;
-  color: red;
-  font-weight: bolder;
-}
-
-.container .flexbox.playerarea .userbox .statusBan5 {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-}
-
-.container .flexbox.playerarea .userbox .statusBan5::before {
-  content: "✕";
-  font-size: 15px;
-  text-align: center;
-  line-height: 20px;
-  color: rgba(255, 0, 0, 0.8);
-  font-weight: bolder;
 }
 
 .container .flexbox.playerarea .userbox .statusBan5::after {
   content: "5";
-  font-size: 15px;
-  text-align: center;
-  line-height: 20px;
-  color: red;
-  font-weight: bolder;
 }
 
 .container .showarea {
   width: 95%;
   flex-direction: column;
   margin-bottom: 10px;
+  font-size: 0px;
+  box-sizing: border-box;
 }
 
 .container .showarea .line {
@@ -202,15 +169,15 @@ html, body {
 
 .container .showarea .line .block {
   cursor: pointer;
-  background-color: rgba(200, 218, 235, 0.7);
-  border: 0.5px solid rgba(26, 81, 123, 0.2);
-  width: 63px;
-  height: 36px;
-  margin: 1.5px;
+  border: 0.1px solid rgba(63, 156, 205, 0.1);
+  width: 55px;
+  height: 33px;
+  margin: 0px;
+  padding: 0px;
 }
 
 .container .showarea .line .block:hover {
-  background-color: rgba(63, 156, 205, 0.5);
+  border: 0.1px solid rgba(63, 156, 205, 0.8);
 }
 
 .container .round-time-bar {
@@ -240,13 +207,9 @@ html, body {
   }
 }
 
-.container .cuetxt {
-  padding: 10px;
-}
-
-.container .handcardarea {
-  width: 100%;
-  padding: 20px 0px 10px 0px;
+.container .flexbox.handcardarea {
+  width: 90%;
+  padding: 5px 0px 10px 0px;
 }
 
 .container .card {
@@ -269,12 +232,11 @@ html, body {
 }
 
 .container .redborder {
-  border: 2px solid red;
+  border: 2px solid #C54C4D;
 }
 
 .chatinputbox {
   background-color: #FFFCEF;
-  border-radius: 7px 7px 0px 0px;
   box-shadow: 0px 0px 5px #483B3B;
   width: 100%;
   height: 50px;
@@ -298,9 +260,15 @@ html, body {
   width: 80%;
   height: 30px;
   min-width: 100px;
-  border: 1px solid #1A517B;
+  border: 3px solid #1A517B;
   border-radius: 3px;
   color: #1A517B;
+  background-color: #FFFCEF;
+}
+
+.chatinputbox .inputChat::placeholder {
+  color: #1A517B;
+  font-weight: 900;
 }
 
 .chatinputbox .chatbtn {
@@ -344,20 +312,21 @@ html, body {
   line-height: 40px;
 }
 
-ul.scrollbox {
+#messageBody, ul.scrollbox {
   margin: 0 auto;
   overflow: auto;
-  width: 98%;
+  width: 90%;
+  max-width: 700px;
   height: 100px;
   display: flex;
   flex-direction: column;
   padding: 10px;
   margin-bottom: 60px;
   border-radius: 5px;
-  background-color: #1A517B;
+  background-color: rgba(255, 252, 239, 0.6);
 }
 
-ul.scrollbox li {
+#messageBody li, ul.scrollbox li {
   width: 100%;
   list-style: none;
   text-align: left;
@@ -365,12 +334,12 @@ ul.scrollbox li {
   color: #FFFCEF;
 }
 
-ul.scrollbox li:hover {
+#messageBody li:hover, ul.scrollbox li:hover {
   background-color: rgba(255, 252, 239, 0.3);
   border-bottom: 1px solid rgba(255, 252, 239, 0.8);
 }
 
-ul.scrollbox li::before {
+#messageBody li::before, ul.scrollbox li::before {
   content: '';
   display: inline-block;
   height: 18px;
@@ -414,7 +383,8 @@ ul.scrollbox li::before {
     font-size: 18px;
   }
   .container {
-    max-width: 760px;
+    width: 90%;
+    max-width: 760px !important;
   }
   .container .flexbox.playerarea .userbox .userpic {
     width: 20%;
@@ -434,21 +404,8 @@ ul.scrollbox li::before {
     cursor: pointer;
     width: 38px;
     height: 38px;
-    margin: 3px;
     border-radius: 50%;
-    padding-top: 10px;
-  }
-  .container .flexbox.playerarea .statusbox .statushover {
-    cursor: pointer;
-    width: 38px;
-    height: 38px;
-  }
-  .container .flexbox.playerarea .statusbox .statushover::before {
-    content: "✖";
-    font-size: 30px;
-    font-weight: bolder;
-    text-align: center;
-    color: rgba(250, 81, 123, 0.6);
+    line-height: 38px;
   }
   .container .flexbox.playerarea .statusbox .statusBan {
     width: 38px;
@@ -456,12 +413,27 @@ ul.scrollbox li::before {
     border-radius: 50%;
   }
   .container .flexbox.playerarea .statusbox .statusBan::before {
-    content: "✕";
+    content: "✗";
     font-size: 30px;
+    line-height: 35px;
     text-align: center;
-    transform: rotate(30deg);
-    color: rgba(255, 0, 0, 0.8);
-    font-weight: bolder;
+    color: #E93F33;
+    font-weight: 900;
+  }
+  .container .flexbox.playerarea .statusbox .statusBan2::after {
+    content: "2";
+    font-size: 18px;
+    top: -17px;
+    right: 13px;
+  }
+  .container .flexbox.playerarea .statusbox .statusBan3::after {
+    content: "3";
+  }
+  .container .flexbox.playerarea .statusbox .statusBan4::after {
+    content: "4";
+  }
+  .container .flexbox.playerarea .statusbox .statusBan5::after {
+    content: "5";
   }
   .container .showarea {
     margin: 0 auto;
@@ -469,8 +441,8 @@ ul.scrollbox li::before {
     margin-bottom: 20px;
   }
   .container .showarea .line .block {
-    width: 94.5px;
-    height: 54px;
+    width: 82.5px;
+    height: 49.5px;
   }
   .container .round-time-bar {
     margin: 0 auto;
@@ -478,13 +450,13 @@ ul.scrollbox li::before {
   }
   .container .handcardarea {
     position: absolute;
-    top: 170px;
+    top: 130px;
     right: 0px;
     max-width: 200px;
     display: flex;
     flex-wrap: wrap;
-    padding: 3px;
-    margin: 3px;
+    padding: 0px;
+    margin: 0px;
   }
   .handcardbox1, .handcardbox2, .handcardbox3, .handcardbox4, .handcardbox5, .handcardbox6 {
     margin: 10px;
@@ -492,5 +464,26 @@ ul.scrollbox li::before {
   .container .card {
     width: 94.5px;
     height: 54px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  html, body {
+    background-color: rgba(152, 210, 242, 0.5) !important;
+    background-image: url(svg/bgctransparent1200.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+  }
+  .container {
+    max-width: 1100px;
+    margin: 0 auto !important;
+    padding: 10px !important;
+  }
+  .container .flexbox.handcardarea {
+    position: absolute;
+    top: 130px;
+    right: 100px;
   }
 }

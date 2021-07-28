@@ -25,11 +25,12 @@ html, body {
 
 .container .logo {
   width: 15%;
+  max-width: 700px;
   margin: 40px 0px 20px 0px;
 }
 
 .container .welcome {
-  width: 40%;
+  width: 30%;
   min-width: 100px;
 }
 
@@ -39,10 +40,16 @@ html, body {
   border: 1px solid #FBC439;
   background-color: #fffdf3;
   padding: 5px;
+  color: #8CC554;
+}
+
+.container #nickname::placeholder {
+  color: rgba(26, 81, 123, 0.4);
+  font-weight: 900;
 }
 
 .container #nickname:hover {
-  box-shadow: 0px 2px 3px #FBC439;
+  border: 2px solid #FBC439;
 }
 
 .container .start {

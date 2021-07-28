@@ -19,8 +19,7 @@ function callApi(url, method = 'GET', data = {}, header = {}) {
 }
 
 function getDomain() {
-    return 'http://localhost:8000/';
-    // return 'https://game.dev.newideas.com.tw/';
+    return 'https://game.dev.newideas.com.tw/';
 }
 
 function getApiUrl() {
@@ -28,6 +27,5 @@ function getApiUrl() {
 }
 
 function getSocketUrl() {
-    return getDomain();
     return getDomain + 'ws';
 }

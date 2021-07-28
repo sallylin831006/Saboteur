@@ -1,9 +1,11 @@
+@charset "UTF-8";
 * {
   user-select: none;
   font-size: 12px;
   text-align: center;
   align-items: center;
   justify-content: center;
+  font-family: "HanaMinA",花園明朝體,"PingFang TC", 黑體-繁, "Heiti TC", 蘋果儷中黑, "Apple LiGothic Medium", 微軟正黑體, "Microsoft JhengHei", Roboto, sans-serif;
 }
 
 html, body {
@@ -14,12 +16,53 @@ html, body {
   margin: 0px;
 }
 
+#homeicon {
+  color: #2974AA;
+  font-weight: 900;
+  font-size: 20px;
+  background-color: #F8EDDB;
+  padding: 10px;
+  border-radius: 8px 8px 0px 0px;
+  margin: 15px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+#homeicon:hover {
+  border-bottom: 2px solid #483B3B;
+}
+
 .btn-primary {
   font-size: 13px !important;
   cursor: pointer;
-  background-color: #1A517B !important;
+  background-color: #3F9CCD !important;
   padding: 10px !important;
   border-radius: 5px !important;
+  border: none !important;
+  margin: 5px;
+}
+
+.btn-share {
+  width: 40px;
+  height: 40px;
+  border-radius: 50% !important;
+  margin: 15px;
+}
+
+.btn-share i.fa-share-alt {
+  font-size: 15px;
+}
+
+h4 {
+  margin: 15px;
+  padding: 10px;
+  font-weight: 900;
+  color: #2974AA;
+  font-weight: 900;
+  font-size: 20px;
+  background-color: #F8EDDB;
+  font-family: "HanaMinA",花園明朝體;
 }
 
 .fade {
@@ -69,7 +112,7 @@ html, body {
 
 .container {
   background-color: #FFFCEF;
-  border: 1px solid pink;
+  border: 1px solid;
   max-width: 400px;
   margin: 0 auto;
   padding: 3px;
@@ -91,6 +134,10 @@ html, body {
   font-weight: 900;
   color: #483B3B;
   text-shadow: 1px 1px #FFFCEF;
+}
+
+.container img.iconrotate {
+  width: 250px;
 }
 
 #staticBackdrop {

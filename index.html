@@ -2,9 +2,10 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=0.25 user-scalable=0" />
+    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>矮人礦坑</title>
     <link rel="shortcut icon" href="svg/icon.svg" type="image/x-icon" />
     <meta name="Saboteur" content="矮人礦坑">
@@ -24,7 +25,7 @@
         <img src="svg/logo.svg" alt="logo pic" class="logo">
         <img src="svg/playernum/playernum3.svg" alt="" class="playernumpic">
         <div class="flexbox">
-            <div class="txt">玩家人數上限：</div>
+            <div>玩家人數上限：</div>
             <div class="count">
                 <div class="minus">-</div>
                 <div id="max-players-number" class="num">3</div>
@@ -76,7 +77,7 @@
                                 <input class="filterbtn" type="button" value="純屬好玩" onclick="bbsTypeFilter('fun')">
                                 <input class="filterbtn" type="button" value="網站建議" onclick="bbsTypeFilter('suggestion')">
                             </div>
-                            <ul class="list"></ul>
+                            <ul id="messageBody" class="list"></ul>
                         </div>
                     </div>
                     
@@ -378,6 +379,8 @@
     }
 
     document.querySelector(".savebtn").addEventListener("click", function (e) {
+        messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+
         // 新增邏輯
         const nickName = $(".nickName").val();
         const content = $(".content").val();
@@ -387,6 +390,7 @@
             alert('暱稱及留言內容都要輸入哦！');
             return;
         }
+        messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
         $(".txt").text("已成功送出留言！");
         $(".txt").css("color","orange");
 
