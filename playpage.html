@@ -14,6 +14,11 @@
   <meta property="og:image" content="svg/icon.svg" />
   <meta property="og:description" content="矮人礦坑！" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+
+
   <script src="https://kit.fontawesome.com/5223ebc999.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -136,11 +141,12 @@
       <div class="line line1">
         <div id="block1-1" class="block block1-1"></div>
         <div id="block1-2" class="block block1-2"></div>
-        <div id="block1-3 end2" class="block block1-3 end2">
-          <img src="svg/card_start.svg" alt="" />
+        <div id="block1-3" class="block block1-3">
+          <!-- <img src="svg/card_start.svg" alt="" /> -->
+          <img data-num="block1-3" src="svg/card_start.svg" top="true" left="true" right="true" bottom="true" />
         </div>
         <div id="block1-4" class="block block1-4"></div>
-        <div id="block1-5" class="block block1-5 end3"></div>
+        <div id="block1-5" class="block block1-5"></div>
       </div>
       <div class="line line2">
         <div id="block2-1" class="block block2-1"></div>
@@ -151,64 +157,64 @@
       </div>
       <div class="line line3">
         <div id="block3-1" class="block block3-1"></div>
-        <div id="block3-2" class="block block3-1"></div>
-        <div id="block3-3" class="block block3-1"></div>
-        <div id="block3-4" class="block block3-1"></div>
-        <div id="block3-5" class="block block3-1"></div>
+        <div id="block3-2" class="block block3-2"></div>
+        <div id="block3-3" class="block block3-3"></div>
+        <div id="block3-4" class="block block3-4"></div>
+        <div id="block3-5" class="block block3-5"></div>
       </div>
       <div class="line line4">
         <div id="block4-1" class="block block4-1"></div>
-        <div id="block4-2" class="block block4-1"></div>
-        <div id="block4-3" class="block block4-1"></div>
-        <div id="block4-4" class="block block4-1"></div>
-        <div id="block4-5" class="block block4-1"></div>
+        <div id="block4-2" class="block block4-2"></div>
+        <div id="block4-3" class="block block4-3"></div>
+        <div id="block4-4" class="block block4-4"></div>
+        <div id="block4-5" class="block block4-5"></div>
       </div>
       <div class="line line5">
         <div id="block5-1" class="block block5-1"></div>
-        <div id="block5-2" class="block block5-1"></div>
-        <div id="block5-3" class="block block5-1"></div>
-        <div id="block5-4" class="block block5-1"></div>
-        <div id="block5-5" class="block block5-1"></div>
+        <div id="block5-2" class="block block5-2"></div>
+        <div id="block5-3" class="block block5-3"></div>
+        <div id="block5-4" class="block block5-4"></div>
+        <div id="block5-5" class="block block5-5"></div>
       </div>
       <div class="line line6">
         <div id="block6-1" class="block block6-1"></div>
-        <div id="block6-2" class="block block6-1"></div>
-        <div id="block6-3" class="block block6-1"></div>
-        <div id="block6-4" class="block block6-1"></div>
-        <div id="block6-5" class="block block6-1"></div>
+        <div id="block6-2" class="block block6-2"></div>
+        <div id="block6-3" class="block block6-3"></div>
+        <div id="block6-4" class="block block6-4"></div>
+        <div id="block6-5" class="block block6-5"></div>
       </div>
       <div class="line line7">
         <div id="block7-1" class="block block7-1"></div>
-        <div id="block7-2" class="block block7-1"></div>
-        <div id="block7-3" class="block block7-1"></div>
-        <div id="block7-4" class="block block7-1"></div>
-        <div id="block7-5" class="block block7-1"></div>
+        <div id="block7-2" class="block block7-2"></div>
+        <div id="block7-3" class="block block7-3"></div>
+        <div id="block7-4" class="block block7-4"></div>
+        <div id="block7-5" class="block block7-5"></div>
       </div>
       <div class="line line8">
         <div id="block8-1" class="block block8-1"></div>
-        <div id="block8-2" class="block block8-1"></div>
-        <div id="block8-3" class="block block8-1"></div>
-        <div id="block8-4" class="block block8-1"></div>
-        <div id="block8-5" class="block block8-1"></div>
+        <div id="block8-2" class="block block8-2"></div>
+        <div id="block8-3" class="block block8-3"></div>
+        <div id="block8-4" class="block block8-4"></div>
+        <div id="block8-5" class="block block8-5"></div>
       </div>
       <div class="line line9">
         <div id="block9-1 end1" class="block block9-1 end1">
-          <img data-num="0" src="svg/cards_blank.svg" alt="" id="end1" />
+          <img data-num="1" src="svg/cards_blank.svg" alt="" class="end" id="end1" />
         </div>
         <div id="block9-2" class="block block9-2"></div>
         <div id="block9-3 end2" class="block block9-3 end2">
-          <img data-num="1" src="svg/cards_blank.svg" alt="" id="end2" />
+          <img data-num="2" src="svg/cards_blank.svg" alt="" class="end" id="end2" />
         </div>
         <div id="block9-4" class="block block9-4"></div>
         <div id="block9-5  end3" class="block block9-5 end3">
-          <img data-num="2" src="svg/cards_blank.svg" alt="" id="end3" />
+          <img data-num="3" src="svg/cards_blank.svg" alt="" class="end" id="end3" />
         </div>
       </div>
     </div>
 
     <!-- 提示區 -->
     <div class="topcue">
-      請放置卡牌開闢新的路，或使用功能卡，或
+      <div class="p">請放置卡牌開闢新的路，或使用功能卡，或</div>
       <span class="trash"><i class="fas fa-trash fa-lg">棄牌並跳過</i></span>
     </div>
 
@@ -309,6 +315,7 @@
 </script>
 <!-- <script src="./script/socket.js"></script> -->
 <script src="./script/listener/room.js"></script>
+<script src="script/card_map.js"></script>
 
 <script>
   var MAP_CARDS = new RegExp('41|42|43|44|45|46', "g");
@@ -316,11 +323,17 @@
   var AX_SAVE_CARDS = new RegExp('49|50', "g");
   var CAR_SAVE_CARDS = new RegExp('51|52', "g");
 
+  var LAMP_CAR_SAVE_CARDS = new RegExp('53', "g");
+  var LAMP_AX_SAVE_CARDS = new RegExp('54', "g");
+  var AX_CAR_SAVE_CARDS = new RegExp('55', "g");
+
   var LAMP_BAN_CARDS = new RegExp('56|57|58', "g");
   var AX_BAN_CARDS = new RegExp('59|60|61', "g");
   var CAR_BAN_CARDS = new RegExp('62|63|64', "g");
   var BOMB_CARDS = new RegExp('65|66|67', "g");
   var CURRENT_ROOM_ID = getUrlParameter('room_id');
+
+
 
   const hasRedBorder = () => {
     return $('.redborder').length ? true : false;
@@ -328,10 +341,10 @@
 
 
   $(".container").click(function (e) {
-    console.log(e.target)
-    console.log(e.target.className)
-    console.log(e.target.id)
-    console.log(e.target.getAttribute("data-num"));
+    console.log("e.target=", e.target)
+    console.log("e.target.className=", e.target.className)
+    console.log("e.target.id=", e.target.id)
+    console.log("data-num=", e.target.getAttribute("data-num"));
   })
 
   //遊戲開始時，依人數分配角色卡
@@ -387,7 +400,6 @@
       printNewCard();
       giveNewCard();
       $(".topcue").text("你剛剛放了一張道路卡～")
-
       return;
     }
   }
@@ -396,52 +408,74 @@
     const element = document.getElementById(event.target.id);
     const boxnum = $(".redborder").attr("data-num")
     const svg = $(".handcardbox" + boxnum + " img").attr('src');
+    const top = $(".handcardbox" + boxnum + " img").attr('top');
+    const right = $(".handcardbox" + boxnum + " img").attr('right');
+    const left = $(".handcardbox" + boxnum + " img").attr('left');
+    const bottom = $(".handcardbox" + boxnum + " img").attr('bottom');
     const style = $(".handcardbox" + boxnum + " img").css('transform');
-    element.innerHTML += `<img data-num="${event.target.id}" src='${svg}' style='transform:${style}'>`;
+    element.innerHTML +=
+      `<img data-num="${event.target.id}" src='${svg}' top="${top}" left="${left}" right="${right}" bottom="${bottom}" style='transform:${style}'>`;
   }
 
   function giveNewCard() {
     const boxnum = $(".redborder").attr("data-num")
     const index = boxnum - 1
     handCards.splice(index, 1, pools.pop());
-    $(`#handCard${boxnum}`).attr("src", `svg/cards/card${handCards[index]}.svg`)
+    // $(`#handCard${boxnum}`).attr("src", `svg/cards/card${handCards[index]}.svg`)
     $(".redborder").removeClass("redborder");
+    giveDirection(index, handCards[index]);
+
   }
 
   $(document).ready(function () {
-    $("#handCard1").attr("src", `svg/cards/card${handCards[0]}.svg`);
-    $("#handCard2").attr("src", `svg/cards/card${handCards[1]}.svg`);
-    $("#handCard3").attr("src", `svg/cards/card${handCards[2]}.svg`);
-    $("#handCard4").attr("src", `svg/cards/card${handCards[3]}.svg`);
-    $("#handCard5").attr("src", `svg/cards/card${handCards[4]}.svg`);
-    $("#handCard6").attr("src", `svg/cards/card${handCards[5]}.svg`);
+    for (let index = 0; index < 6; index++) {
+      const cardNumber = handCards[index];
+      giveDirection(index, cardNumber);
 
+    }
+
+    // $("#handCard1").attr("src", `svg/cards/card${handCards[0]}.svg`);
+    // $("#handCard2").attr("src", `svg/cards/card${handCards[1]}.svg`);
+    // $("#handCard3").attr("src", `svg/cards/card${handCards[2]}.svg`);
+    // $("#handCard4").attr("src", `svg/cards/card${handCards[3]}.svg`);
+    // $("#handCard5").attr("src", `svg/cards/card${handCards[4]}.svg`);
+    // $("#handCard6").attr("src", `svg/cards/card${handCards[5]}.svg`);
     sendEvent('join', {
       roomId: CURRENT_ROOM_ID,
       nickname: getNickName()
     })
   });
 
+  function giveDirection(index, cardNumber) {
+    const handCardNumber = index + 1;
+    const handCardElement = $(`#handCard${handCardNumber}`);
+    handCardElement.attr("src", `svg/cards/card${cardNumber}.svg`);
+    if (typeof ROAD_DIRECTION_MAP[cardNumber] !== 'undefined') {
+      const roadDirection = ROAD_DIRECTION_MAP[cardNumber];
+      ['top', 'left', 'right', 'bottom'].forEach((direction) => {
+        handCardElement.attr(direction, roadDirection[direction]);
+      })
+    }
+  }
+
   $(".block").click(function (e) {
     if (!hasRedBorder()) {
       return;
     }
-
     if (event.target.id.search(/block|end|trash/) == -1 && $('.redborder').attr("src").search(/65|66|67/) == 14) {
       const boxnum = $(".redborder").attr("data-num")
       const svg = $(".handcardbox" + boxnum + " img").attr('src');
       const style = $(".handcardbox" + boxnum + " img").css('transform');
       $(`#${event.target.getAttribute("data-num")}`).html(``);
-      $(`#${event.target.getAttribute("data-num")}`).css("background-color","#D37E80");
+      $(`#${event.target.getAttribute("data-num")}`).css("background-color", "#D37E80");
       Cardput();
       return;
     }
-
     if (hasRedBorder()) {
-      Cardput();
+      CheckPosition(e.target.id);
+      
       return;
     }
-
   })
 
   // 圖卡旋轉
@@ -465,9 +499,10 @@
   });
 
 
+
+
   //功能:點擊卡牌產生紅色提醒
   $(".card").click(function (e) {
-    // console.log($(this).attr('class').search("redborder")); 找不到會回傳-1
     if ($(this).attr('class').search("redborder") == -1) {
       $(".redborder").removeClass("redborder");
       $(this).addClass("redborder");
@@ -499,7 +534,10 @@
   };
   endCardsGenerator(endCards);
 
-  $("#end1").click(function () {
+  $("#end1").click(function (e) {
+    // const endcardid = e.target.id;
+    // console.log("fuck you", endcardid)
+    //太晚了突然想不出來要怎麼寫
     if (!hasRedBorder()) {
       rotatecard($(this));
       return;
@@ -512,10 +550,8 @@
       giveNewCard();
       $(".topcue").text("你查看了一張終點卡")
       $(this).attr("src", `svg/card_end${endCards[0]}.svg`);
-
       return;
       alert("一張地圖卡只能看一次喔！"); //這個還沒做出來
-
     }
   });
 
@@ -533,6 +569,7 @@
 
 
   //封鎖
+
   $(".username").click(function (e) {
     const LAMP_BAN = $('.redborder').attr("src").search(LAMP_BAN_CARDS)
     const AX_BAN = $('.redborder').attr("src").search(AX_BAN_CARDS)
@@ -541,45 +578,68 @@
     const AX_SAVE = $('.redborder').attr("src").search(AX_SAVE_CARDS)
     const CAR_SAVE = $('.redborder').attr("src").search(CAR_SAVE_CARDS)
 
+    const LAMP_CAR_SAVE = $('.redborder').attr("src").search(LAMP_CAR_SAVE_CARDS)
+    const LAMP_AX_SAVE = $('.redborder').attr("src").search(LAMP_AX_SAVE_CARDS)
+    const AX_CAR_SAVE = $('.redborder').attr("src").search(AX_CAR_SAVE_CARDS)
+
 
     let hasBanTool = false;
-    let toolName = '';
     let toolChineseName = '';
+    let banTools = [];
+
     if (LAMP_BAN !== -1) {
       hasBanTool = true;
-      toolName = "lamp"
+      banTools.push("lamp")
       toolChineseName = "燈"
     }
     if (AX_BAN !== -1) {
       hasBanTool = true;
-      toolName = "ax"
-      toolChineseName = "斧頭"
+      banTools.push("ax")
+      toolChineseName = "斧頭";
     }
     if (CAR_BAN !== -1) {
       hasBanTool = true;
-      toolName = "car"
-      toolChineseName = "礦車"
+      banTools.push("car")
+      toolChineseName = "礦車";
     }
-    console.log('tool name', toolName);
+
     let hasSaveTool = false;
-    let savetoolName = '';
     let savetoolChineseName = '';
+    let saveTools = [];
     if (LAMP_SAVE !== -1) {
       hasSaveTool = true;
-      savetoolName = "lamp"
+      saveTools.push("lamp")
       savetoolChineseName = "燈"
     }
     if (AX_SAVE !== -1) {
       hasSaveTool = true;
-      savetoolName = "ax"
+      saveTools.push("ax")
       savetoolChineseName = "斧頭"
     }
     if (CAR_SAVE !== -1) {
       hasSaveTool = true;
-      savetoolName = "car"
+      saveTools.push("car")
       savetoolChineseName = "礦車"
     }
-    console.log('save tool name', savetoolName);
+    if (LAMP_CAR_SAVE !== -1) {
+      saveTools.push('lamp');
+      saveTools.push('car');
+      savetoolChineseName = "燈和礦車"
+      hasSaveTool = true;
+    }
+    if (LAMP_AX_SAVE !== -1) {
+      saveTools.push('lamp');
+      saveTools.push('ax');
+      savetoolChineseName = "燈和斧頭"
+      hasSaveTool = true;
+    }
+    if (AX_CAR_SAVE !== -1) {
+      saveTools.push('ax');
+      saveTools.push('car');
+      savetoolChineseName = "斧頭和礦車"
+      hasSaveTool = true;
+    }
+
     if (!hasRedBorder()) {
       return;
     }
@@ -587,85 +647,77 @@
       alert("你這張不是破壞卡或修理卡，不能用在這邊！");
       return;
     }
+
+    // const usernum = $(`#${e.target.id}`).attr("data-num");
+    // if (hasBanTool && $(`.${toolName}${usernum}`).attr("class").search("statusBan1") == -1) {
+    //   $(`.${toolName}${usernum}`).addClass("statusBan1");
+    //   $(".topcue").text(`${$(e.target).text()}的${toolChineseName}被你破壞了！`);
+    //   giveNewCard();
+    //   return;
+    // }
+    // if (hasBanTool && $(`.${toolName}${usernum}`).attr("class").search("statusBan4") !== -1) {
+    //   $(`.${toolName}${usernum}`).addClass("statusBan5");
+    //   $(".topcue").text(`${$(e.target).text()}的${toolChineseName}被破壞5個了！`);
+    //   giveNewCard();
+    //   return;
+    // }
+    // if (hasBanTool && $(`.${toolName}${usernum}`).attr("class").search("statusBan3") !== -1) {
+    //   $(`.${toolName}${usernum}`).addClass("statusBan4");
+    //   $(".topcue").text(`${$(e.target).text()}的${toolChineseName}被破壞4個了！`);
+    //   giveNewCard();
+    //   return;
+    // }
+    // if (hasBanTool && $(`.${toolName}${usernum}`).attr("class").search("statusBan2") !== -1) {
+    //   $(`.${toolName}${usernum}`).addClass("statusBan3");
+    //   $(".topcue").text(`${$(e.target).text()}的${toolChineseName}被破壞3個了！`);
+    //   giveNewCard();
+    //   return;
+    // }
+    // if (hasBanTool && $(`.${toolName}${usernum}`).attr("class").search("statusBan") !== -1) {
+    //   $(`.${toolName}${usernum}`).addClass("statusBan2");
+    //   $(".topcue").text(`${$(e.target).text()}的${toolChineseName}被破壞2個了！`);
+    //   giveNewCard();
+    //   return;
+    // }
     const usernum = $(`#${e.target.id}`).attr("data-num");
-    if (hasBanTool && $(`.${toolName}${usernum}`).attr("class").search("statusBan") == -1) {
-      $(`.${toolName}${usernum}`).addClass("statusBan");
-      $(".topcue").text(`${$(e.target).text()}的${toolChineseName}被你破壞了！`);
-      giveNewCard();
-      return;
-    }
-    if (hasBanTool && $(`.${toolName}${usernum}`).attr("class").search("statusBan4") !== -1) {
-      $(`.${toolName}${usernum}`).addClass("statusBan5");
-      $(".topcue").text(`${$(e.target).text()}的${toolChineseName}被破壞5個了！`);
-      giveNewCard();
-      return;
-    }
-    if (hasBanTool && $(`.${toolName}${usernum}`).attr("class").search("statusBan3") !== -1) {
-      $(`.${toolName}${usernum}`).addClass("statusBan4");
-      $(".topcue").text(`${$(e.target).text()}的${toolChineseName}被破壞4個了！`);
-      giveNewCard();
-      return;
-    }
-    if (hasBanTool && $(`.${toolName}${usernum}`).attr("class").search("statusBan2") !== -1) {
-      $(`.${toolName}${usernum}`).addClass("statusBan3");
-      $(".topcue").text(`${$(e.target).text()}的${toolChineseName}被破壞3個了！`);
-      giveNewCard();
-      return;
-    }
-    console.log(hasBanTool);
-    if (hasBanTool && $(`.${toolName}${usernum}`).attr("class").search("statusBan") !== -1) {
-      $(`.${toolName}${usernum}`).addClass("statusBan2");
-      $(".topcue").text(`${$(e.target).text()}的${toolChineseName}被破壞2個了！`);
-      giveNewCard();
-      return;
-    }
-    if (hasSaveTool && $(`.${savetoolName}${usernum}`).attr("class").search("statusBan5") !== -1) {
-      const usernum = $(`#${e.target.id}`).attr("data-num");
-      $(`.${savetoolName}${usernum}`).removeClass("statusBan5");
-      $(`.${savetoolName}${usernum}`).addClass("statusBan4");
-      $(".topcue").text(`${$(e.target).text()}的${savetoolChineseName}被你修理好1個了～`);
+
+    if (hasBanTool) {
+      banTools.forEach((banToolName) => {
+        const usernum = $(`#${e.target.id}`).attr("data-num");
+        if ($(`.${banToolName}${usernum}`).attr("class").search(/statusBan\d/g) !== -1) {
+          let banNum = $(`.${banToolName}${usernum}`).attr('class').match(/statusBan\d/g)[0].match(/\d/g)[0];
+          $(`.${banToolName}${usernum}`).removeClass(`statusBan${banNum}`);
+          banNum = parseInt(banNum) + 1
+          $(`.${banToolName}${usernum}`).addClass(`statusstyle`);
+          $(`.${banToolName}${usernum}`).addClass(`statusBan${banNum}`);
+          $(".topcue").text(`${$(e.target).text()}的${toolChineseName}被你破壞了～`);
+        } else {
+          $(`.${banToolName}${usernum}`).addClass(`statusBan1`);
+          $(".topcue").text(`${$(e.target).text()}的${toolChineseName}被你破壞了～`);
+
+        }
+      });
       giveNewCard();
       return;
     }
 
-    if (hasSaveTool && $(`.${savetoolName}${usernum}`).attr("class").search("statusBan4") !== -1) {
-      const usernum = $(`#${e.target.id}`).attr("data-num");
-      $(`.${savetoolName}${usernum}`).removeClass("statusBan4");
-      $(`.${savetoolName}${usernum}`).addClass("statusBan3");
-      $(".topcue").text(`${$(e.target).text()}的${savetoolChineseName}被你修理好1個了～`);
+    if (hasSaveTool) {
+      saveTools.forEach((saveToolName) => {
+        if ($(`.${saveToolName}${usernum}`).attr("class").search(/statusBan\d/g) !== -1) {
+          const usernum = $(`#${e.target.id}`).attr("data-num");
+          let banNum = $(`.${saveToolName}${usernum}`).attr('class').match(/statusBan\d/g)[0].match(/\d/g)[0];
+          $(`.${saveToolName}${usernum}`).removeClass(`statusBan${banNum}`);
+          banNum = parseInt(banNum) - 1
+          $(`.${saveToolName}${usernum}`).addClass(`statusBan${banNum}`);
+          $(".topcue").text(`${$(e.target).text()}的${savetoolChineseName}被你修理好了～`);
+        }
+      });
+
       giveNewCard();
       return;
     }
+  });
 
-    if (hasSaveTool && $(`.${savetoolName}${usernum}`).attr("class").search("statusBan3") !== -1) {
-      const usernum = $(`#${e.target.id}`).attr("data-num");
-      $(`.${savetoolName}${usernum}`).removeClass("statusBan3");
-      $(`.${savetoolName}${usernum}`).addClass("statusBan2");
-      $(".topcue").text(`${$(e.target).text()}的${savetoolChineseName}被你修理好1個了～`);
-      giveNewCard();
-      return;
-    }
-    
-    if (hasSaveTool && $(`.${savetoolName}${usernum}`).attr("class").search("statusBan2") !== -1) {
-      const usernum = $(`#${e.target.id}`).attr("data-num");
-      $(`.${savetoolName}${usernum}`).removeClass("statusBan2");
-      $(`.${savetoolName}${usernum}`).addClass("statusBan");
-      $(".topcue").text(`${$(e.target).text()}的${savetoolChineseName}被你修理好1個了～`);
-      giveNewCard();
-      return;
-    }
-
-    if (hasSaveTool && $(`.${savetoolName}${usernum}`).attr("class").search("statusBan") !== -1) {
-      const usernum = $(`#${e.target.id}`).attr("data-num");
-      $(`.${savetoolName}${usernum}`).removeClass("statusBan");
-      $(".topcue").text(`${$(e.target).text()}的${savetoolChineseName}被你修理好了～`);
-      giveNewCard();
-      return;
-    }
-
-
-  })
-  ``
   const scrollbox = document.querySelector('.scrollbox');
   var messageBody = document.querySelector('#messageBody');
   messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
