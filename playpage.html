@@ -2,22 +2,24 @@
 <html lang="en">
 
 <head>
-  <meta name="viewport"
-    content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=0.25 user-scalable=0" />
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport"
+    content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1 user-scalable=0" />
   <title>矮人礦坑</title>
   <link rel="shortcut icon" href="svg/icon.svg" type="image/x-icon" />
   <meta name="Saboteur" content="矮人礦坑">
+  <!-- 常用於 facebook 的 屬性值 -->
   <meta property="og:title" content="矮人礦坑" />
-  <meta property="og:image" content="svg/icon.svg" />
-  <meta property="og:description" content="矮人礦坑！" />
-
+  <meta property="og:type" content="PlayingPage" />
+  <meta property="og:url" content="網址" />
+  <meta property="og:image" content="svg/welcome.svg" />
+  <meta property="og:description" content="最有質感的線上版矮人礦坑遊戲，一起來玩吧！" />
+  <!-- 字體 -->
+  <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&amp;display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
-
 
   <script src="https://kit.fontawesome.com/5223ebc999.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -26,116 +28,212 @@
 <link rel="stylesheet" href="playpage.css" />
 
 <body>
-  <div class="container">
-    <div class="flexbox playerarea">
 
-      <div class="userbox">
-        <!-- <div class="score">5</div> -->
-        <div id="user1" class="username" data-num="1"
-          style="background-image: url(svg/user.svg);background-size: cover;background-repeat: no-repeat;">阿婷
-        </div>
-        <div class="flexbox statusbox">
-          <div data-num="1" class="status ax1" style="
-                background-image: url(svg/status/status_ax.svg);
-                background-size: cover;
-              "></div>
-          <div data-num="1" class="status car1" style="
-                background-image: url(svg/status/status_car.svg);
-                background-size: cover;
-              "></div>
-          <div data-num="1" class="status lamp1" style="
-                background-image: url(svg/status/status_lamp.svg);
-                background-size: cover;
-              "></div>
-        </div>
-      </div>
-
-
-      <div class="userbox">
-        <div id="user2" class="username" data-num="2"
-          style="background-image: url(svg/user.svg);background-size: cover;background-repeat: no-repeat;">阿文
-        </div>
-        <div class="flexbox statusbox">
-          <div data-num="2" class="status ax2" style="
-                background-image: url(svg/status/status_ax.svg);
-                background-size: cover;
-              "></div>
-          <div data-num="2" class="status car2" style="
-                background-image: url(svg/status/status_car.svg);
-                background-size: cover;
-              "></div>
-          <div data-num="2" class="status lamp2" style="
-                background-image: url(svg/status/status_lamp.svg);
-                background-size: cover;
-              "></div>
-        </div>
-      </div>
-
-
-      <div class="userbox">
-        <div id="user3" class="username" data-num="3"
-          style="background-image: url(svg/user.svg);background-size: cover;background-repeat: no-repeat;">阿貞
-        </div>
-        <div class="flexbox statusbox">
-          <div data-num="3" class="status ax3" style="
-                background-image: url(svg/status/status_ax.svg);
-                background-size: cover;
-              "></div>
-          <div data-num="3" class="status car3" style="
-                background-image: url(svg/status/status_car.svg);
-                background-size: cover;
-              "></div>
-          <div data-num="3" class="status lamp3" style="
-                background-image: url(svg/status/status_lamp.svg);
-                background-size: cover;
-              "></div>
-        </div>
-      </div>
-
-      <div class="userbox">
-        <div id="user4" class="username" data-num="4"
-          style="background-image: url(svg/user.svg);background-size: cover;background-repeat: no-repeat;">阿貞
-        </div>
-        <div class="flexbox statusbox">
-          <div data-num="4" class="status ax4" style="
-                background-image: url(svg/status/status_ax.svg);
-                background-size: cover;
-              "></div>
-          <div data-num="4" class="status car4" style="
-                background-image: url(svg/status/status_car.svg);
-                background-size: cover;
-              "></div>
-          <div data-num="4" class="status lamp4" style="
-                background-image: url(svg/status/status_lamp.svg);
-                background-size: cover;
-              "></div>
-        </div>
-      </div>
-      <div class="userbox">
-        <div id="user5" class="username" data-num="5"
-          style="background-image: url(svg/user.svg);background-size: cover;background-repeat: no-repeat;">阿貞
-        </div>
-        <div class="flexbox statusbox">
-          <div data-num="5" class="status ax5" style="
-                background-image: url(svg/status/status_ax.svg);
-                background-size: cover;
-              "></div>
-          <div data-num="5" class="status car5" style="
-                background-image: url(svg/status/status_car.svg);
-                background-size: cover;
-              "></div>
-          <div data-num="5" class="status lamp5" style="
-                background-image: url(svg/status/status_lamp.svg);
-                background-size: cover;
-              "></div>
-        </div>
-      </div>
-
-
-
-
-
+<!-- user顯示在最上方 -->
+<div class="flexbox playerarea">
+  <div class="userbox">
+    <div id="user1" class="username" data-num="1"
+      >阿婷
     </div>
+    <div class="flexbox statusbox">
+      <div data-num="1" class="status ax1" style="
+            background-image: url(svg/status/status_ax.svg);
+            background-size: cover;
+          "></div>
+      <div data-num="1" class="status car1" style="
+            background-image: url(svg/status/status_car.svg);
+            background-size: cover;
+          "></div>
+      <div data-num="1" class="status lamp1" style="
+            background-image: url(svg/status/status_lamp.svg);
+            background-size: cover;
+          "></div>
+    </div>
+  </div>
+
+  <div class="userbox">
+    <div id="user2" class="username" data-num="2"
+      style="background-image: url(svg/user.svg);background-size: cover;background-repeat: no-repeat;">阿文
+    </div>
+    <div class="flexbox statusbox">
+      <div data-num="2" class="status ax2" style="
+            background-image: url(svg/status/status_ax.svg);
+            background-size: cover;
+          "></div>
+      <div data-num="2" class="status car2" style="
+            background-image: url(svg/status/status_car.svg);
+            background-size: cover;
+          "></div>
+      <div data-num="2" class="status lamp2" style="
+            background-image: url(svg/status/status_lamp.svg);
+            background-size: cover;
+          "></div>
+    </div>
+  </div>
+
+  <div class="userbox">
+    <div id="user3" class="username" data-num="3"
+      style="background-image: url(svg/user.svg);background-size: cover;background-repeat: no-repeat;">阿貞
+    </div>
+    <div class="flexbox statusbox">
+      <div data-num="3" class="status ax3" style="
+            background-image: url(svg/status/status_ax.svg);
+            background-size: cover;
+          "></div>
+      <div data-num="3" class="status car3" style="
+            background-image: url(svg/status/status_car.svg);
+            background-size: cover;
+          "></div>
+      <div data-num="3" class="status lamp3" style="
+            background-image: url(svg/status/status_lamp.svg);
+            background-size: cover;
+          "></div>
+    </div>
+  </div>
+
+  <div class="userbox">
+    <div id="user4" class="username" data-num="4"
+      style="background-image: url(svg/user.svg);background-size: cover;background-repeat: no-repeat;">阿悅
+    </div>
+    <div class="flexbox statusbox">
+      <div data-num="4" class="status ax4" style="
+            background-image: url(svg/status/status_ax.svg);
+            background-size: cover;
+          "></div>
+      <div data-num="4" class="status car4" style="
+            background-image: url(svg/status/status_car.svg);
+            background-size: cover;
+          "></div>
+      <div data-num="4" class="status lamp4" style="
+            background-image: url(svg/status/status_lamp.svg);
+            background-size: cover;
+          "></div>
+    </div>
+  </div>
+  <div class="userbox">
+    <div id="user5" class="username" data-num="5"
+      style="background-image: url(svg/user.svg);background-size: cover;background-repeat: no-repeat;">阿朱
+    </div>
+    <div class="flexbox statusbox">
+      <div data-num="5" class="status ax5" style="
+            background-image: url(svg/status/status_ax.svg);
+            background-size: cover;
+          "></div>
+      <div data-num="5" class="status car5" style="
+            background-image: url(svg/status/status_car.svg);
+            background-size: cover;
+          "></div>
+      <div data-num="5" class="status lamp5" style="
+            background-image: url(svg/status/status_lamp.svg);
+            background-size: cover;
+          "></div>
+    </div>
+  </div>
+
+  <div class="userbox">
+    <div id="user6" class="username" data-num="6"
+      style="background-image: url(svg/user.svg);background-size: cover;background-repeat: no-repeat;">方魚
+    </div>
+    <div class="flexbox statusbox">
+      <div data-num="6" class="status ax6" style="
+            background-image: url(svg/status/status_ax.svg);
+            background-size: cover;
+          "></div>
+      <div data-num="6" class="status car6" style="
+            background-image: url(svg/status/status_car.svg);
+            background-size: cover;
+          "></div>
+      <div data-num="6" class="status lamp6" style="
+            background-image: url(svg/status/status_lamp.svg);
+            background-size: cover;
+          "></div>
+    </div>
+  </div>
+  <div class="userbox">
+    <div id="user7" class="username" data-num="7"
+      style="background-image: url(svg/user.svg);background-size: cover;background-repeat: no-repeat;">可昕
+    </div>
+    <div class="flexbox statusbox">
+      <div data-num="7" class="status ax7" style="
+            background-image: url(svg/status/status_ax.svg);
+            background-size: cover;
+          "></div>
+      <div data-num="7" class="status car7" style="
+            background-image: url(svg/status/status_car.svg);
+            background-size: cover;
+          "></div>
+      <div data-num="7" class="status lamp7" style="
+            background-image: url(svg/status/status_lamp.svg);
+            background-size: cover;
+          "></div>
+    </div>
+  </div>
+
+  <div class="userbox">
+    <div id="user8" class="username" data-num="8"
+      style="background-image: url(svg/user.svg);background-size: cover;background-repeat: no-repeat;">屁貴
+    </div>
+    <div class="flexbox statusbox">
+      <div data-num="8" class="status ax8" style="
+            background-image: url(svg/status/status_ax.svg);
+            background-size: cover;
+          "></div>
+      <div data-num="8" class="status car8" style="
+            background-image: url(svg/status/status_car.svg);
+            background-size: cover;
+          "></div>
+      <div data-num="8" class="status lamp8" style="
+            background-image: url(svg/status/status_lamp.svg);
+            background-size: cover;
+          "></div>
+    </div>
+  </div>
+
+  <div class="userbox">
+    <div id="user9" class="username" data-num="9"
+      style="background-image: url(svg/user.svg);background-size: cover;background-repeat: no-repeat;">瑪特
+    </div>
+    <div class="flexbox statusbox">
+      <div data-num="9" class="status ax9" style="
+            background-image: url(svg/status/status_ax.svg);
+            background-size: cover;
+          "></div>
+      <div data-num="9" class="status car9" style="
+            background-image: url(svg/status/status_car.svg);
+            background-size: cover;
+          "></div>
+      <div data-num="9" class="status lamp9" style="
+            background-image: url(svg/status/status_lamp.svg);
+            background-size: cover;
+          "></div>
+    </div>
+  </div>
+
+  <div class="userbox">
+    <div id="user10" class="username" data-num="10"
+      style="background-image: url(svg/user.svg);background-size: cover;background-repeat: no-repeat;">阿圈
+    </div>
+    <div class="flexbox statusbox">
+      <div data-num="10" class="status ax10" style="
+            background-image: url(svg/status/status_ax.svg);
+            background-size: cover;
+          "></div>
+      <div data-num="10" class="status car10" style="
+            background-image: url(svg/status/status_car.svg);
+            background-size: cover;
+          "></div>
+      <div data-num="10" class="status lamp10" style="
+            background-image: url(svg/status/status_lamp.svg);
+            background-size: cover;
+          "></div>
+    </div>
+  </div>
+
+
+
+</div>
+
+<div class="container">
     <!-- 棋盤格子區 -->
     <div class="flexbox showarea">
       <div class="line line1">
@@ -210,71 +308,65 @@
           <img data-num="3" src="svg/cards_blank.svg" alt="" class="end" id="end3" />
         </div>
       </div>
-    </div>
+      <!-- 提示區 -->
+      <div class="flexbox topcue">
+        <div class="p">請放置卡牌開闢新的路，或使用功能卡，或</div>
+        <span class="trash"><i class="fas fa-trash fa-lg">棄牌並跳過</i></span>
+      </div>
 
-    <!-- 提示區 -->
-    <div class="topcue">
-      <div class="p">請放置卡牌開闢新的路，或使用功能卡，或</div>
-      <span class="trash"><i class="fas fa-trash fa-lg">棄牌並跳過</i></span>
     </div>
-
-    <!-- 倒數計時器區域 -->
-    <!-- <div class="round-time-bar" data-style="smooth" style="--duration: 60">
-      <div></div>
-    </div>
-    <div>時間剩下<span id="time">01:00</span>秒！你快出牌喔＾＾</div> -->
 
 
     <!-- 手牌區 -->
     <div class="flexbox handcardarea">
-      <div class="handcardbox1" data-num="1">
+      <div class="handcardbox handcardbox1" data-num="1">
         <img id="handCard1" class="card cardnum1" data-num="1" src="svg/cards_blank.svg" />
         <i data-num="1" class="fas fa-undo-alt cycle-1"></i>
       </div>
 
-      <div class="handcardbox2" data-num="2">
+      <div class="handcardbox handcardbox2" data-num="2">
         <img id="handCard2" class="card cardnum2" data-num="2" src="svg/cards_blank.svg" />
         <i data-num="2" class="fas fa-undo-alt cycle-2"></i>
       </div>
 
-      <div class="handcardbox3" data-num="3">
+      <div class="handcardbox handcardbox3" data-num="3">
         <img id="handCard3" class="card cardnum3" data-num="3" src="svg/cards_blank.svg" />
         <i data-num="3" class="fas fa-undo-alt cycle-3"></i>
       </div>
 
-      <div class="handcardbox4" data-num="4">
+      <div class="handcardbox handcardbox4" data-num="4">
         <img id="handCard4" class="card cardnum4" data-num="4" src="svg/cards_blank.svg" />
         <i data-num="4" class="fas fa-undo-alt cycle-4"></i>
       </div>
 
-      <div class="handcardbox5" data-num="5">
+      <div class="handcardbox handcardbox5" data-num="5">
         <img id="handCard5" class="card cardnum5" data-num="5" src="svg/cards_blank.svg" />
         <i data-num="5" class="fas fa-undo-alt cycle-5"></i>
       </div>
 
-      <div class="handcardbox6" data-num="6">
+      <div class="handcardbox handcardbox6" data-num="6">
         <img id="handCard6" class="card cardnum6" data-num="6" src="svg/cards_blank.svg" />
         <i data-num="6" class="fas fa-undo-alt cycle-6"></i>
       </div>
     </div>
+
     <!-- 聊天區 -->
-    <hr style="border: 1px solid #27507A;">
-    <ul id="messageBody" class="scrollbox">
-    </ul>
-
-    <div class="chaticon"><i class="far fa-comment"></i></div>
-
-    <div class="chatinputbox">
-      <div class="chatUser" value="阿婷"></div>
-      <input id="inputChat" class="inputChat" type="text" placeholder="來聊天ㄅ">
-      <div id="chatbtn" class="chatbtn"></div>
-      <div class="chatclose"><i class="fas fa-times"></i></div>
+  <hr style="border: 1px solid #27507A;">    
+    <div class="chatarea">
+      <ul id="messageBody" class="scrollbox">
+      </ul>
+      <div class="chatinputbox">
+        <div class="chatUser" value="阿婷"></div>
+        <input id="inputChat" class="inputChat" type="text" placeholder="來聊天ㄅ" autocomplete="off">
+        <div id="chatbtn" class="chatbtn"></div>
+        <div class="chatclose"><i class="fas fa-times"></i></div>
+      </div>
     </div>
-
+    <div class="chaticon"><i class="far fa-comment"></i></div>
 
 
   </div>
-  <!-- //這是container的div勿刪*/// -->
+  <!-- //這是container的div勿刪*///再以下就是container外 -->
 
   <!-- Button trigger modal -->
   <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -313,7 +405,7 @@
 <script src="https://cdn.socket.io/4.1.2/socket.io.min.js"
   integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous">
 </script>
-<!-- <script src="./script/socket.js"></script> -->
+<script src="./script/socket.js"></script>
 <script src="./script/listener/room.js"></script>
 <script src="script/card_map.js"></script>
 
@@ -395,11 +487,9 @@
       alert("不能把崩路卡放在這邊喔！");
       return;
     }
-    //如果圈選的手牌是“道路卡”，可以放在牌區，並且會印出出牌的卡，並在補上手牌
+    //如果圈選的手牌是“道路卡”，且可以放在牌區，並且會印出出牌的卡，並在補上手牌
     if (event.target.id.search("block") == 0) {
-      printNewCard();
-      giveNewCard();
-      $(".topcue").text("你剛剛放了一張道路卡～")
+      CheckPosition(event.target.id);
       return;
     }
   }
@@ -421,7 +511,6 @@
     const boxnum = $(".redborder").attr("data-num")
     const index = boxnum - 1
     handCards.splice(index, 1, pools.pop());
-    // $(`#handCard${boxnum}`).attr("src", `svg/cards/card${handCards[index]}.svg`)
     $(".redborder").removeClass("redborder");
     giveDirection(index, handCards[index]);
 
@@ -431,15 +520,8 @@
     for (let index = 0; index < 6; index++) {
       const cardNumber = handCards[index];
       giveDirection(index, cardNumber);
-
     }
 
-    // $("#handCard1").attr("src", `svg/cards/card${handCards[0]}.svg`);
-    // $("#handCard2").attr("src", `svg/cards/card${handCards[1]}.svg`);
-    // $("#handCard3").attr("src", `svg/cards/card${handCards[2]}.svg`);
-    // $("#handCard4").attr("src", `svg/cards/card${handCards[3]}.svg`);
-    // $("#handCard5").attr("src", `svg/cards/card${handCards[4]}.svg`);
-    // $("#handCard6").attr("src", `svg/cards/card${handCards[5]}.svg`);
     sendEvent('join', {
       roomId: CURRENT_ROOM_ID,
       nickname: getNickName()
@@ -452,7 +534,7 @@
     handCardElement.attr("src", `svg/cards/card${cardNumber}.svg`);
     if (typeof ROAD_DIRECTION_MAP[cardNumber] !== 'undefined') {
       const roadDirection = ROAD_DIRECTION_MAP[cardNumber];
-      ['top', 'left', 'right', 'bottom'].forEach((direction) => {
+      ['top', 'left', 'right', 'bottom', 'style'].forEach((direction) => {
         handCardElement.attr(direction, roadDirection[direction]);
       })
     }
@@ -462,18 +544,18 @@
     if (!hasRedBorder()) {
       return;
     }
+    //崩路卡
     if (event.target.id.search(/block|end|trash/) == -1 && $('.redborder').attr("src").search(/65|66|67/) == 14) {
       const boxnum = $(".redborder").attr("data-num")
       const svg = $(".handcardbox" + boxnum + " img").attr('src');
       const style = $(".handcardbox" + boxnum + " img").css('transform');
       $(`#${event.target.getAttribute("data-num")}`).html(``);
       $(`#${event.target.getAttribute("data-num")}`).css("background-color", "#D37E80");
-      Cardput();
+      giveNewCard();
       return;
     }
     if (hasRedBorder()) {
-      CheckPosition(e.target.id);
-      
+      Cardput();
       return;
     }
   })
@@ -483,7 +565,7 @@
 
   function rotatecard(object) {
     degrees += 180;
-    console.log(degrees)
+
     object.css({
       'transform': 'rotate(' + degrees + 'deg)',
       '-ms-transform': 'rotate(' + degrees + 'deg)',
@@ -491,11 +573,22 @@
       '-webkit-transform': 'rotate(' + degrees + 'deg)',
       '-o-transform': 'rotate(' + degrees + 'deg)'
     });
+
+    const topValue = object.attr("top");
+    const RightValue = object.attr("right");
+    const LeftValue = object.attr("left");
+    const BottomValue = object.attr("bottom");
+
+    object.attr("bottom", topValue);
+    object.attr("left", RightValue);
+    object.attr("right", LeftValue);
+    object.attr("top", BottomValue);
   }
   var degrees = 0;
   $(".fa-undo-alt").on("click", function (e) {
     const number = $(this).attr("data-num")
     rotatecard($(".cardnum" + number));
+    return;
   });
 
 
@@ -648,37 +741,6 @@
       return;
     }
 
-    // const usernum = $(`#${e.target.id}`).attr("data-num");
-    // if (hasBanTool && $(`.${toolName}${usernum}`).attr("class").search("statusBan1") == -1) {
-    //   $(`.${toolName}${usernum}`).addClass("statusBan1");
-    //   $(".topcue").text(`${$(e.target).text()}的${toolChineseName}被你破壞了！`);
-    //   giveNewCard();
-    //   return;
-    // }
-    // if (hasBanTool && $(`.${toolName}${usernum}`).attr("class").search("statusBan4") !== -1) {
-    //   $(`.${toolName}${usernum}`).addClass("statusBan5");
-    //   $(".topcue").text(`${$(e.target).text()}的${toolChineseName}被破壞5個了！`);
-    //   giveNewCard();
-    //   return;
-    // }
-    // if (hasBanTool && $(`.${toolName}${usernum}`).attr("class").search("statusBan3") !== -1) {
-    //   $(`.${toolName}${usernum}`).addClass("statusBan4");
-    //   $(".topcue").text(`${$(e.target).text()}的${toolChineseName}被破壞4個了！`);
-    //   giveNewCard();
-    //   return;
-    // }
-    // if (hasBanTool && $(`.${toolName}${usernum}`).attr("class").search("statusBan2") !== -1) {
-    //   $(`.${toolName}${usernum}`).addClass("statusBan3");
-    //   $(".topcue").text(`${$(e.target).text()}的${toolChineseName}被破壞3個了！`);
-    //   giveNewCard();
-    //   return;
-    // }
-    // if (hasBanTool && $(`.${toolName}${usernum}`).attr("class").search("statusBan") !== -1) {
-    //   $(`.${toolName}${usernum}`).addClass("statusBan2");
-    //   $(".topcue").text(`${$(e.target).text()}的${toolChineseName}被破壞2個了！`);
-    //   giveNewCard();
-    //   return;
-    // }
     const usernum = $(`#${e.target.id}`).attr("data-num");
 
     if (hasBanTool) {
@@ -703,6 +765,9 @@
 
     if (hasSaveTool) {
       saveTools.forEach((saveToolName) => {
+        if ($(`.${saveToolName}${usernum}`).attr("class").search(/statusBan\d/g) == -1) {
+          return;
+        }
         if ($(`.${saveToolName}${usernum}`).attr("class").search(/statusBan\d/g) !== -1) {
           const usernum = $(`#${e.target.id}`).attr("data-num");
           let banNum = $(`.${saveToolName}${usernum}`).attr('class').match(/statusBan\d/g)[0].match(/\d/g)[0];
@@ -710,41 +775,36 @@
           banNum = parseInt(banNum) - 1
           $(`.${saveToolName}${usernum}`).addClass(`statusBan${banNum}`);
           $(".topcue").text(`${$(e.target).text()}的${savetoolChineseName}被你修理好了～`);
+          giveNewCard();
+          return;
         }
       });
-
-      giveNewCard();
-      return;
     }
   });
 
-  const scrollbox = document.querySelector('.scrollbox');
-  var messageBody = document.querySelector('#messageBody');
-  messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
 
   // 聊天室新增 聊天內容
+  const scrollbox = document.querySelector('.scrollbox');
   const inputChat = document.querySelector(".inputChat");
   const chatbtn = document.querySelector(".chatbtn");
-  messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
 
   $(".chatbtn").click(function (e) {
     const chatUser = getNickName();
-
     const inputChatcontent = $('.inputChat').val();
     if (inputChatcontent.trim() === '') {
       return;
     }
-
     sendEvent('sendMessage', {
       roomId: CURRENT_ROOM_ID,
       nickname: chatUser,
       content: inputChatcontent,
     });
-
+    var messageBody = document.querySelector('#messageBody');
+    messageBody.scrollTop = (messageBody.scrollHeight - messageBody.clientHeight);
     $('.inputChat').val('');
 
-    messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
   })
+
 
   function renderChatRecord(chatRecord) {
     const chatUser = chatRecord.nickname;
@@ -762,11 +822,12 @@
     }
   });
 
+
   $(".chatclose").click(function () {
-    $(".chatinputbox").hide();
+    $(".chatarea").hide();
   })
   $(".chaticon").click(function () {
-    $(".chatinputbox").show();
+    $(".chatarea").show();
   })
 
 

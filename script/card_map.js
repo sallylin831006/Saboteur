@@ -142,62 +142,61 @@ function CheckPosition(blockid) {
   const column = blockidArray[1];
   // console.log("hi",row,column);
   const targetBlock = blockid;
+  // console.log("targetBlock",targetBlock)
   const topBlockId = `block${row - 1}-${column}`;
   const rightBlockId = `block${row}-${column - -1}`;
   const leftBlockId = `block${row}-${column - 1}`;
   const bottomBlockId = `block${row - -1}-${column}`;
 
-  const target_Top = $(`.${targetBlock} img`).attr("top");
-  const target_Right = $(`.${targetBlock} img`).attr("Right");
-  const target_Left = $(`.${targetBlock} img`).attr("Left");
-  const target_Bottom = $(`.${targetBlock} img`).attr("Bottom");
+  const target_Top = $(".redborder").attr("top");
+  const target_Right = $(".redborder").attr("right");
+  const target_Left = $(".redborder").attr("left");
+  const target_Bottom = $(".redborder").attr("bottom");
+  console.log(target_Top, target_Right, target_Left, target_Bottom);
 
   const Topblock_bottom = $(`.${topBlockId} img`).attr("bottom");
   const Rightblock_left = $(`.${rightBlockId} img`).attr("left");
   const Leftblock_right = $(`.${leftBlockId} img`).attr("right");
   const Bottomblock_top = $(`.${bottomBlockId} img`).attr("top");
+  // console.log("四處位置",Topblock_bottom,Rightblock_left,Leftblock_right,Bottomblock_top)
 
-  if (target_Top == false && Topblock_bottom == true) {
-    $(".topcue").text("白癡喔不要亂放");
-    alert("放置錯誤");
+  // const deg = $(".redborder").attr("style").match(/\d+/gi);
+  // console.log("deg=", deg);
+  // console.log("fefwefewfewfewfewfew", $(".redborder").attr("style"));
+  // if (($(".redborder").attr("style").match(/\d+/gi) / 180) % 2 == 1) {
+  //   const topValue = object.attr("top");
+  //   const RightValue = object.attr("right");
+  //   const LeftValue = object.attr("left");
+  //   const BottomValue = object.attr("bottom");
+
+  //   object.attr("bottom", topValue);
+  //   object.attr("left", RightValue);
+  //   object.attr("right", LeftValue);
+  //   object.attr("top", BottomValue);
+  //   console.log("安安看有沒有變");
+  // }
+
+
+  if (
+    (target_Top == "true" && Topblock_bottom == "false") ||
+    (target_Top == "false" && Topblock_bottom == "true") ||
+    (target_Right == "true" && Rightblock_left == "false") ||
+    (target_Right == "false" && Rightblock_left == "true") ||
+    (target_Left == "true" && Leftblock_right == "false") ||
+    (target_Left == "false" && Leftblock_right == "true") ||
+    (Bottomblock_top == "true" && Bottomblock_top == "false") ||
+    (Bottomblock_top == "false" && Bottomblock_top == "true") ||
+    (Topblock_bottom == undefined &&
+      Rightblock_left == undefined &&
+      Leftblock_right == undefined &&
+      Bottomblock_top == undefined)
+  ) {
+    alert("白癡喔不能這樣放辣");
     return;
   }
-  Cardput();
-
-  console.log(
-    "$(`.${targetBlock} img`).attr('top')=",
-    $(`.${targetBlock} img`).attr("top")
-  );
-  console.log(
-    "$(`.${targetBlock} img`).attr('right')=",
-    $(`.${targetBlock} img`).attr("right")
-  );
-  console.log(
-    "$(`.${targetBlock} img`).attr('left')=",
-    $(`.${targetBlock} img`).attr("left")
-  );
-  console.log(
-    "$(`.${targetBlock} img`).attr('bottom')=",
-    $(`.${targetBlock} img`).attr("bottom")
-  );
-
-  console.log(
-    " $(`.${topBlockId} img`).attr('bottom')=",
-    $(`.${topBlockId} img`).attr("bottom")
-  );
-  console.log(
-    "$(`.${rightBlockId} img`).attr('left')=",
-    $(`.${rightBlockId} img`).attr("left")
-  );
-  console.log(
-    "$(`.${leftBlockId} img`).attr('right')=",
-    $(`.${leftBlockId} img`).attr("right")
-  );
-  console.log(
-    "$(`.${bottomBlockId} img`).attr('top')=",
-    $(`.${bottomBlockId} img`).attr("top")
-  );
-  console.log("test=", target_Top, Topblock_bottom);
+  $(".topcue").text("你剛剛放了一張道路卡～");
+  printNewCard();
+  giveNewCard();
 
   //target_Top上方判斷 可以的
   //if target_Top == false (bigT horizontal downRight 其他坑洞卡
@@ -207,12 +206,11 @@ function CheckPosition(blockid) {
   //target_right == true && Rightblock_left == true
 
   //target_Top上方判斷 不行的
-  //if target_Top == false (bigT horizontal downRight 其他坑洞卡
-  //&& Topblock_bottom == true -> return
-  //&& Leftblock_right == false || Rightblock_left == false -> return
+  //if target_Top == false && Topblock_bottom == true -> return
+  //
+  //if target_Top == false && target_Right == false Leftblock_right == false || Rightblock_left == false -> return
   //
   //
-
   //Topblock_bottom  == true
 
   //target_Top == true

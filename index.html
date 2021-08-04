@@ -3,7 +3,7 @@
 
 <head>
     <meta name="viewport"
-        content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=0.25 user-scalable=0" />
+        content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1 user-scalable=0" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>矮人礦坑</title>
@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&amp;display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/5223ebc999.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
@@ -31,15 +31,17 @@
             <div>玩家人數上限：</div>
             <div class="count">
                 <div class="minus">-</div>
+                <!-- <input type="text" class="num" id="max-players-number" placeholder="3"> -->
                 <div id="max-players-number" class="num">3</div>
                 <div class="add">+</div>
             </div>
         </div>
         <div class="text"></div>
 
-        <input id="nickname" placeholder="請輸入玩家暱稱..." />
+        <input id="nickname" placeholder="請輸入名字" autocomplete="off"/>
 
-        <input type="button" class="start" value="開新房間">
+        <!-- <input type="button" class="start" value="開新房間"> -->
+        <div class="start">開新房間</div>
 
     </div>
 
@@ -69,7 +71,9 @@
                             </div>
                             <textarea class="content" type="text" placeholder="請輸入留言..."></textarea>
                             <div class="txt"></div>
-                            <input type="button" class="savebtn" value="送出">
+                            <div class="savebtn">送出</div>
+                            <!-- <input type="button" class="savebtn" value="送出"> -->
+
                         </div>
                     </div>
 

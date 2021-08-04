@@ -13,7 +13,8 @@ $color_brown: #483B3B
     user-select: none
     text-align: center
     margin: 0 auto
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: "Kosugi Maru",'Noto Sans TC',sans-serif
+    // font-family: 'Noto Sans TC', sans-serif;
     // font-family: "HanaMinA",花園明朝體,"jf-openhuninn","PingFang TC", 黑體-繁, "Heiti TC", 蘋果儷中黑, "Apple LiGothic Medium", 微軟正黑體, "Microsoft JhengHei", Roboto, sans-serif
 
 html,body
@@ -54,8 +55,8 @@ html,body
             user-select: none
             display: flex
             width: 120px
-            padding: 8px
-            border-radius: 25px
+            padding: 10px
+            border-radius: 50px
             background-color: $color_brown
             transition: 0.5s
             position: relative
@@ -63,6 +64,7 @@ html,body
             font-size: 20px
             .num
                 color: $color_white
+                padding: 0px 3px 0px 3px
             .minus,.add
                 cursor: pointer
                 width: 30px
@@ -71,34 +73,44 @@ html,body
                 background-color: $color_white
                 color: $color_brown
                 text-align: center
-                line-height: 25px
+                line-height: 28px
                 font-weight: 700
     .text
         font-size: 15px
 
     #nickname
-        margin: 10px 0px 10px 0px
-        border-radius: 5px
-        border: 1px solid $color_brown
-        background-color: #fffdf3
+        margin: 15px 0px 15px 0px
+        // border-radius: 5px
+        // border: 1px solid $color_brown
+        width: 40%
+        border: none
+        border-bottom: 2px solid $color_brown !important
+        background-color: transparent
         padding: 5px
         color: $color_green
-        &:hover
-            box-shadow: 2px 2px 5px $color_brown
+        &:focus
+            outline: 0
+            -webkit-box-shadow: none !important
+            -moz-box-shadow: none !important
+            box-shadow: none !important
 
     .start
-        margin: 10px 0px 5px 0px
-        background-color: $color_deep_blue
+        cursor: pointer
+        margin: 5px 0px 10px 0px
+        background-color: #2974AA
         color: $color_white
-        padding: 8px
-        border-radius: 5px
+        padding: 10px 50px 10px 50px
+        border-radius: 50px
+        font-size: 18px
+        letter-spacing: 3px
+        &:hover
+            background-color: $color_light_blue
 
 .footer
     max-width: 400px
     margin: 0 auto
     display: flex
     justify-content: center
-
 
 // 遊戲規則
 .rulepupup, .openbtn ,.rank
@@ -111,7 +123,6 @@ html,body
     padding: 3px !important
     box-shadow: none !important
     margin: 0px 10px 0px 10px !important
-
 
 .modal-content
     background-color: $color_white !important
@@ -167,12 +178,18 @@ html,body
 .flexbox
     display: flex
     .category
+        cursor: pointer
         width: 110px
         background-color: $color_white
         border-radius: 5px
         border: 1px solid $color_brown
         padding: 5px
         margin: 10px
+        &:focus
+            outline: 0 !important
+            -webkit-box-shadow: none !important
+            -moz-box-shadow: none !important
+            box-shadow: none !important
     .nickName
         margin: 10px
         border-radius: 5px
@@ -181,8 +198,11 @@ html,body
         padding: 5px
         color: $color_green
         width: 200px
-        &:hover
-            box-shadow: 0px 2px 3px $color_brown
+        &:focus
+            outline: 0 !important
+            -webkit-box-shadow: none !important
+            -moz-box-shadow: none !important
+            box-shadow: none !important
 textarea.content
     color: $color_brown
     width: 95%
@@ -191,15 +211,23 @@ textarea.content
     border: 1px solid $color_brown
     background-color: #fffdf3
     padding: 5px
-    &:hover
-        box-shadow: 0px 2px 3px $color_brown
+    &:focus
+        outline: 0 !important
+        -webkit-box-shadow: none !important
+        -moz-box-shadow: none !important
+        box-shadow: none !important
 
 .savebtn
+    cursor: pointer
     margin: 5px 0px 10px 0px
-    background-color: $color_deep_blue
+    background-color: #2974AA
     color: $color_white
-    padding: 8px
-    border-radius: 5px
+    padding: 10px 50px 10px 50px
+    border-radius: 50px
+    font-size: 18px
+    letter-spacing: 3px
+    &:hover
+        background-color: $color_light_blue
 
 .filter
     margin: 10px 0px 10px 0px

@@ -2,7 +2,7 @@
   user-select: none;
   text-align: center;
   margin: 0 auto;
-  font-family: 'Noto Sans TC', sans-serif;
+  font-family: "Kosugi Maru",'Noto Sans TC',sans-serif;
 }
 
 html, body {
@@ -44,8 +44,8 @@ html, body {
   user-select: none;
   display: flex;
   width: 120px;
-  padding: 8px;
-  border-radius: 25px;
+  padding: 10px;
+  border-radius: 50px;
   background-color: #483B3B;
   transition: 0.5s;
   position: relative;
@@ -55,6 +55,7 @@ html, body {
 
 .container .flexbox .count .num {
   color: #FFFCEF;
+  padding: 0px 3px 0px 3px;
 }
 
 .container .flexbox .count .minus, .container .flexbox .count .add {
@@ -65,7 +66,7 @@ html, body {
   background-color: #FFFCEF;
   color: #483B3B;
   text-align: center;
-  line-height: 25px;
+  line-height: 28px;
   font-weight: 700;
 }
 
@@ -74,24 +75,35 @@ html, body {
 }
 
 .container #nickname {
-  margin: 10px 0px 10px 0px;
-  border-radius: 5px;
-  border: 1px solid #483B3B;
-  background-color: #fffdf3;
+  margin: 15px 0px 15px 0px;
+  width: 40%;
+  border: none;
+  border-bottom: 2px solid #483B3B !important;
+  background-color: transparent;
   padding: 5px;
   color: #8CC554;
 }
 
-.container #nickname:hover {
-  box-shadow: 2px 2px 5px #483B3B;
+.container #nickname:focus {
+  outline: 0;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 .container .start {
-  margin: 10px 0px 5px 0px;
-  background-color: #1A517B;
+  cursor: pointer;
+  margin: 5px 0px 10px 0px;
+  background-color: #2974AA;
   color: #FFFCEF;
-  padding: 8px;
-  border-radius: 5px;
+  padding: 10px 50px 10px 50px;
+  border-radius: 50px;
+  font-size: 18px;
+  letter-spacing: 3px;
+}
+
+.container .start:hover {
+  background-color: #3F9CCD;
 }
 
 .footer {
@@ -186,12 +198,20 @@ html, body {
 }
 
 .flexbox .category {
+  cursor: pointer;
   width: 110px;
   background-color: #FFFCEF;
   border-radius: 5px;
   border: 1px solid #483B3B;
   padding: 5px;
   margin: 10px;
+}
+
+.flexbox .category:focus {
+  outline: 0 !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 .flexbox .nickName {
@@ -204,8 +224,11 @@ html, body {
   width: 200px;
 }
 
-.flexbox .nickName:hover {
-  box-shadow: 0px 2px 3px #483B3B;
+.flexbox .nickName:focus {
+  outline: 0 !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 textarea.content {
@@ -218,16 +241,26 @@ textarea.content {
   padding: 5px;
 }
 
-textarea.content:hover {
-  box-shadow: 0px 2px 3px #483B3B;
+textarea.content:focus {
+  outline: 0 !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 .savebtn {
+  cursor: pointer;
   margin: 5px 0px 10px 0px;
-  background-color: #1A517B;
+  background-color: #2974AA;
   color: #FFFCEF;
-  padding: 8px;
-  border-radius: 5px;
+  padding: 10px 50px 10px 50px;
+  border-radius: 50px;
+  font-size: 18px;
+  letter-spacing: 3px;
+}
+
+.savebtn:hover {
+  background-color: #3F9CCD;
 }
 
 .filter {

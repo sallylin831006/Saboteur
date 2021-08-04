@@ -27,5 +27,5 @@ function getApiUrl() {
 }
 
 function getSocketUrl() {
-    return getDomain + 'ws';
+    return '/';
 }

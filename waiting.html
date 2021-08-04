@@ -2,17 +2,16 @@
 
 <head>
     <meta name="viewport"
-        content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=0.25 user-scalable=0" />
+        content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0 user-scalable=0" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>加入矮人礦坑遊戲</title>
     <link rel="shortcut icon" href="svg/icon.svg" type="image/x-icon" />
     <meta name="Saboteur" content="矮人礦坑">
     <meta property="og:title" content="矮人礦坑" />
     <meta property="og:image" content="svg/icon.svg" />
     <meta property="og:description" content="矮人礦坑！" />
-
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&amp;display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/5223ebc999.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
@@ -23,8 +22,6 @@
 <link rel="stylesheet" href="waiting.css">
 
 <body>
-    <i class="fas fa-home" id="homeicon">回首頁</i>
-
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary btn-share" data-bs-toggle="modal" data-bs-target="#exampleModal">
         <span></span><i class="fas fa-share-alt" id="sharelink"></i>
@@ -47,13 +44,31 @@
 
 
     <div class="container">
+        <p class="topinfo">等待其他玩家加入</p>
 
-        <h4>等待中• • •等待其他玩家加入</h4>
+        <img src="svg/watinghi.svg" class="hi">
+        <hr style="color: #FFFCEF; margin: 0px;">
+        <svg class="dot" version="1.1" id="L5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+            y="0px" viewBox="0 30 60 40" enable-background="new 0 0 0 0" xml:space="preserve">
+            <circle fill="#C54C4D" stroke="none" cx="6" cy="50" r="6">
+                <animateTransform attributeName="transform" dur="1s" type="translate" values="0 15 ; 0 -15; 0 15"
+                    repeatCount="indefinite" begin="0.1"></animateTransform>
+            </circle>
+            <circle fill="#C54C4D" stroke="none" cx="30" cy="50" r="6">
+                <animateTransform attributeName="transform" dur="1s" type="translate" values="0 10 ; 0 -10; 0 10"
+                    repeatCount="indefinite" begin="0.2"></animateTransform>
+            </circle>
+            <circle fill="#C54C4D" stroke="none" cx="54" cy="50" r="6">
+                <animateTransform attributeName="transform" dur="1s" type="translate" values="0 5 ; 0 -5; 0 5"
+                    repeatCount="indefinite" begin="0.3"></animateTransform>
+            </circle>
+        </svg>
+        <hr style="color: #FFFCEF; margin: 5px;">
+
         <div class="playerarea">
         </div>
-        <hr>
+        <!-- <hr> -->
         <!-- <img class="iconrotate" src="svg/icon rotate.svg" alt=""> -->
-
 
     </div>
 
@@ -62,6 +77,7 @@
     <button type="button" id="show-role-btn" class="btn btn-primary" data-bs-toggle="modal">
         房主功能：直接開始遊戲
     </button>
+    <p class="info"><i class="fas fa-exclamation-circle"></i>點擊後所有人一起開始進入遊戲，確認所有成員都加入後再點擊此按鈕</p>
 
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -155,6 +171,7 @@
     const hideNotOwnerSetting = () => {
         $('#start-game').hide();
         $('#show-role-btn').hide();
+        $('.info').hide();
     }
 
     $(".btn-primary").click(function () {
@@ -164,6 +181,7 @@
     function copyUrl() {
         var url = document.getElementById("url").value;
         window.clipboardData.setData("Text", url);
+
     }
 
     const copybtn = document.querySelector(".copybtn")
@@ -171,10 +189,8 @@
         e.preventDefault();
         document.querySelector(".linkcue").textContent = "已成功複製連結！";
         $(".linkcue").css("color", "orange");
-    })
-
-    $('#homeicon').click(function () {
-        window.location.href = "./index.html";
+        //禁止開啟手機鍵盤
+        document.activeElement.blur();
     })
 
     $('#start-game').click(function () {

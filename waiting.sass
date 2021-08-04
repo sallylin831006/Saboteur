@@ -15,8 +15,9 @@ $color_brown: #483B3B
     text-align: center
     align-items: center
     justify-content: center
-    font-family: "HanaMinA",花園明朝體,"PingFang TC", 黑體-繁, "Heiti TC", 蘋果儷中黑, "Apple LiGothic Medium", 微軟正黑體, "Microsoft JhengHei", Roboto, sans-serif
+    font-family: "Kosugi Maru",'Noto Sans TC',sans-serif
 
+    // font-family: "HanaMinA",花園明朝體,"PingFang TC", 黑體-繁, "Heiti TC", 蘋果儷中黑, "Apple LiGothic Medium", 微軟正黑體, "Microsoft JhengHei", Roboto, sans-serif
 
 html,body
     background-color: $color_white !important
@@ -24,19 +25,9 @@ html,body
     height: 100%
     padding: 0px
     margin: 0px
-#homeicon
-    color: #2974AA
-    font-weight: 900
-    font-size: 20px
-    background-color: #F8EDDB
-    padding: 10px
-    border-radius: 8px 8px 0px 0px
-    margin: 15px
-    position: absolute
-    top: 0px
-    left: 0px
-    &:hover
-        border-bottom: 2px solid $color_brown
+p.info,i.fa-exclamation-circle
+    margin-top: 5px
+    color: $color_brown
 
 .btn-primary
     font-size: 13px !important
@@ -46,24 +37,30 @@ html,body
     border-radius: 5px !important
     border: none !important
     margin: 5px
+    &:hover
+        background-color: $color_deep_blue !important
+    
 .btn-share
     width: 40px
     height: 40px
     border-radius: 50% !important
     margin: 15px
+    position: fixed
+    top: 5px
+    right: 5px
 
     i.fa-share-alt
         font-size: 15px
-h4
+h4,.topinfo
     margin: 15px
     padding: 10px
     font-weight: 900
     color: #2974AA
     font-weight: 900
     font-size: 20px
-    background-color: #F8EDDB
     font-family: "HanaMinA",花園明朝體
-
+.topinfo
+    margin-top: 15px
 
 .fade
     background-color: rgba($color_white,0.8)
@@ -87,19 +84,30 @@ h4
             width: 80%
             padding: 5px
             border-radius: 5px
-            border: 0.5px solid rgba($color_brown,0.5)
-            &:hover
-                box-shadow: 1px 1.5px 3px rgba($color_brown,0.5)
+            border: 1px solid rgba($color_deep_blue,0.9)
+            color: orange
+            &:focus
+            outline: 0 !important
+            -webkit-box-shadow: none !important
+            -moz-box-shadow: none !important
+            box-shadow: none !important
+           
         .copybtn
-            margin: 10px 0px 10px 0px
-            background-color: $color_deep_blue
+            cursor: pointer
+            margin: 5px 0px 10px 0px
+            background-color: #2974AA 
             color: $color_white
-            padding: 8px
-            border-radius: 5px
+            padding: 8px 40px 8px 40px
+            border-radius: 50px
+            font-size: 15px
+            letter-spacing: 3px
+            border: none
+            &:hover
+                background-color: rgba(#2974AA,0.9)
 
 .container
+    // border: 1px solid
     background-color: $color_white
-    border: 1px solid
     // position: absolute
     // left: 50%
     // top: 50%
@@ -109,19 +117,49 @@ h4
     padding: 3px
 
     .playerarea
-        width: 90%
+        width: 99%
         display: flex
         flex-wrap: wrap
         .user
-            width: 100px
+            width: 110px
             height: 70px
             font-size: 16px
             text-align: center
-            line-height: 90px
+            line-height: 100px
             margin: 10px
             font-weight: 900
             color: $color_brown
             text-shadow: 1px 1px $color_white
+
+    img.hi
+        width: 15%
+        min-width: 70px
+        animation: ani1 3s infinite
+        animation-timing-function: steps(1000)
+        animation-delay: 1s
+        position: relative
+
+    svg.dot
+        width: 10%
+        min-width: 50px
+        margin: 0 auto
+    @keyframes ani1
+        0%
+            left: 100px
+            opacity: 0.5
+        25%
+            left: 50px
+            opacity: 0.7
+        50%
+            left: 0px
+            opacity: 1
+        75%
+            left: -50px
+            opacity: 1
+        100%
+            left: -100px
+            opacity: 0
+
     img.iconrotate
         width: 250px
 

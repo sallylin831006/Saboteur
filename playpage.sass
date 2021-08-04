@@ -2,9 +2,7 @@ $color_white: #FFFCEF
 $color_deep_blue: #1A517B
 $color_light_blue: #3F9CCD
 $color_yellow: #FBC439
-$color_very_white: #fff
 $color_black: #2D2D3A
-$color_green: #8CC554
 $color_blue: #58B8E1
 $color_red: #C54C4D
 $color_brown: #483B3B
@@ -14,9 +12,9 @@ $color_brown: #483B3B
     user-select: none
     font-size: 12px
     text-align: center
-    color: $color_black
-    font-family: 'Noto Sans TC', sans-serif;
-    // font-family: "HanaMinA","Hanazono Mincho",花園明朝體,"PingFang TC", 黑體-繁,"Noto Sans", 思源黑體, "Heiti TC", 蘋果儷中黑, "Apple LiGothic Medium", 微軟正黑體, "Microsoft JhengHei", Roboto, sans-serif
+    font-weight: 900
+    color: $color_deep_blue
+    font-family: "Kosugi Maru",'Noto Sans TC',sans-serif
 
 @mixin size ($w,$h)
     width: $w
@@ -28,10 +26,9 @@ html, body
     // -moz-text-size-adjust: none
     // -ms-text-size-adjust: none
     // text-size-adjust: none
-
     overflow-y: scroll
     touch-action: pan-y
-    -webkit-overflow-scrolling:touch
+    -webkit-overflow-scrolling: touch
     width: 100%
     height: 100%
     padding: 0px
@@ -41,7 +38,67 @@ html, body
     background-attachment: fixed
     background-position: center
     background-size: cover
-
+.flexbox
+    margin: 0 auto
+    display: flex
+    align-items: center
+    justify-content: center
+.playerarea
+    width: 95%
+    margin-bottom: 5px
+    padding-top: 5px
+    justify-content: space-around
+    flex-wrap: wrap
+    .userbox
+        padding: 3px 0px 3px 0px
+        .username
+            cursor: pointer
+            color: $color_black
+            font-weight: 900
+            line-height: 60px
+            +size(70px,46px)
+            text-shadow: 1px 1px $color_white
+            background-image: url(svg/user.svg)
+            background-repeat: no-repeat
+            background-position: center
+            background-size: cover
+            border: 1px solid transparent
+            &:hover
+                border: 1px solid #27507A
+                border-radius: 5px
+        .statusbox
+            padding: 1px
+            .status
+                +size(20px,20px)
+                margin: 0px
+                border-radius: 50%
+        .statusBan1 ,.statusstyle
+            +size(20px,20px)
+            border-radius: 50%
+            position: relative
+            &::before
+                content: "✗"
+                font-size: 20px
+                line-height: 17px
+                color: #E93F33
+                font-weight: bolder
+                text-shadow: 0.5px 0.5px 1px #fff
+            &::after
+                content: ""
+                color: #E93F33
+                font-size: 10px
+                font-weight: 900
+                line-height: 20px
+                font-weight: bolder
+                position: absolute
+                top: -15px
+                text-shadow: 0.3px 0.8px 0.5px #fff
+        .statusBan2
+            &::after
+                content: "2"
+        .statusBan3
+            &::after
+                content: "3"
 .container
     // border: 2px solid red
     // position: absolute
@@ -50,125 +107,28 @@ html, body
     // transform: translateX(-50%) translateY(-50%)
     max-width: 400px
     margin: 0 auto
-    // padding: 3px
     .topcue
-        margin: 0 auto
-        padding: 10px 0px 10px 0px
-        font-weight: 900
-        color: $color_deep_blue
-        text-shadow: 0.5px 0.5px 2px $color_white
+        margin-top: 5px
+        padding: 5px 0px 5px 0px
+        font-size: 9px
         background-color: rgba($color_white,0.3)
-        width: 90%
-        min-width: 360px
-        display: flex
-        justify-content: center
-        align-items: center
-    .p
-        color: $color_deep_blue
+        width: 99%
 
     .trash
         cursor: pointer
         background-color: #F29D33
         border-radius: 5px
         max-width: 110px
-        padding: 5px
+        padding: 3px
         margin: 2px
-        font-size: 8px
-        
+        font-size: 7px
     i.fa-trash
         color: #163D59
-        text-shadow: none
         font-weight: 600
-
-    .flexbox
-        margin: 0 auto
-        display: flex
-        align-items: center
-        justify-content: center
-
-    .flexbox.playerarea
-        width: 100%
-        margin: 0 auto
-        margin-bottom: 5px
-        padding-top: 5px
-        display: flex
-        justify-content: space-around
-        // border: 1px solid red
-        flex-wrap: wrap
-        // overflow: auto
-        // background-color: #27507A
-        .userbox
-            padding: 3px 0px 3px 0px
-            &:hover
-                padding: 3px 0px 3px 0px
-                border-radius: 5px
-
-            .username
-                // border: 1px solid pink
-                cursor: pointer
-                // margin-bottom: 3px
-                color: $color_black
-                font-weight: 900
-                text-align: center
-                line-height: 67px
-                text-shadow: 1px 1px $color_white
-                +size(70px,50px)
-                border: 1px solid transparent
-                &:hover
-                    border: 1px solid #27507A
-                    border-radius: 5px
-
-            .statusbox
-                border: 1px solid transparent
-                padding: 1px
-                .status
-                    +size(20px,20px)
-                    margin: 0px
-                    border-radius: 50%
-
-            .statusBan1 ,.statusstyle
-                width: 20px
-                height: 20px
-                border-radius: 50%
-                position: relative
-                &::before
-                    content: "✗"
-                    font-size: 20px
-                    // text-align: center
-                    line-height: 17px
-                    color: #E93F33
-                    font-weight: bolder
-                    text-shadow: 0.5px 0.5px 1px #fff
-            .statusBan2
-                &::after
-                    content: "2"
-                    font-size: 10px
-                    text-align: center
-                    line-height: 20px
-                    color: #E93F33
-                    font-weight: bolder
-                    position: absolute
-                    top: -15px
-                    text-shadow: 0.3px 0.8px 0.5px #fff
-                    font-weight: 900
-
-            .statusBan3
-                &::after
-                    content: "3"
-                    font-size: 10px
-                    text-align: center
-                    line-height: 20px
-                    color: #E93F33
-                    font-weight: bolder
-                    position: absolute
-                    top: -15px
-                    text-shadow: 0.3px 0.8px 0.5px #fff
-                    font-weight: 900
-            
 
     .showarea
         // border: 2px solid green
-        width: 95%
+        width: 99%
         flex-direction: column
         margin-bottom: 10px
         font-size: 0px
@@ -177,149 +137,82 @@ html, body
             display: inline-flex
             justify-content: center
             width: 100%
-
             .block
                 cursor: pointer
-                // background-color: rgba(#c8daeb,0.7)
                 border: 0.1px solid rgba($color_light_blue,0.1)
-                width: 55px
-                height: 33px
+                +size(55px,33px)
                 margin: 0px
                 padding: 0px
                 &:hover
                     border: 0.1px solid rgba($color_light_blue,0.8)
-                    // background-color: rgba($color_light_blue,0.5)
-
-    .round-time-bar
-        width: 80%
-        margin: 0 auto
-        overflow: hidden
-        background-color: $color_very_white
-        border-radius: 5px
-    .round-time-bar div
-        margin: 0 auto
-        height: 5px
-        border-radius: 5px
-        animation: roundtime calc(var(--duration) * 1s) steps(var(--duration)) forwards
-        transform-origin: left center
-        background: linear-gradient(to bottom, #163D59, #163D59)
-    .round-time-bar [data-style="smooth"] div
-        animation: roundtime calc(var(--duration) * 1s) linear forwards
-
-    @keyframes roundtime
-        to
-            transform: scaleX(0)
 
     .flexbox.handcardarea
         width: 90%
-        min-width:
-        padding: 5px 0px 10px 0px
+        // min-width: 350px
+        padding: 5px 0px 5px 0px
 
     .card
-        width: 63px
-        height: 36px
+        +size(63px,36px)
         border: 0.5px solid transparent
         border-radius: 5px
         background-color: transparent
-        stroke: $color_white
-        stroke-width: 10px
         cursor: pointer
-    .horizontal,.straight
-        // stroke: transparent
-        stroke: rgba(orange,0.3)
-        stroke-width: 10px 
     i.fa-undo-alt
-        margin-top: 7px
-        display: block
+        +size(30px,30px)
         cursor: pointer
-        color: $color_deep_blue
+        margin-top: 7px
         font-size: 15px
+        margin: 0px auto
+        display: flex
+        justify-content: center
+        align-items: center
+        background-color: rgba($color_white,0.5)
+        border-radius: 50%
     .redborder
         border: 2px solid $color_red
 
-.chatinputbox
-    background-color: $color_white
-    // border-radius: 7px 7px 0px 0px
-    box-shadow: 0px 0px 5px $color_brown
-    width: 100%
-    height: 50px
-    position: fixed
-    bottom: 0px
-    right: 0px
-    left: 0px
-    padding: 5px
-    margin: 0 auto
-    display: flex
-    justify-content: center
-    align-items: center
-    .inputChat, .chatbtn,.chatclose
-        margin: 3px
-    .inputChat
-        font-size: initial
-        width: 80%
-        height: 30px
-        min-width: 100px
-        border: 3px solid $color_deep_blue
-        border-radius: 3px
-        color: $color_deep_blue
-        background-color: $color_white
-        &::placeholder
-            color: $color_deep_blue
-            font-weight: 900
-    .chatbtn
-        display: none
-        // +size(40px,30px)
-        // background-color: $color_deep_blue
-        // border-radius: 5px
-
-    .chatclose
-        // border: 1px solid $color_brown
-        +size(30px,30px)
-        cursor: pointer
-        position: absolute
-        right: 0px
-        padding-right: 5px
-        i.fa-times
-            font-size: 20px
-            line-height: 30px
-            color: $color_deep_blue
-            &:hover
-                text-shadow: 0px 0px 3px grey
-
+hr
+    margin: 1px !important
 .chaticon
     +size(50px,40px)
     background-color: $color_deep_blue
     border-radius: 5px
     cursor: pointer
-    position: fixed
+    position: absolute
     bottom: 5px
     right: 15px
+    z-index: 1
     i.fa-comment
         color: $color_white
         font-size: 25px
         text-align: center
         line-height: 40px
 
+.chatarea
+    // border: 1px solid
+    width: 100%
+    z-index: 9
+    position: fixed
+    bottom: 0px
+    right: 0px
+    left: 0px
+    // margin: 0 auto
 #messageBody,ul.scrollbox
     margin: 0 auto
     overflow: auto
-    width: 90%
-    max-width: 700px
-    height: 100px
+    height: 140px
     display: flex
     flex-direction: column
-    padding: 10px
-    margin-bottom: 60px
+    padding-bottom: 30px
+    margin: 10px
     border-radius: 5px
-    background-color: rgba($color_white,0.6)
-
+    background-color: rgba($color_white,0.5)
     li
         width: 100%
         list-style: none
         text-align: left
         font-size: 12px
-        // margin-bottom: 10px
-        color: $color_deep_blue
+        overflow-wrap: normal
         &:hover
             background-color: rgba($color_white,0.3)
             border-bottom: 1px solid rgba($color_white,0.8)
@@ -332,18 +225,45 @@ html, body
             background-image: url("svg/icon.svg")
             background-size: cover
 
-// .showstatus p
-//     margin: 5px
-//     // .popup
-//     margin: 0 auto
-//     width: 95%
-//     display: flex
-//     flex-direction: column
-//     justify-content: space-between
-//     padding: 5px
-//     .popupok
-//         font-size: 20px
-//         width: 50px
+.chatinputbox
+    background-color: $color_white
+    box-shadow: 0px 0px 5px $color_brown
+    width: 100%
+    height: 50px
+    padding: 5px
+    margin: 0 auto
+    display: flex
+    justify-content: center
+    align-items: center
+    .inputChat
+        margin: 3px
+        font-size: initial
+        width: 80%
+        height: 30px
+        min-width: 100px
+        border: 3px solid $color_deep_blue
+        border-radius: 3px
+        // color: $color_deep_blue
+        background-color: $color_white
+        &::placeholder
+            color: rgba($color_deep_blue,0.4)
+    .chatbtn
+        display: none
+    .chatclose
+        // border: 1px solid $color_brown
+        +size(30px,30px)
+        cursor: pointer
+        position: absolute
+        right: 0px
+        margin: 3px
+        padding-right: 5px
+        i.fa-times
+            font-size: 20px
+            line-height: 30px
+            color: $color_deep_blue
+            &:hover
+                text-shadow: 0px 0px 3px grey
+
 
 #staticBackdrop
     background-color: rgba($color_red,0.9)
@@ -364,99 +284,129 @@ html, body
         position: absolute
         top: 15px
         right: 15px
+@media screen and (min-width:400px) //*iPAD=768px*//
 
 @media screen and (min-width:768px) //*iPAD=768px*//
     *
-        font-size: 18px
+        font-size: 15px
+    .playerarea
+        width: 100%
     .container
-        width: 90%
-        max-width: 760px !important
-    .container .flexbox.playerarea .userbox .userpic
-        width: 20%
-        min-width: 120px
-    .container .flexbox.playerarea .userbox .username
-        margin-bottom: 23px
-        margin: 0 auto
-        line-height: 110px
-        +size(112.5px,82.5px)
-
-    .container .flexbox.playerarea .userbox .statusbox
-        // border: 1px solid $color_light_blue
-        border-radius: 10px
-
-    .container .flexbox.playerarea .userbox .statusbox .status
-        cursor: pointer
-        +size (38px,38px)
-        border-radius: 50%
-        line-height: 38px
-
-    .container .flexbox.playerarea .statusbox .statusBan1
-        width: 38px
-        height: 38px
-        border-radius: 50%
-        &::before
-            content: "✗"
-            font-size: 30px
-            line-height: 35px
-            text-align: center
-            color: #E93F33
-            font-weight: 900
-    .container .flexbox.playerarea .statusbox .statusBan2
-        &::after
-            content: "2"
-            font-size: 18px
-            top: -10px
-    .container .flexbox.playerarea .statusbox .statusBan3
-        &::after
-            content: "3"
-            font-size: 18px
-            top: -10px
-    
-
+        width: 100%
+        min-width: 768px
+        max-width: 1100px
+        // display: flex
+        // justify-content: flex-end
     .container .showarea
-        margin: 0 auto
         width: 500px
-        margin-bottom: 20px
-
-    .container .showarea .line .block //55*33
-        width: 82.5px
-        height: 49.5px
-    .container .round-time-bar
-        margin: 0 auto
-        max-width: 500px
-    .container .handcardarea
+        margin-bottom: 10px 
+    .container .flexbox.handcardarea
         position: absolute
-        top: 130px
-        right: 0px
-        max-width: 200px
+        top: 100px
+        right: 10px
+        min-width: 100px
+        max-width: 110px
         display: flex
+        flex-direction: column
         flex-wrap: wrap
         padding: 0px
         margin: 0px
-    .handcardbox1,.handcardbox2,.handcardbox3,.handcardbox4,.handcardbox5,.handcardbox6
-        margin: 10px
-
+    .handcardbox
+        margin: 5px
+    .container .showarea .line .block //55*33
+        width: 82.5px
+        height: 49.5px
     .container .card
-        width: 94.5px
-        height: 54px
+        +size(94.5px,54px) //63*36
+    .container .topcue
+        max-width: 470px
     .container i.fa-trash
         font-size: 16px
         padding: 5px 3px 5px 3px
+    hr
+        width: 450px
+        margin: 0 auto !important
+    .container #messageBody, ul.scrollbox
+        width: 470px
+        height: 140px
+        margin: 0 auto
 
 @media screen and (min-width:1000px)
-    html,body
-        background-color: rgba(#98D2F2,0.5) !important
+    *
+        font-size: 18px
+    html, body
         background-image: url(svg/bgctransparent1200.svg)
-        background-size: cover
         background-repeat: no-repeat
         background-attachment: fixed
         background-position: center
+        background-size: cover   
+    .playerarea
+        min-width: 1000px
+        margin: 0px auto !important
+        padding-bottom: 20px
+    .playerarea .userbox .username
+        line-height: 85px
+        +size(97.5px,65px) //*75*50//
+    .playerarea .userbox .statusbox .status
+        +size (30px,30px) //*20*20//
 
     .container
-        max-width: 1100px
-        margin: 0 auto !important
+        width: 98%
+        min-width: 1000px
+        margin: 0px auto !important
         padding: 10px !important
+        display: flex
+        display: flex
+        justify-content: flex-end
+    .container .showarea
+        margin: 5px 25px 5px 5px
     .container .flexbox.handcardarea
-        position: absolute
-        top: 130px
-        right: 100px
+        position: relative
+        top: 0px
+        right: 0px
+        width: 130px
+        margin: 5px
+    .container .showarea .line .block //55*33
+        +size(99px,59.4px)
+    .container .card //63*36
+        +size(113.4px,64.8px)
+    .container .topcue
+        max-width: 550px
+        margin-top: 20px
+    .container hr
+        display: none
+
+    .container #messageBody, ul.scrollbox
+        position: fixed
+        width: 30%
+        height: 550px
+        top: 150px
+        left: 10px
+        padding: 15px
+
+    .chatinputbox
+        width: 30%
+        position: fixed
+        top: 710px
+        left: 10px
+        margin: 0px
+        box-shadow: none
+        border-radius: 5px
+
+    .chatclose,.chaticon, i.fa-comment
+        display: none
+
+@media screen and (min-width:1200px)
+    .container
+        // border: 1px solid
+        width: 80% !important
+        max-width: 1200px !important
+    .container .showarea
+        margin: 5px 200px 5px 5px
+
+    .container #messageBody, ul.scrollbox
+        max-width: 350px
+        left: 80px
+    .chatinputbox
+        max-width: 350px
+        left: 80px
