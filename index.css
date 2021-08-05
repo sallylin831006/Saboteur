@@ -75,9 +75,10 @@ html, body {
 }
 
 .container #nickname {
-  margin: 15px 0px 15px 0px;
+  margin: 55px 0px 15px 0px;
   width: 40%;
   border: none;
+  border-radius: 0px;
   border-bottom: 2px solid #483B3B !important;
   background-color: transparent;
   padding: 5px;
@@ -114,6 +115,7 @@ html, body {
 }
 
 .rulepupup, .openbtn, .rank {
+  width: 70px !important;
   cursor: pointer;
   background-color: transparent !important;
   color: #483B3B !important;
@@ -125,10 +127,16 @@ html, body {
   margin: 0px 10px 0px 10px !important;
 }
 
+.rulepupup:focus, .openbtn:focus, .rank:focus {
+  outline: none !important;
+}
+
 .modal-content {
+  width: 99% !important;
   background-color: #FFFCEF !important;
   border-radius: 10px !important;
   padding: 10px;
+  font-size: 15px !important;
 }
 
 .modal-content .btn-close {
@@ -143,6 +151,7 @@ html, body {
 
 .modal-content .accordion-button {
   box-shadow: none !important;
+  white-space: nowrap !important;
 }
 
 .modal-content .accordion-button:not(.collapsed) {

@@ -13,6 +13,9 @@ $color_brown: #483B3B
     user-select: none
     text-align: center
     margin: 0 auto
+    font-family: "Kosugi Maru",'Noto Sans TC',sans-serif
+    font-size: 18px
+
 
 html,body
     background-color: $color_white !important
@@ -46,22 +49,29 @@ html,body
         min-width: 100px
 
     #nickname
-        margin: 10px 0px 10px 0px
-        border-radius: 5px
-        border: 1px solid $color_yellow
-        background-color: #fffdf3
+        margin: 55px 0px 15px 0px
+        width: 30%
+        border: none
+        border-radius: 0px
+        border-bottom: 2px solid $color_brown !important
+        background-color: transparent
         padding: 5px
         color: $color_green
-        &::placeholder
-            color: rgba($color_deep_blue,0.4)
-            font-weight: 900
-        &:hover
-            border: 2px solid $color_yellow
-            // box-shadow: 0px 2px 3px $color_yellow
+        &:focus
+            outline: 0
+            -webkit-box-shadow: none !important
+            -moz-box-shadow: none !important
+            box-shadow: none !important
 
     .start
-        margin: 10px 0px 10px 0px
-        background-color: $color_deep_blue
+        cursor: pointer
+        margin: 5px 0px 10px 0px
+        background-color: #2974AA
         color: $color_white
-        padding: 8px
-        border-radius: 5px
+        padding: 10px 50px 10px 50px
+        border-radius: 50px
+        border: none
+        font-size: 18px
+        letter-spacing: 3px
+        &:hover
+            background-color: $color_light_blue

@@ -106,8 +106,8 @@ var ROAD_DIRECTION_MAP = {
   },
   36: {
     top: true,
-    right: true,
-    left: false,
+    right: false,
+    left: true,
     bottom: true,
   },
   37: {
@@ -133,6 +133,24 @@ var ROAD_DIRECTION_MAP = {
     right: false,
     left: false,
     bottom: true,
+  },
+  100:{
+    top: true,
+    right: true,
+    left: true,
+    bottom: true,
+  },
+  200:{
+    top: true,
+    right: false,
+    left: true,
+    bottom: false,
+  },
+  300:{
+    top: true,
+    right: true,
+    left: false,
+    bottom: false,
   },
 };
 
@@ -184,8 +202,8 @@ function CheckPosition(blockid) {
     (target_Right == "false" && Rightblock_left == "true") ||
     (target_Left == "true" && Leftblock_right == "false") ||
     (target_Left == "false" && Leftblock_right == "true") ||
-    (Bottomblock_top == "true" && Bottomblock_top == "false") ||
-    (Bottomblock_top == "false" && Bottomblock_top == "true") ||
+    (target_Bottom == "true" && Bottomblock_top == "false") ||
+    (target_Bottom == "false" && Bottomblock_top == "true") ||
     (Topblock_bottom == undefined &&
       Rightblock_left == undefined &&
       Leftblock_right == undefined &&

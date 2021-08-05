@@ -1,7 +1,6 @@
-@charset "UTF-8";
 * {
   user-select: none;
-  font-size: 12px;
+  font-size: 15px;
   text-align: center;
   align-items: center;
   justify-content: center;
@@ -16,36 +15,59 @@ html, body {
   margin: 0px;
 }
 
-p.info, i.fa-exclamation-circle {
+.info {
+  width: 350px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
   margin-top: 5px;
   color: #483B3B;
 }
 
-.btn-primary {
-  font-size: 13px !important;
-  cursor: pointer;
-  background-color: #3F9CCD !important;
-  padding: 10px !important;
-  border-radius: 5px !important;
-  border: none !important;
-  margin: 5px;
+.info:hover {
+  color: orange;
 }
 
-.btn-primary:hover {
-  background-color: #1A517B !important;
+i.fa-exclamation-triangle {
+  margin: 8px;
+}
+
+#show-role-btn {
+  cursor: pointer;
+  margin: 5px 0px 10px 0px !important;
+  background-color: #2974AA !important;
+  color: #FFFCEF !important;
+  padding: 10 15px 10px 15px !important;
+  border-radius: 50px !important;
+  border: none !important;
+  letter-spacing: 3px !important;
+}
+
+#show-role-btn:hover {
+  background-color: #3F9CCD !important;
 }
 
 .btn-share {
-  width: 40px;
-  height: 40px;
-  border-radius: 50% !important;
-  margin: 15px;
+  cursor: pointer;
+  background-color: #2974AA !important;
+  color: #FFFCEF !important;
+  padding: 10px 0px 10px 0px !important;
+  border-radius: 50px !important;
+  border: none !important;
+  font-size: 10px !important;
+  letter-spacing: 3px !important;
+  width: 140px !important;
+  border-radius: 50px !important;
   position: fixed;
-  top: 5px;
-  right: 5px;
+  top: 15px;
+  right: 50px;
 }
 
-.btn-share i.fa-share-alt {
+.btn-share:hover {
+  background-color: #3F9CCD !important;
+}
+
+.btn-share i.fa-link {
   font-size: 15px;
 }
 
@@ -56,7 +78,6 @@ h4, .topinfo {
   color: #2974AA;
   font-weight: 900;
   font-size: 20px;
-  font-family: "HanaMinA",花園明朝體;
 }
 
 .topinfo {
@@ -95,6 +116,9 @@ h4, .topinfo {
   border-radius: 5px;
   border: 1px solid rgba(26, 81, 123, 0.9);
   color: orange;
+}
+
+.fade .modal-content #url:focus {
   outline: 0 !important;
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;

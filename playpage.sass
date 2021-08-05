@@ -8,7 +8,7 @@ $color_red: #C54C4D
 $color_brown: #483B3B
 
 *
-    //border: 1px solid black
+    //border: 0.5px solid black
     user-select: none
     font-size: 12px
     text-align: center
@@ -100,19 +100,29 @@ html, body
             &::after
                 content: "3"
 .container
-    // border: 2px solid red
+    //border: 2px solid red
     // position: absolute
     // left: 50%
     // top: 50%
     // transform: translateX(-50%) translateY(-50%)
     max-width: 400px
     margin: 0 auto
-    .topcue
+    padding: 0px !important
+    
+    .topcue,.stepinfo
         margin-top: 5px
         padding: 5px 0px 5px 0px
         font-size: 9px
         background-color: rgba($color_white,0.3)
         width: 99%
+    .stepinfo
+
+        .userRole
+            +size(50px,50px)
+            border-right: 2px solid $color_brown
+        ul.stepinfoTxt
+            border: 1px sold red
+            width: 0%
 
     .trash
         cursor: pointer
@@ -130,6 +140,7 @@ html, body
         // border: 2px solid green
         width: 99%
         flex-direction: column
+        justify-content: flex-start
         margin-bottom: 10px
         font-size: 0px
         box-sizing: border-box
@@ -149,7 +160,7 @@ html, body
     .flexbox.handcardarea
         width: 90%
         // min-width: 350px
-        padding: 5px 0px 5px 0px
+        margin-bottom: 300px
 
     .card
         +size(63px,36px)
@@ -181,7 +192,6 @@ hr
     position: absolute
     bottom: 5px
     right: 15px
-    z-index: 1
     i.fa-comment
         color: $color_white
         font-size: 25px
@@ -189,22 +199,23 @@ hr
         line-height: 40px
 
 .chatarea
-    // border: 1px solid
+    //border: 1px solid
     width: 100%
-    z-index: 9
-    position: fixed
+    // position: absolute
+    bottom: 0px
+    margin: 0 auto
+    position: absolute
     bottom: 0px
     right: 0px
     left: 0px
-    // margin: 0 auto
 #messageBody,ul.scrollbox
     margin: 0 auto
+    margin: 10px
     overflow: auto
-    height: 140px
+    min-height: 90px
     display: flex
     flex-direction: column
     padding-bottom: 30px
-    margin: 10px
     border-radius: 5px
     background-color: rgba($color_white,0.5)
     li
@@ -226,12 +237,12 @@ hr
             background-size: cover
 
 .chatinputbox
-    background-color: $color_white
-    box-shadow: 0px 0px 5px $color_brown
+    background-color: #F7EDDB
     width: 100%
-    height: 50px
+    height: 45px
     padding: 5px
     margin: 0 auto
+    bottom: 0px
     display: flex
     justify-content: center
     align-items: center
@@ -240,7 +251,7 @@ hr
         font-size: initial
         width: 80%
         height: 30px
-        min-width: 100px
+        // min-width: 100px
         border: 3px solid $color_deep_blue
         border-radius: 3px
         // color: $color_deep_blue
@@ -250,11 +261,10 @@ hr
     .chatbtn
         display: none
     .chatclose
-        // border: 1px solid $color_brown
         +size(30px,30px)
         cursor: pointer
-        position: absolute
-        right: 0px
+        // position: absolute
+        // right: 0px
         margin: 3px
         padding-right: 5px
         i.fa-times
@@ -291,26 +301,37 @@ hr
         font-size: 15px
     .playerarea
         width: 100%
+        margin-bottom: 20px
     .container
         width: 100%
+        margin: 0 auto
         min-width: 768px
-        max-width: 1100px
-        // display: flex
-        // justify-content: flex-end
+        display: flex
+        justify-content: space-around
     .container .showarea
-        width: 500px
-        margin-bottom: 10px 
+        width: 55%
+        margin-bottom: 10px
+        margin: 0px 10px 0px 10px
     .container .flexbox.handcardarea
-        position: absolute
-        top: 100px
-        right: 10px
-        min-width: 100px
-        max-width: 110px
+        width: 15%
         display: flex
         flex-direction: column
+        justify-content: flex-start
         flex-wrap: wrap
-        padding: 0px
-        margin: 0px
+        margin: 0px 10px 0px 10px
+
+    .chatarea
+        margin: 0px 10px 0px 10px
+        width: 35%
+        position: relative !important
+        height: 600px !important
+   
+    .container #messageBody, ul.scrollbox
+        margin: 0px !important
+        width: 100% !important
+        height: 550px !important
+    .chatclose,.chaticon, i.fa-comment
+        display: none
     .handcardbox
         margin: 5px
     .container .showarea .line .block //55*33
@@ -320,16 +341,11 @@ hr
         +size(94.5px,54px) //63*36
     .container .topcue
         max-width: 470px
+        margin-top: 5px
+
     .container i.fa-trash
         font-size: 16px
         padding: 5px 3px 5px 3px
-    hr
-        width: 450px
-        margin: 0 auto !important
-    .container #messageBody, ul.scrollbox
-        width: 470px
-        height: 140px
-        margin: 0 auto
 
 @media screen and (min-width:1000px)
     *
@@ -341,9 +357,8 @@ hr
         background-position: center
         background-size: cover   
     .playerarea
-        min-width: 1000px
-        margin: 0px auto !important
-        padding-bottom: 20px
+        // // min-width: 1000px
+        // padding-bottom: 20px
     .playerarea .userbox .username
         line-height: 85px
         +size(97.5px,65px) //*75*50//
@@ -351,20 +366,14 @@ hr
         +size (30px,30px) //*20*20//
 
     .container
-        width: 98%
+        width: 100%
         min-width: 1000px
         margin: 0px auto !important
         padding: 10px !important
-        display: flex
-        display: flex
-        justify-content: flex-end
     .container .showarea
-        margin: 5px 25px 5px 5px
+        
     .container .flexbox.handcardarea
-        position: relative
-        top: 0px
-        right: 0px
-        width: 130px
+        // width: 130px
         margin: 5px
     .container .showarea .line .block //55*33
         +size(99px,59.4px)
@@ -373,40 +382,19 @@ hr
     .container .topcue
         max-width: 550px
         margin-top: 20px
-    .container hr
-        display: none
 
     .container #messageBody, ul.scrollbox
-        position: fixed
-        width: 30%
-        height: 550px
-        top: 150px
-        left: 10px
-        padding: 15px
-
-    .chatinputbox
-        width: 30%
-        position: fixed
-        top: 710px
-        left: 10px
-        margin: 0px
-        box-shadow: none
-        border-radius: 5px
-
-    .chatclose,.chaticon, i.fa-comment
-        display: none
+        height: 580px !important
 
 @media screen and (min-width:1200px)
+    *
+        //border: 1px solid
     .container
-        // border: 1px solid
         width: 80% !important
         max-width: 1200px !important
     .container .showarea
-        margin: 5px 200px 5px 5px
-
-    .container #messageBody, ul.scrollbox
+        margin: 0px 20px 0px 20px
+    .container .flexbox.handcardarea
+        width: 25%
+    .chatarea
         max-width: 350px
-        left: 80px
-    .chatinputbox
-        max-width: 350px
-        left: 80px

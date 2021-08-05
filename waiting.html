@@ -24,7 +24,7 @@
 <body>
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary btn-share" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        <span></span><i class="fas fa-share-alt" id="sharelink"></i>
+        <span></span><i class="fas fa-link" id="sharelink"></i>  複製邀請連結
     </button>
     <!-- Modal -->
     <div class="modal fade" id="sharelinkModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -77,7 +77,7 @@
     <button type="button" id="show-role-btn" class="btn btn-primary" data-bs-toggle="modal">
         房主功能：直接開始遊戲
     </button>
-    <p class="info"><i class="fas fa-exclamation-circle"></i>點擊後所有人一起開始進入遊戲，確認所有成員都加入後再點擊此按鈕</p>
+    <p class="info"><i class="fas fa-exclamation-triangle"></i>點擊後所有人一起開始進入遊戲，確認所有成員都加入後再點擊此按鈕</p>
 
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -188,7 +188,7 @@
     copybtn.addEventListener("click", function (e) {
         e.preventDefault();
         document.querySelector(".linkcue").textContent = "已成功複製連結！";
-        $(".linkcue").css("color", "orange");
+        $(".linkcue").css("color", "#bb392c");
         //禁止開啟手機鍵盤
         document.activeElement.blur();
     })

@@ -6,18 +6,20 @@
         content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1 user-scalable=0" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>一起加入矮人礦坑遊戲</title>
     <link rel="shortcut icon" href="svg/icon.svg" type="image/x-icon" />
     <meta name="Saboteur" content="矮人礦坑">
+    <!-- 常用於 facebook 的 屬性值 -->
     <meta property="og:title" content="矮人礦坑" />
-    <meta property="og:image" content="svg/icon.svg" />
-    <meta property="og:description" content="矮人礦坑！" />
+    <meta property="og:type" content="PlayingPage" />
+    <meta property="og:url" content="網址" />
+    <meta property="og:image" content="svg/welcome.svg" />
+    <meta property="og:description" content="最有質感的線上版矮人礦坑遊戲，一起來玩吧！" />
+    <!-- 字體 -->
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&amp;display=swap" rel="stylesheet">
 
-    <script src="https://kit.fontawesome.com/5223ebc999.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
-    </script>
+
+
 </head>
 <link rel="stylesheet" href="invite.css">
 
@@ -30,9 +32,9 @@
         <div class="text"></div>
         <h4>你被邀請加入房間</h4>
 
-        <input id="nickname" placeholder="請輸入玩家暱稱..." />
+        <input id="nickname" placeholder="請輸入名字" autocomplete="off"/>
 
-        <input type="button" class="start" value="開始遊戲">
+        <input type="button" class="start" value="立即加入遊戲">
 
     </div>
 
@@ -73,7 +75,10 @@
         return 'https://game.dev.newideas.com.tw/';
     }
 </script>
-
+<script src="https://kit.fontawesome.com/5223ebc999.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+</script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" //
     integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"

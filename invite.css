@@ -2,6 +2,8 @@
   user-select: none;
   text-align: center;
   margin: 0 auto;
+  font-family: "Kosugi Maru",'Noto Sans TC',sans-serif;
+  font-size: 18px;
 }
 
 html, body {
@@ -35,27 +37,35 @@ html, body {
 }
 
 .container #nickname {
-  margin: 10px 0px 10px 0px;
-  border-radius: 5px;
-  border: 1px solid #FBC439;
-  background-color: #fffdf3;
+  margin: 55px 0px 15px 0px;
+  width: 30%;
+  border: none;
+  border-radius: 0px;
+  border-bottom: 2px solid #483B3B !important;
+  background-color: transparent;
   padding: 5px;
   color: #8CC554;
 }
 
-.container #nickname::placeholder {
-  color: rgba(26, 81, 123, 0.4);
-  font-weight: 900;
-}
-
-.container #nickname:hover {
-  border: 2px solid #FBC439;
+.container #nickname:focus {
+  outline: 0;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 .container .start {
-  margin: 10px 0px 10px 0px;
-  background-color: #1A517B;
+  cursor: pointer;
+  margin: 5px 0px 10px 0px;
+  background-color: #2974AA;
   color: #FFFCEF;
-  padding: 8px;
-  border-radius: 5px;
+  padding: 10px 50px 10px 50px;
+  border-radius: 50px;
+  border: none;
+  font-size: 18px;
+  letter-spacing: 3px;
+}
+
+.container .start:hover {
+  background-color: #3F9CCD;
 }

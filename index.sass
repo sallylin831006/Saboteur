@@ -79,11 +79,12 @@ html,body
         font-size: 15px
 
     #nickname
-        margin: 15px 0px 15px 0px
+        margin: 55px 0px 15px 0px
         // border-radius: 5px
         // border: 1px solid $color_brown
         width: 40%
         border: none
+        border-radius: 0px
         border-bottom: 2px solid $color_brown !important
         background-color: transparent
         padding: 5px
@@ -114,6 +115,7 @@ html,body
 
 // 遊戲規則
 .rulepupup, .openbtn ,.rank
+    width: 70px !important
     cursor: pointer
     background-color: transparent !important
     color: $color_brown !important
@@ -123,11 +125,15 @@ html,body
     padding: 3px !important
     box-shadow: none !important
     margin: 0px 10px 0px 10px !important
+    &:focus
+        outline: none !important
 
 .modal-content
+    width: 99% !important
     background-color: $color_white !important
     border-radius: 10px !important
     padding: 10px
+    font-size: 15px !important
     .btn-close
         position: absolute
         top: 20px
@@ -136,6 +142,9 @@ html,body
         background-color: $color_white !important
     .accordion-button
         box-shadow: none !important
+        white-space: nowrap !important
+        // display: flex !important
+        // flex-wrap: nowrap !important
     .accordion-button:not(.collapsed)
         color: $color_white
         background-color: $color_deep_blue

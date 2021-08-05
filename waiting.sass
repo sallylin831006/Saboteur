@@ -11,7 +11,7 @@ $color_brown: #483B3B
 *
     //border: 1px solid pink
     user-select: none
-    font-size: 12px
+    font-size: 15px
     text-align: center
     align-items: center
     justify-content: center
@@ -25,31 +25,49 @@ html,body
     height: 100%
     padding: 0px
     margin: 0px
-p.info,i.fa-exclamation-circle
+.info
+    width: 350px
+    margin: 0 auto
+    display: flex
+    flex-wrap: wrap
     margin-top: 5px
     color: $color_brown
-
-.btn-primary
-    font-size: 13px !important
-    cursor: pointer
-    background-color: $color_light_blue !important
-    padding: 10px !important
-    border-radius: 5px !important
-    border: none !important
-    margin: 5px
     &:hover
-        background-color: $color_deep_blue !important
-    
-.btn-share
-    width: 40px
-    height: 40px
-    border-radius: 50% !important
-    margin: 15px
-    position: fixed
-    top: 5px
-    right: 5px
+        color: orange
+i.fa-exclamation-triangle
+    margin: 8px
 
-    i.fa-share-alt
+#show-role-btn
+    cursor: pointer
+    margin: 5px 0px 10px 0px !important
+    background-color: #2974AA !important
+    color: $color_white !important
+    padding: 10 15px 10px 15px !important
+    border-radius: 50px !important
+    border: none !important
+    // font-size: 13px !important
+    letter-spacing: 3px !important
+    &:hover
+        background-color: $color_light_blue !important
+
+.btn-share
+    cursor: pointer
+    background-color: #2974AA !important
+    color: $color_white !important
+    padding: 10px 0px 10px 0px !important
+    border-radius: 50px !important
+    border: none !important
+    font-size: 10px !important
+    letter-spacing: 3px !important
+    width: 140px !important
+    border-radius: 50px !important
+    position: fixed
+    top: 15px
+    right: 50px
+    &:hover
+        background-color: $color_light_blue !important
+
+    i.fa-link
         font-size: 15px
 h4,.topinfo
     margin: 15px
@@ -58,9 +76,9 @@ h4,.topinfo
     color: #2974AA
     font-weight: 900
     font-size: 20px
-    font-family: "HanaMinA",花園明朝體
 .topinfo
     margin-top: 15px
+
 
 .fade
     background-color: rgba($color_white,0.8)
@@ -87,15 +105,14 @@ h4,.topinfo
             border: 1px solid rgba($color_deep_blue,0.9)
             color: orange
             &:focus
-            outline: 0 !important
-            -webkit-box-shadow: none !important
-            -moz-box-shadow: none !important
-            box-shadow: none !important
-           
+                outline: 0 !important
+                -webkit-box-shadow: none !important
+                -moz-box-shadow: none !important
+                box-shadow: none !important
         .copybtn
             cursor: pointer
             margin: 5px 0px 10px 0px
-            background-color: #2974AA 
+            background-color: #2974AA
             color: $color_white
             padding: 8px 40px 8px 40px
             border-radius: 50px
