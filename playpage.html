@@ -249,7 +249,8 @@
         <div id="block1-2" class="block block1-2"></div>
         <div id="block1-3" class="block block1-3">
           <!-- <img src="svg/card_start.svg" alt="" /> -->
-          <img id="start" data-num="block1-3" src="svg/card_start.svg" top="true" left="true" right="true" bottom="true" />
+          <img id="start" data-num="block1-3" src="svg/card_start.svg" top="true" left="true" right="true"
+            bottom="true" />
         </div>
         <div id="block1-4" class="block block1-4"></div>
         <div id="block1-5" class="block block1-5"></div>
@@ -486,13 +487,20 @@
       return;
     }
     //如果圈選的手牌是“崩路卡”，不可放在牌區，只可以丟棄，或去點已放的卡牌炸掉
-    if ($('.redborder').attr("src").search(/65|66|67/) == 14) {
+    if ($('.redborder').attr("src").search(/65|66|67/) !== -1) {
       alert("不能把崩路卡放在這邊喔！");
       return;
     }
     //如果圈選的手牌是“道路卡”，且可以放在牌區，並且會印出出牌的卡，並在補上手牌
     if (event.target.id.search("block") == 0) {
       CheckPosition(event.target.id);
+
+      // if (cardNumber >= 1 && cardNumber <= 31) {
+      //   $(".topcue").text("你放了一張道路卡");
+      // }
+      // if (cardNumber >= 32 && cardNumber <= 40) {
+      //   $(".topcue").text("你放了一張坑路ＲＲＲ");
+      // }
       return;
     }
   }
@@ -518,7 +526,6 @@
     degrees = 0
     $(".cardnum" + boxnum).attr("style", "transform: rotate(0deg);")
     giveDirection(index, handCards[index]);
-    console.log("我要自己修好！！");
 
   }
 
@@ -553,22 +560,33 @@
     }
     //崩路卡
     if (event.target.id.search('start') !== -1 && $('.redborder').attr("src").search(/65|66|67/) !== -1) {
-      alert("不可以把起點卡崩掉")
+      alert("不可以崩掉起點卡")
       return;
     }
-    if (event.target.id.search(/block|end|trash/) == -1 && $('.redborder').attr("src").search(/65|66|67/) !== -1) {
+    if (event.target.id.search(/block|end|trash/) == -1 && event.target.getAttribute("src").search(/32|33|34|35|36|37|38|39|40/) && $('.redborder').attr("src").search(/65|66|67/) !== -1 ) {
+      console.log("成功ㄌㄇ！？",event.target.getAttribute("src").search(/32|33|34|35|36|37|38|39|40/))
       const boxnum = $(".redborder").attr("data-num")
       const svg = $(".handcardbox" + boxnum + " img").attr('src');
       const style = $(".handcardbox" + boxnum + " img").css('transform');
       $(`#${event.target.getAttribute("data-num")}`).html(``);
       $(`#${event.target.getAttribute("data-num")}`).css("background-color", "#D37E80");
+      //&& event.target.getAttribute("src").search(/32|33|34|35|36|37|38|39|40/) !== -1
       giveNewCard();
+      $(".topcue").text("你使用崩路卡，移除了一條坑路");
       return;
     }
-    if (hasRedBorder()) {
+    // $(".topcue").text("你使用崩路卡，移除了一條道路");
+    // giveNewCard();
+    // return;
+
+    if (hasRedBorder() && $('.redborder').attr("src").search(/32|33|34|35|36|37|38|39|40/) !== -1) {
+      $(".topcue").text("你放了一張坑洞卡");
       Cardput();
       return;
     }
+    $(".topcue").text("你放了一張道路卡");
+    Cardput();
+    return;
   })
 
   // 圖卡旋轉
@@ -620,7 +638,7 @@
       return;
     }
     giveNewCard();
-    $(".topcue").text("你剛剛棄掉一張卡牌～")
+    $(".topcue").text("你棄掉一張卡牌");
     return;
   })
 
@@ -638,10 +656,9 @@
   };
   endCardsGenerator(endCards);
 
-  console.log("endCards[0]", endCards[0])
-  console.log("endCards[1]", endCards[1])
-  console.log("endCards[2]", endCards[2])
-
+  //console.log("endCards[0]", endCards[0])
+  //console.log("endCards[1]", endCards[1])
+  //console.log("endCards[2]", endCards[2])
 
   $(".end").click(function (e) {
     const endcardid = e.target.id;
@@ -655,29 +672,41 @@
       return;
     }
     if ($('.redborder').attr("src").search(/41|42|43|44|45|46/) !== -1) {
-      const endNum= endcardelement.attr('data-num')
+      const endNum = endcardelement.attr('data-num')
       endcardelement.attr("src", `svg/card_end${endCards[endNum-1]}.svg`);
+      const endDirection = END_DIRECTION[endCards[endNum - 1]];
+      ['top', 'left', 'right', 'bottom'].forEach((direction) => {
+        endcardelement.attr(direction, endDirection[direction]);
+      });
+      console.log("有＋方向ㄇ")
+
+
       $(".topcue").text("你查看了一張終點卡");
       giveNewCard();
-      return;
 
+      return;
     }
   });
-
-
-
-  // function giveEndDirection(index, cardNumber) {
-  //   const endCardNumber = index + 1;
-  //   const endCardElement = $(`#end${endCardNumber}`);
-  //   endCardElement.attr("src", `svg/card_end${cardNumber}00.svg`);
-  //   if (typeof ROAD_DIRECTION_MAP[cardNumber] !== 'undefined') {
-  //     const roadDirection = ROAD_DIRECTION_MAP[cardNumber];
-  //     ['top', 'left', 'right', 'bottom'].forEach((direction) => {
-  //       handCardElement.attr(direction, roadDirection[direction]);
-  //       return;
-  //     })
-  //   }
-  // }
+  var END_DIRECTION = {
+    1: {
+      top: true,
+      right: true,
+      left: true,
+      bottom: true,
+    },
+    2: {
+      top: true,
+      right: false,
+      left: true,
+      bottom: false,
+    },
+    3: {
+      top: true,
+      right: true,
+      left: false,
+      bottom: false,
+    }
+  }
 
 
   // //提示littecue 可能不是很需要
@@ -777,15 +806,16 @@
       banTools.forEach((banToolName) => {
         const usernum = $(`#${e.target.id}`).attr("data-num");
         if ($(`.${banToolName}${usernum}`).attr("class").search(/statusBan\d/g) !== -1) {
-          let banNum = $(`.${banToolName}${usernum}`).attr('class').match(/statusBan\d/g)[0].match(/\d/g)[0];
+          let banNum = $(`.${banToolName}${usernum}`).attr('class').match(/statusBan\d/g)[0].match(/\d/g)[
+            0];
           $(`.${banToolName}${usernum}`).removeClass(`statusBan${banNum}`);
           banNum = parseInt(banNum) + 1
           $(`.${banToolName}${usernum}`).addClass(`statusstyle`);
           $(`.${banToolName}${usernum}`).addClass(`statusBan${banNum}`);
-          $(".topcue").text(`${$(e.target).text()}的${toolChineseName}被你破壞了～`);
+          $(".topcue").text(`你破壞了${$(e.target).text()}的${toolChineseName}`);
         } else {
           $(`.${banToolName}${usernum}`).addClass(`statusBan1`);
-          $(".topcue").text(`${$(e.target).text()}的${toolChineseName}被你破壞了～`);
+          $(".topcue").text(`你破壞了${$(e.target).text()}的${toolChineseName}`);
 
         }
       });
@@ -793,21 +823,25 @@
       return;
     }
 
+
     if (hasSaveTool) {
       saveTools.forEach((saveToolName) => {
-        if ($(`.${saveToolName}${usernum}`).attr("class").search(/statusBan\d/g) == -1) {
-          return;
+        if ($(`.${saveToolName}${usernum}`).attr("class").search(/statusBan1/g) !== -1) {
+          $(`.${saveToolName}${usernum}`).removeClass(`statusBan1`);
+          $(`.${saveToolName}${usernum}`).removeClass(`statusstyle`);
+          console.log("remove!!!")
         }
         if ($(`.${saveToolName}${usernum}`).attr("class").search(/statusBan\d/g) !== -1) {
           const usernum = $(`#${e.target.id}`).attr("data-num");
-          let banNum = $(`.${saveToolName}${usernum}`).attr('class').match(/statusBan\d/g)[0].match(/\d/g)[0];
+          let banNum = $(`.${saveToolName}${usernum}`).attr('class').match(/statusBan\d/g)[0].match(
+            /\d/g)[0];
           $(`.${saveToolName}${usernum}`).removeClass(`statusBan${banNum}`);
           banNum = parseInt(banNum) - 1
           $(`.${saveToolName}${usernum}`).addClass(`statusBan${banNum}`);
-          $(".topcue").text(`${$(e.target).text()}的${savetoolChineseName}被你修理好了～`);
-          giveNewCard();
-          return;
         }
+        $(".topcue").text(`你修理了${$(e.target).text()}的${savetoolChineseName}`);
+        giveNewCard();
+        return;
       });
     }
   });

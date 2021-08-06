@@ -464,6 +464,15 @@ hr {
 }
 
 @media screen and (min-width: 1200px) {
+  .playerarea .userbox .username {
+    line-height: 100px;
+    width: 112.5px;
+    height: 75px;
+  }
+  .playerarea .userbox .statusbox .status {
+    width: 38px;
+    height: 38px;
+  }
   .container {
     width: 80% !important;
     max-width: 1200px !important;
@@ -473,6 +482,7 @@ hr {
   }
   .container .flexbox.handcardarea {
     width: 25%;
+    margin: 0px;
   }
   .chatarea {
     max-width: 350px;

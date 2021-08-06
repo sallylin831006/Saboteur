@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html> -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -35,13 +35,32 @@
   //         transform: scaleX(0)
 
 </body>
+<!-- 轉180度的判斷 -->
+<!-- console.log("四處位置",Topblock_bottom,Rightblock_left,Leftblock_right,Bottomblock_top)
+
+  const deg = $(".redborder").attr("style").match(/\d+/gi);
+  console.log("deg=", deg);
+  console.log("fefwefewfewfewfewfew", $(".redborder").attr("style"));
+  if (($(".redborder").attr("style").match(/\d+/gi) / 180) % 2 == 1) {
+    const topValue = object.attr("top");
+    const RightValue = object.attr("right");
+    const LeftValue = object.attr("left");
+    const BottomValue = object.attr("bottom");
+
+    object.attr("bottom", topValue);
+    object.attr("left", RightValue);
+    object.attr("right", LeftValue);
+    object.attr("top", BottomValue);
+    console.log("安安看有沒有變");
+  } -->
+
 <!-- 隨機產生六張卡牌 -->
-// $("#handCard1").attr("src", `svg/cards/card${handCards[0]}.svg`);
-// $("#handCard2").attr("src", `svg/cards/card${handCards[1]}.svg`);
-// $("#handCard3").attr("src", `svg/cards/card${handCards[2]}.svg`);
-// $("#handCard4").attr("src", `svg/cards/card${handCards[3]}.svg`);
-// $("#handCard5").attr("src", `svg/cards/card${handCards[4]}.svg`);
-// $("#handCard6").attr("src", `svg/cards/card${handCards[5]}.svg`);
+<!-- $("#handCard1").attr("src", `svg/cards/card${handCards[0]}.svg`);
+$("#handCard2").attr("src", `svg/cards/card${handCards[1]}.svg`);
+$("#handCard3").attr("src", `svg/cards/card${handCards[2]}.svg`);
+$("#handCard4").attr("src", `svg/cards/card${handCards[3]}.svg`);
+$("#handCard5").attr("src", `svg/cards/card${handCards[4]}.svg`);
+$("#handCard6").attr("src", `svg/cards/card${handCards[5]}.svg`); -->
 
 <!-- const usernum = $(`#${e.target.id}`).attr("data-num");
 if (hasBanTool && $(`.${toolName}${usernum}`).attr("class").search("statusBan1") == -1) {
@@ -101,5 +120,41 @@ if (hasBanTool && $(`.${toolName}${usernum}`).attr("class").search("statusBan") 
   //   bar.offsetWidth;
   //   bar.classList.add("round-time-bar");
   // });
+//判斷卡牌
+//target_Top上方判斷 可以的
+  //if target_Top == false (bigT horizontal downRight 其他坑洞卡
+  //&& Topblock_bottom == true
+  //target_left == true && Leftblock_right == true
+  //or
+  //target_right == true && Rightblock_left == true
+
+  //target_Top上方判斷 不行的
+  //if target_Top == false && Topblock_bottom == true -> return
+  //
+  //if target_Top == false && target_Right == false Leftblock_right == false || Rightblock_left == false -> return
+  //
+  //
+  //Topblock_bottom  == true
+
+  //target_Top == true
+  //Topblock_bottom  == true
+
+  //target_right == true
+  //Rightblock_left == true || undifined
+  //or
+  //target_right == false
+  //Rightblock_left == undifined
+
+  //target_left == true || false 都沒差
+  //Leftblock_right == true || undifined
+
+  //target_Bottom == true
+  //Bottomblock_top == true || undifined
+  //or
+  //target_Bottom == false
+  //Bottomblock_top == undifined
+
+  //左方判斷
+  //target_Top == true  || undifined
 </script>
 </html>
