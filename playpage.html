@@ -230,15 +230,27 @@
 
   <div class="container">
     <!-- 聊天區 -->
-    <!-- <hr style="border: 1px solid #27507A;"> -->
-    <div class="chatarea">
+    <div class="chatarea chatarea1">
+      <!-- 角色顯示區與步驟提示區 -->
+      <div class="flexbox stepinfo">
+        <div class="rolebox">
+          <div class="userRole"></div>
+          <div class="rolecue">你是好矮人</div>
+        </div>
+
+        <ul class="stepinfoTxt">
+          <li></li>
+        </ul>
+      </div>
+
+      <hr>
       <ul id="messageBody" class="scrollbox">
       </ul>
       <div class="chatinputbox">
         <div class="chatUser" value="阿婷"></div>
         <input id="inputChat" class="inputChat" type="text" placeholder="來聊天ㄅ" autocomplete="off">
-        <div id="chatbtn" class="chatbtn"></div>
-        <div class="chatclose"><i class="fas fa-times"></i></div>
+        <!-- <div id="chatbtn" class="chatbtn"></div>
+        <div class="chatclose"><i class="fas fa-times"></i></div> -->
       </div>
     </div>
     <div class="chaticon"><i class="far fa-comment"></i></div>
@@ -322,11 +334,6 @@
         <div class="p">請放置卡牌開闢新的路，或使用功能卡，或</div>
         <span class="trash"><i class="fas fa-trash fa-lg">棄牌並跳過</i></span>
       </div>
-      <div class="flexbox stepinfo">
-        <div class="userRole"></div>
-        <ul class="stepinfoTxt"></ul>
-      </div>
-
     </div>
 
 
@@ -363,8 +370,28 @@
       </div>
     </div>
 
-
-
+    <div class="chatarea chatarea2">
+      <!-- 角色顯示區與步驟提示區 -->
+      <div class="flexbox stepinfo">
+        <div class="rolebox">
+          <div class="userRole"></div>
+          <div class="rolecue">你是好矮人</div>
+        </div>
+       
+        <ul class="stepinfoTxt">
+          <li></li>
+        </ul>
+      </div>
+      <ul id="messageBody" class="scrollbox">
+      </ul>
+      <div class="chatinputbox">
+        <div class="chatUser" value="阿婷"></div>
+        <input id="inputChat" class="inputChat" type="text" placeholder="來聊天ㄅ" autocomplete="off">
+        <!-- <div id="chatbtn" class="chatbtn"></div>
+        <div class="chatclose"><i class="fas fa-times"></i></div> -->
+      </div>
+    </div>
+    <div class="chaticon"><i class="far fa-comment"></i></div>
 
   </div>
   <!-- //這是container的div勿刪*///再以下就是container外 -->
@@ -563,8 +590,9 @@
       alert("不可以崩掉起點卡")
       return;
     }
-    if (event.target.id.search(/block|end|trash/) == -1 && event.target.getAttribute("src").search(/32|33|34|35|36|37|38|39|40/) && $('.redborder').attr("src").search(/65|66|67/) !== -1 ) {
-      console.log("成功ㄌㄇ！？",event.target.getAttribute("src").search(/32|33|34|35|36|37|38|39|40/))
+    if (event.target.id.search(/block|end|trash/) == -1 && event.target.getAttribute("src").search(
+        /32|33|34|35|36|37|38|39|40/) && $('.redborder').attr("src").search(/65|66|67/) !== -1) {
+      console.log("成功ㄌㄇ！？", event.target.getAttribute("src").search(/32|33|34|35|36|37|38|39|40/))
       const boxnum = $(".redborder").attr("data-num")
       const svg = $(".handcardbox" + boxnum + " img").attr('src');
       const style = $(".handcardbox" + boxnum + " img").css('transform');
@@ -872,14 +900,14 @@
   $(document).ready(function () {
     $(".chaticon").hide();
   });
-  $(".chatclose").click(function () {
-    $(".chatinputbox").hide()
-    $(".chaticon").show();
-  })
-  $(".chaticon").click(function () {
-    $(".chaticon").hide();
-    $(".chatinputbox").show();
-  })
+  // $(".chatclose").click(function () {
+  //   $(".chatinputbox").hide()
+  //   $(".chaticon").show();
+  // })
+  // $(".chaticon").click(function () {
+  //   $(".chaticon").hide();
+  //   $(".chatinputbox").show();
+  // })
 
 
   function renderChatRecord(chatRecord) {
@@ -899,12 +927,6 @@
   });
 
 
-  $(".chatclose").click(function () {
-    $(".chatarea").hide();
-  })
-  $(".chaticon").click(function () {
-    $(".chatarea").show();
-  })
 
 
   //點選連結到別的畫面

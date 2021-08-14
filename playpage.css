@@ -17,7 +17,7 @@ html, body {
   height: 100%;
   padding: 0px;
   margin: 0px;
-  background-image: url(svg/bgctransparent.svg);
+  background-image: url(svg/bgctransparent_mobile.svg);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -116,7 +116,7 @@ html, body {
   padding: 0px !important;
 }
 
-.container .topcue, .container .stepinfo {
+.container .topcue {
   margin-top: 5px;
   padding: 5px 0px 5px 0px;
   font-size: 9px;
@@ -124,15 +124,45 @@ html, body {
   width: 99%;
 }
 
+.container .stepinfo {
+  padding: 5px 0px 0px 0px;
+  font-size: 9px;
+  background-color: rgba(255, 252, 239, 0.3);
+  margin: 0 auto;
+  margin: 10px;
+}
+
 .container .stepinfo .userRole {
-  width: 50px;
-  height: 50px;
-  border-right: 2px solid #483B3B;
+  display: block;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+  background-image: url(svg/role_circle_good.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding-bottom: 10px;
+}
+
+.container .stepinfo .userRole .rolecue {
+  width: 60px;
+  height: 20px;
+  margin: 0 auto;
+  font-size: 5px;
+  display: block;
+  line-height: 140px;
+  font-weight: 900;
+  letter-spacing: 2px;
 }
 
 .container .stepinfo ul.stepinfoTxt {
-  border: 1px sold red;
-  width: 0%;
+  width: 70%;
+}
+
+.container .stepinfo ul.stepinfoTxt li {
+  width: 70%;
+  list-style: none;
+  text-align: left;
 }
 
 .container .trash {
@@ -180,7 +210,7 @@ html, body {
 
 .container .flexbox.handcardarea {
   width: 90%;
-  margin-bottom: 300px;
+  margin-bottom: 10px;
 }
 
 .container .card {
@@ -236,10 +266,14 @@ hr {
   width: 100%;
   bottom: 0px;
   margin: 0 auto;
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-  left: 0px;
+}
+
+.chatarea1 {
+  display: none;
+}
+
+.chatarea2 {
+  display: block;
 }
 
 #messageBody, ul.scrollbox {
@@ -303,28 +337,6 @@ hr {
   color: rgba(26, 81, 123, 0.4);
 }
 
-.chatinputbox .chatbtn {
-  display: none;
-}
-
-.chatinputbox .chatclose {
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  margin: 3px;
-  padding-right: 5px;
-}
-
-.chatinputbox .chatclose i.fa-times {
-  font-size: 20px;
-  line-height: 30px;
-  color: #1A517B;
-}
-
-.chatinputbox .chatclose i.fa-times:hover {
-  text-shadow: 0px 0px 3px grey;
-}
-
 #staticBackdrop {
   background-color: rgba(197, 76, 77, 0.9);
   margin: 0 auto;
@@ -375,23 +387,36 @@ hr {
     margin: 0px 10px 0px 10px;
   }
   .container .flexbox.handcardarea {
-    width: 15%;
+    width: 13%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     flex-wrap: wrap;
-    margin: 0px 10px 0px 10px;
+    margin: 0px 5px 0px 5px;
   }
   .chatarea {
     margin: 0px 10px 0px 10px;
-    width: 35%;
+    width: 32%;
     position: relative !important;
     height: 600px !important;
+  }
+  .chatarea1 {
+    display: block;
+  }
+  .chatarea2 {
+    display: none;
+  }
+  .container .stepinfo {
+    margin: 0px !important;
+    width: 100% !important;
+  }
+  .container .rolecue {
+    font-size: 12px;
   }
   .container #messageBody, ul.scrollbox {
     margin: 0px !important;
     width: 100% !important;
-    height: 550px !important;
+    height: 450px !important;
   }
   .chatclose, .chaticon, i.fa-comment {
     display: none;
@@ -458,8 +483,12 @@ hr {
     max-width: 550px;
     margin-top: 20px;
   }
+  .container .stepinfo .userRole {
+    width: 80px;
+    height: 80px;
+  }
   .container #messageBody, ul.scrollbox {
-    height: 580px !important;
+    height: 450px !important;
   }
 }
 
@@ -474,17 +503,18 @@ hr {
     height: 38px;
   }
   .container {
-    width: 80% !important;
+    width: 90% !important;
     max-width: 1200px !important;
   }
   .container .showarea {
-    margin: 0px 20px 0px 20px;
+    margin: 0px 80px 0px 20px;
   }
   .container .flexbox.handcardarea {
-    width: 25%;
     margin: 0px;
+    margin: 0px 20px 0px 0px;
+    width: 25%;
   }
   .chatarea {
-    max-width: 350px;
+    max-width: 450px;
   }
 }

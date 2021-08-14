@@ -58,9 +58,7 @@ i.fa-exclamation-triangle {
   letter-spacing: 3px !important;
   width: 140px !important;
   border-radius: 50px !important;
-  position: fixed;
-  top: 15px;
-  right: 50px;
+  margin-top: 10px !important;
 }
 
 .btn-share:hover {
@@ -72,7 +70,7 @@ i.fa-exclamation-triangle {
 }
 
 h4, .topinfo {
-  margin: 15px;
+  margin: 10px;
   padding: 10px;
   font-weight: 900;
   color: #2974AA;
