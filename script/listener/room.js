@@ -7,7 +7,7 @@ function joinRoomListener(data) {
 function initGame(data) {
     data = JSON.parse(data);
     const roomInfo = data.room;
-    const myRole = roomInfo['players'][getNickName()]['team'] === '1' ? 'good' : 'bad';
+    const myRole = roomInfo['players'][getNickName()]['team'] == '1' ? 'good' : 'bad';
 
     setRole(myRole);
 }

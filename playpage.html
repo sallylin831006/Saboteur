@@ -376,7 +376,7 @@
         giveDirection(index, cardNumber);
       }
 
-      const team = userInfo.team === '1' ? '好' : '壞';
+      const team = userInfo.team == '1' ? '好' : '壞';
       $('#team-wording').text(`你是${team}矮人`);
 
       data.chat_record.forEach((chatRecord) => {

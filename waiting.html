@@ -96,7 +96,7 @@
                                 <!-- <h2>點選查看您的角色</h2> -->
                             </div>
                             <div class="flip-box-back">
-                                <img class="role" src="svg/role_good_font.svg">
+                                <img id='role-block' class="role">
                             </div>
                         </div>
                     </div>
@@ -154,7 +154,7 @@
     })
 
     function setRole(myRole) {
-        $('.role').attr('src', `svg/role_${myRole}_font.svg`);
+        $('#role-block').attr('src', `svg/role_${myRole}_font.svg`);
 
         sendEvent('showRole', {
             roomId: CURRENT_ROOM_ID,
