@@ -26,6 +26,14 @@ socket.on("getRoomInfo", (data) => {
     getRoomInfo(data);
 });
 
+socket.on("getDeleteBlock", (data) => {
+    getDeleteBlock(data);
+});
+
+socket.on("recordLog", (data) => {
+    recordLog(data);
+});
+
 socket.on("showRole", (data) => {
     showRole(data);
 });

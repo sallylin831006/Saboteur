@@ -32,11 +32,10 @@
       <div class="flexbox stepinfo">
         <div class="rolebox">
           <div class="userRole"></div>
-          <div class="rolecue">你是好矮人</div>
+          <div id="team-wording" class="rolecue"></div>
         </div>
 
         <ul class="stepinfoTxt">
-          <li>阿婷放置了一張卡牌</li>
         </ul>
       </div>
 
@@ -173,11 +172,10 @@
       <div class="flexbox stepinfo">
         <div class="rolebox">
           <div class="userRole"></div>
-          <div class="rolecue">你是好矮人</div>
+          <div id="team-wording" class="rolecue"></div>
         </div>
 
         <ul class="stepinfoTxt">
-          <li>阿文修理了阿悅的工具</li>
         </ul>
       </div>
       <ul id="messageBody" class="scrollbox">
@@ -194,7 +192,7 @@
   </div>
   <!-- //這是container的div勿刪*///再以下就是container外 -->
 
-  <div class="yourturnCue">
+  <div class="yourturnCue" style="display: none;">
     <p class="yourturntxt">輪到你了！</p>
     <img src="https://img.itch.zone/aW1nLzIzNTkyMDEucG5n/original/HXrjt2.png" class="yourturnpic">
     <p class="yourturnalert"> </p>
@@ -366,19 +364,25 @@
     callApi(`/rooms/${CURRENT_ROOM_ID}`).then((response) => {
       const data = response.data;
       const players = data.turn;
-      var endCards = data.end_block_cards;
-      renderPlayer(players);
 
-      var handCards = data.players[getNickName()]['cards'];
+      renderPlayer(players, data);
+
+      const userInfo = data.players[getNickName()];
+
+      var handCards = userInfo['cards'];
 
       for (let index = 0; index < 6; index++) {
         const cardNumber = handCards[index];
         giveDirection(index, cardNumber);
       }
 
+      const team = userInfo.team === '1' ? '好' : '壞';
+      $('#team-wording').text(`你是${team}矮人`);
+
       data.chat_record.forEach((chatRecord) => {
         renderChatRecord(chatRecord);
       })
+      renderEventLogs(data.logs);
       const whoCanMove = data.play_can_move;
 
       changePlayerToMove(data);
@@ -392,12 +396,29 @@
     });
   });
 
+  function renderEventLogs(logs) {
+    let displayString = '';
+    logs.reverse().forEach((log) => {
+      displayString += `
+        <li>${log.nickname}${log.message}</li>
+      `;
+    });
+
+    $('.stepinfoTxt').html(displayString)
+  }
+
   const changePlayerToMove = (roomInfo) => {
     var endCards = roomInfo.end_block_cards;
     if (roomInfo.play_can_move !== getNickName()) {
+      $(".yourturnCue").hide();
       $('.card').unbind('click');
       $('.block').unbind('click');
     } else {
+      const userId = roomInfo.turn.indexOf(getNickName()) + 1;
+      console.log(`#user${userId}`);
+      $(`#user${userId}`).addClass("yourturnbgc")
+      $(".yourturnCue").show();
+      wiggle();
       //功能:點擊卡牌產生紅色提醒
       $('.card').bind('click', function (e) {
         if ($(this).attr('class').search("redborder") == -1) {
@@ -427,14 +448,18 @@
 
 
           $(".topcue").text("你查看了一張終點卡");
-
+          sendEvent('recordLog', {
+            roomId: CURRENT_ROOM_ID,
+            nickname: getNickName(),
+            message: '查看了一張終點卡',
+          });
           setTimeout(function () {
-              $(`.end${endNum}`).html(`
+            $(`.end${endNum}`).html(`
                 <img data-num="${endNum}" src="svg/cards_blank.svg" class="end" id="end${endNum}">
             `);
           }, 5000);
-  
-          const [positionY, positionX] = $(`.${event.target.id}`).attr('id').match(/\d/g);
+
+          const [positionY, positionX] = $(`.${e.target.id}`).attr('id').match(/\d/g);
           const cardData = {
             cardId: $(".redborder").attr('card-id'),
             positionX: positionX,
@@ -452,22 +477,24 @@
         }
       })
       //功能:點擊棋盤判斷
-      $('.block').bind('click', function (e) {
+      $('.block').bind('click', function (event) {
         if (!hasRedBorder()) {
           return;
         }
-        console.log(e.target.id);
-        if (END_BLOCK.includes(e.target.id)) {
+        if (END_BLOCK.includes(event.target.id)) {
           return;
         }
-        console.log('fuck is uck');
         //崩路卡
         if (event.target.id.search('start') !== -1 && $('.redborder').attr("src").search(/65|66|67/) !== -1) {
           alert("不可以崩掉起點卡")
           return;
         }
 
-        const [positionY, positionX] = event.target.id.match(/\d/g);
+        let target = event.target.getAttribute("data-num");
+        if (event.target.getAttribute("data-num") === null) {
+          target = event.target.id;
+        }
+        const [positionY, positionX] = target.match(/\d/g);
         const cardData = {
           cardId: $(".redborder").attr('card-id'),
           positionX: positionX,
@@ -484,22 +511,36 @@
           const boxnum = $(".redborder").attr("data-num")
           const svg = $(".handcardbox" + boxnum + " img").attr('src');
           const style = $(".handcardbox" + boxnum + " img").css('transform');
-          $(`#${event.target.getAttribute("data-num")}`).html(``);
-          $(`#${event.target.getAttribute("data-num")}`).css("background-color", "#D37E80");
+          renderDeleteBlockId(event.target.getAttribute("data-num"));
           //&& event.target.getAttribute("src").search(/32|33|34|35|36|37|38|39|40/) !== -1
           $(".topcue").text("你使用崩路卡，移除了一條坑路");
-          cardData.haveToUpdateBoard = false;
-          putCardToServer()
+          sendEvent('recordLog', {
+            roomId: CURRENT_ROOM_ID,
+            nickname: getNickName(),
+            message: '使用崩路卡，移除了一條坑路',
+          });
+          cardData.haveToDeleteCard = true;
+          putCardToServer(cardData, event.target.getAttribute("data-num"));
 
           return;
         }
 
         if (hasRedBorder() && $('.redborder').attr("src").search(/32|33|34|35|36|37|38|39|40/) !== -1) {
           $(".topcue").text("你放了一張坑洞卡");
+          sendEvent('recordLog', {
+            roomId: CURRENT_ROOM_ID,
+            nickname: getNickName(),
+            message: '放了一張坑洞卡',
+          });
           Cardput(cardData);
           return;
         }
         $(".topcue").text("你放了一張道路卡");
+        sendEvent('recordLog', {
+          roomId: CURRENT_ROOM_ID,
+          nickname: getNickName(),
+          message: '放了一張道路卡',
+        });
         Cardput(cardData);
         return;
       });
@@ -507,6 +548,9 @@
   }
 
   const renderBoard = (board) => {
+    if (typeof board === 'undefined' || board === null) {
+      return;
+    }
     for (const [positionX, positionData] of Object.entries(board)) {
       for (const [positionY, cardData] of Object.entries(positionData)) {
         const block = `block${positionY}-${positionX}`;
@@ -527,31 +571,206 @@
     }
   }
 
-  function renderPlayer(players) {
+  function renderPlayer(players, roomInfo) {
     let displayUsers = '';
+    let counter = 1;
+    let playersData = roomInfo.players;
+    const whoCanMove = roomInfo.play_can_move;
     players.forEach((player) => {
+      const playerData = playersData[player];
+      const axBanNumber = playerData.tools.ax == 0 ? null : `statusBan${playerData.tools.ax}`;
+      const lampBanNumber = playerData.tools.lamp == 0 ? null : `statusBan${playerData.tools.lamp}`;
+      const carBanNumber = playerData.tools.car == 0 ? null : `statusBan${playerData.tools.car}`;
+
+      let highlight = whoCanMove == player ? 'yourturnbgc' : null;
       displayUsers += `
         <div class="userbox">
-          <div id="user1" class="username" data-num="1">${player}
+          <div id="user${counter}" class="username ${highlight}" data-num="${counter}">${player}
           </div>
           <div class="flexbox statusbox">
-            <div data-num="1" class="status ax1" style="
+            <div data-num="${counter}" ban-num=${playerData.tools.ax} class="status ax${counter} ${axBanNumber}" style="
                 background-image: url(svg/status/status_ax.svg);
                 background-size: cover;
               "></div>
-            <div data-num="1" class="status car1" style="
+            <div data-num="${counter}" ban-num="${playerData.tools.car}" class="status car${counter} ${carBanNumber}" style="
                 background-image: url(svg/status/status_car.svg);
                 background-size: cover;
               "></div>
-            <div data-num="1" class="status lamp1" style="
+            <div data-num="${counter}" ban-num="${playerData.tools.lamp}" class="status lamp${counter} ${lampBanNumber}" style="
                 background-image: url(svg/status/status_lamp.svg);
                 background-size: cover;
               "></div>
           </div>
         </div>         
       `;
+
+      counter += 1;
     });
     $('#user-block').html(displayUsers);
+
+    //封鎖
+    $(".username").bind('click', function (e) {
+      if (! hasRedBorder()) {
+        return;
+      }
+      const LAMP_BAN = $('.redborder').attr("src").search(LAMP_BAN_CARDS)
+      const AX_BAN = $('.redborder').attr("src").search(AX_BAN_CARDS)
+      const CAR_BAN = $('.redborder').attr("src").search(CAR_BAN_CARDS)
+      const LAMP_SAVE = $('.redborder').attr("src").search(LAMP_SAVE_CARDS)
+      const AX_SAVE = $('.redborder').attr("src").search(AX_SAVE_CARDS)
+      const CAR_SAVE = $('.redborder').attr("src").search(CAR_SAVE_CARDS)
+
+      const LAMP_CAR_SAVE = $('.redborder').attr("src").search(LAMP_CAR_SAVE_CARDS)
+      const LAMP_AX_SAVE = $('.redborder').attr("src").search(LAMP_AX_SAVE_CARDS)
+      const AX_CAR_SAVE = $('.redborder').attr("src").search(AX_CAR_SAVE_CARDS)
+
+
+      let hasBanTool = false;
+      let toolChineseName = '';
+      let banTools = [];
+
+      if (LAMP_BAN !== -1) {
+        hasBanTool = true;
+        banTools.push("lamp")
+        toolChineseName = "燈"
+      }
+      if (AX_BAN !== -1) {
+        hasBanTool = true;
+        banTools.push("ax")
+        toolChineseName = "斧頭";
+      }
+      if (CAR_BAN !== -1) {
+        hasBanTool = true;
+        banTools.push("car")
+        toolChineseName = "礦車";
+      }
+
+      let hasSaveTool = false;
+      let savetoolChineseName = '';
+      let saveTools = [];
+      if (LAMP_SAVE !== -1) {
+        hasSaveTool = true;
+        saveTools.push("lamp")
+        savetoolChineseName = "燈"
+      }
+      if (AX_SAVE !== -1) {
+        hasSaveTool = true;
+        saveTools.push("ax")
+        savetoolChineseName = "斧頭"
+      }
+      if (CAR_SAVE !== -1) {
+        hasSaveTool = true;
+        saveTools.push("car")
+        savetoolChineseName = "礦車"
+      }
+      if (LAMP_CAR_SAVE !== -1) {
+        saveTools.push('lamp');
+        saveTools.push('car');
+        savetoolChineseName = "燈和礦車"
+        hasSaveTool = true;
+      }
+      if (LAMP_AX_SAVE !== -1) {
+        saveTools.push('lamp');
+        saveTools.push('ax');
+        savetoolChineseName = "燈和斧頭"
+        hasSaveTool = true;
+      }
+      if (AX_CAR_SAVE !== -1) {
+        saveTools.push('ax');
+        saveTools.push('car');
+        savetoolChineseName = "斧頭和礦車"
+        hasSaveTool = true;
+      }
+
+      if (!hasRedBorder()) {
+        return;
+      }
+      if (!hasBanTool && !hasSaveTool) {
+        alert("你這張不是破壞卡或修理卡，不能用在這邊！");
+        return;
+      }
+
+      const usernum = $(`#${e.target.id}`).attr("data-num");
+
+      if (hasBanTool) {
+        banTools.forEach((banToolName) => {
+          const usernum = $(`#${e.target.id}`).attr("data-num");
+          if ($(`.${banToolName}${usernum}`).attr("class").search(/statusBan\d/g) !== -1) {
+            let banNum = $(`.${banToolName}${usernum}`).attr('class').match(/statusBan\d/g)[0].match(/\d/g)[
+              0];
+            $(`.${banToolName}${usernum}`).removeClass(`statusBan${banNum}`);
+            banNum = parseInt(banNum) + 1
+            $(`.${banToolName}${usernum}`).addClass(`statusstyle`);
+            $(`.${banToolName}${usernum}`).addClass(`statusBan${banNum}`);
+            $(`.${banToolName}${usernum}`).attr('ban-num', String(banNum));
+            $(".topcue").text(`你破壞了${$(e.target).text()}的${toolChineseName}`);
+            sendEvent('recordLog', {
+              roomId: CURRENT_ROOM_ID,
+              nickname: getNickName(),
+              message: `破壞了${$(e.target).text().trim()}的${toolChineseName}`,
+            });
+          } else {
+            $(`.${banToolName}${usernum}`).addClass(`statusBan1`);
+            $(`.${banToolName}${usernum}`).attr('ban-num', '1');
+            $(".topcue").text(`你破壞了${$(e.target).text()}的${toolChineseName}`);
+            sendEvent('recordLog', {
+              roomId: CURRENT_ROOM_ID,
+              nickname: getNickName(),
+              message: `破壞了${$(e.target).text().trim()}的${toolChineseName}`,
+            });
+          }
+        });
+        const toolsData = {
+          cardId: $(".redborder").attr('card-id'),
+          targetName: $(e.target).text().trim(),
+          tools: {
+            'ax': parseInt($(`.ax${usernum}`).attr('ban-num')),
+            'lamp': parseInt($(`.lamp${usernum}`).attr('ban-num')),
+            'car': parseInt($(`.car${usernum}`).attr('ban-num')),
+          }
+        }
+        updateToolsToServer(toolsData);
+        return;
+      }
+
+
+      if (hasSaveTool) {
+        saveTools.forEach((saveToolName) => {
+          console.log(saveToolName);
+          if ($(`.${saveToolName}${usernum}`).attr("class").search(/statusBan1/g) !== -1) {
+            $(`.${saveToolName}${usernum}`).removeClass(`statusBan1`);
+            $(`.${saveToolName}${usernum}`).attr('ban-num', '0');
+            $(`.${saveToolName}${usernum}`).removeClass(`statusstyle`);
+          }
+          if ($(`.${saveToolName}${usernum}`).attr("class").search(/statusBan\d/g) !== -1) {
+            const usernum = $(`#${e.target.id}`).attr("data-num");
+            let banNum = $(`.${saveToolName}${usernum}`).attr('class').match(/statusBan\d/g)[0].match(
+              /\d/g)[0];
+            $(`.${saveToolName}${usernum}`).removeClass(`statusBan${banNum}`);
+            banNum = parseInt(banNum) - 1
+            $(`.${saveToolName}${usernum}`).addClass(`statusBan${banNum}`);
+            $(`.${saveToolName}${usernum}`).attr('ban-num', String(banNum));
+          }
+          $(".topcue").text(`你修理了${$(e.target).text()}的${savetoolChineseName}`);
+          sendEvent('recordLog', {
+            roomId: CURRENT_ROOM_ID,
+            nickname: getNickName(),
+            message: `修理了${$(e.target).text().trim()}的${savetoolChineseName}`,
+          });
+          const toolsData = {
+            cardId: $(".redborder").attr('card-id'),
+            targetName: $(e.target).text().trim(),
+            tools: {
+              'ax': parseInt($(`.ax${usernum}`).attr('ban-num')),
+              'lamp': parseInt($(`.lamp${usernum}`).attr('ban-num')),
+              'car': parseInt($(`.car${usernum}`).attr('ban-num')),
+            }
+          }
+          updateToolsToServer(toolsData);
+          return;
+        });
+      }
+    });
   }
 
   function giveDirection(index, cardNumber) {
@@ -568,16 +787,48 @@
     }
   }
 
-  const putCardToServer = (cardData) => {
+  function renderDeleteBlockId(deleteBlockId) {
+    $(`#${deleteBlockId}`).html(``);
+    $(`#${deleteBlockId}`).css("background-color", "#D37E80");
+  }
+
+  const updateToolsToServer = (toolsData) => {
+    const nickname = getNickName();
+    callApi(`/rooms/${CURRENT_ROOM_ID}/players/${nickname}/tools`, 'POST', toolsData).then((response) => {
+      if (response.status === '400') {
+        alert('操作錯誤');
+        return;
+      }
+
+      sendEvent('getRoomInfo', {
+        roomId: CURRENT_ROOM_ID,
+      });
+
+      $('.card').unbind('click');
+      $('.block').unbind('click');
+      handCards = response.data.players[nickname].cards;
+      giveNewCard(handCards);
+    });
+  }
+
+  const putCardToServer = (cardData, deleteBlockId = null) => {
     const nickname = getNickName();
     callApi(`/rooms/${CURRENT_ROOM_ID}/players/${nickname}/cards`, 'POST', cardData).then((response) => {
       if (response.status === '400') {
         alert('操作錯誤');
         return;
       }
-      sendEvent('getRoomInfo', {
-        roomId: CURRENT_ROOM_ID,
-      });
+      if (deleteBlockId) {
+        sendEvent('getDeleteBlock', {
+          roomId: CURRENT_ROOM_ID,
+          deleteBlockId: deleteBlockId,
+        });
+      } else {
+        sendEvent('getRoomInfo', {
+          roomId: CURRENT_ROOM_ID,
+        });
+      }
+
       $('.card').unbind('click');
       $('.block').unbind('click');
       handCards = response.data.players[nickname].cards;
@@ -621,8 +872,25 @@
     if (!hasRedBorder()) {
       return;
     }
-    giveNewCard();
     $(".topcue").text("你棄掉一張卡牌");
+    sendEvent('recordLog', {
+      roomId: CURRENT_ROOM_ID,
+      nickname: getNickName(),
+      message: '棄掉一張卡牌',
+    });
+    const cardData = {
+      cardId: $(".redborder").attr('card-id'),
+      positionX: '0',
+      positionY: '0',
+      top: false,
+      bottom: false,
+      left: false,
+      right: false,
+      style: null,
+      haveToUpdateBoard: false,
+    }
+    putCardToServer(cardData);
+
     return;
   })
 
@@ -658,132 +926,6 @@
   //     $(".littecue").text("使用山崩卡可以炸毀一條路！");
   //   }
   // });
-
-
-  //封鎖
-  $(".username").click(function (e) {
-    const LAMP_BAN = $('.redborder').attr("src").search(LAMP_BAN_CARDS)
-    const AX_BAN = $('.redborder').attr("src").search(AX_BAN_CARDS)
-    const CAR_BAN = $('.redborder').attr("src").search(CAR_BAN_CARDS)
-    const LAMP_SAVE = $('.redborder').attr("src").search(LAMP_SAVE_CARDS)
-    const AX_SAVE = $('.redborder').attr("src").search(AX_SAVE_CARDS)
-    const CAR_SAVE = $('.redborder').attr("src").search(CAR_SAVE_CARDS)
-
-    const LAMP_CAR_SAVE = $('.redborder').attr("src").search(LAMP_CAR_SAVE_CARDS)
-    const LAMP_AX_SAVE = $('.redborder').attr("src").search(LAMP_AX_SAVE_CARDS)
-    const AX_CAR_SAVE = $('.redborder').attr("src").search(AX_CAR_SAVE_CARDS)
-
-
-    let hasBanTool = false;
-    let toolChineseName = '';
-    let banTools = [];
-
-    if (LAMP_BAN !== -1) {
-      hasBanTool = true;
-      banTools.push("lamp")
-      toolChineseName = "燈"
-    }
-    if (AX_BAN !== -1) {
-      hasBanTool = true;
-      banTools.push("ax")
-      toolChineseName = "斧頭";
-    }
-    if (CAR_BAN !== -1) {
-      hasBanTool = true;
-      banTools.push("car")
-      toolChineseName = "礦車";
-    }
-
-    let hasSaveTool = false;
-    let savetoolChineseName = '';
-    let saveTools = [];
-    if (LAMP_SAVE !== -1) {
-      hasSaveTool = true;
-      saveTools.push("lamp")
-      savetoolChineseName = "燈"
-    }
-    if (AX_SAVE !== -1) {
-      hasSaveTool = true;
-      saveTools.push("ax")
-      savetoolChineseName = "斧頭"
-    }
-    if (CAR_SAVE !== -1) {
-      hasSaveTool = true;
-      saveTools.push("car")
-      savetoolChineseName = "礦車"
-    }
-    if (LAMP_CAR_SAVE !== -1) {
-      saveTools.push('lamp');
-      saveTools.push('car');
-      savetoolChineseName = "燈和礦車"
-      hasSaveTool = true;
-    }
-    if (LAMP_AX_SAVE !== -1) {
-      saveTools.push('lamp');
-      saveTools.push('ax');
-      savetoolChineseName = "燈和斧頭"
-      hasSaveTool = true;
-    }
-    if (AX_CAR_SAVE !== -1) {
-      saveTools.push('ax');
-      saveTools.push('car');
-      savetoolChineseName = "斧頭和礦車"
-      hasSaveTool = true;
-    }
-
-    if (!hasRedBorder()) {
-      return;
-    }
-    if (!hasBanTool && !hasSaveTool) {
-      alert("你這張不是破壞卡或修理卡，不能用在這邊！");
-      return;
-    }
-
-    const usernum = $(`#${e.target.id}`).attr("data-num");
-
-    if (hasBanTool) {
-      banTools.forEach((banToolName) => {
-        const usernum = $(`#${e.target.id}`).attr("data-num");
-        if ($(`.${banToolName}${usernum}`).attr("class").search(/statusBan\d/g) !== -1) {
-          let banNum = $(`.${banToolName}${usernum}`).attr('class').match(/statusBan\d/g)[0].match(/\d/g)[
-            0];
-          $(`.${banToolName}${usernum}`).removeClass(`statusBan${banNum}`);
-          banNum = parseInt(banNum) + 1
-          $(`.${banToolName}${usernum}`).addClass(`statusstyle`);
-          $(`.${banToolName}${usernum}`).addClass(`statusBan${banNum}`);
-          $(".topcue").text(`你破壞了${$(e.target).text()}的${toolChineseName}`);
-        } else {
-          $(`.${banToolName}${usernum}`).addClass(`statusBan1`);
-          $(".topcue").text(`你破壞了${$(e.target).text()}的${toolChineseName}`);
-
-        }
-      });
-      giveNewCard();
-      return;
-    }
-
-
-    if (hasSaveTool) {
-      saveTools.forEach((saveToolName) => {
-        if ($(`.${saveToolName}${usernum}`).attr("class").search(/statusBan1/g) !== -1) {
-          $(`.${saveToolName}${usernum}`).removeClass(`statusBan1`);
-          $(`.${saveToolName}${usernum}`).removeClass(`statusstyle`);
-        }
-        if ($(`.${saveToolName}${usernum}`).attr("class").search(/statusBan\d/g) !== -1) {
-          const usernum = $(`#${e.target.id}`).attr("data-num");
-          let banNum = $(`.${saveToolName}${usernum}`).attr('class').match(/statusBan\d/g)[0].match(
-            /\d/g)[0];
-          $(`.${saveToolName}${usernum}`).removeClass(`statusBan${banNum}`);
-          banNum = parseInt(banNum) - 1
-          $(`.${saveToolName}${usernum}`).addClass(`statusBan${banNum}`);
-        }
-        $(".topcue").text(`你修理了${$(e.target).text()}的${savetoolChineseName}`);
-        giveNewCard();
-        return;
-      });
-    }
-  });
-
 
   // 聊天室新增 聊天內容
   const scrollbox = document.querySelector('.scrollbox');
@@ -836,19 +978,6 @@
     }
   });
 
-  //提示：輪到哪一位玩家會做提醒
-  // $(document).ready(function () {
-  //   $(".yourturnCue").hide();
-  // });
-
-  //再修改成輪到的玩家ID
-  $("#user1").addClass(".yourturnbgc")
-
-  $(document).ready(function () {
-    $(".yourturnCue").show();
-    wiggle();
-  });
-
   $(".ok").click(function () {
     $(".yourturnCue").hide();
   })
@@ -895,7 +1024,7 @@
           $(".ok").hide();
         }
       }
-      console.log("wiggletime1", wiggletime);
+      // console.log("wiggletime1", wiggletime);
     }, 100);
   }
 

@@ -1,5 +1,8 @@
 * {
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   font-size: 15px;
   text-align: center;
   margin: 0 auto;
@@ -18,12 +21,22 @@ html, body {
   max-width: 400px;
   margin: 0 auto;
   padding: 3px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .container img.rankpic {
   width: 35%;
 }
+/*# sourceMappingURL=rank.css.map */

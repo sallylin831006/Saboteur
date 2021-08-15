@@ -130,18 +130,11 @@
 <script src="./script/socket.js"></script>
 <script src="./script/listener/room.js"></script>
 <script>
-    // // //卡片翻轉效果
-    // $('.flip-box-inner').on('click', function () {
-    //     $('.flip-box-inner').css("transform","rotateY(180deg)");
-    // });
-
-
-
     var CURRENT_ROOM_ID = getUrlParameter('room_id');
     var INVITE_URL = `${window.location.origin}/invite.html?room_id=${CURRENT_ROOM_ID}`;
     var START_GAME_URL = `${window.location.origin}/index.html`;
 
-    const renderPlayer = (players) => {
+    function renderPlayer(players, data) {
         let displayUsers = '';
         players.forEach((player) => {
             displayUsers += `
@@ -173,11 +166,10 @@
 
     function showRole() {
         $('#staticBackdrop').modal('show');
-        $('#start-game').hide();
         //卡片翻轉效果
         $('.flip-box-inner').on('click', function () {
             $('.flip-box-inner').css("transform", "rotateY(180deg)");
-            $('#start-game').show();
+            $('.owner-start-game-btn').show();
         });
         
     }
@@ -198,11 +190,14 @@
         callApi(`/rooms/${CURRENT_ROOM_ID}`).then((response) => {
             const data = response.data;
             const players = Object.keys(data.players);
-            renderPlayer(players);
+            renderPlayer(players, data);
             const owner = data.owner;
 
             if (owner !== getNickName()) {
                 hideNotOwnerSetting();
+            } else {
+                $('#start-game').addClass('owner-start-game-btn');
+                $('.owner-start-game-btn').hide();
             }
         });
 

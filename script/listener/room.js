@@ -1,6 +1,7 @@
 function joinRoomListener(data) {
     data = JSON.parse(data);
-    renderPlayer(data.turn);
+    const players = data.turn.length > 0 ? data.turn : Object.keys(data.players);
+    renderPlayer(players, data);
 }
 
 function initGame(data) {
@@ -14,6 +15,9 @@ function initGame(data) {
 function initError(data) {
     data = JSON.parse(data);
     alert(data.message);
+    if (data.redirect) {
+        window.location.href = START_GAME_URL;
+    }
 }
 
 function startGame() {
@@ -24,12 +28,19 @@ function getRoomInfo(data) {
     data = JSON.parse(data);
     const roomInfo = data.room;
     renderBoard(roomInfo.board);
+    changePlayerToMove(roomInfo)
+    renderPlayer(roomInfo.turn, roomInfo);
+}
+
+function getDeleteBlock(data) {
+    data = JSON.parse(data);
+    console.log('dee', data);
+    renderDeleteBlockId(data.deleteBlockId);
     changePlayerToMove(data.room)
 }
 
 function showRole(data) {
     data = JSON.parse(data);
-    console.log(123);
     showRole();
 } 
 
@@ -37,4 +48,10 @@ function sendMessage(data) {
     data = JSON.parse(data);
     const chatRecord = data.chatRecord;
     renderChatRecord(chatRecord);
+}
+
+function recordLog(data) {
+    data = JSON.parse(data);
+    const logs = data.logs;
+    renderEventLogs(logs);
 }

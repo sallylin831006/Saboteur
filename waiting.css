@@ -1,9 +1,16 @@
 * {
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   font-size: 15px;
   text-align: center;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   font-family: "Kosugi Maru",'Noto Sans TC',sans-serif;
 }
 
@@ -18,8 +25,11 @@ html, body {
 .info {
   width: 350px;
   margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   margin-top: 5px;
   color: #483B3B;
 }
@@ -90,7 +100,8 @@ h4, .topinfo {
   padding: 10px;
   border-radius: 10px;
   background-color: #FFFCEF;
-  box-shadow: 1px 2px 5px #483B3B;
+  -webkit-box-shadow: 1px 2px 5px #483B3B;
+          box-shadow: 1px 2px 5px #483B3B;
   color: #483B3B;
 }
 
@@ -119,7 +130,6 @@ h4, .topinfo {
 .fade .modal-content #url:focus {
   outline: 0 !important;
   -webkit-box-shadow: none !important;
-  -moz-box-shadow: none !important;
   box-shadow: none !important;
 }
 
@@ -148,8 +158,11 @@ h4, .topinfo {
 
 .container .playerarea {
   width: 99%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .container .playerarea .user {
@@ -167,9 +180,12 @@ h4, .topinfo {
 .container img.hi {
   width: 15%;
   min-width: 70px;
-  animation: ani1 3s infinite;
-  animation-timing-function: steps(1000);
-  animation-delay: 1s;
+  -webkit-animation: ani1 3s infinite;
+          animation: ani1 3s infinite;
+  -webkit-animation-timing-function: steps(1000);
+          animation-timing-function: steps(1000);
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
   position: relative;
 }
 
@@ -177,6 +193,29 @@ h4, .topinfo {
   width: 10%;
   min-width: 50px;
   margin: 0 auto;
+}
+
+@-webkit-keyframes ani1 {
+  0% {
+    left: 100px;
+    opacity: 0.5;
+  }
+  25% {
+    left: 50px;
+    opacity: 0.7;
+  }
+  50% {
+    left: 0px;
+    opacity: 1;
+  }
+  75% {
+    left: -50px;
+    opacity: 1;
+  }
+  100% {
+    left: -100px;
+    opacity: 0;
+  }
 }
 
 @keyframes ani1 {
@@ -215,7 +254,8 @@ h4, .topinfo {
   padding: 10px;
   border-radius: 10px;
   background-color: #FFFCEF;
-  box-shadow: 1px 2px 5px #483B3B;
+  -webkit-box-shadow: 1px 2px 5px #483B3B;
+          box-shadow: 1px 2px 5px #483B3B;
   color: #483B3B;
 }
 
@@ -223,7 +263,8 @@ h4, .topinfo {
   background-color: transparent;
   width: 300px;
   height: 495px;
-  perspective: 1000px;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
 }
 
 #staticBackdrop .modal-content.rolebox .flip-box-inner {
@@ -231,8 +272,12 @@ h4, .topinfo {
   width: 100%;
   height: 100%;
   text-align: center;
+  -webkit-transition: -webkit-transform 0.8s;
+  transition: -webkit-transform 0.8s;
   transition: transform 0.8s;
-  transform-style: preserve-3d;
+  transition: transform 0.8s, -webkit-transform 0.8s;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
 }
 
 #staticBackdrop .modal-content.rolebox .flip-box-front,
@@ -255,19 +300,26 @@ h4, .topinfo {
 
 #staticBackdrop .modal-content.rolebox .flip-box-front:hover {
   font-size: 17px;
-  transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
 }
 
 #staticBackdrop .modal-content.rolebox .flip-box-back {
-  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
 }
 
 #staticBackdrop .modal-content.rolebox img.role {
   width: 300px;
-  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: -webkit-transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), -webkit-transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 #staticBackdrop .modal-content.rolebox #start-game {
   letter-spacing: 2px;
 }
+/*# sourceMappingURL=waiting.css.map */
