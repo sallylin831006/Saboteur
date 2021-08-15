@@ -17,9 +17,6 @@
   <meta property="og:description" content="最有質感的線上版矮人礦坑遊戲，一起來玩吧！" />
   <!-- 字體 -->
   <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&amp;display=swap" rel="stylesheet">
-  <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
-  <!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet"> -->
 </head>
 <link rel="stylesheet" href="playpage.css" />
 
@@ -229,7 +226,7 @@
   </div>
 
   <div class="container">
-    <!-- 聊天區 -->
+    <!-- 聊天區1 顯示於大螢幕裝置 -->
     <div class="chatarea chatarea1">
       <!-- 角色顯示區與步驟提示區 -->
       <div class="flexbox stepinfo">
@@ -239,7 +236,7 @@
         </div>
 
         <ul class="stepinfoTxt">
-          <li></li>
+          <li>阿婷放置了一張卡牌</li>
         </ul>
       </div>
 
@@ -370,6 +367,7 @@
       </div>
     </div>
 
+    <!-- 聊天區2 顯示於小螢幕裝置 -->
     <div class="chatarea chatarea2">
       <!-- 角色顯示區與步驟提示區 -->
       <div class="flexbox stepinfo">
@@ -377,9 +375,9 @@
           <div class="userRole"></div>
           <div class="rolecue">你是好矮人</div>
         </div>
-       
+
         <ul class="stepinfoTxt">
-          <li></li>
+          <li>阿文修理了阿悅的工具</li>
         </ul>
       </div>
       <ul id="messageBody" class="scrollbox">
@@ -463,12 +461,12 @@
   }
 
 
-  $(".container").click(function (e) {
-    console.log("e.target=", e.target)
-    console.log("e.target.className=", e.target.className)
-    console.log("e.target.id=", e.target.id)
-    console.log("data-num=", e.target.getAttribute("data-num"));
-  })
+  // $(".container").click(function (e) {
+  //   console.log("e.target=", e.target)
+  //   console.log("e.target.className=", e.target.className)
+  //   console.log("e.target.id=", e.target.id)
+  //   console.log("data-num=", e.target.getAttribute("data-num"));
+  // })
 
   //遊戲開始時，依人數分配角色卡
 
@@ -489,10 +487,6 @@
   handCards = pools.splice(0, 6)
 
   function Cardput() {
-    if (event.target.id.search(/block|end|trash/) == -1 && $('.redborder').attr("src").search(/65|66|67/) == 14) {
-      giveNewCard();
-      return;
-    }
     //圈選手牌後，可再點擊的位置：block|end|trash，其他處不可放卡牌，如：起始牌、已放卡牌的位置
     if (event.target.id.search(/block|end|trash/) == -1) {
       alert("此處不能放置卡牌");
@@ -585,28 +579,26 @@
     if (!hasRedBorder()) {
       return;
     }
+
     //崩路卡
     if (event.target.id.search('start') !== -1 && $('.redborder').attr("src").search(/65|66|67/) !== -1) {
       alert("不可以崩掉起點卡")
       return;
     }
-    if (event.target.id.search(/block|end|trash/) == -1 && event.target.getAttribute("src").search(
-        /32|33|34|35|36|37|38|39|40/) && $('.redborder').attr("src").search(/65|66|67/) !== -1) {
-      console.log("成功ㄌㄇ！？", event.target.getAttribute("src").search(/32|33|34|35|36|37|38|39|40/))
+    if (event.target.id.search(/block|end|trash/) == -1 && $('.redborder').attr("src").search(/65|66|67/) !== -1) {
       const boxnum = $(".redborder").attr("data-num")
       const svg = $(".handcardbox" + boxnum + " img").attr('src');
       const style = $(".handcardbox" + boxnum + " img").css('transform');
       $(`#${event.target.getAttribute("data-num")}`).html(``);
       $(`#${event.target.getAttribute("data-num")}`).css("background-color", "#D37E80");
-      //&& event.target.getAttribute("src").search(/32|33|34|35|36|37|38|39|40/) !== -1
       giveNewCard();
-      $(".topcue").text("你使用崩路卡，移除了一條坑路");
+      $(".topcue").text("你使用崩路卡，移除了一條道路");
+      if (event.target.getAttribute("src").search(/32|33|34|35|36|37|38|39|40/) !== -1) {
+        $(".topcue").text("你使用崩路卡，移除了一條坑路");
+      }
       return;
     }
-    // $(".topcue").text("你使用崩路卡，移除了一條道路");
-    // giveNewCard();
-    // return;
-
+    //判斷放了是什麼卡牌
     if (hasRedBorder() && $('.redborder').attr("src").search(/32|33|34|35|36|37|38|39|40/) !== -1) {
       $(".topcue").text("你放了一張坑洞卡");
       Cardput();
@@ -615,6 +607,9 @@
     $(".topcue").text("你放了一張道路卡");
     Cardput();
     return;
+
+
+
   })
 
   // 圖卡旋轉
@@ -706,12 +701,10 @@
       ['top', 'left', 'right', 'bottom'].forEach((direction) => {
         endcardelement.attr(direction, endDirection[direction]);
       });
-      console.log("有＋方向ㄇ")
 
 
       $(".topcue").text("你查看了一張終點卡");
       giveNewCard();
-
       return;
     }
   });
@@ -857,7 +850,6 @@
         if ($(`.${saveToolName}${usernum}`).attr("class").search(/statusBan1/g) !== -1) {
           $(`.${saveToolName}${usernum}`).removeClass(`statusBan1`);
           $(`.${saveToolName}${usernum}`).removeClass(`statusstyle`);
-          console.log("remove!!!")
         }
         if ($(`.${saveToolName}${usernum}`).attr("class").search(/statusBan\d/g) !== -1) {
           const usernum = $(`#${e.target.id}`).attr("data-num");

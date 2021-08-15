@@ -210,7 +210,7 @@ h4, .topinfo {
   background-color: #1A517B;
 }
 
-#staticBackdrop .modal-content {
+#staticBackdrop .modal-content.rolebox {
   width: 100%;
   padding: 10px;
   border-radius: 10px;
@@ -219,6 +219,55 @@ h4, .topinfo {
   color: #483B3B;
 }
 
-#staticBackdrop .modal-content img.role {
-  width: 180px;
+#staticBackdrop .modal-content.rolebox .flip-box {
+  background-color: transparent;
+  width: 300px;
+  height: 495px;
+  perspective: 1000px;
+}
+
+#staticBackdrop .modal-content.rolebox .flip-box-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+#staticBackdrop .modal-content.rolebox .flip-box-front,
+#staticBackdrop .modal-content.rolebox .flip-box-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+#staticBackdrop .modal-content.rolebox .flip-box-front {
+  background-color: #1a517b;
+  color: #FFFCEF;
+  line-height: 500px;
+  letter-spacing: 3px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+#staticBackdrop .modal-content.rolebox .flip-box-front:hover {
+  font-size: 17px;
+  transition-duration: 0.5s;
+}
+
+#staticBackdrop .modal-content.rolebox .flip-box-back {
+  transform: rotateY(180deg);
+}
+
+#staticBackdrop .modal-content.rolebox img.role {
+  width: 300px;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#staticBackdrop .modal-content.rolebox #start-game {
+  letter-spacing: 2px;
 }

@@ -94,8 +94,8 @@ html, body {
   content: "";
   color: #E93F33;
   font-size: 10px;
-  font-weight: 900;
   line-height: 20px;
+  font-weight: 900;
   font-weight: bolder;
   position: absolute;
   top: -15px;
@@ -163,6 +163,7 @@ html, body {
   width: 70%;
   list-style: none;
   text-align: left;
+  font-size: 12px;
 }
 
 .container .trash {
@@ -459,8 +460,16 @@ hr {
     height: 65px;
   }
   .playerarea .userbox .statusbox .status {
-    width: 30px;
-    height: 30px;
+    width: 36px;
+    height: 36px;
+  }
+  .playerarea .userbox .statusBan1::before, .playerarea .userbox .statusstyle::before {
+    font-size: 35px;
+    line-height: 30px;
+  }
+  .playerarea .userbox .statusBan1::after, .playerarea .userbox .statusstyle::after {
+    font-size: 15px;
+    line-height: 25px;
   }
   .container {
     width: 100%;

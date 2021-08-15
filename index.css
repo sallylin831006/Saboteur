@@ -272,24 +272,6 @@ textarea.content:focus {
   background-color: #3F9CCD;
 }
 
-.filter {
-  margin: 10px 0px 10px 0px;
-  width: 100%;
-}
-
-.filterbtn {
-  border: none !important;
-  background-color: #FFFCEF !important;
-  color: #483B3B !important;
-  padding: 5px 10px 5px 10px !important;
-  margin: 5px !important;
-  border-radius: 0px !important;
-}
-
-.filterbtn:hover {
-  border-bottom: 2px solid #483B3B !important;
-}
-
 .list {
   width: 100%;
   margin: 0px;
@@ -306,18 +288,27 @@ textarea.content:focus {
   padding: 10px;
   color: #483B3B;
   word-wrap: break-word;
+  border-bottom: 1px dashed rgba(72, 59, 59, 0.7);
 }
 
 .list li:hover {
   background-color: rgba(251, 196, 57, 0.2);
-  border-bottom: 1px solid rgba(72, 59, 59, 0.7);
 }
 
-.list li::before {
+.list li .bbsname {
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  line-height: 30px;
+  padding-bottom: 5px;
+  color: #1A517B;
+}
+
+.list li .bbsname::before {
   content: '';
   display: inline-block;
-  height: 30px;
-  width: 24px;
+  width: 20px;
+  height: 25px;
   margin: 0px 10px 0px 10px;
   background-image: url("svg/icon.svg");
   background-size: cover;

@@ -76,6 +76,7 @@ html, body
             +size(20px,20px)
             border-radius: 50%
             position: relative
+            
             &::before
                 content: "✗"
                 font-size: 20px
@@ -87,8 +88,8 @@ html, body
                 content: ""
                 color: #E93F33
                 font-size: 10px
-                font-weight: 900
                 line-height: 20px
+                font-weight: 900
                 font-weight: bolder
                 position: absolute
                 top: -15px
@@ -145,6 +146,7 @@ html, body
                 width: 70%
                 list-style: none
                 text-align: left
+                font-size: 12px
 
     .trash
         cursor: pointer
@@ -351,7 +353,6 @@ hr
         display: block
     .chatarea2
         display: none
-
     .container .stepinfo
         margin: 0px !important
         width: 100% !important
@@ -395,7 +396,14 @@ hr
         line-height: 85px
         +size(97.5px,65px) //*75*50//
     .playerarea .userbox .statusbox .status
-        +size (30px,30px) //*20*20//
+        +size(36px,36px)
+    .playerarea .userbox .statusBan1::before, .playerarea .userbox .statusstyle::before
+        font-size: 35px
+        line-height: 30px
+    .playerarea .userbox .statusBan1::after, .playerarea .userbox .statusstyle::after
+        font-size: 15px
+        line-height: 25px
+
 
     .container
         width: 100%

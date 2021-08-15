@@ -24,7 +24,7 @@
 <body>
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary btn-share" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        <span></span><i class="fas fa-link" id="sharelink"></i>  複製邀請連結
+        <span></span><i class="fas fa-link" id="sharelink"></i> 複製邀請連結
     </button>
     <!-- Modal -->
     <div class="modal fade" id="sharelinkModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -48,8 +48,9 @@
 
         <img src="svg/watinghi.svg" class="hi">
         <hr style="color: #FFFCEF; margin: 0px;">
-        <svg class="dot" version="1.1" id="L5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-            y="0px" viewBox="0 30 60 40" enable-background="new 0 0 0 0" xml:space="preserve">
+        <svg class="dot" version="1.1" id="L5" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 30 60 40"
+            enable-background="new 0 0 0 0" xml:space="preserve">
             <circle fill="#C54C4D" stroke="none" cx="6" cy="50" r="6">
                 <animateTransform attributeName="transform" dur="1s" type="translate" values="0 15 ; 0 -15; 0 15"
                     repeatCount="indefinite" begin="0.1"></animateTransform>
@@ -79,16 +80,27 @@
     </button>
     <p class="info"><i class="fas fa-exclamation-triangle"></i>點擊後所有人一起開始進入遊戲，確認所有成員都加入後再點擊此按鈕</p>
 
-    <!-- Modal -->
+    <!-- Modal SHOW ROLE -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content rolebox">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">你的角色是：</h5>
                 </div>
                 <div class="modal-body">
-                    <img src="svg/role_good_font.svg" alt="" class="role">
+                    <div class="flip-box">
+
+                        <div class="flip-box-inner">
+                            <div class="flip-box-front">點選查看您的角色
+                                <!-- <h2>點選查看您的角色</h2> -->
+                            </div>
+                            <div class="flip-box-back">
+                                <img class="role" src="svg/role_good_font.svg">
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="start-game" class="btn btn-secondary">OK</button>
@@ -107,6 +119,13 @@
 <script src="./script/socket.js"></script>
 <script src="./script/listener/room.js"></script>
 <script>
+    // // //卡片翻轉效果
+    // $('.flip-box-inner').on('click', function () {
+    //     $('.flip-box-inner').css("transform","rotateY(180deg)");
+    // });
+
+
+
     var CURRENT_ROOM_ID = getUrlParameter('room_id');
     var INVITE_URL = `${window.location.origin}/invite.html?room_id=${CURRENT_ROOM_ID}`;
     var START_GAME_URL = `${window.location.origin}/index.html`;
@@ -135,6 +154,13 @@
 
     function showRole() {
         $('#staticBackdrop').modal('show');
+        $('#start-game').hide();
+        //卡片翻轉效果
+        $('.flip-box-inner').on('click', function () {
+            $('.flip-box-inner').css("transform", "rotateY(180deg)");
+            $('#start-game').show();
+        });
+        
     }
 
     $(document).ready(function () {
@@ -188,7 +214,10 @@
     copybtn.addEventListener("click", function (e) {
         e.preventDefault();
         document.querySelector(".linkcue").textContent = "已成功複製連結！";
-        $(".linkcue").css("color", "#bb392c");
+        $(".linkcue").css({
+            "color": "#bb392c",
+            "font-size": "10px"
+        });
         //禁止開啟手機鍵盤
         document.activeElement.blur();
     })

@@ -238,18 +238,7 @@ textarea.content
     &:hover
         background-color: $color_light_blue
 
-.filter
-    margin: 10px 0px 10px 0px
-    width: 100%
-.filterbtn
-    border: none !important
-    background-color: $color_white !important
-    color: $color_brown !important
-    padding: 5px 10px 5px 10px !important
-    margin: 5px !important
-    border-radius: 0px !important
-    &:hover
-        border-bottom: 2px solid $color_brown !important
+
 .list
     width: 100%
     margin: 0px
@@ -264,14 +253,31 @@ textarea.content
         padding: 10px
         color: $color_brown
         word-wrap: break-word
+        border-bottom: 1px dashed rgba($color_brown,0.7)
         &:hover
             background-color: rgba($color_yellow,0.2)
-            border-bottom: 1px solid rgba($color_brown,0.7)
-        &::before
-            content: ''
-            display: inline-block
-            height: 30px
-            width: 24px
-            margin: 0px 10px 0px 10px
-            background-image: url("svg/icon.svg")
-            background-size: cover
+            
+        // &::before
+        //     content: ''
+        //     display: inline-block
+        //     width: 20px
+        //     height: 25px
+        //     margin: 0px 10px 0px 10px
+        //     background-image: url("svg/icon.svg")
+        //     background-size: cover
+
+        .bbsname
+            width: 100%
+            display: flex
+            justify-content: left
+            line-height: 30px
+            padding-bottom: 5px
+            color: $color_deep_blue
+            &::before
+                content: ''
+                display: inline-block
+                width: 20px
+                height: 25px
+                margin: 0px 10px 0px 10px
+                background-image: url("svg/icon.svg")
+                background-size: cover

@@ -176,21 +176,7 @@ function CheckPosition(blockid) {
     alert("白癡喔不能這樣放辣");
     return;
   }
-  // let handCards = [];
-  // handCards = pools.splice(0, 6)
-  // for (let index = 0; index < 6; index++) {
-  //   const cardNumber = handCards[index];
-  //   giveDirection(index, cardNumber);
-  // }
-  
-  // if (cardNumber >= 1 && cardNumber <= 31) {
-  //   $(".topcue").text("你放了一張道路卡");
-  // }
-  // if (cardNumber >= 32 && cardNumber <= 40) {
-  //   $(".topcue").text("你放了一張坑路ＲＲＲ");
-  // }
   printNewCard();
   giveNewCard();
 
-  
 }

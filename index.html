@@ -17,18 +17,21 @@
     <meta property="og:url" content="網址" />
     <meta property="og:image" content="https://i.ibb.co/2kHnBkp/11-2x.png" />
     <meta property="og:description" content="最有質感的線上版矮人礦坑遊戲，一起來玩吧！" />
+
     <!-- 字體 -->
     <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&amp;display=swap" rel="stylesheet">
-
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet"> -->
-
 
 </head>
 <link rel="stylesheet" href="index.css">
 
 <body>
+    <!-- Boostrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" //
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
+    </script>
+    <!-- HTML -->
     <div class="container">
         <img src="svg/logo.svg" alt="logo pic" class="logo">
         <img src="svg/playernum/playernum3.svg" alt="" class="playernumpic">
@@ -36,7 +39,6 @@
             <div>玩家人數上限：</div>
             <div class="count">
                 <div class="minus">-</div>
-                <!-- <input type="text" class="num" id="max-players-number" placeholder="3"> -->
                 <div id="max-players-number" class="num">3</div>
                 <div class="add">+</div>
             </div>
@@ -44,10 +46,7 @@
         <div class="text"></div>
 
         <input id="nickname" placeholder="請輸入名字" autocomplete="off" />
-
-        <!-- <input type="button" class="start" value="開新房間"> -->
         <div class="start">開新房間</div>
-        <!-- <div class="join">加入遊戲</div> -->
 
     </div>
 
@@ -70,15 +69,14 @@
                         <div class="mscontainer">
                             <div class="flexbox">
                                 <input class="nickName" type="text" placeholder="暱稱">
-                                <select class="category">
+                                <!-- <select class="category">
                                     <option class="option" value="fun">純屬好玩</option>
                                     <option class="option" value="suggestion">網站建議</option>
-                                </select>
+                                </select> -->
                             </div>
                             <textarea class="content" type="text" placeholder="請輸入留言..."></textarea>
                             <div class="txt"></div>
                             <div class="savebtn">送出</div>
-                            <!-- <input type="button" class="savebtn" value="送出"> -->
 
                         </div>
                     </div>
@@ -86,10 +84,10 @@
                     <div class="modal-body" id="messangeArea">
                         <div class="mscontainer">
                             <div class="filter">
-                                <input class="filterbtn" type="button" value="全部" onclick="bbsTypeFilter('all')">
+                                <!-- <input class="filterbtn" type="button" value="全部" onclick="bbsTypeFilter('all')">
                                 <input class="filterbtn" type="button" value="純屬好玩" onclick="bbsTypeFilter('fun')">
                                 <input class="filterbtn" type="button" value="網站建議"
-                                    onclick="bbsTypeFilter('suggestion')">
+                                    onclick="bbsTypeFilter('suggestion')"> -->
                             </div>
                             <ul id="messageBody" class="list"></ul>
                         </div>
@@ -253,21 +251,55 @@
                                     <span class="visually-hidden">Next</span>
                                 </button>
                             </div>
+                            <hr>卡牌介紹輪播
+                            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                                        data-bs-slide-to="0" class="active" aria-current="true"
+                                        aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                                        data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                                        data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                </div>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <b>崩路卡</b>
+                                        <p>用來移除牌面上的道路或坑洞</p>
+                                        <img src="svg/cards/card66.svg" class="d-block w-100">
+                                        
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="svg/cards/card56.svg" class="d-block w-100">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="svg/cards/card46.svg" class="d-block w-100">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 </body>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
 </script>
 <script src="./script/api.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" //
-    integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
-</script>
 <script src="https://kit.fontawesome.com/5223ebc999.js" crossorigin="anonymous"></script>
 
 <script>
@@ -376,8 +408,6 @@
         }
         if (num == 6) {
             $(".playernumpic").attr("src", "svg/playernum/playernum6.svg");
-            $(".text").text("哎油～不錯喔朋友很多嘛^^");
-            $(".text").css("color", "green");
             return;
         }
 
@@ -400,7 +430,7 @@
             return;
         }
     }
-
+    // 留言板功能
     document.querySelector(".savebtn").addEventListener("click", function (e) {
         messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
 
@@ -419,8 +449,19 @@
 
         callApi('/bbs', 'POST', {
             nickname: nickName,
-            type: category,
+            type: 'fun',
             content: content
+        })
+
+        callApi('/bbs').then((response) => {
+            let renderString = "";
+
+            response.data.forEach(data => {
+                console.log(data)
+                renderString += `<li><b>${data.nickname}</b>：${data.content}</li>`;
+            });
+
+            $('.list').html(renderString);
         })
     })
 
@@ -429,7 +470,9 @@
             let renderString = "";
 
             response.data.forEach(data => {
-                renderString += `<li><b>${data.nickname}</b>：${data.content}</li>`;
+                console.log(data)
+                renderString +=
+                    `<li><div class="bbsname">${data.nickname}：</div><div style="display:block; text-align:left; padding-left:43px; font-size:12px;">${data.content}</div><div style="display:block;text-align:right">${data.created_date}</div></li>`;
             });
 
             $('.list').html(renderString);
