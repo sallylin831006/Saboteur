@@ -39,6 +39,11 @@ html, body {
   flex-wrap: wrap;
 }
 
+.playerarea .yourturnbgc {
+  border-radius: 5px;
+  background-color: #1A517B;
+}
+
 .playerarea .userbox {
   padding: 3px 0px 3px 0px;
 }
@@ -367,6 +372,47 @@ hr {
   right: 15px;
 }
 
+.yourturnCue {
+  position: absolute;
+  width: 70%;
+  top: 50%;
+  left: 50%;
+  margin-left: -35%;
+  margin-top: -50px;
+  border-radius: 10px;
+  background-color: #FFFCEF;
+  padding: 20px;
+  box-shadow: 1px 1px 3px #FFFCEF;
+}
+
+.yourturnCue .yourturntxt {
+  margin: 0 auto;
+}
+
+.yourturnCue .yourturnpic {
+  width: 50%;
+  margin: 0 auto;
+  margin: 10px 0px 10px 0px;
+}
+
+.yourturnCue .yourturnalert {
+  margin: 0 auto;
+  color: #C54C4D;
+  font-weight: 10;
+}
+
+.yourturnCue .ok {
+  cursor: pointer;
+  margin: 0 auto;
+  width: 35px;
+  height: 20px;
+  padding: 10px;
+  background-color: grey;
+  color: #FFFCEF;
+  line-height: 3px;
+  text-align: center;
+}
+
 @media screen and (min-width: 768px) {
   * {
     font-size: 15px;
@@ -441,6 +487,19 @@ hr {
     font-size: 16px;
     padding: 5px 3px 5px 3px;
   }
+  .yourturnCue {
+    width: 40%;
+    top: 50%;
+    left: 50%;
+    margin-left: -20%;
+    margin-top: -75px;
+  }
+  .yourturnCue .ok {
+    width: 50px;
+    height: 35px;
+    line-height: 15px;
+    border-radius: 3px;
+  }
 }
 
 @media screen and (min-width: 1000px) {
@@ -454,14 +513,25 @@ hr {
     background-position: center;
     background-size: cover;
   }
+  .yourturnbgc {
+    border-radius: 5px;
+    background-color: #1A517B;
+  }
+  .yourturnbgc::after {
+    content: "輪到此玩家";
+    color: #FFFCEF;
+    font-size: 10px;
+    font-weight: 10;
+    letter-spacing: 2px;
+  }
   .playerarea .userbox .username {
     line-height: 85px;
     width: 97.5px;
     height: 65px;
   }
   .playerarea .userbox .statusbox .status {
-    width: 36px;
-    height: 36px;
+    width: 30px;
+    height: 30px;
   }
   .playerarea .userbox .statusBan1::before, .playerarea .userbox .statusstyle::before {
     font-size: 35px;

@@ -49,6 +49,10 @@ html, body
     padding-top: 5px
     justify-content: space-around
     flex-wrap: wrap
+    .yourturnbgc
+        border-radius: 5px
+        background-color: $color_deep_blue
+
     .userbox
         padding: 3px 0px 3px 0px
         .username
@@ -285,20 +289,6 @@ hr
         background-color: $color_white
         &::placeholder
             color: rgba($color_deep_blue,0.4)
-    // .chatbtn
-    //     display: none
-    // .chatclose
-    //     display: none
-    //     +size(30px,30px)
-    //     cursor: pointer
-    //     margin: 3px
-    //     padding-right: 5px
-    //     i.fa-times
-    //         font-size: 20px
-    //         line-height: 30px
-    //         color: $color_deep_blue
-    //         &:hover
-    //             text-shadow: 0px 0px 3px grey
 
 #staticBackdrop
     background-color: rgba($color_red,0.9)
@@ -319,6 +309,42 @@ hr
         position: absolute
         top: 15px
         right: 15px
+
+.yourturnCue
+    // position: fixed
+    position: absolute
+    width: 70%
+    // height: 100px
+    top: 50%
+    left: 50%
+    margin-left: -35%
+    margin-top: -50px
+    border-radius: 10px
+    background-color: $color_white
+    padding: 20px
+    box-shadow: 1px 1px 3px $color_white
+    .yourturntxt
+        margin: 0 auto  
+    .yourturnpic
+        width: 50%
+        margin: 0 auto  
+        margin: 10px 0px 10px 0px
+    .yourturnalert
+        margin: 0 auto 
+        color: $color_red
+        font-weight: 10
+        
+    .ok
+        cursor: pointer
+        margin: 0 auto
+        +size(35px,20px)
+        padding: 10px
+        background-color: grey
+        color: $color_white
+        line-height: 3px
+        text-align: center
+
+
 @media screen and (min-width:400px) //*iPAD=768px*//
 
 @media screen and (min-width:768px) //*iPAD=768px*//
@@ -379,6 +405,16 @@ hr
     .container i.fa-trash
         font-size: 16px
         padding: 5px 3px 5px 3px
+    .yourturnCue
+        width: 40%
+        top: 50%
+        left: 50%
+        margin-left: -20%
+        margin-top: -75px
+    .yourturnCue .ok
+        +size(50px,35px)
+        line-height: 15px
+        border-radius: 3px
 
 @media screen and (min-width:1000px)
     *
@@ -390,13 +426,20 @@ hr
         background-position: center
         background-size: cover
     .playerarea
-        // // min-width: 1000px
-        // padding-bottom: 20px
+    .yourturnbgc
+        border-radius: 5px
+        background-color: $color_deep_blue
+        &::after
+            content: "輪到此玩家"
+            color: $color_white
+            font-size: 10px
+            font-weight: 10
+            letter-spacing: 2px
     .playerarea .userbox .username
         line-height: 85px
         +size(97.5px,65px) //*75*50//
     .playerarea .userbox .statusbox .status
-        +size(36px,36px)
+        +size(30px,30px)
     .playerarea .userbox .statusBan1::before, .playerarea .userbox .statusstyle::before
         font-size: 35px
         line-height: 30px

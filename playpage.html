@@ -24,8 +24,9 @@
 
   <!-- user顯示在最上方 -->
   <div class="flexbox playerarea">
-    <div class="userbox">
-      <div id="user1" class="username" data-num="1">阿婷
+    <div class="userbox yourturnbgc">
+      <div id="user1" class="username" data-num="1"
+        style="background-image: url(svg/user.svg);background-size: cover;background-repeat: no-repeat;">阿婷
       </div>
       <div class="flexbox statusbox">
         <div data-num="1" class="status ax1" style="
@@ -393,6 +394,13 @@
 
   </div>
   <!-- //這是container的div勿刪*///再以下就是container外 -->
+
+  <div class="yourturnCue">
+    <p class="yourturntxt">輪到你了！</p>
+    <img src="https://img.itch.zone/aW1nLzIzNTkyMDEucG5n/original/HXrjt2.png" class="yourturnpic">
+    <p class="yourturnalert"> </p>
+    <div class="ok">OK</div>
+  </div>
 
   <!-- Button trigger modal -->
   <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -918,7 +926,82 @@
     }
   });
 
+  //提示：輪到哪一位玩家會做提醒
+  // $(document).ready(function () {
+  //   $(".yourturnCue").hide();
+  // });
 
+  //再修改成輪到的玩家ID
+  $("#user1").addClass(".yourturnbgc")
+
+  $(document).ready(function () {
+    $(".yourturnCue").show();
+    wiggle();
+  });
+
+  $(".ok").click(function () {
+    $(".yourturnCue").hide();
+  })
+
+  function wiggle() {
+    $(document).ready(function () {
+      wiggletime = 0;
+    });
+
+    // var wiggletime = 201;
+    setInterval(function () {
+      if ($(".yourturnCue").is(':hover') === true) {
+        $(".yourturnCue").css({
+          "left": "50%",
+          "transition-duration": "0.3s"
+        });
+        return;
+      }
+      if (wiggletime <= 300) {
+        wiggletime += 1;
+        if (wiggletime % 2 == 0) {
+          $(".yourturnCue").css({
+            "left": "51%",
+            "transition-duration": "0.3s"
+          });
+        } else {
+          $(".yourturnCue").css({
+            "left": "49%",
+            "transition-duration": "0.3s"
+          });
+          if (wiggletime >= 100 && wiggletime <= 300) {
+            $(".yourturntxt").text("閒置狀態");
+            $(".yourturnalert").text("您還在嗎？按下確認鍵以防斷線");
+          }
+        }
+        if (wiggletime >= 301) {
+          $(".yourturnCue").css({
+            "left": "50%",
+            "transition-duration": "0.3s"
+          });
+          $(".yourturntxt").text("來不及了");
+          $(".yourturnpic").attr("src", "https://image.emojipng.com/840/12628840.jpg")
+          $(".yourturnalert").text("你錯過了你的回合");
+          $(".ok").hide();
+        }
+      }
+      console.log("wiggletime1", wiggletime);
+    }, 100);
+  }
+
+  //提醒玩家超過2分鐘了
+  $(".yourturnCue").click(function () {
+    $(".yourturntxt").text("你還需要一些思考時間嗎？");
+    $(".yourturnpic").attr("src", "https://icon-library.com/images/thinking-icon/thinking-icon-15.jpg")
+    $(".yourturnalert").text("按下確認鍵再繼續1分鐘");
+  })
+  //提醒玩家他已錯過了自己的回合
+  $(".yourturnCue").dblclick(function () {
+    $(".yourturntxt").text("來不及了");
+    $(".yourturnpic").attr("src", "https://image.emojipng.com/840/12628840.jpg")
+    $(".yourturnalert").text("你錯過了你的回合");
+    $(".ok").hide();
+  })
 
 
   //點選連結到別的畫面
