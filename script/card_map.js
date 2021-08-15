@@ -137,7 +137,7 @@ var ROAD_DIRECTION_MAP = {
 };
 
 
-function CheckPosition(blockid) {
+function CheckPosition(blockid, cardData) {
   const blockidArray = blockid.match(/\d/g);
   const row = blockidArray[0];
   const column = blockidArray[1];
@@ -177,6 +177,6 @@ function CheckPosition(blockid) {
     return;
   }
   printNewCard();
-  giveNewCard();
+  putCardToServer(cardData);
 
 }

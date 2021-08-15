@@ -22,12 +22,25 @@ socket.on("roomInfo", (data) => {
     joinRoomListener(data);
 });
 
+socket.on("getRoomInfo", (data) => {
+    getRoomInfo(data);
+});
+
 socket.on("showRole", (data) => {
     showRole(data);
 });
 
-socket.on("startGame", (data) => {
-    startGame(data);
+socket.on("initGame", (data) => {
+    initGame(data);
+});
+
+socket.on("initError", (data) => {
+    console.log('initError', data);
+    initError(data);
+});
+
+socket.on("startGame", () => {
+    startGame();
 });
 
 socket.on("sendMessage", (data) => {
