@@ -30,6 +30,7 @@ function getRoomInfo(data) {
     renderBoard(roomInfo.board);
     changePlayerToMove(roomInfo)
     renderPlayer(roomInfo.turn, roomInfo);
+    renderCards(roomInfo.players[getNickName()])
 }
 
 function getDeleteBlock(data) {
