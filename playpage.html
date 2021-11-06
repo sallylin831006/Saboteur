@@ -269,6 +269,8 @@
   var END_BLOCK = ['end1', 'end2', 'end3'];
   var COUNT_INTERVAL_ID = null;
   var BOARD = null;
+  // end card click flag
+  var CAN_OPEN_END = true;
 
 
   const hasRedBorder = () => {
@@ -426,6 +428,9 @@
         deleteCardToServer($('.redborder').attr('card-id'));
       })
       $('.end').bind('click', (e) => {
+        if (! CAN_OPEN_END) {
+          return;
+        }
         const endcardid = e.target.id;
         const endcardelement = $(`#${endcardid}`)
         if (!hasRedBorder()) {
@@ -454,13 +459,14 @@
           const endId = endCards[endNum - 1];
 
           $(`.end${endNum}`).attr('src', `svg/card_end${endId}.svg`);
-
+          CAN_OPEN_END = false;
           delay(5000).then(() => {
             $(`.end${endNum}`).html(`
                   <img data-num="${endNum}" src="svg/cards_blank.svg" class="end" id="end${endNum}">
               `);
 
             deleteCardToServer($(".redborder").attr('card-id'));
+            CAN_OPEN_END = true;
           });
         }
       })

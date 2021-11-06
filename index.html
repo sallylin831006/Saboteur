@@ -45,7 +45,7 @@
         </div>
         <div class="text"></div>
 
-        <input id="nickname" placeholder="請輸入名字" autocomplete="off" />
+        <input id="nickname" placeholder="請輸入名字" autocomplete="off" maxlength="10" size="10" type="text" />
         <div class="start">開新房間</div>
 
     </div>
@@ -336,10 +336,6 @@
 
     const saveNickName = (nickname) => {
         window.localStorage.setItem("nickname", nickname)
-    }
-
-    const getApi = () => {
-        return 'https://game.dev.newideas.com.tw/';
     }
 
     // 回合增減數量
