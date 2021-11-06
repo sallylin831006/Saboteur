@@ -1,9 +1,9 @@
 @charset "UTF-8";
 * {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+      -ms-user-select: text;
+          user-select: text;
   font-size: 12px;
   text-align: center;
   font-weight: 900;
@@ -434,7 +434,8 @@ hr {
   border-radius: 10px;
   background-color: #FFFCEF;
   padding: 20px;
-  box-shadow: 1px 1px 3px #FFFCEF;
+  -webkit-box-shadow: 1px 1px 3px #FFFCEF;
+          box-shadow: 1px 1px 3px #FFFCEF;
 }
 
 .yourturnCue .yourturntxt {
