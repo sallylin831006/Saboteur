@@ -200,6 +200,10 @@
     <div class="ok" id="get-ready">OK</div>
   </div>
 
+  <link rel="preload" as="image" href="svg/card_end1.svg">
+  <link rel="preload" as="image" href="svg/card_end2.svg">
+  <link rel="preload" as="image" href="svg/card_end3.svg">
+
   <!-- Button trigger modal -->
   <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
     遊戲回合勝負結果
@@ -321,9 +325,10 @@
     const right = $(".handcardbox" + boxnum + " img").attr('right');
     const left = $(".handcardbox" + boxnum + " img").attr('left');
     const bottom = $(".handcardbox" + boxnum + " img").attr('bottom');
+    const center = $(".handcardbox" + boxnum + " img").attr('center');
     const style = $(".handcardbox" + boxnum + " img").css('transform');
     element.innerHTML +=
-      `<img data-num="${event.target.id}" src='${svg}' top="${top}" left="${left}" right="${right}" bottom="${bottom}" style='transform:${style}'>`;
+      `<img data-num="${event.target.id}" src='${svg}' top="${top}" left="${left}" right="${right}" bottom="${bottom}" center="${center}" style='transform:${style}'>`;
   }
 
   function giveNewCard(handCards) {
@@ -433,7 +438,7 @@
           const endNum = endcardelement.attr('data-num')
           endcardelement.attr("src", `svg/card_end${endCards[endNum - 1]}.svg`);
           const endDirection = END_DIRECTION[endCards[endNum - 1]];
-          ['top', 'left', 'right', 'bottom'].forEach((direction) => {
+          ['top', 'left', 'right', 'bottom', 'center'].forEach((direction) => {
             endcardelement.attr(direction, endDirection[direction]);
           });
           $(".cue-message").text("你查看了一張終點卡");
@@ -446,16 +451,15 @@
 
           const endId = endCards[endNum - 1];
 
-          delay(0).then(function () {
-            $(`.end${endNum}`).attr('src', `svg/card_end${endId}.svg`);
-            return delay(8000);
-          }).then(function () {
+          $(`.end${endNum}`).attr('src', `svg/card_end${endId}.svg`);
+
+          delay(5000).then(() => {
             $(`.end${endNum}`).html(`
-                <img data-num="${endNum}" src="svg/cards_blank.svg" class="end" id="end${endNum}">
-            `);
+                  <img data-num="${endNum}" src="svg/cards_blank.svg" class="end" id="end${endNum}">
+              `);
 
             deleteCardToServer($(".redborder").attr('card-id'));
-          })
+          });
         }
       })
       //功能:點擊棋盤判斷
@@ -466,7 +470,7 @@
         if (END_BLOCK.includes(event.target.id)) {
           return;
         }
-        $(`#${event.target.id}`).attr('style', '');
+
         if ($(".redborder").attr('can-put-to-board') == 0) {
           alert("道具損毀，無法放置道路卡");
           return;
@@ -490,6 +494,7 @@
           bottom: $(".redborder").attr('bottom'),
           left: $(".redborder").attr('left'),
           right: $(".redborder").attr('right'),
+          center: $(".redborder").attr('center'),
           style: $(".redborder").attr('style'),
         }
 
@@ -558,6 +563,7 @@
             left="${cardData.left}" 
             right="${cardData.right}" 
             bottom="${cardData.bottom}" 
+            center="${cardData.center}" 
             ${style}
           >
         `);
@@ -567,7 +573,7 @@
 
   const checkIsGameFinish = (roomInfo) => {
     if (roomInfo.is_end == true) {
-      delay(8000).then(() => {
+      delay(5000).then(() => {
         const winTeam = roomInfo.win_team;
         const winTeamName = winTeam == 1 ? '好矮人' : '壞矮人';
         let winPlayers = [];
@@ -584,7 +590,24 @@
 
   const showEndCards = (roomInfo) => {
     roomInfo.open_end_cards.forEach((cardPosition) => {
-      $(`#end${cardPosition + 1}`).attr('src', `svg/card_end${roomInfo.end_block_cards[cardPosition]}.svg`)
+      switch (cardPosition) {
+        case 0:
+          const positionInfo = roomInfo.board['1']['9'];
+          break;
+        case 1:
+
+      
+        default:
+          break;
+      }
+      const positionInfo = roomInfo.board[(2 * cardPosition) + 1]['9'];
+      const endCardPosition = $(`#end${cardPosition + 1}`);
+      endCardPosition.attr('src', `svg/card_end${roomInfo.end_block_cards[cardPosition]}.svg`)
+      endCardPosition.attr('top', positionInfo['top']);
+      endCardPosition.attr('bottom', positionInfo['bottom']);
+      endCardPosition.attr('right', positionInfo['right']);
+      endCardPosition.attr('left', positionInfo['left']);
+      endCardPosition.attr('center', positionInfo['center']);
     })
   }
 
@@ -795,18 +818,22 @@
     let handCardElement = $(`#handCard${handCardNumber}`);
 
     let canPutToBoard = 1;
-    if (isBan && !TOOL_CARDS.includes(cardNumber)) {
+    if (isBan && cardNumber !== 'undefined' && !TOOL_CARDS.includes(cardNumber)) {
       canPutToBoard = 0;
     }
 
+    if (typeof cardNumber === 'undefined') {
+      handCardElement.hide();
+      $(`.handcardbox${handCardNumber}`).hide();
+      return;
+    }
     handCardElement.attr("src", `svg/cards/card${cardNumber}.svg`);
     handCardElement.attr("card-id", cardNumber);
     handCardElement.attr("can-put-to-board", canPutToBoard);
     if (typeof ROAD_DIRECTION_MAP[cardNumber] !== 'undefined') {
       const roadDirection = ROAD_DIRECTION_MAP[cardNumber];
-      ['top', 'left', 'right', 'bottom'].forEach((direction) => {
+      ['top', 'left', 'right', 'bottom', 'center'].forEach((direction) => {
         handCardElement.attr(direction, roadDirection[direction]);
-        return;
       })
     }
   }
@@ -903,11 +930,13 @@
     const RightValue = object.attr("right");
     const LeftValue = object.attr("left");
     const BottomValue = object.attr("bottom");
+    const CenterValue = object.attr("center");
 
     object.attr("bottom", topValue);
     object.attr("left", RightValue);
     object.attr("right", LeftValue);
     object.attr("top", BottomValue);
+    object.attr("center", CenterValue);
   }
   var degrees = 0;
   $(".fa-undo-alt").on("click", function (e) {
@@ -922,18 +951,21 @@
       right: true,
       left: true,
       bottom: true,
+      center: true,
     },
     2: {
       top: true,
       right: false,
       left: true,
       bottom: false,
+      center: true,
     },
     3: {
       top: true,
       right: true,
       left: false,
       bottom: false,
+      center: true,
     }
   }
 
