@@ -52,6 +52,8 @@ html, body
     .yourturnbgc
         border-radius: 5px
         background-color: $color_deep_blue
+        border: 3px solid yellow
+        
 
     .userbox
         padding: 3px 0px 3px 0px
@@ -225,6 +227,13 @@ hr
         font-size: 25px
         text-align: center
         line-height: 40px
+.chatbtn
+    +size(50px,40px)
+    i.fa-paper-plane
+        color: $color_deep_blue
+        font-size: 25px
+        text-align: center
+        line-height: 40px
 
 .chatarea
     width: 100%
@@ -280,7 +289,7 @@ hr
     .inputChat
         margin: 3px
         font-size: initial
-        width: 80%
+        width: 70%
         height: 30px
         // min-width: 100px
         border: 3px solid $color_deep_blue
@@ -313,22 +322,23 @@ hr
 .yourturnCue
     // position: fixed
     position: absolute
-    width: 70%
+    width: 50%
     // height: 100px
     top: 50%
     left: 50%
     margin-left: -35%
-    margin-top: -50px
+    margin-top: -90px
     border-radius: 10px
     background-color: $color_white
-    padding: 20px
+    padding: 10px
     box-shadow: 1px 1px 3px $color_white
     .yourturntxt
+        font-size: 23px
         margin: 0 auto  
     .yourturnpic
-        width: 50%
+        width: 55%
         margin: 0 auto  
-        margin: 10px 0px 10px 0px
+        //margin: 10px 0px 10px 0px
     .yourturnalert
         margin: 0 auto 
         color: $color_red
@@ -426,15 +436,7 @@ hr
         background-position: center
         background-size: cover
     .playerarea
-    .yourturnbgc
-        border-radius: 5px
-        background-color: $color_deep_blue
-        &::after
-            content: "輪到此玩家"
-            color: $color_white
-            font-size: 10px
-            font-weight: 10
-            letter-spacing: 2px
+
     .playerarea .userbox .username
         line-height: 85px
         +size(97.5px,65px) //*75*50//
