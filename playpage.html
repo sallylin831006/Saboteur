@@ -32,7 +32,7 @@
       <div class="flexbox stepinfo">
         <div class="rolebox">
           <div class="userRole"></div>
-          <div id="team-wording" class="rolecue"></div>
+          <div class="rolecue team-wording"></div>
         </div>
 
         <ul class="stepinfoTxt">
@@ -44,8 +44,8 @@
       </ul>
       <div class="chatinputbox">
         <div class="chatUser" value="阿婷"></div>
-        <input id="inputChat" class="inputChat" type="text" placeholder="來聊天ㄅ" autocomplete="off">
-        <div id="chatbtn" class="chatbtn"><i class="fas fa-paper-plane"></i></div>
+        <input class="inputChat" type="text" placeholder="來聊天ㄅ" autocomplete="off">
+        <div class="chatbtn"><i class="fas fa-paper-plane"></i></div>
 
       </div>
     </div>
@@ -174,7 +174,7 @@
       <div class="flexbox stepinfo">
         <div class="rolebox">
           <div class="userRole"></div>
-          <div id="team-wording" class="rolecue"></div>
+          <div class="rolecue team-wording"></div>
         </div>
 
         <ul class="stepinfoTxt">
@@ -184,8 +184,8 @@
       </ul>
       <div class="chatinputbox">
         <div class="chatUser" value="阿婷"></div>
-        <input id="inputChat" class="inputChat" type="text" placeholder="來聊天ㄅ" autocomplete="off">
-        <div id="chatbtn" class="chatbtn"><i class="fas fa-paper-plane"></i></div>
+        <input class="inputChat" type="text" placeholder="來聊天ㄅ" autocomplete="off">
+        <div class="chatbtn"><i class="fas fa-paper-plane"></i></div>
         <!-- <div class="chatclose"><i class="fas fa-times"></i></div> -->
       </div>
     </div>
@@ -365,7 +365,7 @@
       const userInfo = data.players[getNickName()];
 
       const team = userInfo.team == '1' ? '好' : '壞';
-      $('#team-wording').text(`你是${team}矮人`);
+      $('.team-wording').text(`你是${team}矮人`);
 
       data.chat_record.forEach((chatRecord) => {
         renderChatRecord(chatRecord);
