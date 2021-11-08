@@ -424,6 +424,11 @@
       // 移除卡牌
       $('.trash').bind('click', function (e) {
         $(".cue-message").text("你棄牌並跳過");
+        sendEvent('recordLog', {
+          roomId: CURRENT_ROOM_ID,
+          nickname: getNickName(),
+          message: '棄牌並跳過',
+        });
         deleteCardToServer($('.redborder').attr('card-id'));
       })
       $('.end').bind('click', (e) => {
