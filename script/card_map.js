@@ -157,7 +157,6 @@ function CheckPosition(blockid, cardData) {
   const blockidArray = blockid.match(/\d/g);
   const row = blockidArray[0];
   const column = blockidArray[1];
-  const targetBlock = blockid
   
   const topBlockId = `block${row - 1}-${column}`;
   const rightBlockId = `block${row}-${column - -1}`;
@@ -168,7 +167,6 @@ function CheckPosition(blockid, cardData) {
   const target_Right = $(".redborder").attr("right");
   const target_Left = $(".redborder").attr("left");
   const target_Bottom = $(".redborder").attr("bottom");
-  console.log(target_Top, target_Right, target_Left, target_Bottom);
 
   const Topblock_bottom = $(`.${topBlockId} img`).attr("bottom");
   const Rightblock_left = $(`.${rightBlockId} img`).attr("left");
@@ -190,9 +188,9 @@ function CheckPosition(blockid, cardData) {
       Bottomblock_top == undefined)
   ) {
     alert("白癡喔不能這樣放辣");
-    return;
+    return false;
   }
   printNewCard();
   putCardToServer(cardData);
-
+  return true;
 }

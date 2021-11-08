@@ -280,44 +280,43 @@
   function Cardput(cardData) {
     if ($(".redborder").attr('can-put-to-board') == 0) {
       alert("道具損毀，無法放置道路卡");
-      return;
+      return false;
     }
     if (event.target.id.search(/block|end|trash/) == -1 && $('.redborder').attr("src").search(/65|66|67/) == 14) {
       putCardToServer(cardData);
-      return;
+      return true;
     }
     //圈選手牌後，可再點擊的位置：block|end|trash，其他處不可放卡牌，如：起始牌、已放卡牌的位置
     if (event.target.id.search(/block|end|trash/) == -1) {
       alert("此處不能放置卡牌");
-      return;
+      return false;
     }
     //如果圈選的手牌是“地圖卡”，不可放在牌區，只可以丟棄，或去點終點卡
     if ($('.redborder').attr("src").search(/41|42|43|44|45|46/) !== -1) {
       alert("不能把地圖卡放在這邊喔！");
-      return;
+      return false;
     }
     //如果圈選的手牌是“破壞卡”，不可放在牌區
     if ($('.redborder').attr("src").search(/56|57|58|59|60|61|62|63|64/) == 14) {
       alert("不能把破壞卡放在這邊喔！");
-      return;
+      return false;
     }
     //如果圈選的手牌是“修理卡”，不可放在牌區
     if ($('.redborder').attr("src").search(/47|48|49|50|51|52|53|54|55/) !== -1) {
       alert("不能把修理卡放在這邊喔！");
-      return;
+      return false;
     }
     //如果圈選的手牌是“崩路卡”，不可放在牌區，只可以丟棄，或去點已放的卡牌炸掉
     if ($('.redborder').attr("src").search(/65|66|67/) !== -1) {
       alert("不能把崩路卡放在這邊喔！");
-      return;
+      return false;
     }
     //如果圈選的手牌是“道路卡”，且可以放在牌區，並且會印出出牌的卡，並在補上手牌
     if (event.target.id.search("block") == 0) {
-      CheckPosition(event.target.id, cardData);
-
-      return;
+      return CheckPosition(event.target.id, cardData);
     }
     putCardToServer(cardData);
+    return true;
 
   }
 
@@ -428,7 +427,7 @@
         deleteCardToServer($('.redborder').attr('card-id'));
       })
       $('.end').bind('click', (e) => {
-        if (! CAN_OPEN_END) {
+        if (!CAN_OPEN_END) {
           return;
         }
         const endcardid = e.target.id;
@@ -525,22 +524,25 @@
         }
 
         if (hasRedBorder() && $('.redborder').attr("src").search(/32|33|34|35|36|37|38|39|40/) !== -1) {
-          $(".cue-message").text("你放了一張坑洞卡");
+          if (Cardput(cardData)) {
+            $(".cue-message").text("你放了一張坑洞卡");
+            sendEvent('recordLog', {
+              roomId: CURRENT_ROOM_ID,
+              nickname: getNickName(),
+              message: '放了一張坑洞卡',
+            });
+          };
+          return;
+        }
+
+        if (Cardput(cardData)) {
+          $(".cue-message").text("你放了一張道路卡");
           sendEvent('recordLog', {
             roomId: CURRENT_ROOM_ID,
             nickname: getNickName(),
-            message: '放了一張坑洞卡',
+            message: '放了一張道路卡',
           });
-          Cardput(cardData);
-          return;
-        }
-        $(".cue-message").text("你放了一張道路卡");
-        sendEvent('recordLog', {
-          roomId: CURRENT_ROOM_ID,
-          nickname: getNickName(),
-          message: '放了一張道路卡',
-        });
-        Cardput(cardData);
+        };
         return;
       });
     }
@@ -604,7 +606,7 @@
           break;
         case 1:
 
-      
+
         default:
           break;
       }
