@@ -40,11 +40,11 @@
       </div>
 
       <hr>
-      <ul id="messageBody" class="scrollbox">
+      <ul id="messageBody" class="scrollbox message-body-pc">
       </ul>
       <div class="chatinputbox">
         <div class="chatUser" value="阿婷"></div>
-        <input class="inputChat" type="text" placeholder="來聊天ㄅ" autocomplete="off">
+        <input class="inputChat" id="input-chat-pc" type="text" placeholder="來聊天ㄅ" autocomplete="off">
         <div class="chatbtn"><i class="fas fa-paper-plane"></i></div>
 
       </div>
@@ -180,11 +180,11 @@
         <ul class="stepinfoTxt">
         </ul>
       </div>
-      <ul id="messageBody" class="scrollbox">
+      <ul id="messageBody" class="scrollbox message-body-mobile">
       </ul>
       <div class="chatinputbox">
         <div class="chatUser" value="阿婷"></div>
-        <input class="inputChat" type="text" placeholder="來聊天ㄅ" autocomplete="off">
+        <input class="inputChat" id="input-chat-mobile" type="text" placeholder="來聊天ㄅ" autocomplete="off">
         <div class="chatbtn"><i class="fas fa-paper-plane"></i></div>
         <!-- <div class="chatclose"><i class="fas fa-times"></i></div> -->
       </div>
@@ -462,14 +462,14 @@
 
           const endId = endCards[endNum - 1];
 
+          deleteCardToServer($(".redborder").attr('card-id'));
+
           $(`.end${endNum}`).attr('src', `svg/card_end${endId}.svg`);
           CAN_OPEN_END = false;
           delay(5000).then(() => {
             $(`.end${endNum}`).html(`
                   <img data-num="${endNum}" src="svg/cards_blank.svg" class="end" id="end${endNum}">
               `);
-
-            deleteCardToServer($(".redborder").attr('card-id'));
             CAN_OPEN_END = true;
           });
         }
@@ -989,9 +989,14 @@
   const inputChat = document.querySelector(".inputChat");
   const chatbtn = document.querySelector(".chatbtn");
 
-  $(".chatbtn").click(function (e) {
+  $(".chatbtn").on('click', function (e) {
     const chatUser = getNickName();
-    const inputChatcontent = $('.inputChat').val();
+    let inputChatcontent = '';
+    if ($('#input-chat-pc').val()) {
+      inputChatcontent = $('#input-chat-pc').val();
+    } else {
+      inputChatcontent = $('#input-chat-mobile').val();
+    }
     if (inputChatcontent.trim() === '') {
       return;
     }
@@ -1014,7 +1019,10 @@
     const chatUser = chatRecord.nickname;
     const content = chatRecord.content;
 
-    $('#messageBody').append(`
+    $('.message-body-pc').append(`
+      <li>${chatUser}：${content}</li >
+    `);
+    $('.message-body-mobile').append(`
       <li>${chatUser}：${content}</li >
     `);
   }
