@@ -138,8 +138,8 @@ var ROAD_DIRECTION_MAP = {
   },
   39: {
     top: false,
-    right: false,
-    left: true,
+    right: true,
+    left: false,
     bottom: false,
     center: false,
   },
