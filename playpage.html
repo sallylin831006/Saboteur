@@ -166,7 +166,10 @@
         <img id="handCard6" class="card cardnum6" data-num="6" src="svg/cards_blank.svg" />
         <i data-num="6" class="fas fa-undo-alt cycle-6"></i>
       </div>
+      
     </div>
+    <!-- 提示剩餘牌庫 -->
+    <div class="reaminCard" style="word-break:break-all">牌庫剩餘卡牌：Ｘ張</div>
 
     <!-- 聊天區2 顯示於小螢幕裝置 -->
     <div class="chatarea chatarea2">
@@ -245,7 +248,7 @@
 <script src="./script/common.js"></script>
 <script src="https://cdn.socket.io/4.1.2/socket.io.min.js"
   integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous">
-  </script>
+</script>
 <script src="./script/socket.js"></script>
 <script src="./script/listener/room.js"></script>
 <script src="script/card_map.js"></script>
@@ -415,12 +418,22 @@
       $(".yourturnCue").show();
       COUNT_INTERVAL_ID = wiggle();
       //功能:點擊卡牌產生紅色提醒
-      $('.card').bind('click', function (e) {
+      $('.card').on('click', function (e) {
         if ($(this).attr('class').search("redborder") == -1) {
           $(".redborder").removeClass("redborder");
           $(this).addClass("redborder");
         }
       });
+
+      // 旋轉卡牌時加上選取紅框
+      $(".fa-undo-alt").on("click", function (e) {
+        const number = $(this).attr("data-num")
+        if ($(".cardnum" + number).attr('class').search("redborder") == -1) {
+          $(".redborder").removeClass("redborder");
+          $(".cardnum" + number).addClass("redborder");
+        }
+      });
+
       // 移除卡牌
       $('.trash').bind('click', function (e) {
         $(".cue-message").text("你棄牌並跳過");
@@ -510,7 +523,8 @@
           style: $(".redborder").attr('style'),
         }
 
-        if (event.target.id.search(/block|end|trash/) == -1 && event.target.getAttribute("src").search(/32|33|34|35|36|37|38|39|40/) && $('.redborder').attr("src").search(/65|66|67/) !== -1) {
+        if (event.target.id.search(/block|end|trash/) == -1 && event.target.getAttribute("src").search(
+            /32|33|34|35|36|37|38|39|40/) && $('.redborder').attr("src").search(/65|66|67/) !== -1) {
           const boxnum = $(".redborder").attr("data-num")
           const svg = $(".handcardbox" + boxnum + " img").attr('src');
           const style = $(".handcardbox" + boxnum + " img").css('transform');
@@ -560,10 +574,10 @@
     for (const [positionX, positionData] of Object.entries(board)) {
       for (const [positionY, cardData] of Object.entries(positionData)) {
         if (
-          (positionX == 3 && positionY == 1)
-          || (positionX == 1 && positionY == 9)
-          || (positionX == 3 && positionY == 9)
-          || (positionX == 5 && positionY == 9)
+          (positionX == 3 && positionY == 1) ||
+          (positionX == 1 && positionY == 9) ||
+          (positionX == 3 && positionY == 9) ||
+          (positionX == 5 && positionY == 9)
         ) {
           continue;
         }
@@ -636,8 +650,11 @@
     players.forEach((player) => {
       const playerData = playersData[player];
       const axBanNumber = playerData.tools.ax == 0 ? null : `statusBan${playerData.tools.ax}`;
+      const axStatusStyle = playerData.tools.ax > 1 ? 'statusstyle' : '';
       const lampBanNumber = playerData.tools.lamp == 0 ? null : `statusBan${playerData.tools.lamp}`;
+      const lampStatusStyle = playerData.tools.lamp > 1 ? 'statusstyle' : '';
       const carBanNumber = playerData.tools.car == 0 ? null : `statusBan${playerData.tools.car}`;
+      const carStatusStyle = playerData.tools.car > 1 ? 'statusstyle' : '';
 
       let highlight = whoCanMove == player ? 'yourturnbgc' : null;
       displayUsers += `
@@ -645,15 +662,15 @@
           <div id="user${counter}" class="username ${highlight}" data-num="${counter}">${player}
           </div>
           <div class="flexbox statusbox">
-            <div data-num="${counter}" ban-num=${playerData.tools.ax} class="status ax${counter} ${axBanNumber}" style="
+            <div data-num="${counter}" ban-num=${playerData.tools.ax} class="status ${axStatusStyle} ax${counter} ${axBanNumber}" style="
                 background-image: url(svg/status/status_ax.svg);
                 background-size: cover;
               "></div>
-            <div data-num="${counter}" ban-num="${playerData.tools.car}" class="status car${counter} ${carBanNumber}" style="
+            <div data-num="${counter}" ban-num="${playerData.tools.car}" class="status ${carStatusStyle} car${counter} ${carBanNumber}" style="
                 background-image: url(svg/status/status_car.svg);
                 background-size: cover;
               "></div>
-            <div data-num="${counter}" ban-num="${playerData.tools.lamp}" class="status lamp${counter} ${lampBanNumber}" style="
+            <div data-num="${counter}" ban-num="${playerData.tools.lamp}" class="status ${lampStatusStyle} lamp${counter} ${lampBanNumber}" style="
                 background-image: url(svg/status/status_lamp.svg);
                 background-size: cover;
               "></div>
@@ -960,7 +977,6 @@
   $(".fa-undo-alt").on("click", function (e) {
     const number = $(this).attr("data-num")
     rotatecard($(".cardnum" + number));
-    return;
   });
 
 
@@ -1102,6 +1118,6 @@
   integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
-  </script>
+</script>
 
 </html>

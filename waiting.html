@@ -168,8 +168,19 @@
         $('#staticBackdrop').modal('show');
         //卡片翻轉效果
         $('.flip-box-inner').on('click', function () {
-            $('.flip-box-inner').css("transform", "rotateY(180deg)");
-            $('.owner-start-game-btn').show();
+            let degrees = $('.flip-box-inner').attr("degrees")
+            if (typeof degrees == "undefined"|| degrees == "0"){
+                $('.flip-box-inner').css("transform", "rotateY(180deg)");
+                $('.owner-start-game-btn').show();
+                $('.flip-box-inner').attr("degrees","180")
+            } else{
+                $('.flip-box-inner').css("transform", "rotateY(0deg)");
+                $('.flip-box-inner').attr("degrees","0")
+            }
+            
+            
+            
+
         });
         
     }

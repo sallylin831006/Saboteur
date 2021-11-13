@@ -1,9 +1,6 @@
 @charset "UTF-8";
 * {
-  -webkit-user-select: text;
-     -moz-user-select: text;
-      -ms-user-select: text;
-          user-select: text;
+  user-select: text;
   font-size: 12px;
   text-align: center;
   font-weight: 900;
@@ -83,14 +80,14 @@ html, body {
   border-radius: 50%;
 }
 
-.playerarea .userbox .statusBan1, .playerarea .userbox .statusstyle {
+.playerarea .userbox .statusstyle, .playerarea .userbox .statusBan1 {
   width: 20px;
   height: 20px;
   border-radius: 50%;
   position: relative;
 }
 
-.playerarea .userbox .statusBan1::before, .playerarea .userbox .statusstyle::before {
+.playerarea .userbox .statusstyle::before, .playerarea .userbox .statusBan1::before {
   content: "✗";
   font-size: 20px;
   line-height: 17px;
@@ -99,7 +96,7 @@ html, body {
   text-shadow: 0.5px 0.5px 1px #fff;
 }
 
-.playerarea .userbox .statusBan1::after, .playerarea .userbox .statusstyle::after {
+.playerarea .userbox .statusstyle::after, .playerarea .userbox .statusBan1::after {
   content: "";
   color: #E93F33;
   font-size: 10px;
