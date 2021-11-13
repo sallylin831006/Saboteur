@@ -927,12 +927,15 @@
     });
   }
 
-  // 圖卡旋轉
-  var degrees = 0;
-
   function rotatecard(object) {
-    degrees += 180;
-
+    let degrees = object.attr('degrees');
+    if (typeof degrees === 'undefined' || degrees === '0') {
+      degrees = 180;
+    } else {
+      degrees = 0;
+    }
+    
+    object.attr('degrees', degrees);
     object.css({
       'transform': 'rotate(' + degrees + 'deg)',
       '-ms-transform': 'rotate(' + degrees + 'deg)',
@@ -953,12 +956,13 @@
     object.attr("top", BottomValue);
     object.attr("center", CenterValue);
   }
-  var degrees = 0;
+
   $(".fa-undo-alt").on("click", function (e) {
     const number = $(this).attr("data-num")
     rotatecard($(".cardnum" + number));
     return;
   });
+
 
   var END_DIRECTION = {
     1: {
