@@ -274,8 +274,7 @@
   var BOARD = null;
   // end card click flag
   var CAN_OPEN_END = true;
-  var TIMEOUT_COUNTER_ID = 0;
-  var CAN_ROTATE_CARD_IDS = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 23, 24, 25, 26, 27, 28, 29, 30, 31, 34, 35, 36, 37, 38, 39, 40]
+  var CAN_ROTATE_CARD_IDS = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 23, 24, 25, 26, 27, 28, 29, 30, 31, 34, 35, 36, 38, 39, 40]
 
 
   const hasRedBorder = () => {
@@ -411,7 +410,7 @@
     var endCards = roomInfo.end_block_cards;
 
     // 旋轉卡牌時加上選取紅框
-    $(".cycle-choose").on("click", function (e) {
+    $(".cycle-choose").unbind('click').bind("click", function (e) {
       e.preventDefault();
       const number = $(this).attr("data-num")
       if ($(".cardnum" + number).attr('class').search("redborder") == -1 && roomInfo.play_can_move == getNickName()) {
@@ -655,7 +654,6 @@
     showEndCards(roomInfo);
     checkIsGameFinish(roomInfo);
     renderCardsPool(roomInfo);
-    clearTimeout(TIMEOUT_COUNTER_ID);
     let displayUsers = '';
     let counter = 1;
     let playersData = roomInfo.players;
@@ -878,6 +876,7 @@
     handCardElement.attr("src", `svg/cards/card${cardNumber}.svg`);
     handCardElement.attr("card-id", cardNumber);
     handCardElement.attr("can-put-to-board", canPutToBoard);
+    handCardElement.attr("degrees", 0);
     if (typeof ROAD_DIRECTION_MAP[cardNumber] !== 'undefined') {
       const roadDirection = ROAD_DIRECTION_MAP[cardNumber];
       ['top', 'left', 'right', 'bottom', 'center'].forEach((direction) => {
@@ -967,7 +966,7 @@
 
   function rotatecard(object) {
     let degrees = object.attr('degrees');
-    if (typeof degrees === 'undefined' || degrees === '0') {
+    if (typeof degrees === 'undefined' || degrees == '0') {
       degrees = 180;
     } else {
       degrees = 0;
@@ -1072,18 +1071,7 @@
   $(".ok").on('click', function () {
     $(".yourturnCue").hide();
     clearInterval(COUNT_INTERVAL_ID);
-    TIMEOUT_COUNTER_ID = timeOutCounter(); 
   });
-
-  // 按下開始鍵後的閒置倒數計時
-  const timeOutCounter = () => {
-    return setTimeout(() => {
-      sendEvent('changePlayer', {
-        roomId: CURRENT_ROOM_ID,
-        nickname: getNickName(),
-      });
-    }, 180000);
-  }
 
   function wiggle(isStart = false) {
     var wiggletime = 0;
