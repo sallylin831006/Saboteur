@@ -342,7 +342,7 @@
     const boxnum = $(".redborder").attr("data-num")
     const index = boxnum - 1
     $(".redborder").removeClass("redborder");
-    degrees = 0
+    $(".cardnum" + boxnum).attr("degrees", 0);
     $(".cardnum" + boxnum).attr("style", "transform: rotate(0deg);")
     giveDirection(index, handCards[parseInt(index)]);
 
