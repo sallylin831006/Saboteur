@@ -166,7 +166,7 @@
         <img id="handCard6" class="card cardnum6" data-num="6" src="svg/cards_blank.svg" />
         <i data-num="6" class="fas fa-undo-alt cycle-6"></i>
       </div>
-      
+
     </div>
     <!-- 提示剩餘牌庫 -->
     <div class="reaminCard" style="word-break:break-all">牌庫剩餘卡牌：<span id="cards-pool-number"></span>張</div>
@@ -248,7 +248,7 @@
 <script src="./script/common.js"></script>
 <script src="https://cdn.socket.io/4.1.2/socket.io.min.js"
   integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous">
-</script>
+  </script>
 <script src="./script/socket.js"></script>
 <script src="./script/listener/room.js"></script>
 <script src="script/card_map.js"></script>
@@ -274,6 +274,7 @@
   var BOARD = null;
   // end card click flag
   var CAN_OPEN_END = true;
+  var TIMEOUT_COUNTER_ID = 0
 
 
   const hasRedBorder = () => {
@@ -524,7 +525,7 @@
         }
 
         if (event.target.id.search(/block|end|trash/) == -1 && event.target.getAttribute("src").search(
-            /32|33|34|35|36|37|38|39|40/) && $('.redborder').attr("src").search(/65|66|67/) !== -1) {
+          /32|33|34|35|36|37|38|39|40/) && $('.redborder').attr("src").search(/65|66|67/) !== -1) {
           const boxnum = $(".redborder").attr("data-num")
           const svg = $(".handcardbox" + boxnum + " img").attr('src');
           const style = $(".handcardbox" + boxnum + " img").css('transform');
@@ -649,6 +650,7 @@
     showEndCards(roomInfo);
     checkIsGameFinish(roomInfo);
     renderCardsPool(roomInfo);
+    clearTimeout(TIMEOUT_COUNTER_ID);
     let displayUsers = '';
     let counter = 1;
     let playersData = roomInfo.players;
@@ -960,7 +962,7 @@
     } else {
       degrees = 0;
     }
-    
+
     object.attr('degrees', degrees);
     object.css({
       'transform': 'rotate(' + degrees + 'deg)',
@@ -1065,12 +1067,26 @@
 
   $(".ok").on('click', function () {
     $(".yourturnCue").hide();
-    clearInterval(COUNT_INTERVAL_ID)
-  })
+    clearInterval(COUNT_INTERVAL_ID);
+    TIMEOUT_COUNTER_ID = timeOutCounter(); 
+  });
+
+  // 按下開始鍵後的閒置倒數計時
+  const timeOutCounter = () => {
+    return setTimeout(() => {
+      sendEvent('changePlayer', {
+        roomId: CURRENT_ROOM_ID,
+        nickname: getNickName(),
+      });
+    }, 180000);
+  }
 
   function wiggle(isStart = false) {
     var wiggletime = 0;
-    console.log(wiggletime);
+    $(".yourturntxt").text("輪到你了！");
+    $(".yourturnpic").attr("src", "svg/icon rotate.svg");
+    $(".yourturnalert").text("");
+    $(".ok").show();
     return setInterval(function () {
       if ($(".yourturnCue").is(':hover') === true) {
         $(".yourturnCue").css({
@@ -1104,7 +1120,14 @@
           $(".yourturntxt").text("來不及了");
           $(".yourturnpic").attr("src", "https://image.emojipng.com/840/12628840.jpg")
           $(".yourturnalert").text("你錯過了你的回合");
-          $(".ok").hide();
+          delay(5000).then(() => {
+            $(".ok").click();
+            $(".ok").hide();
+            sendEvent('changePlayer', {
+              roomId: CURRENT_ROOM_ID,
+              nickname: getNickName(),
+            });
+          });
         }
       }
     }, 100);
@@ -1127,6 +1150,6 @@
   integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
-</script>
+  </script>
 
 </html>
