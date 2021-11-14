@@ -139,32 +139,32 @@
     <div class="flexbox handcardarea">
       <div class="handcardbox handcardbox1" data-num="1">
         <img id="handCard1" class="card cardnum1" data-num="1" src="svg/cards_blank.svg" />
-        <i data-num="1" class="fas fa-undo-alt cycle-1"></i>
+        <i data-num="1" class="fas fa-undo-alt cycle-choose cycle-1"></i>
       </div>
 
       <div class="handcardbox handcardbox2" data-num="2">
         <img id="handCard2" class="card cardnum2" data-num="2" src="svg/cards_blank.svg" />
-        <i data-num="2" class="fas fa-undo-alt cycle-2"></i>
+        <i data-num="2" class="fas fa-undo-alt cycle-choose cycle-2"></i>
       </div>
 
       <div class="handcardbox handcardbox3" data-num="3">
         <img id="handCard3" class="card cardnum3" data-num="3" src="svg/cards_blank.svg" />
-        <i data-num="3" class="fas fa-undo-alt cycle-3"></i>
+        <i data-num="3" class="fas fa-undo-alt cycle-choose cycle-3"></i>
       </div>
 
       <div class="handcardbox handcardbox4" data-num="4">
         <img id="handCard4" class="card cardnum4" data-num="4" src="svg/cards_blank.svg" />
-        <i data-num="4" class="fas fa-undo-alt cycle-4"></i>
+        <i data-num="4" class="fas fa-undo-alt cycle-choose cycle-4"></i>
       </div>
 
       <div class="handcardbox handcardbox5" data-num="5">
         <img id="handCard5" class="card cardnum5" data-num="5" src="svg/cards_blank.svg" />
-        <i data-num="5" class="fas fa-undo-alt cycle-5"></i>
+        <i data-num="5" class="fas fa-undo-alt cycle-choose cycle-5"></i>
       </div>
 
       <div class="handcardbox handcardbox6" data-num="6">
         <img id="handCard6" class="card cardnum6" data-num="6" src="svg/cards_blank.svg" />
-        <i data-num="6" class="fas fa-undo-alt cycle-6"></i>
+        <i data-num="6" class="fas fa-undo-alt cycle-choose cycle-6"></i>
       </div>
 
     </div>
@@ -274,7 +274,8 @@
   var BOARD = null;
   // end card click flag
   var CAN_OPEN_END = true;
-  var TIMEOUT_COUNTER_ID = 0
+  var TIMEOUT_COUNTER_ID = 0;
+  var CAN_ROTATE_CARD_IDS = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 23, 24, 25, 26, 27, 28, 29, 30, 31, 34, 35, 36, 37, 38, 39, 40]
 
 
   const hasRedBorder = () => {
@@ -409,6 +410,17 @@
   const changePlayerToMove = (roomInfo) => {
     var endCards = roomInfo.end_block_cards;
 
+    // 旋轉卡牌時加上選取紅框
+    $(".cycle-choose").on("click", function (e) {
+      e.preventDefault();
+      const number = $(this).attr("data-num")
+      if ($(".cardnum" + number).attr('class').search("redborder") == -1 && roomInfo.play_can_move == getNickName()) {
+        $(".redborder").removeClass("redborder");
+        $(".cardnum" + number).addClass("redborder");
+      }
+      rotatecard($(".cardnum" + number));
+    });
+  
     if (roomInfo.play_can_move !== getNickName()) {
       $(".yourturnCue").hide();
       $('.card').unbind('click');
@@ -425,15 +437,6 @@
         if ($(this).attr('class').search("redborder") == -1) {
           $(".redborder").removeClass("redborder");
           $(this).addClass("redborder");
-        }
-      });
-
-      // 旋轉卡牌時加上選取紅框
-      $(".fa-undo-alt").on("click", function (e) {
-        const number = $(this).attr("data-num")
-        if ($(".cardnum" + number).attr('class').search("redborder") == -1 && roomInfo.play_can_move == getNickName()) {
-          $(".redborder").removeClass("redborder");
-          $(".cardnum" + number).addClass("redborder");
         }
       });
 
@@ -881,6 +884,11 @@
         handCardElement.attr(direction, roadDirection[direction]);
       })
     }
+    if (!CAN_ROTATE_CARD_IDS.includes(cardNumber)) {
+      $(`.cycle-${handCardNumber}`).css('visibility', 'hidden');
+    } else {
+      $(`.cycle-${handCardNumber}`).css('visibility', 'visible');
+    }
   }
 
   function renderDeleteBlockId(deleteBlockId) {
@@ -986,12 +994,6 @@
     object.attr("top", BottomValue);
     object.attr("center", CenterValue);
   }
-
-  $(".fa-undo-alt").on("click", function (e) {
-    const number = $(this).attr("data-num")
-    rotatecard($(".cardnum" + number));
-  });
-
 
   var END_DIRECTION = {
     1: {
