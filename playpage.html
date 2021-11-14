@@ -649,6 +649,13 @@
     const cardsPoolNumber = roomInfo.cards.length;
     $('#cards-pool-number').text(cardsPoolNumber);
   }
+  const scrollBarBottom = () => {
+    var messageBody = document.querySelector('.message-body-pc');
+    messageBody.scrollTop = (messageBody.scrollHeight - messageBody.clientHeight);
+    var messageBodyMobile = document.querySelector('.message-body-mobile');
+    messageBodyMobile.scrollTop = (messageBodyMobile.scrollHeight - messageBodyMobile.clientHeight);
+  }
+  
 
   function renderPlayer(players, roomInfo) {
     showEndCards(roomInfo);
@@ -1023,6 +1030,7 @@
   const inputChat = document.querySelector(".inputChat");
   const chatbtn = document.querySelector(".chatbtn");
 
+
   $(".chatbtn").on('click', function (e) {
     const chatUser = getNickName();
     let inputChatcontent = '';
@@ -1059,6 +1067,7 @@
     $('.message-body-mobile').append(`
       <li>${chatUser}：${content}</li >
     `);
+    scrollBarBottom();
   }
 
   inputChat.addEventListener("keyup", function (event) {
