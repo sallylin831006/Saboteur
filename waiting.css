@@ -1,16 +1,9 @@
 * {
-  -webkit-user-select: text;
-     -moz-user-select: text;
-      -ms-user-select: text;
-          user-select: text;
+  user-select: text;
   font-size: 15px;
   text-align: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   font-family: "Kosugi Maru",'Noto Sans TC',sans-serif;
 }
 
@@ -25,11 +18,8 @@ html, body {
 .info {
   width: 350px;
   margin: 0 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   margin-top: 5px;
   color: #483B3B;
 }
@@ -67,7 +57,6 @@ i.fa-exclamation-triangle {
   font-size: 10px !important;
   letter-spacing: 3px !important;
   width: 140px !important;
-  border-radius: 50px !important;
   margin-top: 10px !important;
 }
 
@@ -77,6 +66,80 @@ i.fa-exclamation-triangle {
 
 .btn-share i.fa-link {
   font-size: 15px;
+}
+
+.rulepupup {
+  position: fixed;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  background-color: transparent !important;
+  padding: 10px 0px 10px 0px !important;
+  border-radius: 50px !important;
+  border: none !important;
+  width: 100px !important;
+}
+
+.rulepupup i.fa-question-circle {
+  font-size: 60px;
+  color: #2974AA;
+}
+
+.rulepupup i.fa-question-circle:hover {
+  font-size: 63px;
+  color: #3F9CCD;
+}
+
+.modal-dialog-scrollable {
+  margin: 0 auto;
+  min-width: 50% !important;
+}
+
+.modal-content {
+  max-width: 99% !important;
+  background-color: #FFFCEF !important;
+  border-radius: 10px !important;
+  padding: 10px;
+  font-size: 15px !important;
+}
+
+.modal-content .btn-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.modal-content .collapsed {
+  background-color: #FFFCEF !important;
+}
+
+.modal-content .accordion-button {
+  box-shadow: none !important;
+  white-space: nowrap !important;
+}
+
+.modal-content .accordion-button:not(.collapsed) {
+  color: #FFFCEF;
+  background-color: #1A517B;
+}
+
+.modal-content .accordion-body {
+  background-color: #FFFCEF !important;
+}
+
+.modal-content ul, .modal-content li {
+  text-align: left !important;
+}
+
+.modal-content li.none {
+  list-style-type: none;
+}
+
+.modal-content .title {
+  font-size: 20px;
+  font-weight: 500;
+  padding: 5px;
+  text-align: center;
 }
 
 h4, .topinfo {
@@ -100,8 +163,7 @@ h4, .topinfo {
   padding: 10px;
   border-radius: 10px;
   background-color: #FFFCEF;
-  -webkit-box-shadow: 1px 2px 5px #483B3B;
-          box-shadow: 1px 2px 5px #483B3B;
+  box-shadow: 1px 2px 5px #483B3B;
   color: #483B3B;
 }
 
@@ -130,6 +192,7 @@ h4, .topinfo {
 .fade .modal-content #url:focus {
   outline: 0 !important;
   -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
   box-shadow: none !important;
 }
 
@@ -158,11 +221,8 @@ h4, .topinfo {
 
 .container .playerarea {
   width: 99%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 .container .playerarea .user {
@@ -180,12 +240,9 @@ h4, .topinfo {
 .container img.hi {
   width: 15%;
   min-width: 70px;
-  -webkit-animation: ani1 3s infinite;
-          animation: ani1 3s infinite;
-  -webkit-animation-timing-function: steps(1000);
-          animation-timing-function: steps(1000);
-  -webkit-animation-delay: 1s;
-          animation-delay: 1s;
+  animation: ani1 3s infinite;
+  animation-timing-function: steps(1000);
+  animation-delay: 1s;
   position: relative;
 }
 
@@ -193,29 +250,6 @@ h4, .topinfo {
   width: 10%;
   min-width: 50px;
   margin: 0 auto;
-}
-
-@-webkit-keyframes ani1 {
-  0% {
-    left: 100px;
-    opacity: 0.5;
-  }
-  25% {
-    left: 50px;
-    opacity: 0.7;
-  }
-  50% {
-    left: 0px;
-    opacity: 1;
-  }
-  75% {
-    left: -50px;
-    opacity: 1;
-  }
-  100% {
-    left: -100px;
-    opacity: 0;
-  }
 }
 
 @keyframes ani1 {
@@ -254,8 +288,7 @@ h4, .topinfo {
   padding: 10px;
   border-radius: 10px;
   background-color: #FFFCEF;
-  -webkit-box-shadow: 1px 2px 5px #483B3B;
-          box-shadow: 1px 2px 5px #483B3B;
+  box-shadow: 1px 2px 5px #483B3B;
   color: #483B3B;
 }
 
@@ -263,8 +296,7 @@ h4, .topinfo {
   background-color: transparent;
   width: 300px;
   height: 495px;
-  -webkit-perspective: 1000px;
-          perspective: 1000px;
+  perspective: 1000px;
 }
 
 #staticBackdrop .modal-content.rolebox .flip-box-inner {
@@ -272,12 +304,8 @@ h4, .topinfo {
   width: 100%;
   height: 100%;
   text-align: center;
-  -webkit-transition: -webkit-transform 0.8s;
-  transition: -webkit-transform 0.8s;
   transition: transform 0.8s;
-  transition: transform 0.8s, -webkit-transform 0.8s;
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
 
 #staticBackdrop .modal-content.rolebox .flip-box-front,
@@ -300,27 +328,20 @@ h4, .topinfo {
 
 #staticBackdrop .modal-content.rolebox .flip-box-front:hover {
   font-size: 17px;
-  -webkit-transition-duration: 0.5s;
-          transition-duration: 0.5s;
+  transition-duration: 0.5s;
 }
 
 #staticBackdrop .modal-content.rolebox .flip-box-back {
-  -webkit-transform: rotateY(180deg);
-          transform: rotateY(180deg);
+  transform: rotateY(180deg);
   cursor: pointer;
 }
 
 #staticBackdrop .modal-content.rolebox img.role {
   width: 300px;
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-  -webkit-transition: -webkit-transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transition: -webkit-transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
   transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), -webkit-transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 #staticBackdrop .modal-content.rolebox #start-game {
   letter-spacing: 2px;
 }
-/*# sourceMappingURL=waiting.css.map */

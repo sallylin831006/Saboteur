@@ -50,6 +50,8 @@ i.fa-exclamation-triangle
     &:hover
         background-color: $color_light_blue !important
 
+
+
 .btn-share
     cursor: pointer
     background-color: #2974AA !important
@@ -60,7 +62,6 @@ i.fa-exclamation-triangle
     font-size: 10px !important
     letter-spacing: 3px !important
     width: 140px !important
-    border-radius: 50px !important
     margin-top: 10px !important
     // position: fixed
     // top: 15px
@@ -70,6 +71,59 @@ i.fa-exclamation-triangle
 
     i.fa-link
         font-size: 15px
+.rulepupup
+    position: fixed
+    top: 5px
+    right: 5px
+    cursor: pointer
+    background-color: transparent !important
+    padding: 10px 0px 10px 0px !important
+    border-radius: 50px !important
+    border: none !important
+    width: 100px !important
+    i.fa-question-circle
+        font-size: 60px
+        color: #2974AA
+        &:hover
+            font-size: 63px
+            color: $color_light_blue
+// 遊戲規則
+.modal-dialog-scrollable
+    margin: 0 auto
+    min-width: 50% !important
+
+.modal-content
+    max-width: 99% !important
+    background-color: $color_white !important
+    border-radius: 10px !important
+    padding: 10px
+    font-size: 15px !important
+    .btn-close
+        position: absolute
+        top: 20px
+        right: 20px
+    .collapsed
+        background-color: $color_white !important
+    .accordion-button
+        box-shadow: none !important
+        white-space: nowrap !important
+    .accordion-button:not(.collapsed)
+        color: $color_white
+        background-color: $color_deep_blue
+    .accordion-body
+        background-color: $color_white !important
+    ul ,li
+        text-align: left !important
+    li.none
+        list-style-type: none
+
+    .title
+        font-size: 20px
+        font-weight: 500
+        padding: 5px
+        text-align: center
+// 遊戲規則
+
 h4,.topinfo
     margin: 10px
     padding: 10px

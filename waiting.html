@@ -22,9 +22,235 @@
 <link rel="stylesheet" href="waiting.css">
 
 <body>
+    <!-- 遊戲規則介紹 -->
+    <!-- Button trigger modal 遊戲規則按鈕-->
+    <button type="button" class="rulepupup" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <i class="far fa-question-circle"></i>
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="exampleModalLabel">怎麼玩？</h5>
+                </div>
+                <div class="modal-body">
+
+                    <!-- 介紹遊戲怎麼玩 -->
+                    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" data-bs-interval="10000">
+                                <b>1.放置道路卡</b>
+                                <p>從手牌區選取道路卡放置於牌面上</p>
+                                <img src="gif/putroad.gif" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item" data-bs-interval="2000">
+                                <b>2.棄牌並跳過</b>
+                                <p>選取一張卡牌棄牌，並跳過這一回合</p>
+                                <img src="gif/trash.gif" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <b>3.使用地圖卡</b>
+                                <p>使用地圖卡可以任選一張終點卡查看是否有金礦</p>
+                                <img src="gif/map_gold.gif" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <b>4.使用崩路卡</b>
+                                <p>使用崩路卡可以任選一格牌面上的道路進行移除</p>
+                                <img src="gif/removeRoad.gif" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <b>5.使用破壞工具卡(封鎖其他玩家)</b>
+                                <p>使用破壞卡破壞其他玩家的工具，被封鎖的玩家不能出道路卡</p>
+                                <img src="gif/ban.gif" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <b>5.使用修理工具卡(解救其他玩家)</b>
+                                <p>使用修理卡解救被封鎖的玩家或自己</p>
+                                <img src="gif/save.gif" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <b>6.獲勝條件</b>
+                                <p>最後將道路連接到有金礦的卡牌即獲勝</p>
+                                <img src="gif/win.gif" class="d-block w-100" alt="...">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+
+                    <hr>
+                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+                                aria-label="Slide 4"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"
+                                aria-label="Slide 5"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5"
+                                aria-label="Slide 6"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6"
+                                aria-label="Slide 7"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="7"
+                                aria-label="Slide 8"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <b>功能卡4-1:崩路卡</b>
+                                <p>用來移除牌面上的道路或坑洞</p>
+                                <img src="svg/cards/card66.svg" class="d-block w-100">
+                            </div>
+                            <div class="carousel-item">
+                                <b>功能卡4-2:地圖卡</b>
+                                <p>用來偷看一張終點卡看是否有金礦</p>
+                                <img src="svg/cards/card46.svg" class="d-block w-100">
+                            </div>
+                            <div class="carousel-item">
+                                <b>功能卡4-3:封鎖卡</b>
+                                <p>用來破壞其他玩家的道具，被封鎖者不能出道路卡</p>
+                                <img src="svg/cards/card56.svg" class="d-block w-100">
+                            </div>
+                            <div class="carousel-item">
+                                <b>功能卡4-4:解救卡</b>
+                                <p>用來修理被破壞的道具，恢復出卡功能</p>
+                                <img src="svg/cards/card47.svg" class="d-block w-100">
+                            </div>
+                            <div class="carousel-item">
+                                <b>一般道路卡</b>
+                                <p>用來連接道路以到達金礦</p>
+                                <img src="svg/cards/card1.svg" class="d-block w-100">
+                            </div>
+                            <div class="carousel-item">
+                                <b>坑路卡</b>
+                                <p>放置坑路阻擋道路繼續聯通</p>
+                                <img src="svg/cards/card36.svg" class="d-block w-100">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <!--   hr    -->
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="title">遊戲流程</div>
+                        <p>每個人的回合都可以選擇下列三個行動<b>其中一種</b>執行。</p>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                    aria-controls="flush-collapseOne">
+                                    #1 出『道路卡』
+                                </button>
+                            </h2>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <ul>
+                                        <li>道路卡需要從<b>起點卡</b>開始，向外延伸出去。</li>
+                                        <li>道路卡必須與已經放置的道路卡上的路相連通(斜角碰觸不算)。</li>
+                                        <li>道路卡必須與起點卡<b>方向一致</b>的排列。不能有的橫的有的直的。</ol>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                    aria-controls="flush-collapseTwo">
+                                    #2 出『行動卡』
+                                </button>
+                            </h2>
+                            <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <ul>
+                                        <li>行動卡包含：<code>破壞卡</code>、<code>修理卡</code>、<code>崩路卡</code>及<code>地圖卡</code>。
+                                        </li>
+                                        <li><code>破壞卡</code>：破壞其他玩家的工具(油燈/礦車/斧頭)，可使其他玩家不能出『道路卡』。</li>
+                                        <li><code>修理卡</code>：可以把被破壞的工具修理好。</li>
+                                        <li><code>崩路卡</code>：可將原本蓋好的道路摧毀（起點和終點卡除外）。
+                                        <li class="none">壞矮人可以用它來破壞道路，好矮人可以用它來清除死路。</li>
+                                        </li>
+                                        <li><code>地圖卡</code>：可選擇看一張終點卡是金礦還是石頭，只有自己知道。</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                    aria-controls="flush-collapseThree">
+                                    #3 『棄掉一張卡』
+                                </button>
+                            </h2>
+                            <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <ul>
+                                        <li>如果玩家不想出牌或不能出牌，可以將卡牌丟到棄牌堆中。</li>
+                                        <li>棄牌後，如果牌庫還有卡牌，會自動再補一張手牌，並輪到下一位玩家行動。</li>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseFour" aria-expanded="false"
+                                    aria-controls="flush-collapseFour">
+                                    遊戲結束 Ending the Game
+                                </button>
+                            </h2>
+                            <div id="flush-collapseFour" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <ul>
+                                        <li>當玩家能將一張道路卡連接到<b>終點卡</b>，並製造一條與起點卡間無阻礙的通道時，可以將連結的終點卡掀開。</li>
+                                        <li>若翻出的終點卡上出現的是石塊，繼續進行遊戲。</li>
+                                        <li>若翻出的終點卡上出現的是金塊，則好矮人獲勝。</li>
+                                        <li>若所有玩家手牌用盡或是無牌可出，則壞矮人獲勝。</li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--  -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 遊戲規則介紹 END-->
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary btn-share" data-bs-toggle="modal" data-bs-target="#sharelinkModal">
-        <span></span><i class="fas fa-link" id="sharelink"></i>  複製邀請連結
+        <span></span><i class="fas fa-link" id="sharelink"></i> 複製邀請連結
     </button>
     <!-- Modal -->
     <div class="modal fade" id="sharelinkModal" tabindex="-1" aria-hidden="true">
@@ -117,13 +343,13 @@
     integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
-    </script>
+</script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
     integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
-    </script>
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"
     integrity="sha384-lpyLfhYuitXl2zRZ5Bn2fqnhNAKOAaM/0Kr9laMspuaMiZfGmfwRNFh8HlMy49eQ" crossorigin="anonymous">
-    </script>
+</script>
 <script src="https://cdn.socket.io/4.1.2/socket.io.min.js"
     integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous">
 </script>
@@ -169,20 +395,20 @@
         //卡片翻轉效果
         $('.flip-box-inner').on('click', function () {
             let degrees = $('.flip-box-inner').attr("degrees")
-            if (typeof degrees == "undefined"|| degrees == "0"){
+            if (typeof degrees == "undefined" || degrees == "0") {
                 $('.flip-box-inner').css("transform", "rotateY(180deg)");
                 $('.owner-start-game-btn').show();
-                $('.flip-box-inner').attr("degrees","180")
-            } else{
+                $('.flip-box-inner').attr("degrees", "180")
+            } else {
                 $('.flip-box-inner').css("transform", "rotateY(0deg)");
-                $('.flip-box-inner').attr("degrees","0")
+                $('.flip-box-inner').attr("degrees", "0")
             }
-            
-            
-            
+
+
+
 
         });
-        
+
     }
 
     $(document).ready(function () {
@@ -252,4 +478,5 @@
         window.location.href = `./playpage.html?room_id=${CURRENT_ROOM_ID}`;
     })
 </script>
+
 </html>
