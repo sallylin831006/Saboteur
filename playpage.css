@@ -1,6 +1,9 @@
 @charset "UTF-8";
 * {
-  user-select: text;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+      -ms-user-select: text;
+          user-select: text;
   font-size: 12px;
   text-align: center;
   font-weight: 900;
@@ -11,7 +14,8 @@
 html, body {
   background-color: rgba(152, 210, 242, 0.5) !important;
   overflow-y: scroll;
-  touch-action: pan-y;
+  -ms-touch-action: pan-y;
+      touch-action: pan-y;
   -webkit-overflow-scrolling: touch;
   width: 100%;
   height: 100%;
@@ -26,17 +30,25 @@ html, body {
 
 .flexbox {
   margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .playerarea {
   width: 95%;
   margin-bottom: 5px;
   padding-top: 5px;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .playerarea .yourturnbgc {
@@ -138,7 +150,7 @@ html, body {
   margin: 10px;
 }
 
-.container .stepinfo .userRole {
+.container .stepinfo .goodUser {
   display: block;
   width: 60px;
   height: 60px;
@@ -150,7 +162,30 @@ html, body {
   padding-bottom: 10px;
 }
 
-.container .stepinfo .userRole .rolecue {
+.container .stepinfo .goodUser .rolecue {
+  width: 60px;
+  height: 20px;
+  margin: 0 auto;
+  font-size: 5px;
+  display: block;
+  line-height: 140px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.container .stepinfo .badUser {
+  display: block;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+  background-image: url(svg/role_circle_bad.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding-bottom: 10px;
+}
+
+.container .stepinfo .badUser .rolecue {
   width: 60px;
   height: 20px;
   margin: 0 auto;
@@ -189,16 +224,26 @@ html, body {
 
 .container .showarea {
   width: 99%;
-  flex-direction: column;
-  justify-content: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   margin-bottom: 10px;
   font-size: 0px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .container .showarea .line {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
   display: inline-flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   width: 100%;
 }
 
@@ -236,9 +281,15 @@ html, body {
   margin-top: 7px;
   font-size: 15px;
   margin: 0px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   background-color: rgba(255, 252, 239, 0.5);
   border-radius: 50%;
 }
@@ -300,8 +351,13 @@ hr {
   margin: 10px;
   overflow: auto;
   min-height: 90px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   padding-bottom: 30px;
   border-radius: 5px;
   background-color: rgba(255, 252, 239, 0.5);
@@ -337,9 +393,15 @@ hr {
   padding: 5px;
   margin: 0 auto;
   bottom: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .chatinputbox .inputChat {
@@ -350,6 +412,18 @@ hr {
   border: 3px solid #1A517B;
   border-radius: 3px;
   background-color: #FFFCEF;
+}
+
+.chatinputbox .inputChat::-webkit-input-placeholder {
+  color: rgba(26, 81, 123, 0.4);
+}
+
+.chatinputbox .inputChat:-ms-input-placeholder {
+  color: rgba(26, 81, 123, 0.4);
+}
+
+.chatinputbox .inputChat::-ms-input-placeholder {
+  color: rgba(26, 81, 123, 0.4);
 }
 
 .chatinputbox .inputChat::placeholder {
@@ -370,7 +444,8 @@ hr {
   padding: 10px;
   border-radius: 10px;
   background-color: #FFFCEF;
-  box-shadow: 1px 2px 5px #483B3B;
+  -webkit-box-shadow: 1px 2px 5px #483B3B;
+          box-shadow: 1px 2px 5px #483B3B;
   color: #483B3B;
 }
 
@@ -395,7 +470,8 @@ hr {
   border-radius: 10px;
   background-color: #FFFCEF;
   padding: 10px;
-  box-shadow: 1px 1px 3px #FFFCEF;
+  -webkit-box-shadow: 1px 1px 3px #FFFCEF;
+          box-shadow: 1px 1px 3px #FFFCEF;
 }
 
 .yourturnCue .yourturntxt {
@@ -438,8 +514,11 @@ hr {
     width: 100%;
     margin: 0 auto;
     min-width: 768px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-around;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
   }
   .container .showarea {
     width: 55%;
@@ -448,10 +527,18 @@ hr {
   }
   .container .flexbox.handcardarea {
     width: 13%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
     margin: 0px 5px 0px 5px;
   }
   .chatarea {
@@ -599,3 +686,4 @@ hr {
     max-width: 450px;
   }
 }
+/*# sourceMappingURL=playpage.css.map */

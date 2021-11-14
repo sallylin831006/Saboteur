@@ -367,8 +367,10 @@
 
       const userInfo = data.players[getNickName()];
 
-      const team = userInfo.team == '1' ? '好' : '壞';
-      $('.team-wording').text(`你是${team}矮人`);
+      const teamWording = userInfo.team == '1' ? '好' : '壞';
+      const team = userInfo.team == '1' ? 'good' : 'bad';
+      $('.team-wording').text(`你是${teamWording}矮人`);
+      $('.userRole').addClass(`${team}User`);
 
       data.chat_record.forEach((chatRecord) => {
         renderChatRecord(chatRecord);

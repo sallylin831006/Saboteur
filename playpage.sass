@@ -127,7 +127,7 @@ html, body
         background-color: rgba($color_white,0.3)
         margin: 0 auto
         margin: 10px
-        .userRole
+        .goodUser
             display: block
             +size(60px,60px)
             margin: 0 auto
@@ -135,7 +135,6 @@ html, body
             background-repeat: no-repeat
             background-position: center
             background-size: cover
-            //border: 1px solid red
             padding-bottom: 10px
             .rolecue
                 +size(60px,20px) 
@@ -145,6 +144,24 @@ html, body
                 line-height: 140px
                 font-weight: 900
                 letter-spacing: 2px
+        .badUser
+            display: block
+            +size(60px,60px)
+            margin: 0 auto
+            background-image: url(svg/role_circle_bad.svg)
+            background-repeat: no-repeat
+            background-position: center
+            background-size: cover
+            padding-bottom: 10px
+            .rolecue
+                +size(60px,20px) 
+                margin: 0 auto
+                font-size: 5px
+                display: block
+                line-height: 140px
+                font-weight: 900
+                letter-spacing: 2px
+        
         ul.stepinfoTxt
             width: 70%
             li
