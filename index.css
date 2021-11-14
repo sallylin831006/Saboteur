@@ -1,8 +1,5 @@
 * {
-  -webkit-user-select: text;
-     -moz-user-select: text;
-      -ms-user-select: text;
-          user-select: text;
+  user-select: text;
   text-align: center;
   margin: 0 auto;
   font-family: "Kosugi Maru",'Noto Sans TC',sans-serif;
@@ -21,19 +18,10 @@ html, body {
   max-width: 400px;
   margin: 0 auto;
   padding: 3px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .container .logo {
@@ -47,28 +35,18 @@ html, body {
 }
 
 .container .flexbox {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   margin: 10px 0px 10px 0px;
 }
 
 .container .flexbox .count {
-  -webkit-user-select: text;
-     -moz-user-select: text;
-      -ms-user-select: text;
-          user-select: text;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  user-select: text;
   display: flex;
   width: 120px;
   padding: 10px;
   border-radius: 50px;
   background-color: #483B3B;
-  -webkit-transition: 0.5s;
   transition: 0.5s;
   position: relative;
   left: 0px;
@@ -110,6 +88,7 @@ html, body {
 .container #nickname:focus {
   outline: 0;
   -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
   box-shadow: none !important;
 }
 
@@ -131,12 +110,8 @@ html, body {
 .footer {
   max-width: 400px;
   margin: 0 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
 
 .rulepupup, .openbtn, .rank {
@@ -148,8 +123,7 @@ html, body {
   border-radius: 0px !important;
   border-bottom: 2px solid #483B3B !important;
   padding: 3px !important;
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
+  box-shadow: none !important;
   margin: 0px 10px 0px 10px !important;
 }
 
@@ -157,8 +131,13 @@ html, body {
   outline: none !important;
 }
 
+.modal-dialog-scrollable {
+  margin: 0 auto;
+  min-width: 50% !important;
+}
+
 .modal-content {
-  width: 99% !important;
+  max-width: 99% !important;
   background-color: #FFFCEF !important;
   border-radius: 10px !important;
   padding: 10px;
@@ -176,8 +155,7 @@ html, body {
 }
 
 .modal-content .accordion-button {
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
+  box-shadow: none !important;
   white-space: nowrap !important;
 }
 
@@ -223,24 +201,13 @@ html, body {
   width: 100%;
   margin: 0 auto;
   padding: 3px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .flexbox {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -257,6 +224,7 @@ html, body {
 .flexbox .category:focus {
   outline: 0 !important;
   -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
   box-shadow: none !important;
 }
 
@@ -273,6 +241,7 @@ html, body {
 .flexbox .nickName:focus {
   outline: 0 !important;
   -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
   box-shadow: none !important;
 }
 
@@ -289,6 +258,7 @@ textarea.content {
 textarea.content:focus {
   outline: 0 !important;
   -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
   box-shadow: none !important;
 }
 
@@ -311,13 +281,8 @@ textarea.content:focus {
   width: 100%;
   margin: 0px;
   padding-left: 5px !important;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: reverse;
-      -ms-flex-direction: column-reverse;
-          flex-direction: column-reverse;
+  flex-direction: column-reverse;
 }
 
 .list li {
@@ -337,12 +302,8 @@ textarea.content:focus {
 
 .list li .bbsname {
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: left;
-      -ms-flex-pack: left;
-          justify-content: left;
+  justify-content: left;
   line-height: 30px;
   padding-bottom: 5px;
   color: #1A517B;
@@ -357,4 +318,3 @@ textarea.content:focus {
   background-image: url("svg/icon.svg");
   background-size: cover;
 }
-/*# sourceMappingURL=index.css.map */

@@ -127,9 +127,12 @@ html,body
     margin: 0px 10px 0px 10px !important
     &:focus
         outline: none !important
+.modal-dialog-scrollable
+    margin: 0 auto
+    min-width: 50% !important
 
 .modal-content
-    width: 99% !important
+    max-width: 99% !important
     background-color: $color_white !important
     border-radius: 10px !important
     padding: 10px
@@ -143,8 +146,6 @@ html,body
     .accordion-button
         box-shadow: none !important
         white-space: nowrap !important
-        // display: flex !important
-        // flex-wrap: nowrap !important
     .accordion-button:not(.collapsed)
         color: $color_white
         background-color: $color_deep_blue

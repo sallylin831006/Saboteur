@@ -27,5 +27,5 @@ function getApiUrl() {
 }
 
 function getSocketUrl() {
-    return '/';
+    return 'https://game.dev.newideas.com.tw/';
 }
