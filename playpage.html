@@ -791,19 +791,8 @@
         banTools.forEach((banToolName) => {
           const usernum = $(`#${e.target.id}`).attr("data-num");
           if ($(`.${banToolName}${usernum}`).attr("class").search(/statusBan\d/g) !== -1) {
-            let banNum = $(`.${banToolName}${usernum}`).attr('class').match(/statusBan\d/g)[0].match(/\d/g)[
-              0];
-            $(`.${banToolName}${usernum}`).removeClass(`statusBan${banNum}`);
-            banNum = parseInt(banNum) + 1
-            $(`.${banToolName}${usernum}`).addClass(`statusstyle`);
-            $(`.${banToolName}${usernum}`).addClass(`statusBan${banNum}`);
-            $(`.${banToolName}${usernum}`).attr('ban-num', String(banNum));
-            $(".cue-message").text(`你破壞了${$(e.target).text()}的${toolChineseName}`);
-            sendEvent('recordLog', {
-              roomId: CURRENT_ROOM_ID,
-              nickname: getNickName(),
-              message: `破壞了${$(e.target).text().trim()}的${toolChineseName}`,
-            });
+            alert('道具卡只能破壞一次唷');
+            return;
           } else {
             $(`.${banToolName}${usernum}`).addClass(`statusBan1`);
             $(`.${banToolName}${usernum}`).attr('ban-num', '1');
@@ -813,19 +802,18 @@
               nickname: getNickName(),
               message: `破壞了${$(e.target).text().trim()}的${toolChineseName}`,
             });
+            const toolsData = {
+              cardId: $(".redborder").attr('card-id'),
+              targetName: $(e.target).text().trim(),
+              tools: {
+                'ax': parseInt($(`.ax${usernum}`).attr('ban-num')),
+                'lamp': parseInt($(`.lamp${usernum}`).attr('ban-num')),
+                'car': parseInt($(`.car${usernum}`).attr('ban-num')),
+              }
+            }
+            updateToolsToServer(toolsData);
           }
         });
-        const toolsData = {
-          cardId: $(".redborder").attr('card-id'),
-          targetName: $(e.target).text().trim(),
-          tools: {
-            'ax': parseInt($(`.ax${usernum}`).attr('ban-num')),
-            'lamp': parseInt($(`.lamp${usernum}`).attr('ban-num')),
-            'car': parseInt($(`.car${usernum}`).attr('ban-num')),
-          }
-        }
-        updateToolsToServer(toolsData);
-        return;
       }
 
 
@@ -1070,10 +1058,10 @@
     scrollBarBottom();
   }
 
-  inputChat.addEventListener("keyup", function (event) {
+  document.querySelector('#input-chat-pc').addEventListener("keyup", function (event) {
     if (event.keyCode === 13) {
       event.preventDefault();
-      document.getElementById("chatbtn").click();
+      chatbtn.click();
     }
   });
 
