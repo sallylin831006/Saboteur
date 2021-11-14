@@ -431,7 +431,7 @@
       // 旋轉卡牌時加上選取紅框
       $(".fa-undo-alt").on("click", function (e) {
         const number = $(this).attr("data-num")
-        if ($(".cardnum" + number).attr('class').search("redborder") == -1) {
+        if ($(".cardnum" + number).attr('class').search("redborder") == -1 && roomInfo.play_can_move == getNickName()) {
           $(".redborder").removeClass("redborder");
           $(".cardnum" + number).addClass("redborder");
         }
