@@ -169,7 +169,7 @@
       
     </div>
     <!-- 提示剩餘牌庫 -->
-    <div class="reaminCard" style="word-break:break-all">牌庫剩餘卡牌：Ｘ張</div>
+    <div class="reaminCard" style="word-break:break-all">牌庫剩餘卡牌：<span id="cards-pool-number"></span>張</div>
 
     <!-- 聊天區2 顯示於小螢幕裝置 -->
     <div class="chatarea chatarea2">
@@ -640,9 +640,15 @@
     })
   }
 
+  const renderCardsPool = (roomInfo) => {
+    const cardsPoolNumber = roomInfo.cards.length;
+    $('#cards-pool-number').text(cardsPoolNumber);
+  }
+
   function renderPlayer(players, roomInfo) {
     showEndCards(roomInfo);
     checkIsGameFinish(roomInfo);
+    renderCardsPool(roomInfo);
     let displayUsers = '';
     let counter = 1;
     let playersData = roomInfo.players;
@@ -656,7 +662,10 @@
       const carBanNumber = playerData.tools.car == 0 ? null : `statusBan${playerData.tools.car}`;
       const carStatusStyle = playerData.tools.car > 1 ? 'statusstyle' : '';
 
-      let highlight = whoCanMove == player ? 'yourturnbgc' : null;
+      let highlight = whoCanMove == player ? 'yourturnbgc' : '';
+      // 判斷玩家是否斷線
+      const isReady = playerData.is_ready;
+
       displayUsers += `
         <div class="userbox">
           <div id="user${counter}" class="username ${highlight}" data-num="${counter}">${player}

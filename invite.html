@@ -70,6 +70,14 @@
         callApi(`/rooms/${currentRoomId}/players`, 'POST', {
             name: nickname
         }).then((response) => {
+            if (response.status === '400') {
+                alert('房間人數已額滿');
+                return;
+            }
+            if (response.data.is_start) {
+                window.location.href = `./playpage.html?room_id=${currentRoomId}`;
+                return;
+            }
             window.location.href = `./waiting.html?room_id=${currentRoomId}&invite=1`;
         });
 
