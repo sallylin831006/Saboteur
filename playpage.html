@@ -209,35 +209,42 @@
   <link rel="preload" as="image" href="svg/card_end2.svg">
   <link rel="preload" as="image" href="svg/card_end3.svg">
 
+
   <!-- Button trigger modal -->
-  <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-    遊戲回合勝負結果
-  </button> -->
+  <div class="resultShow">遊戲勝負</div>
 
   <!-- Modal -->
-  <!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         <img src="svg/status/goodwin.svg" alt="" class="winpic">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">好矮人獲勝！</h5>
+          <h5 class="modal-title">好矮人獲勝！</h5>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" id="winPlayers">
           獲勝玩家：
-          <div class="username name1">阿婷 <span>5分</span></div>
-          <div class="username name2">阿文 <span>5分</span></div>
+          <div class="winPlayernames">
+            <ul>
+              <li></li>
+            </ul>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="homebtn">回首頁</button>
-          <button type="button" class="palyagain">再玩一局</button>
-          <button type="button" class="rankbtn">看總排行</button>
-
+          <hr style="display: none;">
+          慘敗玩家：
+          <div class="losePlayernames">
+            <ul>
+              <li></li>
+            </ul>
         </div>
       </div>
+        <div class="modal-footer" style="margin: 0 auto;">
+          <div class="homebtn">回首頁</div>
+          <div class="palyagain">再玩一局</div>
     </div>
-  </div> -->
+      </div>
+    </div>
+  </div>
 
 </body>
 <script src="https://kit.fontawesome.com/5223ebc999.js" crossorigin="anonymous"></script>
@@ -274,7 +281,9 @@
   var BOARD = null;
   // end card click flag
   var CAN_OPEN_END = true;
-  var CAN_ROTATE_CARD_IDS = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 23, 24, 25, 26, 27, 28, 29, 30, 31, 34, 35, 36, 38, 39, 40]
+  var CAN_ROTATE_CARD_IDS = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 23, 24, 25, 26, 27, 28, 29, 30, 31, 34, 35, 36, 38, 39,
+    40
+  ]
 
 
   const hasRedBorder = () => {
@@ -359,6 +368,7 @@
   }
 
   $(document).ready(function () {
+    $(".resultShow").hide();
     callApi(`/rooms/${CURRENT_ROOM_ID}`).then((response) => {
       const data = response.data;
       const players = data.turn;
@@ -413,7 +423,8 @@
     $(".cycle-choose").unbind('click').bind("click", function (e) {
       e.preventDefault();
       const number = $(this).attr("data-num")
-      if ($(".cardnum" + number).attr('class').search("redborder") == -1 && roomInfo.play_can_move == getNickName()) {
+      if ($(".cardnum" + number).attr('class').search("redborder") == -1 && roomInfo.play_can_move ==
+        getNickName()) {
         $(".redborder").removeClass("redborder");
         $(".cardnum" + number).addClass("redborder");
       }
@@ -607,20 +618,48 @@
 
   const checkIsGameFinish = (roomInfo) => {
     if (roomInfo.is_end == true) {
-      delay(5000).then(() => {
+      delay(1000).then(() => {
         const winTeam = roomInfo.win_team;
         const winTeamName = winTeam == 1 ? '好矮人' : '壞矮人';
         let winPlayers = [];
+        let losePlayers = [];
         for (const [player, info] of Object.entries(roomInfo.players)) {
           if (info.team == winTeam) {
             winPlayers.push(player);
+          } else {
+            losePlayers.push(player);
           }
+          }
+        $(".resultShow").show();
+        $('#staticBackdrop').modal('show');
+        $("#winGroup").text(`${winTeamName}獲勝!`);
+        let winString = '<ul>'
+        winPlayers.forEach((player) => {
+          winString += `<li style="list-style:none;margin-left:-30px;">${player}</li>`
+        })
+        winString += '</ul>'
+        $(".winPlayernames").html(winString)
+
+        let loseString = '<ul>'
+        losePlayers.forEach((player) => {
+          loseString += `<li style="list-style:none;margin-left:-30px;">${player}</li>`
+        })
+        loseString += '</ul>'
+        $(".losePlayernames").html(loseString)
+
+        if (winTeam == 1) {
+          $(".winpic").attr("src", "svg/status/goodwin.svg")
+        } else {
+          $(".winpic").attr("src", "svg/status/badwin.svg")
         }
 
-        alert(`${winTeamName}獲勝! 獲勝玩家為 ${winPlayers.join(',')}`);
       });
     }
   }
+
+  $(".resultShow").bind('click', function (e) {
+    $('#staticBackdrop').modal('show');
+  });
 
   const showEndCards = (roomInfo) => {
     roomInfo.open_end_cards.forEach((cardPosition) => {
@@ -1040,10 +1079,7 @@
     $('.inputChat').val('');
 
   })
-  //聊天關閉
-  $(document).ready(function () {
-    $(".chaticon").hide();
-  });
+
 
   function renderChatRecord(chatRecord) {
     const chatUser = chatRecord.nickname;
