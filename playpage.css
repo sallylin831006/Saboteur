@@ -197,11 +197,14 @@ html, body {
 }
 
 .container .stepinfo ul.stepinfoTxt {
-  width: 70%;
+  width: 100%;
 }
 
 .container .stepinfo ul.stepinfoTxt li {
-  width: 70%;
+  text-align: center !important;
+  border-bottom: 1px solid #1A517B;
+  margin-left: -30px;
+  width: 100%;
   list-style: none;
   text-align: left;
   font-size: 12px;
@@ -300,24 +303,6 @@ html, body {
 
 hr {
   margin: 1px !important;
-}
-
-.chaticon {
-  width: 50px;
-  height: 40px;
-  background-color: #1A517B;
-  border-radius: 5px;
-  cursor: pointer;
-  position: absolute;
-  bottom: 5px;
-  right: 15px;
-}
-
-.chaticon i.fa-comment {
-  color: #FFFCEF;
-  font-size: 25px;
-  text-align: center;
-  line-height: 40px;
 }
 
 .chatbtn {
@@ -452,7 +437,7 @@ hr {
   cursor: pointer;
   width: 15%;
   position: fixed;
-  bottom: 120px;
+  bottom: 250px;
   right: 20px;
   box-shadow: 1px 2px 5px #483B3B;
 }
@@ -615,7 +600,7 @@ hr {
     width: 100% !important;
     height: 450px !important;
   }
-  .chatclose, .chaticon, i.fa-comment {
+  .chatclose, i.fa-comment {
     display: none;
   }
   .handcardbox {

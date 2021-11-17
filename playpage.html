@@ -49,7 +49,6 @@
 
       </div>
     </div>
-    <div class="chaticon"><i class="far fa-comment"></i></div>
     <!-- 棋盤格子區 -->
     <div class="flexbox showarea">
       <div class="line line1">
@@ -192,7 +191,6 @@
         <!-- <div class="chatclose"><i class="fas fa-times"></i></div> -->
       </div>
     </div>
-    <div class="chaticon"><i class="far fa-comment"></i></div>
 
   </div>
   <!-- //這是container的div勿刪*///再以下就是container外 -->
@@ -212,7 +210,8 @@
 
   <!-- Button trigger modal -->
   <img src="" alt="" class="resultBtn">
-
+  
+  
   <!-- Modal -->
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -408,7 +407,7 @@
     let displayString = '';
     logs.reverse().forEach((log) => {
       displayString += `
-        <li>${log.nickname}${log.message}</li>
+        <li>${log.nickname}:${log.message}</li>
       `;
     });
 
@@ -480,12 +479,12 @@
           ['top', 'left', 'right', 'bottom', 'center'].forEach((direction) => {
             endcardelement.attr(direction, endDirection[direction]);
           });
-          $(".cue-message").text("你查看了一張終點卡");
+          $(".cue-message").text("你查看一張終點卡");
 
           sendEvent('recordLog', {
             roomId: CURRENT_ROOM_ID,
             nickname: getNickName(),
-            message: '查看了一張終點卡',
+            message: '查看一張終點卡',
           });
 
           const endId = endCards[endNum - 1];
@@ -545,11 +544,11 @@
           const style = $(".handcardbox" + boxnum + " img").css('transform');
           renderDeleteBlockId(event.target.getAttribute("data-num"));
 
-          $(".cue-message").text("你使用崩路卡，移除了一條坑路");
+          $(".cue-message").text("你使用了崩路卡");
           sendEvent('recordLog', {
             roomId: CURRENT_ROOM_ID,
             nickname: getNickName(),
-            message: '使用崩路卡，移除了一條坑路',
+            message: '使用崩路卡',
           });
           cardData.haveToDeleteCard = true;
           putCardToServer(cardData, event.target.getAttribute("data-num"));
@@ -563,18 +562,18 @@
             sendEvent('recordLog', {
               roomId: CURRENT_ROOM_ID,
               nickname: getNickName(),
-              message: '放了一張坑洞卡',
+              message: '放一張坑洞卡',
             });
           };
           return;
         }
 
         if (Cardput(cardData)) {
-          $(".cue-message").text("你放了一張道路卡");
+          $(".cue-message").text("你放一張道路卡");
           sendEvent('recordLog', {
             roomId: CURRENT_ROOM_ID,
             nickname: getNickName(),
-            message: '放了一張道路卡',
+            message: '放一張道路卡',
           });
         };
         return;
@@ -877,11 +876,11 @@
           } else {
             $(`.${banToolName}${usernum}`).addClass(`statusBan1`);
             $(`.${banToolName}${usernum}`).attr('ban-num', '1');
-            $(".cue-message").text(`你破壞了${$(e.target).text()}的${toolChineseName}`);
+            $(".cue-message").text(`你破壞${$(e.target).text()}的${toolChineseName}`);
             sendEvent('recordLog', {
               roomId: CURRENT_ROOM_ID,
               nickname: getNickName(),
-              message: `破壞了${$(e.target).text().trim()}的${toolChineseName}`,
+              message: `破壞${$(e.target).text().trim()}的${toolChineseName}`,
             });
             const toolsData = {
               cardId: $(".redborder").attr('card-id'),
@@ -914,11 +913,11 @@
             $(`.${saveToolName}${usernum}`).addClass(`statusBan${banNum}`);
             $(`.${saveToolName}${usernum}`).attr('ban-num', String(banNum));
           }
-          $(".cue-message").text(`你修理了${$(e.target).text()}的${savetoolChineseName}`);
+          $(".cue-message").text(`你修理${$(e.target).text()}的${savetoolChineseName}`);
           sendEvent('recordLog', {
             roomId: CURRENT_ROOM_ID,
             nickname: getNickName(),
-            message: `修理了${$(e.target).text().trim()}的${savetoolChineseName}`,
+            message: `修理${$(e.target).text().trim()}的${savetoolChineseName}`,
           });
         });
         const toolsData = {
