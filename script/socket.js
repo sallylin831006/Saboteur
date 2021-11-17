@@ -54,3 +54,7 @@ socket.on("startGame", () => {
 socket.on("sendMessage", (data) => {
     sendMessage(data);
 });
+
+socket.on("inviteNewGame", (data) => {
+    inviteNewGame(data);
+});

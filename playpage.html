@@ -240,7 +240,7 @@
         </div>
         <div class="modal-footer" style="margin: 0 auto;">
           <div class="homebtn">回首頁</div>
-          <div class="palyagain">再玩一局</div>
+          <div class="playagain">再玩一局</div>
         </div>
       </div>
     </div>
@@ -284,7 +284,6 @@
   var CAN_ROTATE_CARD_IDS = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 23, 24, 25, 26, 27, 28, 29, 30, 31, 34, 35, 36, 38, 39,
     40
   ]
-
 
   const hasRedBorder = () => {
     return $('.redborder').length ? true : false;
@@ -616,6 +615,13 @@
     }
   }
 
+  const renderNewGameRoomId = (roomId) => {
+    const playAgainBtn = $('.playagain');
+    playAgainBtn.html('加入新局');
+    playAgainBtn.css('background-color', '#1A517B');
+    playAgainBtn.attr('new-room-id', roomId);
+  }
+
   const checkIsGameFinish = (roomInfo) => {
     if (roomInfo.is_end == true) {
       delay(1000).then(() => {
@@ -665,6 +671,18 @@
         $(".resultBtn").attr("src", `svg/status/${myTeam}${myResult}.svg`)
         $('#staticBackdrop').modal('show');
 
+        $(".resultShow").show();
+        $('#staticBackdrop').modal('show');
+        $("#winGroup").text(`${winTeamName}獲勝!`);
+        if (roomInfo.owner !== getNickName()) {
+          const playAgainBtn = $('.playagain');
+          playAgainBtn.text('等候新局');
+          playAgainBtn.attr('role', 'participant');
+          playAgainBtn.css('background-color', 'gray');
+        } else {
+          const playAgainBtn = $('.playagain');
+          playAgainBtn.attr('role', 'owner');
+        }
         let winString = '<ul>'
         winPlayers.forEach((player) => {
           winString += `<li style="list-style:none;margin-left:-30px;">${player}</li>`
@@ -678,14 +696,6 @@
         })
         loseString += '</ul>'
         $(".losePlayernames").html(loseString)
-
-
-
-
-        // else {
-        //   $(".winpic").attr("src", "svg/status/badwin.svg")
-        // }
-
       });
     }
   }
@@ -727,7 +737,6 @@
     var messageBodyMobile = document.querySelector('.message-body-mobile');
     messageBodyMobile.scrollTop = (messageBodyMobile.scrollHeight - messageBodyMobile.clientHeight);
   }
-
 
   function renderPlayer(players, roomInfo) {
     showEndCards(roomInfo);
@@ -1197,12 +1206,50 @@
   $('.homebtn').click(function () {
     window.location.href = "./index.html";
   });
-  $('.palyagain').click(function () {
-    window.location.href = "./waiting.html";
+  $('.playagain').click(function () {
+    const roomRole = $(this).attr('role');
+    const newRoomId = $(this).attr('new-room-id');
+    if (roomRole == 'owner') {
+      roomOwnerPlayAgain();
+      return;
+    }
+
+    if (typeof newRoomId == 'undefined' || newRoomId == '') {
+      return;
+    }
+
+    callApi(`/rooms/${newRoomId}/players`, 'POST', {
+      name: getNickName()
+    }).then((response) => {
+      if (response.status === '400') {
+        alert('房間人數已額滿');
+        return;
+      }
+      if (response.data.is_start) {
+        window.location.href = `./playpage.html?room_id=${newRoomId}`;
+        return;
+      }
+      window.location.href = `./waiting.html?room_id=${newRoomId}&invite=1`;
+    });
+
   });
-  $('.rankbtn').click(function () {
-    window.location.href = "./rank.html";
-  })
+
+  const roomOwnerPlayAgain = () => {
+    callApi('/rooms', 'POST', {
+      name: getNickName(),
+      maxPlayersNumber: 10
+    }).then((response) => {
+      const roomId = response.data.room_id;
+      sendEvent('inviteNewGame', {
+        roomId: CURRENT_ROOM_ID,
+        newRoomId: roomId
+      });
+
+      window.location.href = `./waiting.html?room_id=${roomId}`;
+    });
+  }
+
+
 </script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" //
   integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">

@@ -1,5 +1,8 @@
 function joinRoomListener(data) {
     data = JSON.parse(data);
+    if (data.is_end == true) {
+        return;
+    }
     const players = data.turn.length > 0 ? data.turn : Object.keys(data.players);
     renderPlayer(players, data);
 }
@@ -55,4 +58,10 @@ function recordLog(data) {
     data = JSON.parse(data);
     const logs = data.logs;
     renderEventLogs(logs);
+}
+
+function inviteNewGame(data) {
+    data = JSON.parse(data);
+    const roomId = data.roomId;
+    renderNewGameRoomId(roomId);   
 }
