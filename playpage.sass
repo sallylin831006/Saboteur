@@ -315,26 +315,51 @@ hr
         background-color: $color_white
         &::placeholder
             color: rgba($color_deep_blue,0.4)
-
+.resultShow
+    cursor: pointer
+    position: fixed
+    bottom: 10px
+    right: 10px
+    +size(100px,100px)
+    line-height: 95px
+    border-radius: 100%
+    background-color: $color_deep_blue
+    color: $color_white
+    border: 3px solid $color_white
 #staticBackdrop
-    background-color: rgba($color_red,0.9)
+    background-color: rgba($color_blue,0.3)
     margin: 0 auto
+    .modal-body
+        padding: 10px
     .modal-title
         margin: 0 auto
     .modal-content
-        width: 100%
+        margin: 0 auto
+        margin-top: 120px
+        width: 80%
         padding: 10px
         border-radius: 10px
         background-color: $color_white
         box-shadow: 1px 2px 5px $color_brown
         color: $color_brown
+    .modal-footer
+        padding: 10px
     .winpic
         width: 50%
         margin: 0 auto
     .btn-close
         position: absolute
-        top: 15px
-        right: 15px
+        top: 20px
+        right: 20px
+    .homebtn,.palyagain
+        cursor: pointer
+        width: 100px
+        border-radius: 20px
+        padding: 8px
+        background-color: $color_deep_blue
+        color: $color_white
+        &:hover
+            background-color: $color_light_blue
 
 .yourturnCue
     // position: fixed

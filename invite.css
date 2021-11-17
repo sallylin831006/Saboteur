@@ -1,8 +1,5 @@
 * {
-  -webkit-user-select: text;
-     -moz-user-select: text;
-      -ms-user-select: text;
-          user-select: text;
+  user-select: text;
   text-align: center;
   margin: 0 auto;
   font-family: "Kosugi Maru",'Noto Sans TC',sans-serif;
@@ -22,29 +19,20 @@ html, body {
   max-width: 400px;
   margin: 0 auto;
   padding: 3px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .container .logo {
-  width: 15%;
+  width: 45%;
   max-width: 700px;
   margin: 40px 0px 20px 0px;
 }
 
 .container .welcome {
-  width: 30%;
+  width: 80%;
   min-width: 100px;
 }
 
@@ -62,6 +50,7 @@ html, body {
 .container #nickname:focus {
   outline: 0;
   -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
   box-shadow: none !important;
 }
 
@@ -80,4 +69,16 @@ html, body {
 .container .start:hover {
   background-color: #3F9CCD;
 }
-/*# sourceMappingURL=invite.css.map */
+
+.container .info {
+  width: 370px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 5px;
+  color: orange;
+}
+
+.container .info:hover {
+  color: #483B3B;
+}

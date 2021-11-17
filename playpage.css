@@ -380,9 +380,27 @@ hr {
   color: rgba(26, 81, 123, 0.4);
 }
 
+.resultShow {
+  cursor: pointer;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 100px;
+  height: 100px;
+  line-height: 95px;
+  border-radius: 100%;
+  background-color: #1A517B;
+  color: #FFFCEF;
+  border: 3px solid #FFFCEF;
+}
+
 #staticBackdrop {
-  background-color: rgba(197, 76, 77, 0.9);
+  background-color: rgba(88, 184, 225, 0.3);
   margin: 0 auto;
+}
+
+#staticBackdrop .modal-body {
+  padding: 10px;
 }
 
 #staticBackdrop .modal-title {
@@ -390,12 +408,18 @@ hr {
 }
 
 #staticBackdrop .modal-content {
-  width: 100%;
+  margin: 0 auto;
+  margin-top: 120px;
+  width: 80%;
   padding: 10px;
   border-radius: 10px;
   background-color: #FFFCEF;
   box-shadow: 1px 2px 5px #483B3B;
   color: #483B3B;
+}
+
+#staticBackdrop .modal-footer {
+  padding: 10px;
 }
 
 #staticBackdrop .winpic {
@@ -405,8 +429,21 @@ hr {
 
 #staticBackdrop .btn-close {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 20px;
+  right: 20px;
+}
+
+#staticBackdrop .homebtn, #staticBackdrop .palyagain {
+  cursor: pointer;
+  width: 100px;
+  border-radius: 20px;
+  padding: 8px;
+  background-color: #1A517B;
+  color: #FFFCEF;
+}
+
+#staticBackdrop .homebtn:hover, #staticBackdrop .palyagain:hover {
+  background-color: #3F9CCD;
 }
 
 .yourturnCue {
