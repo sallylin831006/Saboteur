@@ -211,7 +211,7 @@
 
 
   <!-- Button trigger modal -->
-  <div class="resultShow">遊戲勝負</div>
+  <img src="" alt="" class="resultBtn">
 
   <!-- Modal -->
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -219,9 +219,9 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        <img src="svg/status/goodwin.svg" alt="" class="winpic">
+        <img src="" alt="" class="winpic">
         <div class="modal-header">
-          <h5 class="modal-title">好矮人獲勝！</h5>
+          <h5 class="modal-title"></h5>
         </div>
         <div class="modal-body" id="winPlayers">
           獲勝玩家：
@@ -229,19 +229,19 @@
             <ul>
               <li></li>
             </ul>
-        </div>
+          </div>
           <hr style="display: none;">
           慘敗玩家：
           <div class="losePlayernames">
             <ul>
               <li></li>
             </ul>
+          </div>
         </div>
-      </div>
         <div class="modal-footer" style="margin: 0 auto;">
           <div class="homebtn">回首頁</div>
           <div class="palyagain">再玩一局</div>
-    </div>
+        </div>
       </div>
     </div>
   </div>
@@ -255,7 +255,7 @@
 <script src="./script/common.js"></script>
 <script src="https://cdn.socket.io/4.1.2/socket.io.min.js"
   integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous">
-  </script>
+</script>
 <script src="./script/socket.js"></script>
 <script src="./script/listener/room.js"></script>
 <script src="script/card_map.js"></script>
@@ -368,7 +368,7 @@
   }
 
   $(document).ready(function () {
-    $(".resultShow").hide();
+    $(".resultBtn").hide();
     callApi(`/rooms/${CURRENT_ROOM_ID}`).then((response) => {
       const data = response.data;
       const players = data.turn;
@@ -430,7 +430,7 @@
       }
       rotatecard($(".cardnum" + number));
     });
-  
+
     if (roomInfo.play_can_move !== getNickName()) {
       $(".yourturnCue").hide();
       $('.card').unbind('click');
@@ -540,7 +540,7 @@
         }
 
         if (event.target.id.search(/block|end|trash/) == -1 && event.target.getAttribute("src").search(
-          /32|33|34|35|36|37|38|39|40/) && $('.redborder').attr("src").search(/65|66|67/) !== -1) {
+            /32|33|34|35|36|37|38|39|40/) && $('.redborder').attr("src").search(/65|66|67/) !== -1) {
           const boxnum = $(".redborder").attr("data-num")
           const svg = $(".handcardbox" + boxnum + " img").attr('src');
           const style = $(".handcardbox" + boxnum + " img").css('transform');
@@ -621,6 +621,7 @@
       delay(1000).then(() => {
         const winTeam = roomInfo.win_team;
         const winTeamName = winTeam == 1 ? '好矮人' : '壞矮人';
+        const winTeamAlias = winTeam == 1 ? 'good' : 'bad';
         let winPlayers = [];
         let losePlayers = [];
         for (const [player, info] of Object.entries(roomInfo.players)) {
@@ -629,10 +630,41 @@
           } else {
             losePlayers.push(player);
           }
-          }
-        $(".resultShow").show();
+        }
+
+        const myInfo = roomInfo.players[getNickName()];
+
+        let myResult = '';
+        let myResultChinese = '';
+        if (myInfo.team == winTeam) {
+          myResult = 'win';
+          myResultChinese = '獲勝';
+        } else{
+          myResult = 'lose';
+          myResultChinese = '戰敗';
+        }
+
+        let myTeam = '';
+        let myTeamChinese = '';
+        if (myInfo.team == 1) {
+          myTeam = 'good';
+          myTeamChinese = '好矮人';
+        } else{
+          myTeam = 'bad';
+          myTeamChinese = '壞矮人';
+        }
+        
+        let resultTitle = `${myTeamChinese}${myResultChinese}`
+        $(".modal-title").html(resultTitle)
+
+
+        $(".winpic").attr("src", `svg/status/${myTeam}${myResult}.svg`)
+
+
+        $(".resultBtn").show();
+        $(".resultBtn").attr("src", `svg/status/${myTeam}${myResult}.svg`)
         $('#staticBackdrop').modal('show');
-        $("#winGroup").text(`${winTeamName}獲勝!`);
+
         let winString = '<ul>'
         winPlayers.forEach((player) => {
           winString += `<li style="list-style:none;margin-left:-30px;">${player}</li>`
@@ -647,17 +679,18 @@
         loseString += '</ul>'
         $(".losePlayernames").html(loseString)
 
-        if (winTeam == 1) {
-          $(".winpic").attr("src", "svg/status/goodwin.svg")
-        } else {
-          $(".winpic").attr("src", "svg/status/badwin.svg")
-        }
+
+
+
+        // else {
+        //   $(".winpic").attr("src", "svg/status/badwin.svg")
+        // }
 
       });
     }
   }
 
-  $(".resultShow").bind('click', function (e) {
+  $(".resultBtn").bind('click', function (e) {
     $('#staticBackdrop').modal('show');
   });
 
@@ -694,7 +727,7 @@
     var messageBodyMobile = document.querySelector('.message-body-mobile');
     messageBodyMobile.scrollTop = (messageBodyMobile.scrollHeight - messageBodyMobile.clientHeight);
   }
-  
+
 
   function renderPlayer(players, roomInfo) {
     showEndCards(roomInfo);
@@ -1175,6 +1208,6 @@
   integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
-  </script>
+</script>
 
 </html>

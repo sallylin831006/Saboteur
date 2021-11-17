@@ -394,8 +394,20 @@ hr {
   border: 3px solid #FFFCEF;
 }
 
+.resultBtn {
+  background-color: #FFFCEF;
+  padding: 10px;
+  border-radius: 10%;
+  cursor: pointer;
+  width: 15%;
+  position: fixed;
+  bottom: 120px;
+  right: 20px;
+  box-shadow: 1px 2px 5px #483B3B;
+}
+
 #staticBackdrop {
-  background-color: rgba(88, 184, 225, 0.3);
+  background-color: rgba(63, 156, 205, 0.2);
   margin: 0 auto;
 }
 
