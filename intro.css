@@ -1,0 +1,183 @@
+* {
+  border: 1px solid green;
+  user-select: text;
+  text-align: center;
+  margin: 0 auto;
+  font-family: "Kosugi Maru",'Noto Sans TC',sans-serif;
+  font-size: 18px;
+  color: black;
+}
+
+html, body {
+  background-color: #FFFCEF !important;
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+.container {
+  background-color: #FFFCEF;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container .logo {
+  width: 45%;
+  max-width: 700px;
+  margin: 40px 0px 20px 0px;
+}
+
+body {
+  height: 1000px;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: bold;
+}
+
+nav.navbar {
+  transition: 0.5s;
+}
+
+nav.navbar.navbar-default.navbar-fixed-top.navbar-top {
+  background-color: transparent;
+}
+
+a {
+  color: white;
+  transition: 0.5s;
+}
+
+a:hover {
+  color: #ff6e3a;
+}
+
+header.jumbotron {
+  text-align: center;
+  background-image: url(https://awiclass.monoame.com/img/web1_print/print.jpeg);
+  background-size: cover;
+  background-attachment: fixed;
+  margin-bottom: 0px;
+}
+
+.container {
+  color: white;
+  padding: 200px 0px;
+}
+
+hr {
+  max-width: 50px;
+  border: solid 2px #ff6e3a;
+}
+
+h4 {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: normal;
+}
+
+section {
+  padding: 50px 0px;
+}
+
+section#section_ask {
+  background-color: #ff6e3a;
+}
+
+.col-sm-5.img {
+  background-image: url(https://awiclass.monoame.com/img/web1_print/ancient_print.jpeg);
+  height: 350px;
+  mix-blend-mode: multiply;
+}
+
+h2 {
+  margin-top: 130px;
+  padding: 0px 20px;
+}
+
+img {
+  width: 130%;
+}
+
+.img_wrap {
+  height: 220px;
+  overflow: hidden;
+}
+
+section#section_story {
+  background-color: #222;
+  color: white;
+  padding: 0;
+}
+
+.col-sm-5 {
+  background-image: url(https://awiclass.monoame.com/img/web1_print/map.gif);
+  background-size: 100% auto;
+  height: 400px;
+}
+
+.col-sm-5 .cross {
+  position: absolute;
+  left: 23%;
+  top: 40%;
+  color: red;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.col-sm-7 {
+  text-align: center;
+}
+
+.col-sm-7 i {
+  font-size: 40px;
+}
+
+.col-sm-12.features {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+img {
+  width: 100%;
+}
+
+i {
+  font-size: 30px;
+}
+
+.feature {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+footer.jumbotron {
+  text-align: center;
+  background-image: url(https://awiclass.monoame.com/img/web1_print/print.jpeg);
+  background-size: cover;
+  background-attachment: fixed;
+  margin-bottom: 0px;
+}
+
+input {
+  background-color: transparent;
+  max-width: 350px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container {
+  color: white;
+  padding: 60px 0px;
+}
+
+hr {
+  max-width: 50px;
+  border: solid 2px #ff6e3a;
+}

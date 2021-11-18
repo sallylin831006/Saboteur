@@ -14,6 +14,7 @@ $color_brown: #483B3B
     text-align: center
     margin: 0 auto
     font-family: "Kosugi Maru",'Noto Sans TC',sans-serif
+    user-select: none
     // font-family: 'Noto Sans TC', sans-serif;
     // font-family: "HanaMinA",花園明朝體,"jf-openhuninn","PingFang TC", 黑體-繁, "Heiti TC", 蘋果儷中黑, "Apple LiGothic Medium", 微軟正黑體, "Microsoft JhengHei", Roboto, sans-serif
 
@@ -40,7 +41,7 @@ html,body
     align-items: center
 
     .logo
-        width: 60%
+        width: 25%
         margin: 40px 0px 40px 0px
 
     .playernumpic
@@ -282,3 +283,7 @@ textarea.content
                 margin: 0px 10px 0px 10px
                 background-image: url("svg/icon.svg")
                 background-size: cover
+
+@media screen and (max-width:375px)
+    .container .logo
+        width: 60%

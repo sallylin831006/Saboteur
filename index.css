@@ -3,6 +3,7 @@
   text-align: center;
   margin: 0 auto;
   font-family: "Kosugi Maru",'Noto Sans TC',sans-serif;
+  user-select: none;
 }
 
 html, body {
@@ -25,7 +26,7 @@ html, body {
 }
 
 .container .logo {
-  width: 60%;
+  width: 25%;
   margin: 40px 0px 40px 0px;
 }
 
@@ -317,4 +318,10 @@ textarea.content:focus {
   margin: 0px 10px 0px 10px;
   background-image: url("svg/icon.svg");
   background-size: cover;
+}
+
+@media screen and (max-width: 375px) {
+  .container .logo {
+    width: 60%;
+  }
 }

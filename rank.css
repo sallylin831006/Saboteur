@@ -1,11 +1,9 @@
 * {
-  -webkit-user-select: text;
-     -moz-user-select: text;
-      -ms-user-select: text;
-          user-select: text;
+  user-select: text;
   font-size: 15px;
   text-align: center;
   margin: 0 auto;
+  font-family: "Kosugi Maru",'Noto Sans TC',sans-serif;
 }
 
 html, body {
@@ -19,24 +17,128 @@ html, body {
 .container {
   background-color: #FFFCEF;
   max-width: 400px;
+  width: 70%;
   margin: 0 auto;
   padding: 3px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .container img.rankpic {
-  width: 35%;
+  width: 20%;
+  margin: 10px;
 }
-/*# sourceMappingURL=rank.css.map */
+
+.table {
+  width: 70% !important;
+  margin: 30px !important;
+}
+
+.logo {
+  width: 30%;
+}
+
+.loginBtn {
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 100px;
+  border-radius: 20px;
+  padding: 8px;
+  background-color: #1A517B;
+  color: #FFFCEF;
+}
+
+.loginBtn:hover {
+  background-color: #3F9CCD;
+}
+
+#nickname, #password {
+  margin: 5px;
+  width: 100%;
+  border-radius: 5px;
+  border: 2px solid #483B3B !important;
+  background-color: transparent;
+  padding: 5px;
+  color: #8CC554;
+}
+
+#nickname:focus, #password:focus {
+  outline: 0;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+#staticBackdrop {
+  background-color: rgba(63, 156, 205, 0.2);
+  margin: 0 auto;
+}
+
+#staticBackdrop .modal-body {
+  padding: 10px;
+}
+
+#staticBackdrop .modal-title {
+  margin: 0 auto;
+}
+
+#staticBackdrop .modal-content {
+  margin: 0 auto;
+  margin-top: 120px;
+  width: 80%;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #FFFCEF;
+  box-shadow: 1px 2px 5px #483B3B;
+  color: #483B3B;
+}
+
+#staticBackdrop .modal-footer {
+  padding: 10px;
+}
+
+#staticBackdrop .winpic {
+  width: 50%;
+  margin: 0 auto;
+}
+
+#staticBackdrop .btn-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+#staticBackdrop .btn, #staticBackdrop .loginStyle {
+  margin: 0 auto;
+  margin-top: 8px;
+  cursor: pointer;
+  width: 100px;
+  border-radius: 20px;
+  padding: 8px;
+  background-color: #1A517B;
+  color: #FFFCEF;
+}
+
+#staticBackdrop .btn:hover, #staticBackdrop .loginStyle:hover {
+  background-color: #3F9CCD;
+}
+
+#staticBackdrop .sign {
+  background-color: #C54C4D;
+  width: 70px;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 0 auto;
+}
+
+#staticBackdrop .sign:hover {
+  background-color: #DD6952;
+}
+
+#staticBackdrop .loginStyle {
+  width: 200px;
+}

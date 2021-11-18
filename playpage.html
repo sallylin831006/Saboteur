@@ -198,9 +198,8 @@
   <div class="yourturnCue" style="display: none;">
     <p class="yourturntxt">輪到你了！</p>
     <img src="svg/icon rotate.svg" class="yourturnpic">
-    <!-- <img src="https://img.itch.zone/aW1nLzIzNTkyMDEucG5n/original/HXrjt2.png" class="yourturnpic"> -->
-    <p class="yourturnalert"> </p>
-    <div class="ok" id="get-ready">OK</div>
+    <p class="yourturnalert"></p>
+    <div class="ok" id="get-ready">OK</div>
   </div>
 
   <link rel="preload" as="image" href="svg/card_end1.svg">
@@ -1184,7 +1183,7 @@
             "transition-duration": "0.3s"
           });
           $(".yourturntxt").text("來不及了");
-          $(".yourturnpic").attr("src", "https://image.emojipng.com/840/12628840.jpg")
+          $(".yourturnpic").attr("src", "svg/opps.svg")
           $(".yourturnalert").text("你錯過了你的回合");
           delay(5000).then(() => {
             $(".ok").click();

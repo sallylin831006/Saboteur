@@ -363,14 +363,16 @@ hr
             background-color: $color_light_blue
 
 .yourturnCue
-    // position: fixed
-    position: absolute
     width: 50%
-    // height: 100px
-    top: 50%
+    position: absolute
     left: 50%
-    margin-left: -35%
-    margin-top: -90px
+    top: 50%
+    transform: translateX(-50%) translateY(-50%)
+    // position: absolute
+    // top: 50%
+    // left: 50%
+    // margin-left: -35%
+    // margin-top: -90px
     border-radius: 10px
     background-color: $color_white
     padding: 10px
@@ -460,13 +462,9 @@ hr
         padding: 5px 3px 5px 3px
     .yourturnCue
         width: 40%
-        top: 50%
-        left: 50%
-        margin-left: -20%
-        margin-top: -75px
     .yourturnCue .ok
-        +size(50px,35px)
-        line-height: 15px
+        +size(60px,45px)
+        line-height: 25px
         border-radius: 3px
 
 @media screen and (min-width:1000px)
