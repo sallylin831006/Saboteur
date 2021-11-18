@@ -1,51 +1,115 @@
 const cross = {
-  top: true,
-  right: true,
-  left: true,
-  bottom: true,
-  center: true,
+  "0": {
+    top: true,
+    right: true,
+    left: true,
+    bottom: true,
+    center: true,
+  },
+  "180": {
+    top: true,
+    right: true,
+    left: true,
+    bottom: true,
+    center: true,
+  }
+
 };
 const bigT = {
-  top: false,
-  right: true,
-  left: true,
-  bottom: true,
-  center: true,
+  "0": {
+    top: false,
+    right: true,
+    left: true,
+    bottom: true,
+    center: true,
+  },
+  "180": {
+    top: true,
+    right: true,
+    left: true,
+    bottom: false,
+    center: true,
+  }
 };
 const thinT = {
-  top: true,
-  right: true,
-  left: false,
-  bottom: true,
-  center: true,
+  "0": {
+    top: true,
+    right: true,
+    left: false,
+    bottom: true,
+    center: true,
+  },
+  "180": {
+    top: true,
+    right: false,
+    left: true,
+    bottom: true,
+    center: true,
+  }
 };
 const horizontal = {
-  top: false,
-  right: true,
-  left: true,
-  bottom: false,
-  center: true,
+  "0": {
+    top: false,
+    right: true,
+    left: true,
+    bottom: false,
+    center: true,
+  },
+  "180": {
+    top: false,
+    right: true,
+    left: true,
+    bottom: false,
+    center: true,
+  }
 };
 const straight = {
-  top: true,
-  right: false,
-  left: false,
-  bottom: true,
-  center: true,
+  "0": {
+    top: true,
+    right: false,
+    left: false,
+    bottom: true,
+    center: true,
+  },
+  "180": {
+    top: true,
+    right: false,
+    left: false,
+    bottom: true,
+    center: true,
+  }
 };
 const downRight = {
-  top: false,
-  right: true,
-  left: false,
-  bottom: true,
-  center: true,
+  "0": {
+    top: false,
+    right: true,
+    left: false,
+    bottom: true,
+    center: true,
+  },
+  "180": {
+    top: true,
+    right: false,
+    left: true,
+    bottom: false,
+    center: true,
+  }
 };
 const upRight = {
-  top: true,
-  right: true,
-  left: false,
-  bottom: false,
-  center: true,
+  "0": {
+    top: true,
+    right: true,
+    left: false,
+    bottom: false,
+    center: true,
+  },
+  "180": {
+    top: false,
+    right: false,
+    left: true,
+    bottom: true,
+    center: true,
+  }
 };
 
 var ROAD_DIRECTION_MAP = {
@@ -88,67 +152,148 @@ var ROAD_DIRECTION_MAP = {
   31: upRight,
 
   32: {
-    top: true,
-    right: true,
-    left: true,
-    bottom: true,
-    center: false,
+    "0": {
+      top: true,
+      right: true,
+      left: true,
+      bottom: true,
+      center: false,
+    },
+    "180": {
+      top: true,
+      right: true,
+      left: true,
+      bottom: true,
+      center: false,
+    }
   },
   33: {
-    top: true,
-    right: false,
-    left: false,
-    bottom: true,
-    center: false,
+    "0": {
+      top: true,
+      right: false,
+      left: false,
+      bottom: true,
+      center: false,
+    },
+    "180": {
+      top: true,
+      right: false,
+      left: false,
+      bottom: true,
+      center: false,
+    }
   },
   34: {
-    top: false,
-    right: false,
-    left: true,
-    bottom: true,
-    center: false,
+    "0": {
+      top: false,
+      right: false,
+      left: true,
+      bottom: true,
+      center: false,
+    },
+    "180": {
+      top: true,
+      right: true,
+      left: false,
+      bottom: false,
+      center: false,
+    }
   },
   35: {
-    top: true,
-    right: true,
-    left: false,
-    bottom: false,
-    center: false,
+    "0": {
+      top: true,
+      right: true,
+      left: false,
+      bottom: false,
+      center: false,
+    },
+    "180": {
+      top: false,
+      right: false,
+      left: true,
+      bottom: true,
+      center: false,
+    }
   },
   36: {
-    top: true,
-    right: false,
-    left: true,
-    bottom: true,
-    center: false,
+    "0": {
+      top: true,
+      right: false,
+      left: true,
+      bottom: true,
+      center: false,
+    },
+    "180": {
+      top: true,
+      right: true,
+      left: false,
+      bottom: true,
+      center: false,
+    }
   },
   37: {
-    top: false,
-    right: true,
-    left: true,
-    bottom: false,
-    center: false,
+    "0": {
+      top: false,
+      right: true,
+      left: true,
+      bottom: false,
+      center: false,
+    },
+    "180": {
+      top: false,
+      right: true,
+      left: true,
+      bottom: false,
+      center: false,
+    }
   },
   38: {
-    top: true,
-    right: false,
-    left: true,
-    bottom: false,
-    center: false,
+    "0": {
+      top: true,
+      right: false,
+      left: true,
+      bottom: false,
+      center: false,
+    },
+    "180": {
+      top: false,
+      right: true,
+      left: false,
+      bottom: true,
+      center: false,
+    }
   },
   39: {
-    top: false,
-    right: true,
-    left: false,
-    bottom: false,
-    center: false,
+    "0": {
+      top: false,
+      right: true,
+      left: false,
+      bottom: false,
+      center: false,
+    },
+    "180": {
+      top: false,
+      right: false,
+      left: true,
+      bottom: false,
+      center: false,
+    }
   },
   40: {
-    top: false,
-    right: false,
-    left: false,
-    bottom: true,
-    center: false,
+    "0": {
+      top: false,
+      right: false,
+      left: false,
+      bottom: true,
+      center: false,
+    },
+    "180": {
+      top: true,
+      right: false,
+      left: false,
+      bottom: false,
+      center: false,
+    }
   },
 };
 
@@ -157,7 +302,7 @@ function CheckPosition(blockid, cardData) {
   const blockidArray = blockid.match(/\d/g);
   const row = blockidArray[0];
   const column = blockidArray[1];
-  
+
   const topBlockId = `block${row - 1}-${column}`;
   const rightBlockId = `block${row}-${column - -1}`;
   const leftBlockId = `block${row}-${column - 1}`;

@@ -674,9 +674,11 @@
         $("#winGroup").text(`${winTeamName}獲勝!`);
         if (roomInfo.owner !== getNickName()) {
           const playAgainBtn = $('.playagain');
-          playAgainBtn.text('等候新局');
-          playAgainBtn.attr('role', 'participant');
-          playAgainBtn.css('background-color', 'gray');
+          if (typeof playAgainBtn.attr('new-room-id') == 'undefined') {
+            playAgainBtn.text('等候新局');
+            playAgainBtn.attr('role', 'participant');
+            playAgainBtn.css('background-color', 'gray'); 
+          }
         } else {
           const playAgainBtn = $('.playagain');
           playAgainBtn.attr('role', 'owner');
@@ -952,7 +954,7 @@
     handCardElement.attr("can-put-to-board", canPutToBoard);
     handCardElement.attr("degrees", 0);
     if (typeof ROAD_DIRECTION_MAP[cardNumber] !== 'undefined') {
-      const roadDirection = ROAD_DIRECTION_MAP[cardNumber];
+      const roadDirection = ROAD_DIRECTION_MAP[cardNumber]["0"];
       ['top', 'left', 'right', 'bottom', 'center'].forEach((direction) => {
         handCardElement.attr(direction, roadDirection[direction]);
       })
@@ -1055,17 +1057,13 @@
       '-o-transform': 'rotate(' + degrees + 'deg)'
     });
 
-    const topValue = object.attr("top");
-    const RightValue = object.attr("right");
-    const LeftValue = object.attr("left");
-    const BottomValue = object.attr("bottom");
-    const CenterValue = object.attr("center");
+    const cardId = object.attr('card-id');
 
-    object.attr("bottom", topValue);
-    object.attr("left", RightValue);
-    object.attr("right", LeftValue);
-    object.attr("top", BottomValue);
-    object.attr("center", CenterValue);
+    const roadDirection = ROAD_DIRECTION_MAP[cardId][degrees];
+
+    ['top', 'left', 'right', 'bottom', 'center'].forEach((direction) => {
+      object.attr(direction, roadDirection[direction]);
+    })
   }
 
   var END_DIRECTION = {
