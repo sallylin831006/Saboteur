@@ -327,14 +327,49 @@ function CheckPosition(blockid, cardData) {
     (target_Left == "false" && Leftblock_right == "true") ||
     (target_Bottom == "true" && Bottomblock_top == "false") ||
     (target_Bottom == "false" && Bottomblock_top == "true") ||
-    (Topblock_bottom == undefined &&
+    (
+      Topblock_bottom == undefined &&
       Rightblock_left == undefined &&
       Leftblock_right == undefined &&
-      Bottomblock_top == undefined)
+      Bottomblock_top == undefined
+    ) 
   ) {
     alert("白癡喔不能這樣放辣");
     return false;
   }
+
+  let hasOneConnect = false;
+
+  if (
+    ((target_Top == "true" && Topblock_bottom == "true"))
+  ) {
+    hasOneConnect = true;
+  }
+
+  if (
+    ((target_Right == "true" && Rightblock_left == "true"))
+  ) {
+    hasOneConnect = true;
+  }
+
+  if (
+    ((target_Left == "true" && Leftblock_right == "true"))
+  ) {
+    hasOneConnect = true;
+  }
+
+  if (
+    ((target_Bottom == "true" && Bottomblock_top == "true"))
+  ) {
+    hasOneConnect = true;
+  }
+
+  if (! hasOneConnect) {
+    alert("白癡喔不能這樣放辣");
+    return false;
+  }
+
+
   printNewCard();
   putCardToServer(cardData);
   return true;

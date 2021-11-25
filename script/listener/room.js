@@ -38,9 +38,11 @@ function getRoomInfo(data) {
 
 function getDeleteBlock(data) {
     data = JSON.parse(data);
-    console.log('dee', data);
+    const roomInfo = data.room;
     renderDeleteBlockId(data.deleteBlockId);
-    changePlayerToMove(data.room)
+    changePlayerToMove(roomInfo)
+    renderPlayer(roomInfo.turn, roomInfo);
+    renderCards(roomInfo.players[getNickName()])
 }
 
 function showRole(data) {
